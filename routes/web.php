@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoriaRepuestoController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\InventarioController;
 use App\Http\Controllers\MarcaMotoController;
 use App\Http\Controllers\MecanicoController;
 use App\Http\Controllers\MotoController;
@@ -60,3 +61,11 @@ Route::post('/repuesto/store',[RepuestoController::class,'store'])->name('repues
 Route::get('/repuesto/edit/{id}',[RepuestoController::class,'edit'])->name('repuesto.edit');
 Route::post('/repuesto/update/{id}',[RepuestoController::class,'update'])->name('repuesto.update');
 Route::post('/repuesto/destroy/{id}',[RepuestoController::class,'destroy'])->name('repuesto.destroy');
+
+// rutas inventario //
+Route::get('/inventario/index',[InventarioController::class,'index'])->name('inventario.index');
+Route::get('/inventario/create',[InventarioController::class,'create'])->name('inventario.create');
+Route::post('/inventario/store',[InventarioController::class,'store'])->name('inventario.store');
+Route::get('/inventario/edit/{id}',[InventarioController::class,'edit'])->name('inventario.edit');
+Route::post('/inventario/update/{id}',[InventarioController::class,'update'])->name('inventario.update');
+Route::post('/inventario/destroy/{id}',[InventarioController::class,'destroy'])->name('inventario.destroy');
