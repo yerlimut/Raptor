@@ -20,4 +20,5 @@ class Inventario extends Model
         return $this->belongsTo(Moto::class,'idMoto');
     }
     
+    
 }

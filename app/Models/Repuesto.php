@@ -16,7 +16,10 @@ class Repuesto extends Model
         
     ];
 
-    public function categoriaRepuesto(){
+    public function categoria(){
         return $this->belongsTo(categoriaRepuesto::class,'idCategoria');
+    }
+    public function preorden (){
+        return $this->hasMany(Preorden::class);
     }
 }

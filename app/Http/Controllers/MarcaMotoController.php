@@ -32,7 +32,7 @@ class MarcaMotoController extends Controller
         marcaMoto::create(
             $request->all()
         );
-        return redirect()->route('marcaMoto.index');
+        return redirect()->route('marcaMoto.index')->with('success', 'Marca  creada correctamente');
     }
 
     /**
@@ -49,7 +49,7 @@ class MarcaMotoController extends Controller
     public function edit($id)
     {
         $marcasMoto = marcaMoto::findorfail($id);
-        return view('marcaMoto.edit', compact('marcasMoto '));
+        return view('MarcaMoto.edit', compact('marcasMoto'));
     }
 
     /**
@@ -59,7 +59,7 @@ class MarcaMotoController extends Controller
     {
         $marcasMoto = marcaMoto::findorfail($id);
         $marcasMoto->update($request->all());
-        return redirect()->route('marcaMoto.index');
+        return redirect()->route('marcaMoto.index')->with('success', 'Marca actualizada  correctamente');
     }
 
     /**
@@ -69,6 +69,6 @@ class MarcaMotoController extends Controller
     {
         $marcasMoto =marcaMoto::findorfail($id);
         $marcasMoto->delete();
-        return redirect()->route('marcaMoto.index');
+        return redirect()->route('marcaMoto.index')->with('success', 'Marca eliminada correctamente');
     }
 }

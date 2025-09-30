@@ -51,9 +51,9 @@ class RepuestoController extends Controller
      */
     public function edit($id)
     {
-        $repuestos =Repuesto::findorfail($id);
+        $repuesto =Repuesto::findorfail($id);
         $categoriasRepuesto=categoriaRepuesto::all();
-        return view('repuesto.edit', compact('repuestos','categoriasRepuesto'));
+        return view('repuesto.edit', compact('repuesto','categoriasRepuesto'));
 
     }
 
@@ -62,8 +62,8 @@ class RepuestoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $repuestos=Repuesto::findorfail($id);
-        $repuestos->update(
+        $repuesto=Repuesto::findorfail($id);
+        $repuesto->update(
             $request->all()
         );
         return redirect()->route('repuesto.index');

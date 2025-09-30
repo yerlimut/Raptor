@@ -1,155 +1,153 @@
 @extends('layouts.app')
 
 @section('title')
-    Welcome
+Bienvenido
 @endsection
 
-@section('titleContent')
-    <h1 class="text-center my-4 fw-bold text-white">
-        <i class="fas fa-tachometer-alt"></i> Dashboard Taller
-    </h1>
-@endsection
+@section('content_header')
+
+<h1 class="fw-bold display-6 mb-0">RAPTOR </h1>
 
 @section('content')
-<div class="container-fluid py-4 bg-gradient-dark">
-    <div class="row g-4 justify-content-center">
+<div class="d-flex align-items-center my-4 flex-wrap">
+    {{-- Logo RAPTOR --}}
+    <img src="{{ asset('imagenes/raptor.png') }}" alt="RAPTOR"
+        class="img-fluid" style="max-height: 180px;">
 
-        <!-- Clientes -->
-        <div class="col-sm-6 col-md-4 col-lg-3 d-flex justify-content-center">
-            <div class="card glass-card border-0 rounded-4 h-100 card-hover">
-                <div class="card-body text-center">
-                    <div class="icon-circle icon-gradient mb-3 mx-auto">
-                        <i class="fas fa-users fa-lg"></i>
-                    </div>
-                    <h5 class="card-title fw-bold text-white">Clientes</h5>
-                    <p class="card-text text-light opacity-75">Administra todos los clientes registrados.</p>
-                    <a href="{{ route('cliente.index') }}" class="btn btn-outline-light w-100 fw-bold">Ir a Clientes</a>
+
+</div>
+@endsection
+<div class="container py-3">
+    <div class="row g-3">
+
+        {{-- Clientes --}}
+        <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-5th">
+            <div class="card h-100 border-0 shadow-sm rounded-3">
+                <img src="{{ asset('imagenes/clientes.png') }}"
+                    class="card-img-top mx-auto d-block"
+                    alt="Clientes"
+                    style="max-height: 100px; width: auto; object-fit: contain; padding: 8px;">
+                <div class="card-body text-center p-2 d-flex flex-column">
+                    <h6 class="fw-bold mb-1">Clientes</h6>
+                    <p class="text-muted small mb-2">Administra todos los clientes registrados.</p>
+                    <a href="{{route('cliente.index')}}" class="btn btn-sm btn-outline-primary mt-auto">Ver Clientes</a>
                 </div>
             </div>
         </div>
 
-        <!-- Marcas de Motos -->
-        <div class="col-sm-6 col-md-4 col-lg-3 d-flex justify-content-center">
-            <div class="card glass-card border-0 rounded-4 h-100 card-hover">
-                <div class="card-body text-center">
-                    <div class="icon-circle icon-gradient mb-3 mx-auto">
-                        <i class="fas fa-motorcycle fa-lg"></i>
-                    </div>
-                    <h5 class="card-title fw-bold text-white">Marcas de Motos</h5>
-                    <p class="card-text text-light opacity-75">Gestiona las marcas de motocicletas.</p>
-                    <a href="{{ route('marcaMoto.index') }}" class="btn btn-outline-light w-100 fw-bold">Ir a Marcas</a>
+        {{-- Marcas de Motos --}}
+        <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-5th">
+            <div class="card h-100 border-0 shadow-sm rounded-3">
+                <img src="{{ asset('imagenes/marcasmotos.jpg') }}" class="card-img-top"
+                    alt="Marcas de Motos" style="max-height: 100px; object-fit: contain; padding: 8px;">
+                <div class="card-body text-center p-2 d-flex flex-column">
+                    <h6 class="fw-bold mb-1">Marcas de Motos</h6>
+                    <p class="text-muted small mb-2">Gestiona las marcas de motocicletas.</p>
+                    <a href="{{route('marcaMoto.index')}}" class="btn btn-sm btn-outline-primary mt-auto">Ver Marcas</a>
                 </div>
             </div>
         </div>
 
-        <!-- Mecánicos -->
-        <div class="col-sm-6 col-md-4 col-lg-3 d-flex justify-content-center">
-            <div class="card glass-card border-0 rounded-4 h-100 card-hover">
-                <div class="card-body text-center">
-                    <div class="icon-circle icon-gradient mb-3 mx-auto">
-                        <i class="fas fa-user-cog fa-lg"></i>
-                    </div>
-                    <h5 class="card-title fw-bold text-white">Mecánicos</h5>
-                    <p class="card-text text-light opacity-75">Gestiona el personal del taller.</p>
-                    <a href="{{ route('mecanico.index') }}" class="btn btn-outline-light w-100 fw-bold">Ir a Mecánicos</a>
+        {{-- Mecánicos --}}
+        <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-5th">
+            <div class="card h-100 border-0 shadow-sm rounded-3">
+                <img src="{{ asset('imagenes/mecanico.png') }}" class="card-img-top"
+                    alt="Mecánicos" style="max-height: 100px; object-fit: contain; padding: 8px;">
+                <div class="card-body text-center p-2 d-flex flex-column">
+                    <h6 class="fw-bold mb-1">Mecánicos</h6>
+                    <p class="text-muted small mb-2">Gestiona el personal del taller.</p>
+                    <a href="{{route('mecanico.index')}}" class="btn btn-sm btn-outline-primary mt-auto">Ver Mecánicos</a>
                 </div>
             </div>
         </div>
 
-        <!-- Categorías Repuestos -->
-        <div class="col-sm-6 col-md-4 col-lg-3 d-flex justify-content-center">
-            <div class="card glass-card border-0 rounded-4 h-100 card-hover">
-                <div class="card-body text-center">
-                    <div class="icon-circle icon-gradient mb-3 mx-auto">
-                        <i class="fas fa-layer-group fa-lg"></i>
-                    </div>
-                    <h5 class="card-title fw-bold text-white">Categorías</h5>
-                    <p class="card-text text-light opacity-75">Organiza las categorías de repuestos.</p>
-                    <a href="{{ route('categoriaRepuesto.index') }}" class="btn btn-outline-light w-100 fw-bold">Ir a Categorías</a>
+        {{-- Categorías --}}
+        <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-5th">
+            <div class="card h-100 border-0 shadow-sm rounded-3">
+                <img src="{{ asset('imagenes/categoriarepuesto.jpg') }}" class="card-img-top"
+                    alt="Categorías" style="max-height: 100px; object-fit: contain; padding: 8px;">
+                <div class="card-body text-center p-2 d-flex flex-column">
+                    <h6 class="fw-bold mb-1">Categorías</h6>
+                    <p class="text-muted small mb-2">Organiza las categorías de repuestos.</p>
+                    <a href="{{route('categoriaRepuesto.index')}}" class="btn btn-sm btn-outline-primary mt-auto">Ver Categorías</a>
                 </div>
             </div>
         </div>
 
-        <!-- Motos -->
-        <div class="col-sm-6 col-md-4 col-lg-3 d-flex justify-content-center">
-            <div class="card glass-card border-0 rounded-4 h-100 card-hover">
-                <div class="card-body text-center">
-                    <div class="icon-circle icon-gradient mb-3 mx-auto">
-                        <i class="fas fa-biking fa-lg"></i>
-                    </div>
-                    <h5 class="card-title fw-bold text-white">Motos</h5>
-                    <p class="card-text text-light opacity-75">Control de motos registradas en el taller.</p>
-                    <a href="{{ route('moto.index') }}" class="btn btn-outline-light w-100 fw-bold">Ir a Motos</a>
+        {{-- Motos --}}
+        <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-5th">
+            <div class="card h-100 border-0 shadow-sm rounded-3">
+                <img src="{{ asset('imagenes/motos.jpg') }}" class="card-img-top"
+                    alt="Motos" style="max-height: 100px; object-fit: contain; padding: 8px;">
+                <div class="card-body text-center p-2 d-flex flex-column">
+                    <h6 class="fw-bold mb-1">Motos</h6>
+                    <p class="text-muted small mb-2">Control de motos registradas en el taller.</p>
+                    <a href="{{route ('moto.index')}}" class="btn btn-sm btn-outline-primary mt-auto">Ver Motos</a>
                 </div>
             </div>
         </div>
 
-        <!-- Repuestos -->
-        <div class="col-sm-6 col-md-4 col-lg-3 d-flex justify-content-center">
-            <div class="card glass-card border-0 rounded-4 h-100 card-hover">
-                <div class="card-body text-center">
-                    <div class="icon-circle icon-gradient mb-3 mx-auto">
-                        <i class="fas fa-cogs fa-lg"></i>
-                    </div>
-                    <h5 class="card-title fw-bold text-white">Repuestos</h5>
-                    <p class="card-text text-light opacity-75">Administra los repuestos disponibles.</p>
-                    <a href="{{ route('repuesto.index') }}" class="btn btn-outline-light w-100 fw-bold">Ir a Repuestos</a>
+        {{-- Repuestos --}}
+        <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-5th">
+            <div class="card h-100 border-0 shadow-sm rounded-3">
+                <img src="{{ asset('imagenes/repuestos.png') }}" class="card-img-top mx-auto d-block"
+                    alt="Repuestos" style="max-height: 100px; width: auto; object-fit: contain; padding: 8px;">
+                <div class="card-body text-center p-2 d-flex flex-column">
+                    <h6 class="fw-bold mb-1">Repuestos</h6>
+                    <p class="text-muted small mb-2">Administra los repuestos disponibles.</p>
+                    <a href="{{route('repuesto.index')}}" class="btn btn-sm btn-outline-primary mt-auto">Ver Repuestos</a>
                 </div>
             </div>
         </div>
 
-        <!-- Inventario -->
-        <div class="col-sm-6 col-md-4 col-lg-3 d-flex justify-content-center">
-            <div class="card glass-card border-0 rounded-4 h-100 card-hover">
-                <div class="card-body text-center">
-                    <div class="icon-circle icon-gradient mb-3 mx-auto">
-                        <i class="fas fa-boxes fa-lg"></i>
-                    </div>
-                    <h5 class="card-title fw-bold text-white">Inventario</h5>
-                    <p class="card-text text-light opacity-75">Gestiona el stock de repuestos y productos.</p>
-                    <a href="" class="btn btn-outline-light w-100 fw-bold">Ir a Inventario</a>
+        {{-- Inventario --}}
+        <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-5th">
+            <div class="card h-100 border-0 shadow-sm rounded-3">
+                <img src="{{ asset('imagenes/inventario.webp') }}" class="card-img-top"
+                    alt="Inventario" style="max-height: 100px; object-fit: contain; padding: 8px;">
+                <div class="card-body text-center p-2 d-flex flex-column">
+                    <h6 class="fw-bold mb-1">Inventario</h6>
+                    <p class="text-muted small mb-2">Gestiona el stock de repuestos y productos.</p>
+                    <a href="{{route('inventario.index')}}" class="btn btn-sm btn-outline-primary mt-auto">Ver Inventario</a>
                 </div>
             </div>
         </div>
 
-        <!-- Orden de Trabajo -->
-        <div class="col-sm-6 col-md-4 col-lg-3 d-flex justify-content-center">
-            <div class="card glass-card border-0 rounded-4 h-100 card-hover">
-                <div class="card-body text-center">
-                    <div class="icon-circle icon-gradient mb-3 mx-auto">
-                        <i class="fas fa-file-alt fa-lg"></i>
-                    </div>
-                    <h5 class="card-title fw-bold text-white">Orden de Trabajo</h5>
-                    <p class="card-text text-light opacity-75">Crea y administra las órdenes de trabajo.</p>
-                    <a href="" class="btn btn-outline-light w-100 fw-bold">Ir a Órdenes</a>
+        {{-- Órdenes de Trabajo --}}
+        <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-5th">
+            <div class="card h-100 border-0 shadow-sm rounded-3">
+                <img src="{{ asset('imagenes/ordenTrabajo.jpg') }}" class="card-img-top"
+                    alt="Órdenes de Trabajo" style="max-height: 100px; object-fit: contain; padding: 8px;">
+                <div class="card-body text-center p-2 d-flex flex-column">
+                    <h6 class="fw-bold mb-1">Órdenes de Trabajo</h6>
+                    <p class="text-muted small mb-2">Crea y administra las órdenes de trabajo.</p>
+                    <a href="{{route('OrdenTrabajo.index')}}" class="btn btn-sm btn-outline-primary mt-auto">Ver Órdenes</a>
                 </div>
             </div>
         </div>
 
-        <!-- Preorden -->
-        <div class="col-sm-6 col-md-4 col-lg-3 d-flex justify-content-center">
-            <div class="card glass-card border-0 rounded-4 h-100 card-hover">
-                <div class="card-body text-center">
-                    <div class="icon-circle icon-gradient mb-3 mx-auto">
-                        <i class="fas fa-clipboard-list fa-lg"></i>
-                    </div>
-                    <h5 class="card-title fw-bold text-white">Preorden</h5>
-                    <p class="card-text text-light opacity-75">Gestiona las preórdenes de servicio.</p>
-                    <a href="" class="btn btn-outline-light w-100 fw-bold">Ir a Preórdenes</a>
+        {{-- Preórdenes --}}
+        <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-5th">
+            <div class="card h-100 border-0 shadow-sm rounded-3">
+                <img src="{{ asset('imagenes/preorden.jpg') }}" class="card-img-top"
+                    alt="Preórdenes" style="max-height: 100px; object-fit: contain; padding: 8px;">
+                <div class="card-body text-center p-2 d-flex flex-column">
+                    <h6 class="fw-bold mb-1">Preórdenes</h6>
+                    <p class="text-muted small mb-2">Gestiona las preórdenes de servicio.</p>
+                    <a href="{{route('Preorden.index')}}" class="btn btn-sm btn-outline-primary mt-auto">Ver Preórdenes</a>
                 </div>
             </div>
         </div>
 
-        <!-- Diagnóstico -->
-        <div class="col-sm-6 col-md-4 col-lg-3 d-flex justify-content-center">
-            <div class="card glass-card border-0 rounded-4 h-100 card-hover">
-                <div class="card-body text-center">
-                    <div class="icon-circle icon-gradient mb-3 mx-auto">
-                        <i class="fas fa-stethoscope fa-lg"></i>
-                    </div>
-                    <h5 class="card-title fw-bold text-white">Diagnóstico</h5>
-                    <p class="card-text text-light opacity-75">Registra diagnósticos de las motos.</p>
-                    <a href="" class="btn btn-outline-light w-100 fw-bold">Ir a Diagnósticos</a>
+        {{-- Diagnóstico --}}
+        <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-5th">
+            <div class="card h-100 border-0 shadow-sm rounded-3">
+                <img src="{{ asset('imagenes/diagnostico.png') }}" class="card-img-top"
+                    alt="Diagnóstico" style="max-height: 100px; object-fit: contain; padding: 8px;">
+                <div class="card-body text-center p-2 d-flex flex-column">
+                    <h6 class="fw-bold mb-1">Diagnóstico</h6>
+                    <p class="text-muted small mb-2">Registra diagnósticos de las motos.</p>
+                    <a href="{{route('diagnostico.index')}}" class="btn btn-sm btn-outline-primary mt-auto">Ver Diagnósticos</a>
                 </div>
             </div>
         </div>
@@ -157,49 +155,14 @@
     </div>
 </div>
 
+{{-- CSS personalizado para 5 columnas en escritorio grande --}}
 <style>
-    body {
-        background: linear-gradient(135deg, #1c1c1c, #2e2e2e);
-    }
-
-    .glass-card {
-        background: rgba(255, 255, 255, 0.08);
-        backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        color: #fff;
-    }
-
-    .card-hover {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .card-hover:hover {
-        transform: translateY(-8px) scale(1.02);
-        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.6);
-    }
-
-    .icon-circle {
-        width: 70px;
-        height: 70px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 28px;
-        color: #fff;
-    }
-
-    .icon-gradient {
-        background: linear-gradient(135deg, #444, #111);
-        box-shadow: 0 4px 10px rgba(0,0,0,0.4);
-    }
-
-    .btn-outline-light {
-        border-width: 2px;
-        transition: all 0.3s ease;
-    }
-    .btn-outline-light:hover {
-        background: #fff;
-        color: #000;
+    @media (min-width: 1200px) {
+        .col-xl-5th {
+            flex: 0 0 20%;
+            max-width: 20%;
+        }
     }
 </style>
+
 @endsection

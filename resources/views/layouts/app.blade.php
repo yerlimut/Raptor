@@ -1,36 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('adminlte::page')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+@section('title', $title ?? 'Dashboard')
+
+@section('content_header')
+    <h1>@yield('page-title', 'Admin Panel')</h1>
+@stop
+
+@section('content')
+    {{-- Dynamic content --}}
+    @yield('content')
+@stop
+
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/admin-custom.css') }}">
+    
+    {{-- Bootstrap Icons --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    
+    {{-- Font Awesome --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-pVb1y0fX3r9yKfHn0YxJ2sxq1clmZK6F2R7T3aKj6NH5M6GZwJt2ml8B6U2P2pK2b2x8qOaZ5x0yqM0P0HjM1Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    @stack('styles')
+@stop
 
 
-    <title>@yield('title')</title>
-</head>
 
-<body>
-
-
-    @yield('titleContent')
-
-    <div class="container">
-        <div class="row">
-            @yield('content')
-        </div>
-    </div>
-
-
-    <footer class="bg-dark text-white text-center py-3 fixed-bottom">
-    Autor: Yerli Blanco
-</footer>
-
+@section('js')
+    {{-- SweetAlert2 --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-</body>
-
-</html>
+    @stack('scripts')
+@stop

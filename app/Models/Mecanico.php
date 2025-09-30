@@ -14,7 +14,12 @@ class Mecanico extends Model
         'numeroDocumento',
         'telefono',
         'email',
-        'especialidad',
+        'direccion',
+        'especialidad'
                              
     ];
+    public function preorden (){
+        return $this->hasMany(Preorden::class);
+    }
 }
+

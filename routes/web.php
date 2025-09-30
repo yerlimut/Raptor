@@ -2,10 +2,13 @@
 
 use App\Http\Controllers\CategoriaRepuestoController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\DiagnosticoController;
 use App\Http\Controllers\InventarioController;
 use App\Http\Controllers\MarcaMotoController;
 use App\Http\Controllers\MecanicoController;
 use App\Http\Controllers\MotoController;
+use App\Http\Controllers\OrdenTrabajoController;
+use App\Http\Controllers\PreordenController;
 use App\Http\Controllers\RepuestoController;
 use Illuminate\Support\Facades\Route;
 
@@ -69,3 +72,28 @@ Route::post('/inventario/store',[InventarioController::class,'store'])->name('in
 Route::get('/inventario/edit/{id}',[InventarioController::class,'edit'])->name('inventario.edit');
 Route::post('/inventario/update/{id}',[InventarioController::class,'update'])->name('inventario.update');
 Route::post('/inventario/destroy/{id}',[InventarioController::class,'destroy'])->name('inventario.destroy');
+
+// rutas Diagnostico //
+Route::get('/diagnostico/index',[DiagnosticoController::class,'index'])->name('diagnostico.index');
+Route::get('/diagnostico/create',[DiagnosticoController::class,'create'])->name('diagnostico.create');
+Route::post('/diagnostico/store',[DiagnosticoController::class,'store'])->name('diagnostico.store');
+Route::get('/diagnostico/edit/{id}',[DiagnosticoController::class,'edit'])->name('diagnostico.edit');
+Route::post('/diagnostico/update/{id}',[DiagnosticoController::class,'update'])->name('diagnostico.update');
+Route::post('/diagnostico/destroy/{id}',[DiagnosticoController::class,'destroy'])->name('diagnostico.destroy');
+
+// rutas orden trabajo //
+Route::get('/OrdenTrabajo/index',[OrdenTrabajoController::class,'index'])->name('OrdenTrabajo.index');
+Route::get('/OrdenTrabajo/create',[OrdenTrabajoController::class,'create'])->name('OrdenTrabajo.create');
+Route::post('/OrdenTrabajo/store',[OrdenTrabajoController::class,'store'])->name('OrdenTrabajo.store');
+Route::get('/OrdenTrabajo/edit/{id}',[OrdenTrabajoController::class,'edit'])->name('OrdenTrabajo.edit');
+Route::post('/OrdenTrabajo/update/{id}',[OrdenTrabajoController::class,'update'])->name('OrdenTrabajo.update');
+Route::post('/OrdenTrabajo/destroy/{id}',[OrdenTrabajoController::class,'destroy'])->name('OrdenTrabajo.destroy');
+
+
+// rutas preorden //
+Route::get('/Preorden/index',[PreordenController::class,'index'])->name('Preorden.index');
+Route::get('/Preorden/create',[PreordenController::class,'create'])->name('Preorden.create');
+Route::post('/Preorden/store',[PreordenController::class,'store'])->name('Preorden.store');
+Route::get('/Preorden/edit/{id}',[PreordenController::class,'edit'])->name('Preorden.edit');
+Route::post('/Preorden/update/{id}',[PreordenController::class,'update'])->name('Preorden.update');
+Route::post('/Preorden/destroy/{id}',[PreordenController::class,'destroy'])->name('Preorden.destroy');
