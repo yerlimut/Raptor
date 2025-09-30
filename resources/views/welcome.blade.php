@@ -73,7 +73,7 @@ Bienvenido
         {{-- Categorías --}}
         <div class="col-12 col-sm-6 col-md-4 col-lg-3">
             <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
-                <img src="" class="card-img-top" alt="Categorías" style="height: 150px; object-fit: cover;">
+                <img src="{{ asset('imagenes/categoriarepuesto.jpg') }}" class="card-img-top" alt="Categorías" style="height: 150px; object-fit: cover;">
                 <div class="card-body d-flex flex-column text-center">
                     <h6 class="fw-bold mt-2 mb-2">Categorías</h6>
                     <p class="text-muted mb-3">Organiza las categorías de repuestos.</p>
@@ -109,7 +109,7 @@ Bienvenido
         {{-- Inventario --}}
         <div class="col-12 col-sm-6 col-md-4 col-lg-3">
             <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
-                <img src="" class="card-img-top" alt="Inventario" style="height: 150px; object-fit: cover;">
+                <img src="{{ asset('imagenes/inventario.webp') }}" class="card-img-top" alt="Inventario" style="height: 150px; object-fit: cover;">
                 <div class="card-body d-flex flex-column text-center">
                     <h6 class="fw-bold mt-2 mb-2">Inventario</h6>
                     <p class="text-muted mb-3">Gestiona el stock de repuestos y productos.</p>
@@ -121,7 +121,7 @@ Bienvenido
         {{-- Órdenes de Trabajo --}}
         <div class="col-12 col-sm-6 col-md-4 col-lg-3">
             <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
-                <img src="" class="card-img-top" alt="Órdenes de Trabajo" style="height: 150px; object-fit: cover;">
+                <img src="{{ asset('imagenes/ordenTrabajo.jpg') }}" class="card-img-top" alt="Órdenes de Trabajo" style="height: 150px; object-fit: cover;">
                 <div class="card-body d-flex flex-column text-center">
                     <h6 class="fw-bold mt-2 mb-2">Órdenes de Trabajo</h6>
                     <p class="text-muted mb-3">Crea y administra las órdenes de trabajo.</p>
