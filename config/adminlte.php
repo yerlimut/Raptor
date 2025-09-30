@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'RAPTOR ',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -63,9 +63,9 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
-    'logo_img_class' => 'brand-image img-circle elevation-3',
+    'logo' => '<b>RAP</b>TOR',
+    'logo_img' => 'imagenes/Raptorlogo.png',
+    'logo_img_class' => 'brand-image img-circle elevation-6',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
     'logo_img_alt' => 'Admin Logo',
@@ -390,67 +390,67 @@ return [
         ],
         [
             'text' => 'Diagnóstico',
-            'url'  => 'Preorden/index',
+            'url'  => 'diagnostico/index',
             'icon' => 'fas fa-stethoscope',
         ],
     ],
 
 
-        [
-            'text' => 'multilevel',
-            'icon' => 'fas fa-fw fa-share',
-            'submenu' => [
-                [
-                    'text' => 'level_one',
-                    'url' => '#',
-                ],
-                [
-                    'text' => 'level_one',
-                    'url' => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url' => '#',
-                        ],
-                        [
-                            'text' => 'level_two',
-                            'url' => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url' => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url' => '#',
-                                ],
+    [
+        'text' => 'multilevel',
+        'icon' => 'fas fa-fw fa-share',
+        'submenu' => [
+            [
+                'text' => 'level_one',
+                'url' => '#',
+            ],
+            [
+                'text' => 'level_one',
+                'url' => '#',
+                'submenu' => [
+                    [
+                        'text' => 'level_two',
+                        'url' => '#',
+                    ],
+                    [
+                        'text' => 'level_two',
+                        'url' => '#',
+                        'submenu' => [
+                            [
+                                'text' => 'level_three',
+                                'url' => '#',
+                            ],
+                            [
+                                'text' => 'level_three',
+                                'url' => '#',
                             ],
                         ],
                     ],
                 ],
-                [
-                    'text' => 'level_one',
-                    'url' => '#',
-                ],
+            ],
+            [
+                'text' => 'level_one',
+                'url' => '#',
             ],
         ],
-        ['header' => 'labels'],
-        [
-            'text' => 'important',
-            'icon_color' => 'red',
-            'url' => '#',
-        ],
-        [
-            'text' => 'warning',
-            'icon_color' => 'yellow',
-            'url' => '#',
-        ],
-        [
-            'text' => 'information',
-            'icon_color' => 'cyan',
-            'url' => '#',
-        ],
-    
+    ],
+    ['header' => 'labels'],
+    [
+        'text' => 'important',
+        'icon_color' => 'red',
+        'url' => '#',
+    ],
+    [
+        'text' => 'warning',
+        'icon_color' => 'yellow',
+        'url' => '#',
+    ],
+    [
+        'text' => 'information',
+        'icon_color' => 'cyan',
+        'url' => '#',
+    ],
+
 
     /*
     |--------------------------------------------------------------------------

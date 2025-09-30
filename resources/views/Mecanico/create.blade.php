@@ -68,18 +68,30 @@ Crear Mecánico
                 {{-- Especialidad --}}
                 <div class="col-12">
                     <label for="especialidad" class="form-label">Especialidad</label>
-                    <input type="text" class="form-control" id="especialidad" name="especialidad">
+                    <select class="form-control" id="especialidad" name="especialidad">
+                        <option value="">-- Seleccione una especialidad --</option>
+                        <option value="mecanica_general">Mecánica General</option>
+                        <option value="electricidad">Electricidad Automotriz</option>
+                        <option value="inyeccion">Sistemas de Inyección</option>
+                        <option value="motos_altas">Motos de Alta Cilindrada</option>
+                        <option value="motos_bajas">Motos de Baja Cilindrada</option>
+                        <option value="frenos">Frenos</option>
+                        <option value="suspension">Suspensión</option>
+                        <option value="transmision">Transmisión</option>
+                        <option value="carburacion">Carburación</option>
+                        <option value="diagnostico">Diagnóstico Computarizado</option>
+                    </select>
                 </div>
-            </div>
 
-            <div class="mt-4 d-flex gap-2">
-                <button type="submit" class="btn btn-primary">
-                    <i class="bi bi-save"></i> Guardar
-                </button>
-                <a href="{{ route('mecanico.index') }}" class="btn btn-secondary">
-                    <i class="bi bi-arrow-left-circle"></i> Cancelar
-                </a>
-            </div>
+
+                <div class="mt-4 d-flex gap-2">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-save"></i> Guardar
+                    </button>
+                    <a href="{{ route('mecanico.index') }}" class="btn btn-secondary">
+                        <i class="bi bi-arrow-left-circle"></i> Cancelar
+                    </a>
+                </div>
         </form>
     </div>
 </div>
