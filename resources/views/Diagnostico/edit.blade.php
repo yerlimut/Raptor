@@ -4,6 +4,11 @@
 Editar Diagnóstico
 @endsection
 
+@section('content_header')
+
+<h1 class="fw-bold display-6 mb-0">RAPTOR </h1>
+@endsection
+
 @section('content')
 <div class="container mt-5">
     <h1 class="text-center text-dark"><i class="bi bi-pencil-square"></i> Editar Diagnóstico</h1>
@@ -16,21 +21,21 @@ Editar Diagnóstico
                 {{-- Descripción --}}
                 <div class="col-12">
                     <label for="descripcion" class="form-label">Descripción</label>
-                    <input type="text" 
-                           class="form-control" 
-                           id="descripcion" 
-                           name="descripcion" 
-                           value="{{ $diagnosticos->descripcion }}">
+                    <input type="text"
+                        class="form-control"
+                        id="descripcion"
+                        name="descripcion"
+                        value="{{ $diagnosticos->descripcion }}">
                 </div>
 
                 {{-- Fecha Diagnóstico --}}
                 <div class="col-md-6">
                     <label for="fechaDiagnostico" class="form-label">Fecha del Diagnóstico</label>
-                    <input type="date" 
-                           class="form-control" 
-                           id="fechaDiagnostico" 
-                           name="fechaDiagnostico" 
-                           value="{{ $diagnosticos->fechaDiagnostico }}">
+                    <input type="date"
+                        class="form-control"
+                        id="fechaDiagnostico"
+                        name="fechaDiagnostico"
+                        value="{{ $diagnosticos->fechaDiagnostico }}">
                 </div>
 
                 {{-- Estado --}}
@@ -61,10 +66,10 @@ Editar Diagnóstico
                     <select class="form-control" id="idMoto" name="idMoto">
                         <option value="">Seleccione una moto...</option>
                         @foreach($motos as $moto)
-                            <option value="{{ $moto->id }}" 
-                                {{ $diagnosticos->idMoto == $moto->id ? 'selected' : '' }}>
-                                {{ $moto->modelo }} - {{ $moto->placa }}
-                            </option>
+                        <option value="{{ $moto->id }}"
+                            {{ $diagnosticos->idMoto == $moto->id ? 'selected' : '' }}>
+                            {{ $moto->modelo }} - {{ $moto->placa }}
+                        </option>
                         @endforeach
                     </select>
                 </div>

@@ -4,6 +4,10 @@
 Crear Preorden
 @endsection
 
+@section('content_header')
+
+<h1 class="fw-bold display-6 mb-0">RAPTOR </h1>
+@endsection
 @section('content')
 <div class="container mt-5">
     <h1 class="text-center"><i class="bi bi-plus-circle"></i> Crear Preorden</h1>

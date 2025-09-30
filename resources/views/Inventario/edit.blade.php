@@ -4,6 +4,11 @@
 Editar Inventario
 @endsection
 
+@section('content_header')
+
+<h1 class="fw-bold display-6 mb-0">RAPTOR </h1>
+@endsection
+
 @section('content')
 <div class="container mt-5">
     <h1 class="text-center"><i class="bi bi-pencil-square"></i> Editar Inventario</h1>
@@ -15,21 +20,21 @@ Editar Inventario
                 {{-- Descripción --}}
                 <div class="col-md-6">
                     <label for="descripcion" class="form-label">Descripción</label>
-                    <input type="text" 
-                           class="form-control" 
-                           id="descripcion" 
-                           name="descripcion" 
-                           value="{{   $inventarios->descripcion }}">
+                    <input type="text"
+                        class="form-control"
+                        id="descripcion"
+                        name="descripcion"
+                        value="{{   $inventarios->descripcion }}">
                 </div>
 
                 {{-- Fecha de Registro --}}
                 <div class="col-md-6">
                     <label for="fechaRegistro" class="form-label">Fecha de Registro</label>
-                    <input type="date" 
-                           class="form-control" 
-                           id="fechaRegistro" 
-                           name="fechaRegistro" 
-                           value="{{   $inventarios->fechaRegistro }}">
+                    <input type="date"
+                        class="form-control"
+                        id="fechaRegistro"
+                        name="fechaRegistro"
+                        value="{{   $inventarios->fechaRegistro }}">
                 </div>
 
                 {{-- Estado General --}}
@@ -60,9 +65,9 @@ Editar Inventario
                     <select class="form-control" id="idMoto" name="idMoto">
                         <option value="">-- Seleccione una moto --</option>
                         @foreach($motos as $moto)
-                            <option value="{{ $moto->id }}" {{  $inventarios ->idMoto == $moto->id ? 'selected' : '' }}>
-                                {{ $moto->placa }} - {{ $moto->marca }}
-                            </option>
+                        <option value="{{ $moto->id }}" {{  $inventarios ->idMoto == $moto->id ? 'selected' : '' }}>
+                            {{ $moto->placa }} - {{ $moto->marca }}
+                        </option>
                         @endforeach
                     </select>
                 </div>

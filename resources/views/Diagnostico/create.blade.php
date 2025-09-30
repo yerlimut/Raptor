@@ -4,6 +4,11 @@
 Crear Diagnóstico
 @endsection
 
+@section('content_header')
+
+<h1 class="fw-bold display-6 mb-0">RAPTOR </h1>
+@endsection
+
 @section('content')
 <div class="container d-flex align-items-center justify-content-center min-vh-50">
     <div class="col-md-8">
