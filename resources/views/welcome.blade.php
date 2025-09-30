@@ -39,7 +39,7 @@ Bienvenido
         {{-- Marcas de Motos --}}
         <div class="col-12 col-sm-6 col-md-4 col-lg-3">
             <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
-                <img src="" class="card-img-top" alt="Marcas de Motos" style="height: 150px; object-fit: cover;">
+                <img src="{{ asset('imagenes/marcasmotos.jpg') }}" class="card-img-top" alt="Marcas de Motos" style="height: 150px; object-fit: cover;">
                 <div class="card-body d-flex flex-column text-center">
                     <h6 class="fw-bold mt-2 mb-2">Marcas de Motos</h6>
                     <p class="text-muted mb-3">Gestiona las marcas de motocicletas.</p>

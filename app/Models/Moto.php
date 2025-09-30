@@ -27,5 +27,10 @@ class Moto extends Model
         public function inventario(){
             return $this->hasMany(Inventario::class);
         }
+    public function diagnostico(){
+        return $this->hasMany(Diagnostico::class);
     }
+        
+    }
+    
 

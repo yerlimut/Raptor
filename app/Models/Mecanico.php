@@ -17,4 +17,8 @@ class Mecanico extends Model
         'especialidad',
                              
     ];
+    public function preorden (){
+        return $this->hasMany(Preorden::class);
+    }
 }
+
