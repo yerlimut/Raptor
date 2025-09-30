@@ -31,7 +31,7 @@ Bienvenido
                 <div class="card-body text-center p-2 d-flex flex-column">
                     <h6 class="fw-bold mb-1">Clientes</h6>
                     <p class="text-muted small mb-2">Administra todos los clientes registrados.</p>
-                    <a href="" class="btn btn-sm btn-outline-primary mt-auto">Ver Clientes</a>
+                    <a href="{{route('cliente.index')}}" class="btn btn-sm btn-outline-primary mt-auto">Ver Clientes</a>
                 </div>
             </div>
         </div>
