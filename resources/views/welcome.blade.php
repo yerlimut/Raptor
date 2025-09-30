@@ -49,9 +49,13 @@ Bienvenido
         </div>
 
         {{-- Mecánicos --}}
+       
         <div class="col-12 col-sm-6 col-md-4 col-lg-3">
             <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
-                <img src="" class="card-img-top" alt="Mecánicos" style="height: 150px; object-fit: cover;">
+                <img src="{{ asset('imagenes/mecanico.png') }}"
+                    class="card-img-top mx-auto d-block"
+                    alt="Clientes"
+                    style="max-height: 120px; width: auto; object-fit: contain; padding: 10px;">
                 <div class="card-body d-flex flex-column text-center">
                     <h6 class="fw-bold mt-2 mb-2">Mecánicos</h6>
                     <p class="text-muted mb-3">Gestiona el personal del taller.</p>
