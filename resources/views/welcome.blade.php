@@ -4,10 +4,16 @@
 Bienvenido
 @endsection
 
+
 @section('titleContent')
-<div class="text-center my-5">
-    <h1 class="fw-bold display-5">Panel de Control</h1>
-    <p class="text-muted">Accede rápidamente a las secciones principales del sistema</p>
+<div class="d-flex align-items-center my-4">
+    {{-- Logo RAPTOR --}}
+    <img src="{{ asset('imagenes/raptor.png') }}" alt="RAPTOR" class="img-fluid" style="max-height: 180px;">
+
+    <div class="ms-3">
+        <h1 class="fw-bold display-6 mb-0 text">Panel de Control</h1>
+        <p class="text-secondary mb-0">Accede rápidamente a las secciones principales del sistema</p>
+    </div>
 </div>
 @endsection
 
