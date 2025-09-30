@@ -28,6 +28,9 @@ Editar Preorden
                             </option>
                         @endforeach
                     </select>
+                    @error('idOrden')
+                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 {{-- Mecánico --}}
@@ -41,6 +44,9 @@ Editar Preorden
                             </option>
                         @endforeach
                     </select>
+                    @error('idMecanico')
+                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 {{-- Repuesto --}}
@@ -54,12 +60,18 @@ Editar Preorden
                             </option>
                         @endforeach
                     </select>
+                    @error('idRepuesto')
+                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 {{-- Descripción --}}
                 <div class="col-12">
                     <label for="descripcion" class="form-label">Descripción</label>
                     <textarea class="form-control" id="descripcion" name="descripcion" rows="3">{{ $preordenes->descripcion }}</textarea>
+                    @error('descripcion')
+                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                    @enderror
                 </div>
             </div>
 

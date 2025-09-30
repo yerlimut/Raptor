@@ -3,9 +3,9 @@
 @section('title', 'Crear Repuesto')
 
 @section('content_header')
-
 <h1 class="fw-bold display-6 mb-0">RAPTOR </h1>
 @endsection
+
 @section('content')
 <div class="container mt-5">
     <h1 class="text-center"><i class="bi bi-plus-circle"></i> Crear Repuesto</h1>
@@ -31,7 +31,7 @@
 
             <div class="mb-3">
                 <label for="nombre" class="form-label">Nombre del Repuesto</label>
-                <select class="form-control" id="nombre" name="nombre" >
+                <select class="form-control @error('nombre') is-invalid @enderror" id="nombre" name="nombre">
                     <option value="">-- Seleccione un repuesto --</option>
 
                     <!-- Motor -->
@@ -89,41 +89,56 @@
                     <option value="Faro">Accesorios : Faro</option>
                     <option value="Tapetes">Accesorios : Tapetes</option>
                 </select>
+                @error('nombre')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
 
+            <div class="mb-3">
+                <label for="marca" class="form-label">Marca</label>
+                <input type="text" class="form-control @error('marca') is-invalid @enderror" id="marca" name="marca" placeholder="Ingrese la marca">
+                @error('marca')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
 
-                <div class="mb-3">
-                    <label for="marca" class="form-label">Marca</label>
-                    <input type="text" class="form-control" id="marca" name="marca" placeholder="Ingrese la marca" >
-                </div>
+            <div class="mb-3">
+                <label for="precio" class="form-label">Precio</label>
+                <input type="number" step="0.01" class="form-control @error('precio') is-invalid @enderror" id="precio" name="precio" placeholder="Ingrese el precio">
+                @error('precio')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
 
-                <div class="mb-3">
-                    <label for="precio" class="form-label">Precio</label>
-                    <input type="number" step="0.01" class="form-control" id="precio" name="precio" placeholder="Ingrese el precio" >
-                </div>
+            <div class="mb-3">
+                <label for="stock" class="form-label">Stock</label>
+                <input type="number" class="form-control @error('stock') is-invalid @enderror" id="stock" name="stock" placeholder="Cantidad disponible">
+                @error('stock')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
 
-                <div class="mb-3">
-                    <label for="stock" class="form-label">Stock</label>
-                    <input type="number" class="form-control" id="stock" name="stock" placeholder="Cantidad disponible" >
-                </div>
-
-                <div class="mb-3">
-                    <label for="idCategoria" class="form-label">Categoría</label>
-                    <select class="form-control" id="idCategoria" name="idCategoria" >
-                        <option value="">-- Seleccione una categoría --</option>
-                        @foreach($categoriasRepuesto as $categoria)
+            <div class="mb-3">
+                <label for="idCategoria" class="form-label">Categoría</label>
+                <select class="form-control @error('idCategoria') is-invalid @enderror" id="idCategoria" name="idCategoria">
+                    <option value="">-- Seleccione una categoría --</option>
+                    @foreach($categoriasRepuesto as $categoria)
                         <option value="{{ $categoria->id }}">{{ $categoria->nombreCategoria }}</option>
-                        @endforeach
-                    </select>
-                </div>
+                    @endforeach
+                </select>
+                @error('idCategoria')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
 
-                <div class="mt-4 d-flex gap-2">
-                    <button type="submit" class="btn btn-primary">
-                        <i class="bi bi-save"></i> Guardar
-                    </button>
-                    <a href="{{ route('repuesto.index') }}" class="btn btn-secondary">
-                        <i class="bi bi-arrow-left-circle"></i> Cancelar
-                    </a>
-                </div>
+            <div class="mt-4 d-flex gap-2">
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-save"></i> Guardar
+                </button>
+                <a href="{{ route('repuesto.index') }}" class="btn btn-secondary">
+                    <i class="bi bi-arrow-left-circle"></i> Cancelar
+                </a>
+            </div>
         </form>
     </div>
 </div>

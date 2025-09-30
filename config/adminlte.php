@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'RAPTOR ',
+    'title' => 'AdminLTE 2',
     'title_prefix' => '',
     'title_postfix' => '',
 

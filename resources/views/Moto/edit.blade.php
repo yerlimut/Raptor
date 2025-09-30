@@ -22,36 +22,45 @@ Editar Moto
                 <div class="col-md-6">
                     <label for="modelo" class="form-label">Modelo</label>
                     <input type="text"
-                        class="form-control"
+                        class="form-control @error('modelo') is-invalid @enderror"
                         id="modelo"
                         name="modelo"
                         value="{{ $moto->modelo }}">
+                    @error('modelo')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 {{-- Año --}}
                 <div class="col-md-6">
                     <label for="año" class="form-label">Año</label>
                     <input type="date"
-                        class="form-control"
+                        class="form-control @error('año') is-invalid @enderror"
                         id="año"
                         name="año"
                         value="{{ $moto->año }}">
+                    @error('año')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 {{-- Placa --}}
                 <div class="col-md-6">
                     <label for="placa" class="form-label">Placa</label>
                     <input type="text"
-                        class="form-control"
+                        class="form-control @error('placa') is-invalid @enderror"
                         id="placa"
                         name="placa"
                         value="{{ $moto->placa }}">
+                    @error('placa')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 {{-- Cliente --}}
                 <div class="col-md-6">
                     <label for="idCliente" class="form-label">Cliente</label>
-                    <select class="form-control" id="idCliente" name="idCliente">
+                    <select class="form-control @error('idCliente') is-invalid @enderror" id="idCliente" name="idCliente">
                         <option value="">-- Seleccione --</option>
                         @foreach($clientes as $cliente)
                         <option value="{{ $cliente->id }}"
@@ -60,12 +69,15 @@ Editar Moto
                         </option>
                         @endforeach
                     </select>
+                    @error('idCliente')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 {{-- Marca --}}
                 <div class="col-md-6">
                     <label for="idMarca" class="form-label">Marca</label>
-                    <select class="form-control" id="idMarca" name="idMarca">
+                    <select class="form-control @error('idMarca') is-invalid @enderror" id="idMarca" name="idMarca">
                         <option value="">-- Seleccione --</option>
                         @foreach($marcas as $marca)
                         <option value="{{ $marca->id }}"
@@ -74,6 +86,9 @@ Editar Moto
                         </option>
                         @endforeach
                     </select>
+                    @error('idMarca')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
             </div>
 

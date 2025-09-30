@@ -22,12 +22,18 @@ Crear Orden de Trabajo
                 <div class="col-md-6">
                     <label for="fechaInicio" class="form-label">Fecha de Inicio</label>
                     <input type="date" class="form-control" id="fechaInicio" name="fechaInicio" required>
+                    @error('fechaInicio')
+                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 {{-- Fecha Fin --}}
                 <div class="col-md-6">
                     <label for="fechaFin" class="form-label">Fecha de Fin</label>
                     <input type="date" class="form-control" id="fechaFin" name="fechaFin">
+                    @error('fechaFin')
+                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 {{-- Estado --}}
@@ -39,6 +45,9 @@ Crear Orden de Trabajo
                         <option value="finalizado">Finalizado</option>
                         <option value="cancelado">Cancelado</option>
                     </select>
+                    @error('estado')
+                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 {{-- Diagnóstico --}}
@@ -52,6 +61,9 @@ Crear Orden de Trabajo
                             </option>
                         @endforeach
                     </select>
+                    @error('idDiagnostico')
+                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                    @enderror
                 </div>
             </div>
 

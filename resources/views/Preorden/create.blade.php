@@ -26,6 +26,9 @@ Crear Preorden
                             <option value="{{ $orden->id }}">Orden #{{ $orden->id }}</option>
                         @endforeach
                     </select>
+                    @error('idOrden')
+                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 {{-- Mecánico --}}
@@ -37,6 +40,9 @@ Crear Preorden
                             <option value="{{ $mecanico->id }}">{{ $mecanico->nombre }}</option>
                         @endforeach
                     </select>
+                    @error('idMecanico')
+                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 {{-- Repuesto --}}
@@ -48,12 +54,18 @@ Crear Preorden
                             <option value="{{ $repuesto->id }}">{{ $repuesto->nombre }}</option>
                         @endforeach
                     </select>
+                    @error('idRepuesto')
+                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 {{-- Descripción --}}
                 <div class="col-12">
                     <label for="descripcion" class="form-label">Descripción</label>
                     <textarea class="form-control" id="descripcion" name="descripcion" rows="3"></textarea>
+                    @error('descripcion')
+                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                    @enderror
                 </div>
             </div>
 

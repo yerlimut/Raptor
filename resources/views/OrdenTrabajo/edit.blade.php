@@ -26,6 +26,9 @@ Editar Orden de Trabajo
                         id="fechaInicio"
                         name="fechaInicio"
                         value="{{ $ordenes->fechaInicio }}">
+                    @error('fechaInicio')
+                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 {{-- Fecha Fin --}}
@@ -36,6 +39,9 @@ Editar Orden de Trabajo
                         id="fechaFin"
                         name="fechaFin"
                         value="{{ $ordenes->fechaFin }}">
+                    @error('fechaFin')
+                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 {{-- Estado --}}
@@ -47,6 +53,9 @@ Editar Orden de Trabajo
                         <option value="finalizado" {{ $ordenes->estado == 'finalizado' ? 'selected' : '' }}>Finalizado</option>
                         <option value="cancelado" {{ $ordenes->estado == 'cancelado' ? 'selected' : '' }}>Cancelado</option>
                     </select>
+                    @error('estado')
+                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 {{-- Diagnóstico --}}
@@ -61,6 +70,9 @@ Editar Orden de Trabajo
                         </option>
                         @endforeach
                     </select>
+                    @error('idDiagnostico')
+                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                    @enderror
                 </div>
             </div>
 

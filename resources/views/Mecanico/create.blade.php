@@ -20,55 +20,76 @@ Crear Mecánico
                 {{-- Nombre --}}
                 <div class="col-md-6">
                     <label for="nombre" class="form-label">Nombre</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre">
+                    <input type="text" class="form-control @error('nombre') is-invalid @enderror" id="nombre" name="nombre" value="{{ old('nombre') }}">
+                    @error('nombre')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 {{-- Apellido --}}
                 <div class="col-md-6">
                     <label for="apellido" class="form-label">Apellido</label>
-                    <input type="text" class="form-control" id="apellido" name="apellido">
+                    <input type="text" class="form-control @error('apellido') is-invalid @enderror" id="apellido" name="apellido" value="{{ old('apellido') }}">
+                    @error('apellido')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 {{-- Tipo Documento --}}
                 <div class="col-md-6">
                     <label for="tipoDocumento" class="form-label">Tipo de Documento</label>
-                    <select class="form-control" id="tipoDocumento" name="tipoDocumento">
+                    <select class="form-control @error('tipoDocumento') is-invalid @enderror" id="tipoDocumento" name="tipoDocumento">
                         <option value="">-- Seleccione --</option>
                         <option value="CC">Cédula</option>
                         <option value="TI">Tarjeta de Identidad</option>
                         <option value="CE">Cédula Extranjera</option>
                         <option value="NIT">NIT</option>
                     </select>
+                    @error('tipoDocumento')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 {{-- Número Documento --}}
                 <div class="col-md-6">
                     <label for="numeroDocumento" class="form-label">Número de Documento</label>
-                    <input type="text" class="form-control" id="numeroDocumento" name="numeroDocumento">
+                    <input type="text" class="form-control @error('numeroDocumento') is-invalid @enderror" id="numeroDocumento" name="numeroDocumento" value="{{ old('numeroDocumento') }}">
+                    @error('numeroDocumento')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 {{-- Teléfono --}}
                 <div class="col-md-6">
                     <label for="telefono" class="form-label">Teléfono</label>
-                    <input type="text" class="form-control" id="telefono" name="telefono">
+                    <input type="text" class="form-control @error('telefono') is-invalid @enderror" id="telefono" name="telefono" value="{{ old('telefono') }}">
+                    @error('telefono')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 {{-- Correo --}}
                 <div class="col-md-6">
                     <label for="email" class="form-label">Correo Electrónico</label>
-                    <input type="email" class="form-control" id="email" name="email">
+                    <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}">
+                    @error('email')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 {{-- Dirección --}}
                 <div class="col-12">
                     <label for="direccion" class="form-label">Dirección</label>
-                    <input type="" class="form-control" id="direccion" name="direccion">
+                    <input type="text" class="form-control @error('direccion') is-invalid @enderror" id="direccion" name="direccion" value="{{ old('direccion') }}">
+                    @error('direccion')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 {{-- Especialidad --}}
                 <div class="col-12">
                     <label for="especialidad" class="form-label">Especialidad</label>
-                    <select class="form-control" id="especialidad" name="especialidad">
+                    <select class="form-control @error('especialidad') is-invalid @enderror" id="especialidad" name="especialidad">
                         <option value="">-- Seleccione una especialidad --</option>
                         <option value="mecanica_general">Mecánica General</option>
                         <option value="electricidad">Electricidad Automotriz</option>
@@ -81,6 +102,9 @@ Crear Mecánico
                         <option value="carburacion">Carburación</option>
                         <option value="diagnostico">Diagnóstico Computarizado</option>
                     </select>
+                    @error('especialidad')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
 
