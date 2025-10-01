@@ -1,0 +1,109 @@
+@extends('layouts.app')
+
+@section('title')
+Editar Mecánico
+@endsection
+
+@section('content')
+<div class="container mt-5">
+    <h1 class="text-center"><i class="bi bi-pencil-square"></i> Editar Mecánico</h1>
+
+    <div class="card shadow-sm rounded-4 p-4">
+        <form action="{{ route('mecanico.update', $mecanico->id) }}" method="POST">
+            @csrf
+            <div class="row g-3">
+                {{-- Nombre --}}
+                <div class="col-md-6">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text"
+                        class="form-control"
+                        id="nombre"
+                        name="nombre"
+                        value="{{ $mecanico->nombre }}">
+                </div>
+
+                {{-- Apellido --}}
+                <div class="col-md-6">
+                    <label for="apellido" class="form-label">Apellido</label>
+                    <input type="text"
+                        class="form-control"
+                        id="apellido"
+                        name="apellido"
+                        value="{{ $mecanico->apellido }}">
+                </div>
+
+                {{-- Tipo Documento --}}
+                <div class="col-md-6">
+                    <label for="tipoDocumento" class="form-label">Tipo de Documento</label>
+                    <select class="form-select" id="tipoDocumento" name="tipoDocumento">
+                        <option value="">-- Seleccione --</option>
+                        <option value="CC" {{ $mecanico->tipoDocumento == 'CC' ? 'selected' : '' }}>Cédula</option>
+                        <option value="TI" {{ $mecanico->tipoDocumento == 'TI' ? 'selected' : '' }}>Tarjeta de Identidad</option>
+                        <option value="CE" {{ $mecanico->tipoDocumento == 'CE' ? 'selected' : '' }}>Cédula Extranjera</option>
+                        <option value="NIT" {{ $mecanico->tipoDocumento == 'NIT' ? 'selected' : '' }}>NIT</option>
+                    </select>
+                </div>
+
+                {{-- Número Documento --}}
+                <div class="col-md-6">
+                    <label for="numeroDocumento" class="form-label">Número de Documento</label>
+                    <input type="text"
+                        class="form-control"
+                        id="numeroDocumento"
+                        name="numeroDocumento"
+                        value="{{ $mecanico->numeroDocumento }}">
+                </div>
+
+                {{-- Teléfono --}}
+                <div class="col-md-6">
+                    <label for="telefono" class="form-label">Teléfono</label>
+                    <input type="text"
+                        class="form-control"
+                        id="telefono"
+                        name="telefono"
+                        value="{{ $mecanico->telefono }}">
+                </div>
+
+                {{-- Correo --}}
+                <div class="col-md-6">
+                    <label for="email" class="form-label">Correo Electrónico</label>
+                    <input type="email"
+                        class="form-control"
+                        id="email"
+                        name="email"
+                        value="{{ $mecanico->email }}">
+                </div>
+
+                {{-- Dirección --}}
+                <div class="col-12">
+                    <label for="direccion" class="form-label">Dirección</label>
+                    <input type="text"
+                        class="form-control"
+                        id="direccion"
+                        name="direccion"
+                        value="{{ $mecanico->direccion }}">
+                </div>
+
+                {{-- Especialidad --}}
+                <div class="col-12">
+                    <label for="especialidad" class="form-label">Especialidad</label>
+                    <input type="text"
+                        class="form-control"
+                        id="especialidad"
+                        name="especialidad"
+                        value="{{ $mecanico->especialidad }}">
+                </div>
+            </div>
+
+            <div class="mt-4 d-flex gap-2">
+                <button type="submit" class="btn btn-success">
+                    <i class="bi bi-save"></i> Actualizar
+                </button>
+                <a href="{{ route('mecanico.index') }}" class="btn btn-secondary">
+                    <i class="bi bi-arrow-left-circle"></i> Cancelar
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+@endsection

@@ -56,7 +56,7 @@ Bienvenido
                 <div class="card-body text-center p-2 d-flex flex-column">
                     <h6 class="fw-bold mb-1">Mecánicos</h6>
                     <p class="text-muted small mb-2">Gestiona el personal del taller.</p>
-                    <a href="" class="btn btn-sm btn-outline-primary mt-auto">Ver Mecánicos</a>
+                    <a href="{{route('mecanico.index')}}" class="btn btn-sm btn-outline-primary mt-auto">Ver Mecánicos</a>
                 </div>
             </div>
         </div>
@@ -69,7 +69,7 @@ Bienvenido
                 <div class="card-body text-center p-2 d-flex flex-column">
                     <h6 class="fw-bold mb-1">Categorías</h6>
                     <p class="text-muted small mb-2">Organiza las categorías de repuestos.</p>
-                    <a href="" class="btn btn-sm btn-outline-primary mt-auto">Ver Categorías</a>
+                    <a href="{{route('categoriaRepuesto.index')}}" class="btn btn-sm btn-outline-primary mt-auto">Ver Categorías</a>
                 </div>
             </div>
         </div>
@@ -95,7 +95,7 @@ Bienvenido
                 <div class="card-body text-center p-2 d-flex flex-column">
                     <h6 class="fw-bold mb-1">Repuestos</h6>
                     <p class="text-muted small mb-2">Administra los repuestos disponibles.</p>
-                    <a href="" class="btn btn-sm btn-outline-primary mt-auto">Ver Repuestos</a>
+                    <a href="{{route('repuesto.index')}}" class="btn btn-sm btn-outline-primary mt-auto">Ver Repuestos</a>
                 </div>
             </div>
         </div>

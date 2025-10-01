@@ -13,11 +13,19 @@ class MotoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $motos = Moto::all();
-        return view('Moto.index', compact('motos'));
+ public function index(Request $request)
+{
+    $query = Moto::query();
+
+    // Si llega idCliente desde la vista, filtramos
+    if ($request->has('idCliente')) {
+        $query->where('idCliente', $request->idCliente);
     }
+
+    $motos = $query->get();
+
+    return view('Moto.index', compact('motos'));
+}
 
     /**
      * Show the form for creating a new resource.

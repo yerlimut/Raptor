@@ -11,8 +11,6 @@ Editar Cliente
     <div class="card shadow-sm rounded-4 p-4">
         <form action="{{ route('cliente.update', $cliente->id) }}" method="POST">
             @csrf
-            {{-- Como no quieres PUT/PATCH, aquí va solo POST --}}
-
             <div class="row g-3">
                 {{-- Nombre --}}
                 <div class="col-md-6">
