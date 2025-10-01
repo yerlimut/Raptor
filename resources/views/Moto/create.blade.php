@@ -62,7 +62,7 @@ Registrar Moto
                     <select name="idMarca" id="idMarca" class="form-select" required>
                         <option value="">Seleccione una marca</option>
                         @foreach($marcasMotos as $marca)
-                            <option value="{{ $marca->id }}">{{ $marca->nombre }}</option>
+                            <option value="{{ $marca->id }}">{{ $marca->nombreMarca}}</option>
                         @endforeach
                     </select>
                     @error('idMarca')
