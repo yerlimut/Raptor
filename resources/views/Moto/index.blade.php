@@ -48,7 +48,7 @@ Listado de Motos
                     <td>{{ $moto->año }}</td>
                     <td>{{ $moto->placa }}</td>
                     <td>{{ $moto->cliente->nombre ?? '---' }}</td>
-                    <td>{{ $moto->marca->nombre ?? '---' }}</td>
+                    <td>{{ $moto->marca->nombreMarca ?? '---' }}</td>
                     <td>
                         <div class="d-flex gap-2">
                             <a href="{{ route('moto.edit', $moto->id) }}" class="btn btn-success btn-sm">

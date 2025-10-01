@@ -55,10 +55,10 @@ class MotoController extends Controller
     public function edit($id)
     {
         $moto = Moto::findorfail($id);
-        $cliente = Cliente::all();
-        $marcaMoto = marcaMoto::all();
+        $clientes = Cliente::all();
+        $marcas = marcaMoto::all();
 
-        return view('Moto.edit', compact('moto', 'cliente', 'marcaMoto'));
+        return view('Moto.edit', compact('moto', 'clientes', 'marcas'));
     }
 
     /**

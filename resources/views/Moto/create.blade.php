@@ -20,7 +20,7 @@ Registrar Moto
                     <label for="modelo" class="form-label">Modelo</label>
                     <input type="text" name="modelo" id="modelo" class="form-control" required>
                     @error('modelo')
-                        <small class="text-danger">{{ $message }}</small>
+                    <small class="text-danger">{{ $message }}</small>
                     @enderror
                 </div>
 
@@ -29,7 +29,7 @@ Registrar Moto
                     <label for="año" class="form-label">Año</label>
                     <input type="date" name="año" id="año" class="form-control" required>
                     @error('año')
-                        <small class="text-danger">{{ $message }}</small>
+                    <small class="text-danger">{{ $message }}</small>
                     @enderror
                 </div>
 
@@ -38,7 +38,7 @@ Registrar Moto
                     <label for="placa" class="form-label">Placa</label>
                     <input type="text" name="placa" id="placa" class="form-control" required>
                     @error('placa')
-                        <small class="text-danger">{{ $message }}</small>
+                    <small class="text-danger">{{ $message }}</small>
                     @enderror
                 </div>
 
@@ -48,11 +48,11 @@ Registrar Moto
                     <select name="idCliente" id="idCliente" class="form-select" required>
                         <option value="">Seleccione un cliente</option>
                         @foreach($clientes as $cliente)
-                            <option value="{{ $cliente->id }}">{{ $cliente->nombre }}</option>
+                        <option value="{{ $cliente->id }}">{{ $cliente->nombre }}</option>
                         @endforeach
                     </select>
                     @error('idCliente')
-                        <small class="text-danger">{{ $message }}</small>
+                    <small class="text-danger">{{ $message }}</small>
                     @enderror
                 </div>
 
@@ -62,11 +62,12 @@ Registrar Moto
                     <select name="idMarca" id="idMarca" class="form-select" required>
                         <option value="">Seleccione una marca</option>
                         @foreach($marcasMotos as $marca)
-                            <option value="{{ $marca->id }}">{{ $marca->nombreMarca}}</option>
+                        <option value="{{ $marca->id }}">{{ $marca->nombreMarca }}</option>
+
                         @endforeach
                     </select>
                     @error('idMarca')
-                        <small class="text-danger">{{ $message }}</small>
+                    <small class="text-danger">{{ $message }}</small>
                     @enderror
                 </div>
             </div>
