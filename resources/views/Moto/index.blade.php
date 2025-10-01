@@ -48,13 +48,13 @@ Listado de Motos
                     <td>{{ $moto->año }}</td>
                     <td>{{ $moto->placa }}</td>
                     <td>{{ $moto->cliente->nombre ?? '---' }}</td>
-                    <td>{{ $moto->marca->nombre ?? '---' }}</td>
+                    <td>{{ $moto->marca->nombreMarca ?? '---' }}</td>
                     <td>
                         <div class="d-flex gap-2">
-                            <a href="{{ route('motos.edit', $moto->id) }}" class="btn btn-success btn-sm">
+                            <a href="{{ route('moto.edit', $moto->id) }}" class="btn btn-success btn-sm">
                                 <i class="bi bi-pencil"></i> Editar
                             </a>
-                            <form action="{{ route('motos.destroy', $moto->id) }}" method="POST" style="display:inline;">
+                            <form action="{{ route('moto.destroy', $moto->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 <button type="submit" class="btn btn-danger btn-sm"
                                    onclick="confirmarEliminacion(event)">

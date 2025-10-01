@@ -21,8 +21,8 @@ class Moto extends Model
         return $this->BelongsTo(Cliente::class,'idCliente');
 
     }
-    public function marcaMoto(){
-        return $this->belongsTo(marcaMoto::class, 'idMarca');
+    public function marca(){
+        return $this->belongsTo(marcaMoto::class,'idMarca');
     }
         public function inventario(){
             return $this->hasMany(Inventario::class);
