@@ -82,7 +82,7 @@ Bienvenido
                 <div class="card-body text-center p-2 d-flex flex-column">
                     <h6 class="fw-bold mb-1">Motos</h6>
                     <p class="text-muted small mb-2">Control de motos registradas en el taller.</p>
-                    <a href="" class="btn btn-sm btn-outline-primary mt-auto">Ver Motos</a>
+                    <a href="{{route ('moto.index')}}" class="btn btn-sm btn-outline-primary mt-auto">Ver Motos</a>
                 </div>
             </div>
         </div>
