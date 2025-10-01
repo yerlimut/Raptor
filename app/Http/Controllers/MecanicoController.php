@@ -33,7 +33,7 @@ class MecanicoController extends Controller
             $request->all()
         );
 
-        return redirect()->route('mecanico.index');
+        return redirect()->route('mecanico.index')->with('success', 'Mecanico creado correctamente');
     }
 
     /**
@@ -50,7 +50,7 @@ class MecanicoController extends Controller
     public function edit($id)
     {
         $mecanico = Mecanico::findorfail($id);
-        return view('Mecanico.edit', compact('cliente'));
+        return view('Mecanico.edit', compact('mecanico'));
     }
 
     /**
@@ -61,7 +61,7 @@ class MecanicoController extends Controller
         $mecanico = Mecanico::findorfail($id);
         $mecanico->update($request->all());
 
-        return redirect()->route('mecanico.index');
+        return redirect()->route('mecanico.index')->with('success', 'Mecanico Actualizado correctamente');
     }
 
     /**
@@ -71,6 +71,6 @@ class MecanicoController extends Controller
     {
         $mecanico = Mecanico::findorfail($id);
         $mecanico->delete();
-        return redirect()->route('mecanico.index');
+        return redirect()->route('mecanico.index')->with('success', 'Mecanico Eliminado correctamente');
     }
 }

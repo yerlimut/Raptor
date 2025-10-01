@@ -327,6 +327,12 @@ return [
             'label' => 4,
             'label_color' => 'success',
         ],
+        ['header' => ' Pagina Principal '],
+        [
+            'text' => 'Pagina Principal',
+            'route' => 'welcome',
+            'icon' => 'fas fa-home',
+        ],
         ['header' => 'Gestión de Personas'],
         [
             'text' => 'Clientes',
