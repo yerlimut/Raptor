@@ -4,20 +4,19 @@
 Bienvenido
 @endsection
 
-@section('titleContent')
+@section('content_header')
+
+<h1 class="fw-bold display-6 mb-0">RAPTOR  </h1>
+
+@section('content')
 <div class="d-flex align-items-center my-4 flex-wrap">
     {{-- Logo RAPTOR --}}
     <img src="{{ asset('imagenes/raptor.png') }}" alt="RAPTOR" 
          class="img-fluid" style="max-height: 180px;">
 
-    <div class="ms-3">
-        <h1 class="fw-bold display-6 mb-0">Panel de Control</h1>
-        <p class="text-secondary mb-0">Accede rápidamente a las secciones principales del sistema</p>
-    </div>
+    
 </div>
 @endsection
-
-@section('content')
 <div class="container py-3">
     <div class="row g-3">
 
@@ -31,7 +30,7 @@ Bienvenido
                 <div class="card-body text-center p-2 d-flex flex-column">
                     <h6 class="fw-bold mb-1">Clientes</h6>
                     <p class="text-muted small mb-2">Administra todos los clientes registrados.</p>
-                    <a href="" class="btn btn-sm btn-outline-primary mt-auto">Ver Clientes</a>
+                    <a href="{{route('cliente.index')}}" class="btn btn-sm btn-outline-primary mt-auto">Ver Clientes</a>
                 </div>
             </div>
         </div>
