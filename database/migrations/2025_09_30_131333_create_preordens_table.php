@@ -9,7 +9,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('preordenes', function (Blueprint $table) {
-            $table->id('idPreorden');
+            $table->id();
             $table->unsignedBigInteger('idOrden');
             $table->unsignedBigInteger('idMecanico');
             $table->unsignedBigInteger('idRepuesto');

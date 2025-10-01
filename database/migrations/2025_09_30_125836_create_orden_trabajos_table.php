@@ -9,7 +9,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('ordenTrabajos', function (Blueprint $table) {
-            $table->id('idOrden');
+            $table->id();
             
             $table->date('fechaInicio');
             $table->date('fechaFin')->nullable();
