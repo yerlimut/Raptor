@@ -6,13 +6,12 @@ Editar Moto
 
 @section('content')
 <div class="container mt-5">
-    <h1 class="text-center"><i class="bi bi-pencil-square"></i> Editar Moto</h1>
+    <h1 class="text-center text-dark"><i class="bi bi-pencil-square"></i> Editar Moto</h1>
 
     <div class="card shadow-sm rounded-4 p-4">
         <form action="{{ route('moto.update', $moto->id) }}" method="POST">
             @csrf
-            {{-- Como en Cliente: solo POST, sin @method('PUT') --}}
-
+           
             <div class="row g-3">
                 {{-- Modelo --}}
                 <div class="col-md-6">
