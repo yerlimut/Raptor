@@ -43,7 +43,7 @@ Bienvenido
                 <div class="card-body text-center p-2 d-flex flex-column">
                     <h6 class="fw-bold mb-1">Marcas de Motos</h6>
                     <p class="text-muted small mb-2">Gestiona las marcas de motocicletas.</p>
-                    <a href="" class="btn btn-sm btn-outline-primary mt-auto">Ver Marcas</a>
+                    <a href="{{route('marcaMoto.index')}}" class="btn btn-sm btn-outline-primary mt-auto">Ver Marcas</a>
                 </div>
             </div>
         </div>
