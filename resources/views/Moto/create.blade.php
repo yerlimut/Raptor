@@ -6,7 +6,7 @@ Registrar Moto
 
 @section('content')
 <div class="container mt-5">
-    <h1 class="text-center text-primary">
+    <h1 class="text-center text-dark">
         <i class="bi bi-bicycle"></i> Registrar Nueva Moto
     </h1>
 
