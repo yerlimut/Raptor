@@ -57,14 +57,14 @@ Gestión de Clientes
                             <a href="{{ route('cliente.edit', $cliente->id) }}" class="btn btn-success btn-sm">
                                 <i class="bi bi-pencil"></i> Editar
                             </a>
-                            <form action="{{ route('cliente.destroy', $cliente->id) }}" method="POST">
+                            <form action="{{ route('cliente.destroy', $cliente->id) }}" method="POST" style="display:inline;">
                                 @csrf
-                               
                                 <button type="submit" class="btn btn-danger btn-sm"
-                                    onclick="confirmarEliminacion(event)">
+                                   onclick="confirmarEliminacion(event)">
                                     <i class="bi bi-trash"></i> Eliminar
                                 </button>
                             </form>
+
                         </div>
                     </td>
                 </tr>
