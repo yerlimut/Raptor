@@ -1,87 +1,86 @@
 @extends('layouts.app')
 
-@section('title', 'Registrar Moto')
+@section('title')
+Registrar Moto
+@endsection
 
 @section('content')
-<div class="container mt-4">
-    <h2 class="fw-bold mb-4">Registrar Nueva Moto</h2>
+<div class="container mt-5">
+    <h1 class="text-center text-primary">
+        <i class="bi bi-bicycle"></i> Registrar Nueva Moto
+    </h1>
 
-    <div class="card shadow-sm border-0 rounded-3">
-        <div class="card-body">
-            <form action="{{ route('moto.store') }}" method="POST">
-                @csrf
+    <div class="card shadow-sm rounded-4 p-4">
+        <form action="{{ route('moto.store') }}" method="POST">
+            @csrf
 
+            <div class="row g-3">
                 {{-- Modelo --}}
-                <div class="mb-3">
+                <div class="col-md-6">
                     <label for="modelo" class="form-label">Modelo</label>
-                    <input type="text" name="modelo" id="modelo" class="form-control"
-                        value="{{ old('modelo') }}" required>
+                    <input type="text" name="modelo" id="modelo" class="form-control" required>
                     @error('modelo')
-                    <small class="text-danger">{{ $message }}</small>
+                        <small class="text-danger">{{ $message }}</small>
                     @enderror
                 </div>
 
                 {{-- Año --}}
-                <div class="mb-3">
+                <div class="col-md-6">
                     <label for="año" class="form-label">Año</label>
-                    <input type="date" name="año" id="año" class="form-control"
-                        value="{{ old('año') }}" required>
+                    <input type="date" name="año" id="año" class="form-control" required>
                     @error('año')
-                    <small class="text-danger">{{ $message }}</small>
+                        <small class="text-danger">{{ $message }}</small>
                     @enderror
                 </div>
 
                 {{-- Placa --}}
-                <div class="mb-3">
+                <div class="col-md-6">
                     <label for="placa" class="form-label">Placa</label>
-                    <input type="text" name="placa" id="placa" class="form-control"
-                        value="{{ old('placa') }}" required>
+                    <input type="text" name="placa" id="placa" class="form-control" required>
                     @error('placa')
-                    <small class="text-danger">{{ $message }}</small>
+                        <small class="text-danger">{{ $message }}</small>
                     @enderror
                 </div>
 
                 {{-- Cliente --}}
-                <div class="mb-3">
+                <div class="col-md-6">
                     <label for="idCliente" class="form-label">Cliente</label>
                     <select name="idCliente" id="idCliente" class="form-select" required>
                         <option value="">Seleccione un cliente</option>
                         @foreach($clientes as $cliente)
-                        <option value="{{ $cliente->id }}"
-                            {{ old('idCliente') == $cliente->id ? 'selected' : '' }}>
-                            {{ $cliente->nombre }}
-                        </option>
+                            <option value="{{ $cliente->id }}">{{ $cliente->nombre }}</option>
                         @endforeach
                     </select>
                     @error('idCliente')
-                    <small class="text-danger">{{ $message }}</small>
+                        <small class="text-danger">{{ $message }}</small>
                     @enderror
                 </div>
 
                 {{-- Marca --}}
-                <div class="mb-3">
+                <div class="col-md-6">
                     <label for="idMarca" class="form-label">Marca</label>
                     <select name="idMarca" id="idMarca" class="form-select" required>
                         <option value="">Seleccione una marca</option>
                         @foreach($marcasMotos as $marca)
-                        <option value="{{ $marca->id }}"
-                            {{ old('idMarca') == $marca->id ? 'selected' : '' }}>
-                            {{ $marca->nombre }}
-                        </option>
+                            <option value="{{ $marca->id }}">{{ $marca->nombre }}</option>
                         @endforeach
                     </select>
                     @error('idMarca')
-                    <small class="text-danger">{{ $message }}</small>
+                        <small class="text-danger">{{ $message }}</small>
                     @enderror
                 </div>
+            </div>
 
-                {{-- Botones --}}
-                <div class="text-end">
-                    <a href="{{ route('moto.index') }}" class="btn btn-secondary">Cancelar</a>
-                    <button type="submit" class="btn btn-success">Guardar</button>
-                </div>
-            </form>
-        </div>
+            {{-- Botones --}}
+            <div class="mt-4 d-flex gap-2">
+                <button type="submit" class="btn btn-success">
+                    <i class="bi bi-check-circle"></i> Guardar
+                </button>
+                <a href="{{ route('moto.index') }}" class="btn btn-secondary">
+                    <i class="bi bi-arrow-left-circle"></i> Volver
+                </a>
+            </div>
+        </form>
     </div>
 </div>
 @endsection

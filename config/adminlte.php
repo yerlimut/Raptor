@@ -348,7 +348,7 @@ return [
         ],
         [
             'text' => 'Motos',
-            'url'  => 'admin/motos',
+            'route' => 'moto.index',
             'icon' => 'fas fa-biking',
         ],
         [
