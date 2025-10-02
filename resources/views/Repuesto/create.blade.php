@@ -27,7 +27,7 @@
 
             <div class="mb-3">
                 <label for="nombre" class="form-label">Nombre del Repuesto</label>
-                <select class="form-select" id="nombre" name="nombre" >
+                <select class="form-control" id="nombre" name="nombre" >
                     <option value="">-- Seleccione un repuesto --</option>
 
                     <!-- Motor -->
@@ -104,7 +104,7 @@
 
                 <div class="mb-3">
                     <label for="idCategoria" class="form-label">Categoría</label>
-                    <select class="form-select" id="idCategoria" name="idCategoria" >
+                    <select class="form-control" id="idCategoria" name="idCategoria" >
                         <option value="">-- Seleccione una categoría --</option>
                         @foreach($categoriasRepuesto as $categoria)
                         <option value="{{ $categoria->id }}">{{ $categoria->nombreCategoria }}</option>

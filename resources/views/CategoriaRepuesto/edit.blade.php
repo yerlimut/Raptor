@@ -14,7 +14,7 @@ Editar Categoría de Repuesto
 
             <div class="mb-3">
                 <label for="nombreCategoria" class="form-label">Nombre de la Categoría</label>
-                <select class="form-select" id="nombreCategoria" name="nombreCategoria" required>
+                <select class="form-control" id="nombreCategoria" name="nombreCategoria" required>
                     <option value="">-- Seleccione una categoría --</option>
                     <option value="Motor" {{ $categoriasRepuesto->nombreCategoria == 'Motor' ? 'selected' : '' }}>Motor</option>
                     <option value="Transmisión" {{ $categoriasRepuesto->nombreCategoria == 'Transmisión' ? 'selected' : '' }}>Transmisión</option>

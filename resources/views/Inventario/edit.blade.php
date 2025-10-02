@@ -35,7 +35,7 @@ Editar Inventario
                 {{-- Estado General --}}
                 <div class="col-md-6">
                     <label for="estadoGeneral" class="form-label">Estado General</label>
-                    <select class="form-select" id="estadoGeneral" name="estadoGeneral">
+                    <select class="form-control" id="estadoGeneral" name="estadoGeneral">
                         <option value="">-- Seleccione --</option>
                         <option value="Bueno" {{  $inventarios ->estadoGeneral == 'Bueno' ? 'selected' : '' }}>Bueno</option>
                         <option value="Regular" {{  $inventarios ->estadoGeneral == 'Regular' ? 'selected' : '' }}>Regular</option>
@@ -46,7 +46,7 @@ Editar Inventario
                 {{-- Estado Inventario --}}
                 <div class="col-md-6">
                     <label for="estadoInventario" class="form-label">Estado Inventario</label>
-                    <select class="form-select" id="estadoInventario" name="estadoInventario">
+                    <select class="form-control" id="estadoInventario" name="estadoInventario">
                         <option value="">-- Seleccione --</option>
                         <option value="En taller" {{  $inventarios ->estadoInventario == 'En taller' ? 'selected' : '' }}>En taller</option>
                         <option value="Entregado" {{  $inventarios ->estadoInventario == 'Entregado' ? 'selected' : '' }}>Entregado</option>
@@ -57,7 +57,7 @@ Editar Inventario
                 {{-- Moto --}}
                 <div class="col-md-12">
                     <label for="idMoto" class="form-label">Moto</label>
-                    <select class="form-select" id="idMoto" name="idMoto">
+                    <select class="form-control" id="idMoto" name="idMoto">
                         <option value="">-- Seleccione una moto --</option>
                         @foreach($motos as $moto)
                             <option value="{{ $moto->id }}" {{  $inventarios ->idMoto == $moto->id ? 'selected' : '' }}>

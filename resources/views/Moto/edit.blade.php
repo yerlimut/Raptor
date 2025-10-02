@@ -46,7 +46,7 @@ Editar Moto
                 {{-- Cliente --}}
                 <div class="col-md-6">
                     <label for="idCliente" class="form-label">Cliente</label>
-                    <select class="form-select" id="idCliente" name="idCliente">
+                    <select class="form-control" id="idCliente" name="idCliente">
                         <option value="">-- Seleccione --</option>
                         @foreach($clientes as $cliente)
                             <option value="{{ $cliente->id }}" 
@@ -60,7 +60,7 @@ Editar Moto
                 {{-- Marca --}}
                 <div class="col-md-6">
                     <label for="idMarca" class="form-label">Marca</label>
-                    <select class="form-select" id="idMarca" name="idMarca">
+                    <select class="form-control" id="idMarca" name="idMarca">
                         <option value="">-- Seleccione --</option>
                         @foreach($marcas as $marca)
                             <option value="{{ $marca->id }}" 

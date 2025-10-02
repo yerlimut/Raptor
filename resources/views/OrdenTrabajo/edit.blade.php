@@ -9,7 +9,7 @@ Editar Orden de Trabajo
     <h1 class="text-center"><i class="bi bi-pencil-square"></i> Editar Orden de Trabajo</h1>
 
     <div class="card shadow-sm rounded-4 p-4">
-        <form action="{{ route('ordenTrabajo.update', $ordenTrabajo->id) }}" method="POST">
+        <form action="{{ route('OrdenTrabajo.update', $ordenes->id) }}" method="POST">
             @csrf
 
             <div class="row g-3">
@@ -20,7 +20,7 @@ Editar Orden de Trabajo
                            class="form-control" 
                            id="fechaInicio" 
                            name="fechaInicio" 
-                           value="{{ $ordenTrabajo->fechaInicio }}">
+                           value="{{ $ordenes->fechaInicio }}">
                 </div>
 
                 {{-- Fecha Fin --}}
@@ -30,28 +30,28 @@ Editar Orden de Trabajo
                            class="form-control" 
                            id="fechaFin" 
                            name="fechaFin" 
-                           value="{{ $ordenTrabajo->fechaFin }}">
+                           value="{{ $ordenes->fechaFin }}">
                 </div>
 
                 {{-- Estado --}}
                 <div class="col-md-6">
                     <label for="estado" class="form-label">Estado</label>
-                    <select class="form-select" id="estado" name="estado">
-                        <option value="pendiente" {{ $ordenTrabajo->estado == 'pendiente' ? 'selected' : '' }}>Pendiente</option>
-                        <option value="en proceso" {{ $ordenTrabajo->estado == 'en proceso' ? 'selected' : '' }}>En Proceso</option>
-                        <option value="finalizado" {{ $ordenTrabajo->estado == 'finalizado' ? 'selected' : '' }}>Finalizado</option>
-                        <option value="cancelado" {{ $ordenTrabajo->estado == 'cancelado' ? 'selected' : '' }}>Cancelado</option>
+                    <select class="form-control" id="estado" name="estado">
+                        <option value="pendiente" {{ $ordenes->estado == 'pendiente' ? 'selected' : '' }}>Pendiente</option>
+                        <option value="en proceso" {{ $ordenes->estado == 'en proceso' ? 'selected' : '' }}>En Proceso</option>
+                        <option value="finalizado" {{ $ordenes->estado == 'finalizado' ? 'selected' : '' }}>Finalizado</option>
+                        <option value="cancelado" {{ $ordenes->estado == 'cancelado' ? 'selected' : '' }}>Cancelado</option>
                     </select>
                 </div>
 
                 {{-- Diagnóstico --}}
                 <div class="col-md-6">
                     <label for="idDiagnostico" class="form-label">Diagnóstico</label>
-                    <select class="form-select" id="idDiagnostico" name="idDiagnostico">
+                    <select class="form-control" id="idDiagnostico" name="idDiagnostico">
                         <option value="">-- Seleccione --</option>
                         @foreach($diagnosticos as $diagnostico)
                             <option value="{{ $diagnostico->id }}" 
-                                {{ $ordenTrabajo->idDiagnostico == $diagnostico->id ? 'selected' : '' }}>
+                                {{ $ordenes->idDiagnostico == $diagnostico->id ? 'selected' : '' }}>
                                 {{ $diagnostico->descripcion ?? 'Diagnóstico #'.$diagnostico->id }}
                             </option>
                         @endforeach
@@ -63,7 +63,7 @@ Editar Orden de Trabajo
                 <button type="submit" class="btn btn-success">
                     <i class="bi bi-save"></i> Actualizar
                 </button>
-                <a href="{{ route('ordenTrabajo.index') }}" class="btn btn-secondary">
+                <a href="{{ route('OrdenTrabajo.index') }}" class="btn btn-secondary">
                     <i class="bi bi-arrow-left-circle"></i> Cancelar
                 </a>
             </div>

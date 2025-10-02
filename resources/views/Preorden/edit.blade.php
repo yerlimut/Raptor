@@ -9,7 +9,7 @@ Editar Preorden
     <h1 class="text-center"><i class="bi bi-pencil-square"></i> Editar Preorden</h1>
 
     <div class="card shadow-sm rounded-4 p-4">
-        <form action="{{ route('Preorden.update', $preorden->id) }}" method="POST">
+        <form action="{{ route('Preorden.update', $preordenes->id) }}" method="POST">
             @csrf
 
             <div class="row g-3">
@@ -19,7 +19,7 @@ Editar Preorden
                     <select class="form-control" id="idOrden" name="idOrden">
                         <option value="">-- Seleccione --</option>
                         @foreach($ordenes as $orden)
-                            <option value="{{ $orden->id }}" {{ $preorden->idOrden == $orden->id ? 'selected' : '' }}>
+                            <option value="{{ $orden->id }}" {{ $preordenes->idOrden == $orden->id ? 'selected' : '' }}>
                                 Orden #{{ $orden->id }}
                             </option>
                         @endforeach
@@ -32,7 +32,7 @@ Editar Preorden
                     <select class="form-control" id="idMecanico" name="idMecanico">
                         <option value="">-- Seleccione --</option>
                         @foreach($mecanicos as $mecanico)
-                            <option value="{{ $mecanico->id }}" {{ $preorden->idMecanico == $mecanico->id ? 'selected' : '' }}>
+                            <option value="{{ $mecanico->id }}" {{ $preordenes->idMecanico == $mecanico->id ? 'selected' : '' }}>
                                 {{ $mecanico->nombre }}
                             </option>
                         @endforeach
@@ -45,7 +45,7 @@ Editar Preorden
                     <select class="form-control" id="idRepuesto" name="idRepuesto">
                         <option value="">-- Seleccione --</option>
                         @foreach($repuestos as $repuesto)
-                            <option value="{{ $repuesto->id }}" {{ $preorden->idRepuesto == $repuesto->id ? 'selected' : '' }}>
+                            <option value="{{ $repuesto->id }}" {{ $preordenes->idRepuesto == $repuesto->id ? 'selected' : '' }}>
                                 {{ $repuesto->nombre }}
                             </option>
                         @endforeach
@@ -55,7 +55,7 @@ Editar Preorden
                 {{-- Descripción --}}
                 <div class="col-12">
                     <label for="descripcion" class="form-label">Descripción</label>
-                    <textarea class="form-control" id="descripcion" name="descripcion" rows="3">{{ $preorden->descripcion }}</textarea>
+                    <textarea class="form-control" id="descripcion" name="descripcion" rows="3">{{ $preordenes->descripcion }}</textarea>
                 </div>
             </div>
 

@@ -35,7 +35,7 @@ Editar Cliente
                 {{-- Tipo Documento --}}
                 <div class="col-md-6">
                     <label for="tipoDocumento" class="form-label">Tipo de Documento</label>
-                    <select class="form-select" id="tipoDocumento" name="tipoDocumento">
+                    <select class="form-control" id="tipoDocumento" name="tipoDocumento">
                         <option value="">-- Seleccione --</option>
                         <option value="CC" {{ $cliente->tipoDocumento == 'CC' ? 'selected' : '' }}>Cédula</option>
                         <option value="TI" {{ $cliente->tipoDocumento == 'TI' ? 'selected' : '' }}>Tarjeta de Identidad</option>

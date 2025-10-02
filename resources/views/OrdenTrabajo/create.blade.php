@@ -28,7 +28,7 @@ Crear Orden de Trabajo
                 {{-- Estado --}}
                 <div class="col-md-6">
                     <label for="estado" class="form-label">Estado</label>
-                    <select class="form-select" id="estado" name="estado" required>
+                    <select class="form-control" id="estado" name="estado" required>
                         <option value="pendiente">Pendiente</option>
                         <option value="en proceso">En Proceso</option>
                         <option value="finalizado">Finalizado</option>
@@ -39,7 +39,7 @@ Crear Orden de Trabajo
                 {{-- Diagnóstico --}}
                 <div class="col-md-6">
                     <label for="idDiagnostico" class="form-label">Diagnóstico</label>
-                    <select class="form-select" id="idDiagnostico" name="idDiagnostico" required>
+                    <select class="form-control" id="idDiagnostico" name="idDiagnostico" required>
                         <option value="">-- Seleccione --</option>
                         @foreach($diagnosticos as $diagnostico)
                             <option value="{{ $diagnostico->id }}">

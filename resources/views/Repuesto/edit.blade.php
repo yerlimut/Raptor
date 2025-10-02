@@ -56,7 +56,7 @@ Editar Repuesto
                 {{-- Categoría --}}
                 <div class="col-md-6">
                     <label for="idCategoria" class="form-label">Categoría</label>
-                    <select class="form-select" id="idCategoria" name="idCategoria">
+                    <select class="form-control" id="idCategoria" name="idCategoria">
                         <option value="">-- Seleccione --</option>
                         @foreach($categoriasRepuesto as $categoria)
                         <option value="{{ $categoria->id }}"
