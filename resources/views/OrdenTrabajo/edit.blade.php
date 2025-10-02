@@ -4,6 +4,11 @@
 Editar Orden de Trabajo
 @endsection
 
+@section('content_header')
+
+<h1 class="fw-bold display-6 mb-0">RAPTOR </h1>
+@endsection
+
 @section('content')
 <div class="container mt-5">
     <h1 class="text-center"><i class="bi bi-pencil-square"></i> Editar Orden de Trabajo</h1>
@@ -16,21 +21,21 @@ Editar Orden de Trabajo
                 {{-- Fecha Inicio --}}
                 <div class="col-md-6">
                     <label for="fechaInicio" class="form-label">Fecha de Inicio</label>
-                    <input type="date" 
-                           class="form-control" 
-                           id="fechaInicio" 
-                           name="fechaInicio" 
-                           value="{{ $ordenes->fechaInicio }}">
+                    <input type="date"
+                        class="form-control"
+                        id="fechaInicio"
+                        name="fechaInicio"
+                        value="{{ $ordenes->fechaInicio }}">
                 </div>
 
                 {{-- Fecha Fin --}}
                 <div class="col-md-6">
                     <label for="fechaFin" class="form-label">Fecha de Fin</label>
-                    <input type="date" 
-                           class="form-control" 
-                           id="fechaFin" 
-                           name="fechaFin" 
-                           value="{{ $ordenes->fechaFin }}">
+                    <input type="date"
+                        class="form-control"
+                        id="fechaFin"
+                        name="fechaFin"
+                        value="{{ $ordenes->fechaFin }}">
                 </div>
 
                 {{-- Estado --}}
@@ -50,10 +55,10 @@ Editar Orden de Trabajo
                     <select class="form-control" id="idDiagnostico" name="idDiagnostico">
                         <option value="">-- Seleccione --</option>
                         @foreach($diagnosticos as $diagnostico)
-                            <option value="{{ $diagnostico->id }}" 
-                                {{ $ordenes->idDiagnostico == $diagnostico->id ? 'selected' : '' }}>
-                                {{ $diagnostico->descripcion ?? 'Diagnóstico #'.$diagnostico->id }}
-                            </option>
+                        <option value="{{ $diagnostico->id }}"
+                            {{ $ordenes->idDiagnostico == $diagnostico->id ? 'selected' : '' }}>
+                            {{ $diagnostico->descripcion ?? 'Diagnóstico #'.$diagnostico->id }}
+                        </option>
                         @endforeach
                     </select>
                 </div>

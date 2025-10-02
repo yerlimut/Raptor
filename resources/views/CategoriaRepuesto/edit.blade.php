@@ -4,6 +4,11 @@
 Editar Categoría de Repuesto
 @endsection
 
+@section('content_header')
+
+<h1 class="fw-bold display-6 mb-0">RAPTOR </h1>
+@endsection
+
 @section('content')
 <div class="container mt-5">
     <h1 class="text-center text-dark"><i class="bi bi-pencil-square"></i> Editar Categoría de Repuesto</h1>

@@ -4,6 +4,11 @@
 Editar Cliente
 @endsection
 
+@section('content_header')
+
+<h1 class="fw-bold display-6 mb-0">RAPTOR </h1>
+@endsection
+
 @section('content')
 <div class="container mt-5">
     <h1 class="text-center"><i class="bi bi-pencil-square"></i> Editar Cliente</h1>
@@ -15,21 +20,21 @@ Editar Cliente
                 {{-- Nombre --}}
                 <div class="col-md-6">
                     <label for="nombre" class="form-label">Nombre</label>
-                    <input type="text" 
-                           class="form-control" 
-                           id="nombre" 
-                           name="nombre" 
-                           value="{{ $cliente->nombre }}">
+                    <input type="text"
+                        class="form-control"
+                        id="nombre"
+                        name="nombre"
+                        value="{{ $cliente->nombre }}">
                 </div>
 
                 {{-- Apellido --}}
                 <div class="col-md-6">
                     <label for="apellido" class="form-label">Apellido</label>
-                    <input type="text" 
-                           class="form-control" 
-                           id="apellido" 
-                           name="apellido" 
-                           value="{{ $cliente->apellido }}">
+                    <input type="text"
+                        class="form-control"
+                        id="apellido"
+                        name="apellido"
+                        value="{{ $cliente->apellido }}">
                 </div>
 
                 {{-- Tipo Documento --}}
@@ -47,41 +52,41 @@ Editar Cliente
                 {{-- Número Documento --}}
                 <div class="col-md-6">
                     <label for="numeroDocumento" class="form-label">Número de Documento</label>
-                    <input type="text" 
-                           class="form-control" 
-                           id="numeroDocumento" 
-                           name="numeroDocumento" 
-                           value="{{ $cliente->numeroDocumento }}">
+                    <input type="text"
+                        class="form-control"
+                        id="numeroDocumento"
+                        name="numeroDocumento"
+                        value="{{ $cliente->numeroDocumento }}">
                 </div>
 
                 {{-- Teléfono --}}
                 <div class="col-md-6">
                     <label for="telefono" class="form-label">Teléfono</label>
-                    <input type="text" 
-                           class="form-control" 
-                           id="telefono" 
-                           name="telefono" 
-                           value="{{ $cliente->telefono }}">
+                    <input type="text"
+                        class="form-control"
+                        id="telefono"
+                        name="telefono"
+                        value="{{ $cliente->telefono }}">
                 </div>
 
                 {{-- Correo --}}
                 <div class="col-md-6">
                     <label for="correoElectronico" class="form-label">Correo Electrónico</label>
-                    <input type="email" 
-                           class="form-control" 
-                           id="correoElectronico" 
-                           name="correoElectronico" 
-                           value="{{ $cliente->correoElectronico }}">
+                    <input type="email"
+                        class="form-control"
+                        id="correoElectronico"
+                        name="correoElectronico"
+                        value="{{ $cliente->correoElectronico }}">
                 </div>
 
                 {{-- Dirección --}}
                 <div class="col-12">
                     <label for="direccion" class="form-label">Dirección</label>
-                    <input type="text" 
-                           class="form-control" 
-                           id="direccion" 
-                           name="direccion" 
-                           value="{{ $cliente->direccion }}">
+                    <input type="text"
+                        class="form-control"
+                        id="direccion"
+                        name="direccion"
+                        value="{{ $cliente->direccion }}">
                 </div>
             </div>
 
