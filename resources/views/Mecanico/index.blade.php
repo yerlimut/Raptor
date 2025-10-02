@@ -3,6 +3,10 @@
 @section('title')
     Gestión de Mecánicos
 @endsection
+@section('content_header')
+
+<h1 class="fw-bold display-6 mb-0">RAPTOR </h1>
+@endsection
 
 @section('content')
 <div class="container mt-5">
