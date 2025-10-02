@@ -8,6 +8,7 @@ use App\Http\Controllers\MarcaMotoController;
 use App\Http\Controllers\MecanicoController;
 use App\Http\Controllers\MotoController;
 use App\Http\Controllers\OrdenTrabajoController;
+use App\Http\Controllers\PreordenController;
 use App\Http\Controllers\RepuestoController;
 use Illuminate\Support\Facades\Route;
 
@@ -90,9 +91,9 @@ Route::post('/OrdenTrabajo/destroy/{id}',[OrdenTrabajoController::class,'destroy
 
 
 // rutas preorden //
-Route::get('/Preorden/index',[OrdenTrabajoController::class,'index'])->name('Preorden.index');
-Route::get('/Preorden/create',[OrdenTrabajoController::class,'create'])->name('Preorden.create');
-Route::post('/Preorden/store',[OrdenTrabajoController::class,'store'])->name('Preorden.store');
-Route::get('/Preorden/edit/{id}',[OrdenTrabajoController::class,'edit'])->name('Preorden.edit');
-Route::post('/Preorden/update/{id}',[OrdenTrabajoController::class,'update'])->name('Preorden.update');
-Route::post('/Preorden/destroy/{id}',[OrdenTrabajoController::class,'destroy'])->name('Preorden.destroy');
+Route::get('/Preorden/index',[PreordenController::class,'index'])->name('Preorden.index');
+Route::get('/Preorden/create',[PreordenController::class,'create'])->name('Preorden.create');
+Route::post('/Preorden/store',[PreordenController::class,'store'])->name('Preorden.store');
+Route::get('/Preorden/edit/{id}',[PreordenController::class,'edit'])->name('Preorden.edit');
+Route::post('/Preorden/update/{id}',[PreordenController::class,'update'])->name('Preorden.update');
+Route::post('/Preorden/destroy/{id}',[PreordenController::class,'destroy'])->name('Preorden.destroy');

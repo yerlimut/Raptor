@@ -1,15 +1,15 @@
 @extends('layouts.app')
 
 @section('title')
-Gestión de Inventarios
+Gestión de Órdenes de Trabajo
 @endsection
 
 @section('content')
 <div class="container mt-5">
-    <h1 class="text-center"><i class="bi bi-box-seam"></i> Gestión de Inventarios</h1>
+    <h1 class="text-center"><i class="bi bi-clipboard-check"></i> Gestión de Órdenes de Trabajo</h1>
 
-    <a href="{{ route('inventario.create') }}" class="btn btn-primary mb-3">
-        <i class="bi bi-plus-circle"></i> Crear Inventario
+    <a href="{{ route('OrdenTrabajo.create') }}" class="btn btn-primary mb-3">
+        <i class="bi bi-plus-circle"></i> Crear Orden de Trabajo
     </a>
 
     {{-- Alerta de éxito --}}
@@ -32,30 +32,38 @@ Gestión de Inventarios
             <thead class="table-dark">
                 <tr>
                     <th>ID</th>
-                    <th>Descripción</th>
-                    <th>Fecha Registro</th>
-                    <th>Estado General</th>
-                    <th>Estado Inventario</th>
-                    <th>Moto</th>
+                    <th>Fecha Inicio</th>
+                    <th>Fecha Fin</th>
+                    <th>Estado</th>
+                    <th>Diagnóstico</th>
                     <th>Opciones</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($inventarios as $inventario)
+                @foreach($ordenes as $orden)
                 <tr>
-                    <td>{{ $inventario->id }}</td>
-                    <td>{{ $inventario->descripcion }}</td>
-                    <td>{{ $inventario->fechaRegistro }}</td>
-                    <td>{{ $inventario->estadoGeneral }}</td>
-                    <td>{{ $inventario->estadoInventario }}</td>
-                    <td>{{ $inventario->moto->placa ?? 'Sin asignar' }}</td>
+                    <td>{{ $orden->id }}</td>
+                    <td>{{ $orden->fechaInicio }}</td>
+                    <td>{{ $orden->fechaFin ?? 'En proceso' }}</td>
+                    <td>
+                        @if($orden->estado == 'pendiente')
+                            <span class="badge bg-warning text-dark">Pendiente</span>
+                        @elseif($orden->estado == 'en proceso')
+                            <span class="badge bg-primary">En Proceso</span>
+                        @elseif($orden->estado == 'finalizado')
+                            <span class="badge bg-success">Finalizado</span>
+                        @else
+                            <span class="badge bg-danger">Cancelado</span>
+                        @endif
+                    </td>
+                    <td>{{ $orden->diagnostico->descripcion ?? 'Sin diagnóstico' }}</td>
                     <td>
                         <div class="d-flex gap-2">
-                            <a href="{{ route('inventario.edit', $inventario->id) }}" class="btn btn-success btn-sm">
+                            <a href="{{ route('ordenTrabajo.edit', $orden->id) }}" class="btn btn-success btn-sm">
                                 <i class="bi bi-pencil"></i> Editar
                             </a>
 
-                            <form action="{{ route('inventario.destroy', $inventario->id) }}" method="POST" style="display:inline;">
+                            <form action="{{ route('ordenTrabajo.destroy', $orden->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 <button type="submit" class="btn btn-danger btn-sm" onclick="confirmarEliminacion(event)">
                                     <i class="bi bi-trash"></i> Eliminar

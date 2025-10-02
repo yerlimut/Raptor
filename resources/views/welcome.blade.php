@@ -108,7 +108,7 @@ Bienvenido
                 <div class="card-body text-center p-2 d-flex flex-column">
                     <h6 class="fw-bold mb-1">Inventario</h6>
                     <p class="text-muted small mb-2">Gestiona el stock de repuestos y productos.</p>
-                    <a href="" class="btn btn-sm btn-outline-primary mt-auto">Ver Inventario</a>
+                    <a href="{{route('inventario.index')}}" class="btn btn-sm btn-outline-primary mt-auto">Ver Inventario</a>
                 </div>
             </div>
         </div>
@@ -121,7 +121,7 @@ Bienvenido
                 <div class="card-body text-center p-2 d-flex flex-column">
                     <h6 class="fw-bold mb-1">Órdenes de Trabajo</h6>
                     <p class="text-muted small mb-2">Crea y administra las órdenes de trabajo.</p>
-                    <a href="" class="btn btn-sm btn-outline-primary mt-auto">Ver Órdenes</a>
+                    <a href="{{route('OrdenTrabajo.index')}}" class="btn btn-sm btn-outline-primary mt-auto">Ver Órdenes</a>
                 </div>
             </div>
         </div>
@@ -134,7 +134,7 @@ Bienvenido
                 <div class="card-body text-center p-2 d-flex flex-column">
                     <h6 class="fw-bold mb-1">Preórdenes</h6>
                     <p class="text-muted small mb-2">Gestiona las preórdenes de servicio.</p>
-                    <a href="" class="btn btn-sm btn-outline-primary mt-auto">Ver Preórdenes</a>
+                    <a href="{{route('Preorden.index')}}" class="btn btn-sm btn-outline-primary mt-auto">Ver Preórdenes</a>
                 </div>
             </div>
         </div>
