@@ -341,7 +341,7 @@ return [
         ],
         [
             'text' => 'Mecánicos',
-            'url'  => 'admin/mecanicos',
+            'url'  => 'mecanico/index',
             'icon' => 'fas fa-user-cog',
         ],
 
@@ -349,7 +349,7 @@ return [
         ['header' => 'Gestión de Vehículos'],
         [
             'text' => 'Marcas de Motos',
-            'url'  => 'admin/marcas',
+            'url'  => 'marcaMoto/index',
             'icon' => 'fas fa-motorcycle',
         ],
         [
@@ -359,7 +359,7 @@ return [
         ],
         [
             'text' => 'Inventario',
-            'url'  => 'admin/inventario',
+            'url'  => 'inventario/index',
             'icon' => 'fas fa-warehouse',
         ],
 
@@ -367,12 +367,12 @@ return [
         ['header' => 'Repuestos y Stock'],
         [
             'text' => 'Categorías',
-            'url'  => 'admin/categorias',
+            'url'  => 'categoriaRepuesto/index',
             'icon' => 'fas fa-tags',
         ],
         [
             'text' => 'Repuestos',
-            'url'  => 'admin/repuestos',
+            'url'  => 'repuesto/index',
             'icon' => 'fas fa-cogs',
         ],
 
@@ -380,17 +380,17 @@ return [
         ['header' => 'Operaciones y Taller'],
         [
             'text' => 'Órdenes de Trabajo',
-            'url'  => 'admin/ordenes',
+            'url'  => 'OrdenTrabajo/index',
             'icon' => 'fas fa-clipboard-list',
         ],
         [
             'text' => 'Preórdenes',
-            'url'  => 'admin/preordenes',
+            'url'  => 'Preorden/index',
             'icon' => 'fas fa-file-alt',
         ],
         [
             'text' => 'Diagnóstico',
-            'url'  => 'admin/diagnostico',
+            'url'  => 'Preorden/index',
             'icon' => 'fas fa-stethoscope',
         ],
     ],
