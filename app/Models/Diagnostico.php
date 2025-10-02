@@ -15,15 +15,12 @@ class Diagnostico extends Model
         'tipo',
         'idMoto',
     ];
-    public function motos(){
-        return $this->belongsTo(Moto::class,'idMoto');
+    public function moto()
+    {
+        return $this->belongsTo(Moto::class, 'idMoto');
     }
-    public function ordenTrabajo(){
+    public function ordenTrabajo()
+    {
         return $this->hasMany(Diagnostico::class);
     }
 }
-
-
-
-   
-        

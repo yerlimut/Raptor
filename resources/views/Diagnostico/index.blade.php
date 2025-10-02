@@ -1,15 +1,15 @@
 @extends('layouts.app')
 
 @section('title')
-Listado de Motos
+Listado de Diagnósticos
 @endsection
 
 @section('content')
 <div class="container mt-5">
-    <h1 class="text-center"><i class="bi bi-bicycle"></i> Gestión de Motos</h1>
+    <h1 class="text-center"><i class="bi bi-clipboard2-pulse"></i> Gestión de Diagnósticos</h1>
 
-    <a href="{{ route('moto.create') }}" class="btn btn-primary mb-3">
-        <i class="bi bi-plus-circle"></i> Nueva Moto
+    <a href="{{ route('diagnostico.create') }}" class="btn btn-primary mb-3">
+        <i class="bi bi-plus-circle"></i> Nuevo Diagnóstico
     </a>
 
     {{-- Mensaje de éxito con SweetAlert --}}
@@ -32,30 +32,36 @@ Listado de Motos
             <thead class="table-dark">
                 <tr>
                     <th>ID</th>
-                    <th>Modelo</th>
-                    <th>Año</th>
-                    <th>Placa</th>
-                    <th>Cliente</th>
-                    <th>Marca</th>
+                    <th>Descripción</th>
+                    <th>Fecha Diagnóstico</th>
+                    <th>Estado</th>
+                    <th>Tipo</th>
+                    <th>Moto</th>
                     <th>Opciones</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($motos as $moto)
+                @foreach($diagnosticos as $diagnostico)
                 <tr>
-                    <td>{{ $moto->id }}</td>
-                    <td>{{ $moto->modelo }}</td>
-                    <td>{{ $moto->año }}</td>
-                    <td>{{ $moto->placa }}</td>
-                    <td>{{ $moto->cliente->nombre ?? '---' }}</td>
-                    <td>{{ $moto->marca->nombreMarca ?? '---' }}</td>
+                    <td>{{ $diagnostico->id }}</td>
+                    <td>{{ $diagnostico->descripcion }}</td>
+                    <td>{{ $diagnostico->fechaDiagnostico }}</td>
+                    <td>{{ ucfirst($diagnostico->estado ?? '---') }}</td>
+                    <td>{{ ucfirst($diagnostico->tipo ?? '---') }}</td>
+                    <td>
+                        {{ $diagnostico->moto->marca->nombreMarca ?? '---' }}
+                        ({{ $diagnostico->moto->placa ?? '' }})
+                    </td>
+
+
                     <td>
                         <div class="d-flex gap-2">
-                            <a href="{{ route('moto.edit', $moto->id) }}" class="btn btn-success btn-sm">
+                            <a href="{{ route('diagnostico.edit', $diagnostico->id) }}" class="btn btn-success btn-sm">
                                 <i class="bi bi-pencil"></i> Editar
                             </a>
-                            <form action="{{ route('moto.destroy', $moto->id) }}" method="POST" style="display:inline;">
+                            <form action="{{ route('diagnostico.destroy', $diagnostico->id) }}" method="POST" style="display:inline;">
                                 @csrf
+
                                 <button type="submit" class="btn btn-danger btn-sm"
                                     onclick="confirmarEliminacion(event)">
                                     <i class="bi bi-trash"></i> Eliminar
