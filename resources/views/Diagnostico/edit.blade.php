@@ -9,9 +9,8 @@ Editar Diagnóstico
     <h1 class="text-center text-dark"><i class="bi bi-pencil-square"></i> Editar Diagnóstico</h1>
 
     <div class="card shadow-sm rounded-4 p-4">
-        <form action="{{ route('diagnostico.update', $diagnostico->id) }}" method="POST">
+        <form action="{{ route('diagnostico.update', $diagnosticos->id) }}" method="POST">
             @csrf
-            @method('PUT')
 
             <div class="row g-3">
                 {{-- Descripción --}}
@@ -21,7 +20,7 @@ Editar Diagnóstico
                            class="form-control" 
                            id="descripcion" 
                            name="descripcion" 
-                           value="{{ $diagnostico->descripcion }}">
+                           value="{{ $diagnosticos->descripcion }}">
                 </div>
 
                 {{-- Fecha Diagnóstico --}}
@@ -31,39 +30,39 @@ Editar Diagnóstico
                            class="form-control" 
                            id="fechaDiagnostico" 
                            name="fechaDiagnostico" 
-                           value="{{ $diagnostico->fechaDiagnostico }}">
+                           value="{{ $diagnosticos->fechaDiagnostico }}">
                 </div>
 
                 {{-- Estado --}}
                 <div class="col-md-6">
                     <label for="estado" class="form-label">Estado</label>
-                    <select class="form-select" id="estado" name="estado">
+                    <select class="form-control" id="estado" name="estado">
                         <option value="">Seleccione...</option>
-                        <option value="pendiente" {{ $diagnostico->estado == 'pendiente' ? 'selected' : '' }}>Pendiente</option>
-                        <option value="en proceso" {{ $diagnostico->estado == 'en proceso' ? 'selected' : '' }}>En Proceso</option>
-                        <option value="completado" {{ $diagnostico->estado == 'completado' ? 'selected' : '' }}>Completado</option>
+                        <option value="pendiente" {{ $diagnosticos->estado == 'pendiente' ? 'selected' : '' }}>Pendiente</option>
+                        <option value="en proceso" {{ $diagnosticos->estado == 'en proceso' ? 'selected' : '' }}>En Proceso</option>
+                        <option value="completado" {{ $diagnosticos->estado == 'completado' ? 'selected' : '' }}>Completado</option>
                     </select>
                 </div>
 
                 {{-- Tipo --}}
                 <div class="col-md-6">
                     <label for="tipo" class="form-label">Tipo de Diagnóstico</label>
-                    <select class="form-select" id="tipo" name="tipo">
+                    <select class="form-control" id="tipo" name="tipo">
                         <option value="">Seleccione...</option>
-                        <option value="preventivo" {{ $diagnostico->tipo == 'preventivo' ? 'selected' : '' }}>Preventivo</option>
-                        <option value="correctivo" {{ $diagnostico->tipo == 'correctivo' ? 'selected' : '' }}>Correctivo</option>
-                        <option value="inspeccion" {{ $diagnostico->tipo == 'inspeccion' ? 'selected' : '' }}>Inspección</option>
+                        <option value="preventivo" {{ $diagnosticos->tipo == 'preventivo' ? 'selected' : '' }}>Preventivo</option>
+                        <option value="correctivo" {{ $diagnosticos->tipo == 'correctivo' ? 'selected' : '' }}>Correctivo</option>
+                        <option value="inspeccion" {{ $diagnosticos->tipo == 'inspeccion' ? 'selected' : '' }}>Inspección</option>
                     </select>
                 </div>
 
                 {{-- Moto --}}
                 <div class="col-md-6">
                     <label for="idMoto" class="form-label">Moto</label>
-                    <select class="form-select" id="idMoto" name="idMoto">
+                    <select class="form-control" id="idMoto" name="idMoto">
                         <option value="">Seleccione una moto...</option>
                         @foreach($motos as $moto)
                             <option value="{{ $moto->id }}" 
-                                {{ $diagnostico->idMoto == $moto->id ? 'selected' : '' }}>
+                                {{ $diagnosticos->idMoto == $moto->id ? 'selected' : '' }}>
                                 {{ $moto->modelo }} - {{ $moto->placa }}
                             </option>
                         @endforeach

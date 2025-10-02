@@ -25,47 +25,53 @@ Crear Diagnóstico
 
 
                 {{-- Fecha Diagnóstico --}}
-                <div class="col-md-6">
-                    <label for="fechaDiagnostico" class="form-label">Fecha del Diagnóstico</label>
-                    <input type="date" class="form-control" id="fechaDiagnostico" name="fechaDiagnostico">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="fechaDiagnostico" class="form-label">Fecha del Diagnóstico</label>
+                        <input type="date" class="form-control" id="fechaDiagnostico" name="fechaDiagnostico">
+                    </div>
+                    {{-- Tipo de Diagnóstico --}}
+                    <div class="col-md-6">
+                        <label for="tipo" class="form-label">Tipo de Diagnóstico</label>
+                        <select class="form-control" id="tipo" name="tipo">
+                            <option value="">Seleccione...</option>
+                            <option value="preventivo">Preventivo</option>
+                            <option value="correctivo">Correctivo</option>
+                            <option value="inspeccion">Inspección</option>
+                        </select>
+                    </div>
                 </div>
 
-                {{-- Estado --}}
-                <div class="col-md-6">
-                    <label for="estado" class="form-label">Estado</label>
-                    <select class="form-select" id="estado" name="estado">
-                        <option value="">Seleccione...</option>
-                        <option value="pendiente">Pendiente</option>
-                        <option value="en proceso">En Proceso</option>
-                        <option value="completado">Completado</option>
-                    </select>
-                </div>
+                <div class="row">
+                    {{-- Estado --}}
+                    <div class="col-md-6">
+                        <label for="estado" class="form-label">Estado</label>
+                        <select class="form-control" id="estado" name="estado">
+                            <option value="">Seleccione...</option>
+                            <option value="pendiente">Pendiente</option>
+                            <option value="proceso">En Proceso</option>
+                            <option value="finalizado">Finalizado</option>
+                        </select>
+                    </div>
 
-                {{-- Tipo --}}
-                <div class="col-md-6">
-                    <label for="tipo" class="form-label">Tipo de Diagnóstico</label>
-                    <select class="form-select" id="tipo" name="tipo">
-                        <option value="">Seleccione...</option>
-                        <option value="preventivo">Preventivo</option>
-                        <option value="correctivo">Correctivo</option>
-                        <option value="inspeccion">Inspección</option>
-                    </select>
-                </div>
 
-                {{-- Moto --}}
-                <div class="col-md-6">
-                    <label for="idMoto" class="form-label">Moto</label>
-                    <select class="form-select" id="idMoto" name="idMoto">
-                        <option value="">Seleccione una moto...</option>
-                        @foreach($motos as $moto)
-                        <option value="{{ $moto->id }}">
-                            {{ $moto->marca->nombreMarca }}
-                        </option>
+                    {{-- Moto --}}
+                    <div class="col-md-6">
+                        <label for="idMoto" class="form-label">Moto</label>
+                        <select class="form-control" id="idMoto" name="idMoto">
+                            <option value="">Seleccione una moto...</option>
+                            @foreach($motos as $moto)
+                            <option value="{{ $moto->id }}">
+                                {{ $moto->marca->nombreMarca }}
+                            </option>
 
-                        @endforeach
-                    </select>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
         </div>
+
+
 
         <div class="mt-4 d-flex gap-2 justify-content">
             <button type="submit" class="btn btn-primary">

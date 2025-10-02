@@ -25,7 +25,7 @@ class OrdenTrabajoController extends Controller
         OrdenTrabajo::create(
             $request->all()
         );
-        return redirect()->route('ordenTrabajo.index');
+        return redirect()->route('OrdenTrabajo.index');
     }
 
     public function show(OrdenTrabajo $ordenTrabajo)
@@ -46,7 +46,7 @@ class OrdenTrabajoController extends Controller
         $ordenes->update(
             $request->all()
         );
-        return redirect()->route('ordenTrabajo.index');
+        return redirect()->route('OrdenTrabajo.index');
     }
 
     public function destroy($id)
@@ -55,10 +55,10 @@ class OrdenTrabajoController extends Controller
 
         try {
             $ordenes->delete();
-            return redirect()->route('ordenTrabajo.index')
+            return redirect()->route('OrdenTrabajo.index')
                 ->with('success', 'Orden de trabajo eliminada correctamente');
         } catch (\Illuminate\Database\QueryException $e) {
-            return redirect()->route('ordenTrabajo.index')
+            return redirect()->route('OrdenTrabajo.index')
                 ->with('error', 'No se puede eliminar esta orden de trabajo porque tiene registros asociados.');
         }
     }

@@ -28,7 +28,7 @@ Crear Cliente
                 {{-- Tipo Documento --}}
                 <div class="col-md-6">
                     <label for="tipoDocumento" class="form-label">Tipo de Documento</label>
-                    <select class="form-select" id="tipoDocumento" name="tipoDocumento">
+                    <select class="form-control" id="tipoDocumento" name="tipoDocumento">
                         <option value="">-- Seleccione --</option>
                         <option value="CC">Cédula</option>
                         <option value="TI">Tarjeta de Identidad</option>
