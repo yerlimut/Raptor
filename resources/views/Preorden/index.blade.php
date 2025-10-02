@@ -1,18 +1,17 @@
 @extends('layouts.app')
 
 @section('title')
-Gestión de Inventarios
+Gestión de Preórdenes
 @endsection
 
 @section('content')
 <div class="container mt-5">
-    <h1 class="text-center"><i class="bi bi-box-seam"></i> Gestión de Inventarios</h1>
+    <h1 class="text-center"><i class="bi bi-list-task"></i> Gestión de Preórdenes</h1>
 
-    <a href="{{ route('inventario.create') }}" class="btn btn-primary mb-3">
-        <i class="bi bi-plus-circle"></i> Crear Inventario
+    <a href="{{ route('Preorden.create') }}" class="btn btn-primary mb-3">
+        <i class="bi bi-plus-circle"></i> Crear Preorden
     </a>
 
-    {{-- Alerta de éxito --}}
     @if(session('success'))
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -32,30 +31,28 @@ Gestión de Inventarios
             <thead class="table-dark">
                 <tr>
                     <th>ID</th>
+                    <th>Orden</th>
+                    <th>Mecánico</th>
+                    <th>Repuesto</th>
                     <th>Descripción</th>
-                    <th>Fecha Registro</th>
-                    <th>Estado General</th>
-                    <th>Estado Inventario</th>
-                    <th>Moto</th>
                     <th>Opciones</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($inventarios as $inventario)
+                @foreach($preordenes as $preorden)
                 <tr>
-                    <td>{{ $inventario->id }}</td>
-                    <td>{{ $inventario->descripcion }}</td>
-                    <td>{{ $inventario->fechaRegistro }}</td>
-                    <td>{{ $inventario->estadoGeneral }}</td>
-                    <td>{{ $inventario->estadoInventario }}</td>
-                    <td>{{ $inventario->moto->placa ?? 'Sin asignar' }}</td>
+                    <td>{{ $preorden->id }}</td>
+                    <td>{{ $preorden->orden->id ?? 'N/A' }}</td>
+                    <td>{{ $preorden->mecanico->nombre ?? 'N/A' }}</td>
+                    <td>{{ $preorden->repuesto->nombre ?? 'N/A' }}</td>
+                    <td>{{ $preorden->descripcion }}</td>
                     <td>
                         <div class="d-flex gap-2">
-                            <a href="{{ route('inventario.edit', $inventario->id) }}" class="btn btn-success btn-sm">
+                            <a href="{{ route('Preorden.edit', $preorden->id) }}" class="btn btn-success btn-sm">
                                 <i class="bi bi-pencil"></i> Editar
                             </a>
 
-                            <form action="{{ route('inventario.destroy', $inventario->id) }}" method="POST" style="display:inline;">
+                            <form action="{{ route('Preorden.destroy', $preorden->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 <button type="submit" class="btn btn-danger btn-sm" onclick="confirmarEliminacion(event)">
                                     <i class="bi bi-trash"></i> Eliminar

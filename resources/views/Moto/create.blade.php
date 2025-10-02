@@ -45,7 +45,7 @@ Registrar Moto
                 {{-- Cliente --}}
                 <div class="col-md-6">
                     <label for="idCliente" class="form-label">Cliente</label>
-                    <select name="idCliente" id="idCliente" class="form-select" required>
+                    <select name="idCliente" id="idCliente" class="form-control" required>
                         <option value="">Seleccione un cliente</option>
                         @foreach($clientes as $cliente)
                         <option value="{{ $cliente->id }}">{{ $cliente->nombre }}</option>
@@ -59,7 +59,7 @@ Registrar Moto
                 {{-- Marca --}}
                 <div class="col-md-6">
                     <label for="idMarca" class="form-label">Marca</label>
-                    <select name="idMarca" id="idMarca" class="form-select" required>
+                    <select name="idMarca" id="idMarca" class="form-control" required>
                         <option value="">Seleccione una marca</option>
                         @foreach($marcasMotos as $marca)
                         <option value="{{ $marca->id }}">{{ $marca->nombreMarca }}</option>

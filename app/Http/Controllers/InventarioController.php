@@ -35,7 +35,7 @@ class InventarioController extends Controller
         Inventario::create(
             $request->all()
         );
-        return redirect()->route('inventario.index');
+        return redirect()->route('inventario.index')->with('success', 'Inventario creado correctamente');
     }
 
     /**
@@ -65,7 +65,7 @@ class InventarioController extends Controller
         $inventarios->update(
             $request->all()
         );
-        return redirect()->route('inventario.index');
+        return redirect()->route('inventario.index')->with('success', 'Inventario actualizado correctamente');
     }
 
     /**

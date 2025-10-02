@@ -29,7 +29,7 @@ class PreordenController extends Controller
         Preorden::create(
             $request->all()
         );
-        return redirect()->route('preorden.index');
+        return redirect()->route('Preorden.index');
     }
 
     public function show(Preorden $preorden)
@@ -52,7 +52,7 @@ class PreordenController extends Controller
         $preordenes->update(
             $request->all()
         );
-        return redirect()->route('preorden.index');
+        return redirect()->route('Preorden.index');
     }
 
     public function destroy($id)
@@ -61,10 +61,10 @@ class PreordenController extends Controller
 
         try {
             $preordenes->delete();
-            return redirect()->route('preorden.index')
+            return redirect()->route('Preorden.index')
                 ->with('success', 'Preorden eliminada correctamente');
         } catch (\Illuminate\Database\QueryException $e) {
-            return redirect()->route('preorden.index')
+            return redirect()->route('Preorden.index')
                 ->with('error', 'No se puede eliminar esta preorden porque tiene registros asociados.');
         }
     }

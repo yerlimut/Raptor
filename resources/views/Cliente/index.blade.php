@@ -58,7 +58,7 @@ Gestión de Clientes
                                 <i class="bi bi-pencil"></i> Editar
                             </a>
 
-                            <a href="{{ route('moto.index', ['cliente_id' => $cliente->id]) }}" class="btn btn-primary btn-sm">
+                            <a href="{{ route('moto.index', ['idCliente' => $cliente->id] ) }}" class="btn btn-primary btn-sm">
                                 <i class="fas fa-motorcycle"></i> Motos
                             </a>
 
