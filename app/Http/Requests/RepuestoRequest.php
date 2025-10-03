@@ -6,23 +6,41 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class RepuestoRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
     public function rules(): array
     {
         return [
-            //
+            'nombre'                 => 'required|string|min:3|max:100|regex:/^[\pL\s0-9\-\.\,]+$/u',
+            'precio'                 => 'required|numeric|min:100|max:10000000',
+            'stock'                  => 'required|integer|min:0|max:9999',
+            'categoria_repuesto_id'  => 'required|exists:categoriaRepuestos,id',
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'nombre.required' => 'El nombre del repuesto es obligatorio.',
+            'nombre.min'      => 'El nombre debe tener al menos 3 caracteres.',
+            'nombre.max'      => 'El nombre no puede superar 100 caracteres.',
+            'nombre.regex'    => 'El nombre solo puede contener letras, números y algunos símbolos (- , .).',
+
+            'precio.required' => 'El precio es obligatorio.',
+            'precio.numeric'  => 'El precio debe ser un número.',
+            'precio.min'      => 'El precio mínimo permitido es 100.',
+            'precio.max'      => 'El precio máximo permitido es 10,000,000.',
+
+            'stock.required'  => 'El stock es obligatorio.',
+            'stock.integer'   => 'El stock debe ser un número entero.',
+            'stock.min'       => 'El stock no puede ser negativo.',
+            'stock.max'       => 'El stock máximo permitido es 9999.',
+
+            'categoria_repuesto_id.required'=> 'Debe seleccionar una categoría.',
+            'categoria_repuesto_id.exists'  => 'La categoría seleccionada no existe.',
         ];
     }
 }
