@@ -5,7 +5,6 @@ Editar Diagnóstico
 @endsection
 
 @section('content_header')
-
 <h1 class="fw-bold display-6 mb-0">RAPTOR </h1>
 @endsection
 
@@ -22,48 +21,60 @@ Editar Diagnóstico
                 <div class="col-12">
                     <label for="descripcion" class="form-label">Descripción</label>
                     <input type="text"
-                        class="form-control"
+                        class="form-control @error('descripcion') is-invalid @enderror"
                         id="descripcion"
                         name="descripcion"
                         value="{{ $diagnosticos->descripcion }}">
+                    @error('descripcion')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 {{-- Fecha Diagnóstico --}}
                 <div class="col-md-6">
                     <label for="fechaDiagnostico" class="form-label">Fecha del Diagnóstico</label>
                     <input type="date"
-                        class="form-control"
+                        class="form-control @error('fechaDiagnostico') is-invalid @enderror"
                         id="fechaDiagnostico"
                         name="fechaDiagnostico"
                         value="{{ $diagnosticos->fechaDiagnostico }}">
+                    @error('fechaDiagnostico')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 {{-- Estado --}}
                 <div class="col-md-6">
                     <label for="estado" class="form-label">Estado</label>
-                    <select class="form-control" id="estado" name="estado">
+                    <select class="form-control @error('estado') is-invalid @enderror" id="estado" name="estado">
                         <option value="">Seleccione...</option>
                         <option value="pendiente" {{ $diagnosticos->estado == 'pendiente' ? 'selected' : '' }}>Pendiente</option>
                         <option value="en proceso" {{ $diagnosticos->estado == 'en proceso' ? 'selected' : '' }}>En Proceso</option>
                         <option value="completado" {{ $diagnosticos->estado == 'completado' ? 'selected' : '' }}>Completado</option>
                     </select>
+                    @error('estado')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 {{-- Tipo --}}
                 <div class="col-md-6">
                     <label for="tipo" class="form-label">Tipo de Diagnóstico</label>
-                    <select class="form-control" id="tipo" name="tipo">
+                    <select class="form-control @error('tipo') is-invalid @enderror" id="tipo" name="tipo">
                         <option value="">Seleccione...</option>
                         <option value="preventivo" {{ $diagnosticos->tipo == 'preventivo' ? 'selected' : '' }}>Preventivo</option>
                         <option value="correctivo" {{ $diagnosticos->tipo == 'correctivo' ? 'selected' : '' }}>Correctivo</option>
                         <option value="inspeccion" {{ $diagnosticos->tipo == 'inspeccion' ? 'selected' : '' }}>Inspección</option>
                     </select>
+                    @error('tipo')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 {{-- Moto --}}
                 <div class="col-md-6">
                     <label for="idMoto" class="form-label">Moto</label>
-                    <select class="form-control" id="idMoto" name="idMoto">
+                    <select class="form-control @error('idMoto') is-invalid @enderror" id="idMoto" name="idMoto">
                         <option value="">Seleccione una moto...</option>
                         @foreach($motos as $moto)
                         <option value="{{ $moto->id }}"
@@ -72,6 +83,9 @@ Editar Diagnóstico
                         </option>
                         @endforeach
                     </select>
+                    @error('idMoto')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
             </div>
 

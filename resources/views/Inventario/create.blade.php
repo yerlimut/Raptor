@@ -21,41 +21,65 @@ Crear Inventario
                 {{-- Descripción --}}
                 <div class="col-md-6">
                     <label for="descripcion" class="form-label">Descripción</label>
-                    <input type="text" class="form-control" id="descripcion" name="descripcion">
+                    <input type="text" 
+                           class="form-control @error('descripcion') is-invalid @enderror" 
+                           id="descripcion" 
+                           name="descripcion">
+                    @error('descripcion')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 {{-- Fecha de Registro --}}
                 <div class="col-md-6">
                     <label for="fechaRegistro" class="form-label">Fecha de Registro</label>
-                    <input type="date" class="form-control" id="fechaRegistro" name="fechaRegistro">
+                    <input type="date" 
+                           class="form-control @error('fechaRegistro') is-invalid @enderror" 
+                           id="fechaRegistro" 
+                           name="fechaRegistro">
+                    @error('fechaRegistro')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 {{-- Estado General --}}
                 <div class="col-md-6">
                     <label for="estadoGeneral" class="form-label">Estado General</label>
-                    <select class="form-control" id="estadoGeneral" name="estadoGeneral">
+                    <select class="form-control @error('estadoGeneral') is-invalid @enderror" 
+                            id="estadoGeneral" 
+                            name="estadoGeneral">
                         <option value="">-- Seleccione --</option>
                         <option value="Bueno">Bueno</option>
                         <option value="Regular">Regular</option>
                         <option value="Malo">Malo</option>
                     </select>
+                    @error('estadoGeneral')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 {{-- Estado Inventario --}}
                 <div class="col-md-6">
                     <label for="estadoInventario" class="form-label">Estado Inventario</label>
-                    <select class="form-control" id="estadoInventario" name="estadoInventario">
+                    <select class="form-control @error('estadoInventario') is-invalid @enderror" 
+                            id="estadoInventario" 
+                            name="estadoInventario">
                         <option value="">-- Seleccione --</option>
                         <option value="En taller">En taller</option>
                         <option value="Entregado">Entregado</option>
                         <option value="Pendiente">Pendiente</option>
                     </select>
+                    @error('estadoInventario')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 {{-- Moto --}}
                 <div class="col-md-12">
                     <label for="idMoto" class="form-label">Moto</label>
-                    <select class="form-control" id="idMoto" name="idMoto">
+                    <select class="form-control @error('idMoto') is-invalid @enderror" 
+                            id="idMoto" 
+                            name="idMoto">
                         <option value="">-- Seleccione una moto --</option>
                         @foreach($motos as $moto)
                             <option value="{{ $moto->id }}">
@@ -63,6 +87,9 @@ Crear Inventario
                             </option>
                         @endforeach
                     </select>
+                    @error('idMoto')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
             </div>
 

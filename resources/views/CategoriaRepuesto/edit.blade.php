@@ -5,7 +5,6 @@ Editar Categoría de Repuesto
 @endsection
 
 @section('content_header')
-
 <h1 class="fw-bold display-6 mb-0">RAPTOR </h1>
 @endsection
 
@@ -16,10 +15,11 @@ Editar Categoría de Repuesto
     <div class="card shadow-sm rounded-4 p-4">
         <form action="{{ route('categoriaRepuesto.update', $categoriasRepuesto->id) }}" method="POST">
             @csrf
+            @method('PUT')
 
             <div class="mb-3">
                 <label for="nombreCategoria" class="form-label">Nombre de la Categoría</label>
-                <select class="form-control" id="nombreCategoria" name="nombreCategoria" required>
+                <select class="form-control @error('nombreCategoria') is-invalid @enderror" id="nombreCategoria" name="nombreCategoria" required>
                     <option value="">-- Seleccione una categoría --</option>
                     <option value="Motor" {{ $categoriasRepuesto->nombreCategoria == 'Motor' ? 'selected' : '' }}>Motor</option>
                     <option value="Transmisión" {{ $categoriasRepuesto->nombreCategoria == 'Transmisión' ? 'selected' : '' }}>Transmisión</option>
@@ -33,6 +33,9 @@ Editar Categoría de Repuesto
                     <option value="Filtros" {{ $categoriasRepuesto->nombreCategoria == 'Filtros' ? 'selected' : '' }}>Filtros</option>
                     <option value="Accesorios" {{ $categoriasRepuesto->nombreCategoria == 'Accesorios' ? 'selected' : '' }}>Accesorios</option>
                 </select>
+                @error('nombreCategoria')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
 
             <div class="mt-4 d-flex gap-2">

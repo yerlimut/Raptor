@@ -14,62 +14,77 @@ Editar Inventario
     <h1 class="text-center"><i class="bi bi-pencil-square"></i> Editar Inventario</h1>
 
     <div class="card shadow-sm rounded-4 p-4">
-        <form action="{{ route('inventario.update',   $inventarios->id) }}" method="POST">
+        <form action="{{ route('inventario.update', $inventarios->id) }}" method="POST">
             @csrf
             <div class="row g-3">
                 {{-- Descripción --}}
                 <div class="col-md-6">
                     <label for="descripcion" class="form-label">Descripción</label>
                     <input type="text"
-                        class="form-control"
+                        class="form-control @error('descripcion') is-invalid @enderror"
                         id="descripcion"
                         name="descripcion"
-                        value="{{   $inventarios->descripcion }}">
+                        value="{{ $inventarios->descripcion }}">
+                    @error('descripcion')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 {{-- Fecha de Registro --}}
                 <div class="col-md-6">
                     <label for="fechaRegistro" class="form-label">Fecha de Registro</label>
                     <input type="date"
-                        class="form-control"
+                        class="form-control @error('fechaRegistro') is-invalid @enderror"
                         id="fechaRegistro"
                         name="fechaRegistro"
-                        value="{{   $inventarios->fechaRegistro }}">
+                        value="{{ $inventarios->fechaRegistro }}">
+                    @error('fechaRegistro')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 {{-- Estado General --}}
                 <div class="col-md-6">
                     <label for="estadoGeneral" class="form-label">Estado General</label>
-                    <select class="form-control" id="estadoGeneral" name="estadoGeneral">
+                    <select class="form-control @error('estadoGeneral') is-invalid @enderror" id="estadoGeneral" name="estadoGeneral">
                         <option value="">-- Seleccione --</option>
-                        <option value="Bueno" {{  $inventarios ->estadoGeneral == 'Bueno' ? 'selected' : '' }}>Bueno</option>
-                        <option value="Regular" {{  $inventarios ->estadoGeneral == 'Regular' ? 'selected' : '' }}>Regular</option>
-                        <option value="Malo" {{  $inventarios ->estadoGeneral == 'Malo' ? 'selected' : '' }}>Malo</option>
+                        <option value="Bueno" {{ $inventarios->estadoGeneral == 'Bueno' ? 'selected' : '' }}>Bueno</option>
+                        <option value="Regular" {{ $inventarios->estadoGeneral == 'Regular' ? 'selected' : '' }}>Regular</option>
+                        <option value="Malo" {{ $inventarios->estadoGeneral == 'Malo' ? 'selected' : '' }}>Malo</option>
                     </select>
+                    @error('estadoGeneral')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 {{-- Estado Inventario --}}
                 <div class="col-md-6">
                     <label for="estadoInventario" class="form-label">Estado Inventario</label>
-                    <select class="form-control" id="estadoInventario" name="estadoInventario">
+                    <select class="form-control @error('estadoInventario') is-invalid @enderror" id="estadoInventario" name="estadoInventario">
                         <option value="">-- Seleccione --</option>
-                        <option value="En taller" {{  $inventarios ->estadoInventario == 'En taller' ? 'selected' : '' }}>En taller</option>
-                        <option value="Entregado" {{  $inventarios ->estadoInventario == 'Entregado' ? 'selected' : '' }}>Entregado</option>
-                        <option value="Pendiente" {{  $inventarios ->estadoInventario == 'Pendiente' ? 'selected' : '' }}>Pendiente</option>
+                        <option value="En taller" {{ $inventarios->estadoInventario == 'En taller' ? 'selected' : '' }}>En taller</option>
+                        <option value="Entregado" {{ $inventarios->estadoInventario == 'Entregado' ? 'selected' : '' }}>Entregado</option>
+                        <option value="Pendiente" {{ $inventarios->estadoInventario == 'Pendiente' ? 'selected' : '' }}>Pendiente</option>
                     </select>
+                    @error('estadoInventario')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 {{-- Moto --}}
                 <div class="col-md-12">
                     <label for="idMoto" class="form-label">Moto</label>
-                    <select class="form-control" id="idMoto" name="idMoto">
+                    <select class="form-control @error('idMoto') is-invalid @enderror" id="idMoto" name="idMoto">
                         <option value="">-- Seleccione una moto --</option>
                         @foreach($motos as $moto)
-                        <option value="{{ $moto->id }}" {{  $inventarios ->idMoto == $moto->id ? 'selected' : '' }}>
+                        <option value="{{ $moto->id }}" {{ $inventarios->idMoto == $moto->id ? 'selected' : '' }}>
                             {{ $moto->placa }} - {{ $moto->marca }}
                         </option>
                         @endforeach
                     </select>
+                    @error('idMoto')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
             </div>
 

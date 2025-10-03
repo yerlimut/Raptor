@@ -24,7 +24,14 @@ Crear Marca de Moto
                     {{-- Nombre Marca --}}
                     <div class="col-12">
                         <label for="nombreMarca" class="form-label">Nombre de la Marca</label>
-                        <input type="text" class="form-control" id="nombreMarca" name="nombreMarca" placeholder="Ej: Yamaha, Honda, Suzuki">
+                        <input type="text"
+                            class="form-control @error('nombreMarca') is-invalid @enderror"
+                            id="nombreMarca"
+                            name="nombreMarca"
+                            placeholder="Ej: Yamaha, Honda, Suzuki">
+                        @error('nombreMarca')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
 

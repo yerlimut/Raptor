@@ -5,7 +5,6 @@ Crear Cliente
 @endsection
 
 @section('content_header')
-
 <h1 class="fw-bold display-6 mb-0">RAPTOR </h1>
 @endsection
 
@@ -21,49 +20,70 @@ Crear Cliente
                 {{-- Nombre --}}
                 <div class="col-md-6">
                     <label for="nombre" class="form-label">Nombre</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre">
+                    <input type="text" class="form-control @error('nombre') is-invalid @enderror" id="nombre" name="nombre" value="{{ old('nombre') }}">
+                    @error('nombre')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 {{-- Apellido --}}
                 <div class="col-md-6">
                     <label for="apellido" class="form-label">Apellido</label>
-                    <input type="text" class="form-control" id="apellido" name="apellido">
+                    <input type="text" class="form-control @error('apellido') is-invalid @enderror" id="apellido" name="apellido" value="{{ old('apellido') }}">
+                    @error('apellido')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 {{-- Tipo Documento --}}
                 <div class="col-md-6">
                     <label for="tipoDocumento" class="form-label">Tipo de Documento</label>
-                    <select class="form-control" id="tipoDocumento" name="tipoDocumento">
+                    <select class="form-control @error('tipoDocumento') is-invalid @enderror" id="tipoDocumento" name="tipoDocumento">
                         <option value="">-- Seleccione --</option>
-                        <option value="CC">Cédula</option>
-                        <option value="TI">Tarjeta de Identidad</option>
-                        <option value="CE">Cédula Extranjera</option>
-                        <option value="NIT">NIT</option>
+                        <option value="CC" {{ old('tipoDocumento') == 'CC' ? 'selected' : '' }}>Cédula</option>
+                        <option value="TI" {{ old('tipoDocumento') == 'TI' ? 'selected' : '' }}>Tarjeta de Identidad</option>
+                        <option value="CE" {{ old('tipoDocumento') == 'CE' ? 'selected' : '' }}>Cédula Extranjera</option>
+                        <option value="NIT" {{ old('tipoDocumento') == 'NIT' ? 'selected' : '' }}>NIT</option>
                     </select>
+                    @error('tipoDocumento')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 {{-- Número Documento --}}
                 <div class="col-md-6">
                     <label for="numeroDocumento" class="form-label">Número de Documento</label>
-                    <input type="text" class="form-control" id="numeroDocumento" name="numeroDocumento">
+                    <input type="text" class="form-control @error('numeroDocumento') is-invalid @enderror" id="numeroDocumento" name="numeroDocumento" value="{{ old('numeroDocumento') }}">
+                    @error('numeroDocumento')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 {{-- Teléfono --}}
                 <div class="col-md-6">
                     <label for="telefono" class="form-label">Teléfono</label>
-                    <input type="text" class="form-control" id="telefono" name="telefono">
+                    <input type="text" class="form-control @error('telefono') is-invalid @enderror" id="telefono" name="telefono" value="{{ old('telefono') }}">
+                    @error('telefono')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 {{-- Correo --}}
                 <div class="col-md-6">
                     <label for="correoElectronico" class="form-label">Correo Electrónico</label>
-                    <input type="email" class="form-control" id="correoElectronico" name="correoElectronico">
+                    <input type="email" class="form-control @error('correoElectronico') is-invalid @enderror" id="correoElectronico" name="correoElectronico" value="{{ old('correoElectronico') }}">
+                    @error('correoElectronico')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 {{-- Dirección --}}
                 <div class="col-12">
                     <label for="direccion" class="form-label">Dirección</label>
-                    <input type="text" class="form-control" id="direccion" name="direccion">
+                    <input type="text" class="form-control @error('direccion') is-invalid @enderror" id="direccion" name="direccion" value="{{ old('direccion') }}">
+                    @error('direccion')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
             </div>
 
