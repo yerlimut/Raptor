@@ -91,22 +91,30 @@ Editar Mecánico
                 {{-- Especialidad --}}
                 <div class="col-12">
                     <label for="especialidad" class="form-label">Especialidad</label>
-                    <input type="text"
-                        class="form-control"
-                        id="especialidad"
-                        name="especialidad"
-                        value="{{ $mecanico->especialidad }}">
+                    <select class="form-control" id="especialidad" name="especialidad">
+                        <option value="">-- Seleccione una especialidad --</option>
+                        <option value="mecanica_general" {{ $mecanico->especialidad == 'mecanica_general' ? 'selected' : '' }}>Mecánica General</option>
+                        <option value="electricidad" {{ $mecanico->especialidad == 'electricidad' ? 'selected' : '' }}>Electricidad Automotriz</option>
+                        <option value="inyeccion" {{ $mecanico->especialidad == 'inyeccion' ? 'selected' : '' }}>Sistemas de Inyección</option>
+                        <option value="motos_altas" {{ $mecanico->especialidad == 'motos_altas' ? 'selected' : '' }}>Motos de Alta Cilindrada</option>
+                        <option value="motos_bajas" {{ $mecanico->especialidad == 'motos_bajas' ? 'selected' : '' }}>Motos de Baja Cilindrada</option>
+                        <option value="frenos" {{ $mecanico->especialidad == 'frenos' ? 'selected' : '' }}>Frenos</option>
+                        <option value="suspension" {{ $mecanico->especialidad == 'suspension' ? 'selected' : '' }}>Suspensión</option>
+                        <option value="transmision" {{ $mecanico->especialidad == 'transmision' ? 'selected' : '' }}>Transmisión</option>
+                        <option value="carburacion" {{ $mecanico->especialidad == 'carburacion' ? 'selected' : '' }}>Carburación</option>
+                        <option value="diagnostico" {{ $mecanico->especialidad == 'diagnostico' ? 'selected' : '' }}>Diagnóstico Computarizado</option>
+                    </select>
                 </div>
-            </div>
 
-            <div class="mt-4 d-flex gap-2">
-                <button type="submit" class="btn btn-success">
-                    <i class="bi bi-save"></i> Actualizar
-                </button>
-                <a href="{{ route('mecanico.index') }}" class="btn btn-secondary">
-                    <i class="bi bi-arrow-left-circle"></i> Cancelar
-                </a>
-            </div>
+
+                <div class="mt-4 d-flex gap-2">
+                    <button type="submit" class="btn btn-success">
+                        <i class="bi bi-save"></i> Actualizar
+                    </button>
+                    <a href="{{ route('mecanico.index') }}" class="btn btn-secondary">
+                        <i class="bi bi-arrow-left-circle"></i> Cancelar
+                    </a>
+                </div>
         </form>
     </div>
 </div>
