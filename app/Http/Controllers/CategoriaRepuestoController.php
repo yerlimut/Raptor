@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CategoriaRepuestoRequest;
 use App\Models\categoriaRepuesto;
 use Illuminate\Http\Request;
 
@@ -28,7 +29,7 @@ class CategoriaRepuestoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CategoriaRepuestoRequest $request)
     {
         categoriaRepuesto::create(
             $request->all()
@@ -57,7 +58,7 @@ class CategoriaRepuestoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(CategoriaRepuestoRequest $request, $id)
     {
         $categoriasRepuesto = categoriaRepuesto::findorfail($id);
         $categoriasRepuesto->update($request->all());

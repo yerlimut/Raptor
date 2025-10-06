@@ -30,3 +30,35 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @stack('scripts')
 @stop
+{{-- Footer global para todas las vistas --}}
+@section('footer')
+    <footer class="main-footer">
+        <div class="container">
+            <div class="float-right d-none d-sm-block">
+                <b>Version</b> 1.0.0
+            </div>
+            <strong>Copyright &copy; {{ date('Y') }} <a href="#">RAPTOR:Administración de reparaciones, procesos, organización y repuestos del taller</a>.</strong> Todos los derechos reservados.
+        </div>
+    </footer>
+
+    <style>
+    /* Hace que toda la página use flexbox para pegar el footer al fondo */
+    html, body {
+        height: 100%;
+        margin: 0;
+    }
+
+    .wrapper {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh; /* Toda la altura visible */
+    }
+
+    .content-wrapper {
+        flex: 1; /* Empuja el footer hacia abajo */
+    }
+
+   
+</style>
+@stop
+
