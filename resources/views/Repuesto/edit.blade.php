@@ -9,6 +9,12 @@ Editar Repuesto
 @endsection
 
 @section('content')
+<img src="{{ asset('imagenes/RAPTOR.png') }}"
+    alt="RAPTOR"
+    class="position-fixed rounded-4"
+    style="top: 40px; right: 10px; max-height: 130px; z-index: 1000; background-color: transparent;">
+
+
 <div class="container mt-5">
     <h1 class="text-center"><i class="bi bi-pencil-square"></i> Editar Repuesto</h1>
 
@@ -25,7 +31,7 @@ Editar Repuesto
                         name="nombre"
                         value="{{ $repuesto->nombre }}">
                     @error('nombre')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -38,7 +44,7 @@ Editar Repuesto
                         name="marca"
                         value="{{ $repuesto->marca }}">
                     @error('marca')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -52,7 +58,7 @@ Editar Repuesto
                         step="0.01"
                         value="{{ $repuesto->precio }}">
                     @error('precio')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -65,7 +71,7 @@ Editar Repuesto
                         name="stock"
                         value="{{ $repuesto->stock }}">
                     @error('stock')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -82,7 +88,7 @@ Editar Repuesto
                         @endforeach
                     </select>
                     @error('idCategoria')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
             </div>

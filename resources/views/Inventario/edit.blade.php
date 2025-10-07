@@ -10,6 +10,12 @@ Editar Inventario
 @endsection
 
 @section('content')
+<img src="{{ asset('imagenes/RAPTOR.png') }}"
+    alt="RAPTOR"
+    class="position-fixed rounded-4"
+    style="top: 40px; right: 10px; max-height: 130px; z-index: 1000; background-color: transparent;">
+
+
 <div class="container mt-5">
     <h1 class="text-center"><i class="bi bi-pencil-square"></i> Editar Inventario</h1>
 
@@ -26,7 +32,7 @@ Editar Inventario
                         name="descripcion"
                         value="{{ $inventarios->descripcion }}">
                     @error('descripcion')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -39,7 +45,7 @@ Editar Inventario
                         name="fechaRegistro"
                         value="{{ $inventarios->fechaRegistro }}">
                     @error('fechaRegistro')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -53,7 +59,7 @@ Editar Inventario
                         <option value="Malo" {{ $inventarios->estadoGeneral == 'Malo' ? 'selected' : '' }}>Malo</option>
                     </select>
                     @error('estadoGeneral')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -67,7 +73,7 @@ Editar Inventario
                         <option value="Pendiente" {{ $inventarios->estadoInventario == 'Pendiente' ? 'selected' : '' }}>Pendiente</option>
                     </select>
                     @error('estadoInventario')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -83,7 +89,7 @@ Editar Inventario
                         @endforeach
                     </select>
                     @error('idMoto')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
             </div>

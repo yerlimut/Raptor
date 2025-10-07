@@ -9,6 +9,12 @@ Editar Cliente
 @endsection
 
 @section('content')
+<img src="{{ asset('imagenes/RAPTOR.png') }}"
+    alt="RAPTOR"
+    class="position-fixed rounded-4"
+    style="top: 40px; right: 10px; max-height: 130px; z-index: 1000; background-color: transparent;">
+
+
 <div class="container mt-5">
     <h1 class="text-center"><i class="bi bi-pencil-square"></i> Editar Cliente</h1>
 
@@ -26,7 +32,7 @@ Editar Cliente
                         name="nombre"
                         value="{{ $cliente->nombre }}">
                     @error('nombre')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -39,7 +45,7 @@ Editar Cliente
                         name="apellido"
                         value="{{ $cliente->apellido }}">
                     @error('apellido')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -47,7 +53,7 @@ Editar Cliente
                 <div class="col-md-6">
                     <label for="tipoDocumento" class="form-label">Tipo de Documento</label>
                     <select class="form-control @error('tipoDocumento') is-invalid @enderror"
-                            id="tipoDocumento" name="tipoDocumento">
+                        id="tipoDocumento" name="tipoDocumento">
                         <option value="">-- Seleccione --</option>
                         <option value="CC" {{ $cliente->tipoDocumento == 'CC' ? 'selected' : '' }}>Cédula</option>
                         <option value="TI" {{ $cliente->tipoDocumento == 'TI' ? 'selected' : '' }}>Tarjeta de Identidad</option>
@@ -55,7 +61,7 @@ Editar Cliente
                         <option value="NIT" {{ $cliente->tipoDocumento == 'NIT' ? 'selected' : '' }}>NIT</option>
                     </select>
                     @error('tipoDocumento')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -68,7 +74,7 @@ Editar Cliente
                         name="numeroDocumento"
                         value="{{ $cliente->numeroDocumento }}">
                     @error('numeroDocumento')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -81,7 +87,7 @@ Editar Cliente
                         name="telefono"
                         value="{{ $cliente->telefono }}">
                     @error('telefono')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -94,7 +100,7 @@ Editar Cliente
                         name="correoElectronico"
                         value="{{ $cliente->correoElectronico }}">
                     @error('correoElectronico')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -107,7 +113,7 @@ Editar Cliente
                         name="direccion"
                         value="{{ $cliente->direccion }}">
                     @error('direccion')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
             </div>

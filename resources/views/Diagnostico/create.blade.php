@@ -9,6 +9,12 @@ Crear Diagnóstico
 @endsection
 
 @section('content')
+<img src="{{ asset('imagenes/RAPTOR.png') }}"
+    alt="RAPTOR"
+    class="position-fixed rounded-4"
+    style="top: 40px; right: 10px; max-height: 130px; z-index: 1000; background-color: transparent;">
+
+
 <div class="container d-flex align-items-center justify-content-center min-vh-50">
     <div class="col-md-8">
         <h1 class="text-center mb-4">
@@ -24,12 +30,12 @@ Crear Diagnóstico
                     <div class="col-12">
                         <label for="descripcion" class="form-label">Descripción</label>
                         <input type="text"
-                               class="form-control @error('descripcion') is-invalid @enderror"
-                               id="descripcion"
-                               name="descripcion"
-                               placeholder="Ingrese la descripción del diagnóstico">
+                            class="form-control @error('descripcion') is-invalid @enderror"
+                            id="descripcion"
+                            name="descripcion"
+                            placeholder="Ingrese la descripción del diagnóstico">
                         @error('descripcion')
-                            <div class="invalid-feedback">{{ $message }}</div>
+                        <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
@@ -39,11 +45,11 @@ Crear Diagnóstico
                     <div class="col-md-6">
                         <label for="fechaDiagnostico" class="form-label">Fecha del Diagnóstico</label>
                         <input type="date"
-                               class="form-control @error('fechaDiagnostico') is-invalid @enderror"
-                               id="fechaDiagnostico"
-                               name="fechaDiagnostico">
+                            class="form-control @error('fechaDiagnostico') is-invalid @enderror"
+                            id="fechaDiagnostico"
+                            name="fechaDiagnostico">
                         @error('fechaDiagnostico')
-                            <div class="invalid-feedback">{{ $message }}</div>
+                        <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
 
@@ -57,7 +63,7 @@ Crear Diagnóstico
                             <option value="inspeccion">Inspección</option>
                         </select>
                         @error('tipo')
-                            <div class="invalid-feedback">{{ $message }}</div>
+                        <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
@@ -73,7 +79,7 @@ Crear Diagnóstico
                             <option value="finalizado">Finalizado</option>
                         </select>
                         @error('estado')
-                            <div class="invalid-feedback">{{ $message }}</div>
+                        <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
 
@@ -83,13 +89,13 @@ Crear Diagnóstico
                         <select class="form-control @error('idMoto') is-invalid @enderror" id="idMoto" name="idMoto">
                             <option value="">Seleccione una moto...</option>
                             @foreach($motos as $moto)
-                                <option value="{{ $moto->id }}">
-                                    {{ $moto->marca->nombreMarca }}
-                                </option>
+                            <option value="{{ $moto->id }}">
+                                {{ $moto->marca->nombreMarca }}
+                            </option>
                             @endforeach
                         </select>
                         @error('idMoto')
-                            <div class="invalid-feedback">{{ $message }}</div>
+                        <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>

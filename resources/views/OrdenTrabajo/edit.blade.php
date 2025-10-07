@@ -10,6 +10,12 @@ Editar Orden de Trabajo
 @endsection
 
 @section('content')
+<img src="{{ asset('imagenes/RAPTOR.png') }}"
+    alt="RAPTOR"
+    class="position-fixed rounded-4"
+    style="top: 40px; right: 10px; max-height: 130px; z-index: 1000; background-color: transparent;">
+
+
 <div class="container mt-5">
     <h1 class="text-center"><i class="bi bi-pencil-square"></i> Editar Orden de Trabajo</h1>
 
@@ -27,7 +33,7 @@ Editar Orden de Trabajo
                         name="fechaInicio"
                         value="{{ $ordenes->fechaInicio }}">
                     @error('fechaInicio')
-                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                    <div class="invalid-feedback d-block">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -40,7 +46,7 @@ Editar Orden de Trabajo
                         name="fechaFin"
                         value="{{ $ordenes->fechaFin }}">
                     @error('fechaFin')
-                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                    <div class="invalid-feedback d-block">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -54,7 +60,7 @@ Editar Orden de Trabajo
                         <option value="cancelado" {{ $ordenes->estado == 'cancelado' ? 'selected' : '' }}>Cancelado</option>
                     </select>
                     @error('estado')
-                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                    <div class="invalid-feedback d-block">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -71,7 +77,7 @@ Editar Orden de Trabajo
                         @endforeach
                     </select>
                     @error('idDiagnostico')
-                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                    <div class="invalid-feedback d-block">{{ $message }}</div>
                     @enderror
                 </div>
             </div>

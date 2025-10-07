@@ -9,6 +9,12 @@ Editar Mecánico
 @endsection
 
 @section('content')
+<img src="{{ asset('imagenes/RAPTOR.png') }}"
+    alt="RAPTOR"
+    class="position-fixed rounded-4"
+    style="top: 40px; right: 10px; max-height: 130px; z-index: 1000; background-color: transparent;">
+
+
 <div class="container mt-5">
     <h1 class="text-center"><i class="bi bi-pencil-square"></i> Editar Mecánico</h1>
 
@@ -25,7 +31,7 @@ Editar Mecánico
                         name="nombre"
                         value="{{ $mecanico->nombre }}">
                     @error('nombre')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -38,7 +44,7 @@ Editar Mecánico
                         name="apellido"
                         value="{{ $mecanico->apellido }}">
                     @error('apellido')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -53,7 +59,7 @@ Editar Mecánico
                         <option value="NIT" {{ $mecanico->tipoDocumento == 'NIT' ? 'selected' : '' }}>NIT</option>
                     </select>
                     @error('tipoDocumento')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -66,7 +72,7 @@ Editar Mecánico
                         name="numeroDocumento"
                         value="{{ $mecanico->numeroDocumento }}">
                     @error('numeroDocumento')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -79,7 +85,7 @@ Editar Mecánico
                         name="telefono"
                         value="{{ $mecanico->telefono }}">
                     @error('telefono')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -92,7 +98,7 @@ Editar Mecánico
                         name="email"
                         value="{{ $mecanico->email }}">
                     @error('email')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -105,7 +111,7 @@ Editar Mecánico
                         name="direccion"
                         value="{{ $mecanico->direccion }}">
                     @error('direccion')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -126,7 +132,7 @@ Editar Mecánico
                         <option value="diagnostico" {{ $mecanico->especialidad == 'diagnostico' ? 'selected' : '' }}>Diagnóstico Computarizado</option>
                     </select>
                     @error('especialidad')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 

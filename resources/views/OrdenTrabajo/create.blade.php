@@ -10,6 +10,12 @@ Crear Orden de Trabajo
 @endsection
 
 @section('content')
+<img src="{{ asset('imagenes/RAPTOR.png') }}"
+    alt="RAPTOR"
+    class="position-fixed rounded-4"
+    style="top: 40px; right: 10px; max-height: 130px; z-index: 1000; background-color: transparent;">
+
+
 <div class="container mt-5">
     <h1 class="text-center"><i class="bi bi-file-earmark-plus"></i> Crear Orden de Trabajo</h1>
 
@@ -23,7 +29,7 @@ Crear Orden de Trabajo
                     <label for="fechaInicio" class="form-label">Fecha de Inicio</label>
                     <input type="date" class="form-control" id="fechaInicio" name="fechaInicio" required>
                     @error('fechaInicio')
-                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                    <div class="invalid-feedback d-block">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -32,7 +38,7 @@ Crear Orden de Trabajo
                     <label for="fechaFin" class="form-label">Fecha de Fin</label>
                     <input type="date" class="form-control" id="fechaFin" name="fechaFin">
                     @error('fechaFin')
-                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                    <div class="invalid-feedback d-block">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -46,7 +52,7 @@ Crear Orden de Trabajo
                         <option value="cancelado">Cancelado</option>
                     </select>
                     @error('estado')
-                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                    <div class="invalid-feedback d-block">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -56,13 +62,13 @@ Crear Orden de Trabajo
                     <select class="form-control" id="idDiagnostico" name="idDiagnostico" required>
                         <option value="">-- Seleccione --</option>
                         @foreach($diagnosticos as $diagnostico)
-                            <option value="{{ $diagnostico->id }}">
-                                {{ $diagnostico->descripcion ?? 'Diagnóstico #'.$diagnostico->id }}
-                            </option>
+                        <option value="{{ $diagnostico->id }}">
+                            {{ $diagnostico->descripcion ?? 'Diagnóstico #'.$diagnostico->id }}
+                        </option>
                         @endforeach
                     </select>
                     @error('idDiagnostico')
-                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                    <div class="invalid-feedback d-block">{{ $message }}</div>
                     @enderror
                 </div>
             </div>

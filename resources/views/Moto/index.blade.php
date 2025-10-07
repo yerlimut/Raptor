@@ -11,12 +11,18 @@ Listado de Motos
 @endsection
 
 @section('content')
+<img src="{{ asset('imagenes/RAPTOR.png') }}"
+    alt="RAPTOR"
+    class="position-fixed rounded-4"
+    style="top: 40px; right: 10px; max-height: 130px; z-index: 1000; background-color: transparent;">
+
+
 <div class="container mt-5">
     <h1 class="text-center"><i class="bi bi-bicycle"></i> Gestión de Motos</h1>
 
     <a href="{{ route('moto.create', ['idCliente' => request('idCliente')]) }}" class="btn btn-primary">
-    <i class="bi bi-plus-circle"></i> Registrar Moto
-</a>
+        <i class="bi bi-plus-circle"></i> Registrar Moto
+    </a>
 
 
     {{-- Mensaje de éxito con SweetAlert --}}

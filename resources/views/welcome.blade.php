@@ -8,12 +8,10 @@
 
 @section('content')
 <div class="container py-4">
-
-    {{-- Logo Principal --}}
     <img src="{{ asset('imagenes/RAPTOR.png') }}"
         alt="RAPTOR"
-        class="position-fixed shadow-sm rounded-4"
-        style="top: 40px; right: 10px; max-height: 130px; z-index: 1000;">
+        class="position-fixed rounded-4"
+        style="top: 40px; right: 10px; max-height: 130px; z-index: 1000; background-color: transparent;">
 
 
     <div class="row g-4 justify-content-center">

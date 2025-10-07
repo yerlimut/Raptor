@@ -15,6 +15,12 @@ Editar Marca de Moto
 @endsection
 
 @section('content')
+<img src="{{ asset('imagenes/RAPTOR.png') }}"
+    alt="RAPTOR"
+    class="position-fixed rounded-4"
+    style="top: 40px; right: 10px; max-height: 130px; z-index: 1000; background-color: transparent;">
+
+
 <div class="container d-flex align-items-center justify-content-center min-vh-50">
     <div class="col-md-6">
         <h1 class="text-center mb-4">
@@ -35,7 +41,7 @@ Editar Marca de Moto
                             value="{{ $marcasMoto->nombreMarca }}"
                             placeholder="Ej: Yamaha, Honda, Suzuki">
                         @error('nombreMarca')
-                            <div class="invalid-feedback">{{ $message }}</div>
+                        <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>

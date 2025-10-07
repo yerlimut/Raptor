@@ -9,6 +9,12 @@ Editar Categoría de Repuesto
 @endsection
 
 @section('content')
+<img src="{{ asset('imagenes/RAPTOR.png') }}"
+    alt="RAPTOR"
+    class="position-fixed rounded-4"
+    style="top: 40px; right: 10px; max-height: 130px; z-index: 1000; background-color: transparent;">
+
+
 <div class="container mt-5">
     <h1 class="text-center text-dark"><i class="bi bi-pencil-square"></i> Editar Categoría de Repuesto</h1>
 
@@ -34,7 +40,7 @@ Editar Categoría de Repuesto
                     <option value="Accesorios" {{ $categoriasRepuesto->nombreCategoria == 'Accesorios' ? 'selected' : '' }}>Accesorios</option>
                 </select>
                 @error('nombreCategoria')
-                    <div class="invalid-feedback">{{ $message }}</div>
+                <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
 

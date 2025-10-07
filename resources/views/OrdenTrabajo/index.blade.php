@@ -10,6 +10,12 @@ Gestión de Órdenes de Trabajo
 @endsection
 
 @section('content')
+<img src="{{ asset('imagenes/RAPTOR.png') }}"
+    alt="RAPTOR"
+    class="position-fixed rounded-4"
+    style="top: 40px; right: 10px; max-height: 130px; z-index: 1000; background-color: transparent;">
+
+
 <div class="container mt-5">
     <h1 class="text-center"><i class="bi bi-clipboard-check"></i> Gestión de Órdenes de Trabajo</h1>
 
@@ -52,13 +58,13 @@ Gestión de Órdenes de Trabajo
                     <td>{{ $orden->fechaFin ?? 'En proceso' }}</td>
                     <td>
                         @if($orden->estado == 'pendiente')
-                            <span class="badge bg-warning text-dark">Pendiente</span>
+                        <span class="badge bg-warning text-dark">Pendiente</span>
                         @elseif($orden->estado == 'en proceso')
-                            <span class="badge bg-primary">En Proceso</span>
+                        <span class="badge bg-primary">En Proceso</span>
                         @elseif($orden->estado == 'finalizado')
-                            <span class="badge bg-success">Finalizado</span>
+                        <span class="badge bg-success">Finalizado</span>
                         @else
-                            <span class="badge bg-danger">Cancelado</span>
+                        <span class="badge bg-danger">Cancelado</span>
                         @endif
                     </td>
                     <td>{{ $orden->diagnostico->descripcion ?? 'Sin diagnóstico' }}</td>

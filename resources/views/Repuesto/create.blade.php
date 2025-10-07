@@ -7,6 +7,12 @@
 @endsection
 
 @section('content')
+<img src="{{ asset('imagenes/RAPTOR.png') }}"
+    alt="RAPTOR"
+    class="position-fixed rounded-4"
+    style="top: 40px; right: 10px; max-height: 130px; z-index: 1000; background-color: transparent;">
+
+
 <div class="container mt-5">
     <h1 class="text-center"><i class="bi bi-plus-circle"></i> Crear Repuesto</h1>
 
@@ -90,7 +96,7 @@
                     <option value="Tapetes">Accesorios : Tapetes</option>
                 </select>
                 @error('nombre')
-                    <div class="invalid-feedback">{{ $message }}</div>
+                <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
 
@@ -98,7 +104,7 @@
                 <label for="marca" class="form-label">Marca</label>
                 <input type="text" class="form-control @error('marca') is-invalid @enderror" id="marca" name="marca" placeholder="Ingrese la marca">
                 @error('marca')
-                    <div class="invalid-feedback">{{ $message }}</div>
+                <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
 
@@ -106,7 +112,7 @@
                 <label for="precio" class="form-label">Precio</label>
                 <input type="number" step="0.01" class="form-control @error('precio') is-invalid @enderror" id="precio" name="precio" placeholder="Ingrese el precio">
                 @error('precio')
-                    <div class="invalid-feedback">{{ $message }}</div>
+                <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
 
@@ -114,7 +120,7 @@
                 <label for="stock" class="form-label">Stock</label>
                 <input type="number" class="form-control @error('stock') is-invalid @enderror" id="stock" name="stock" placeholder="Cantidad disponible">
                 @error('stock')
-                    <div class="invalid-feedback">{{ $message }}</div>
+                <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
 
@@ -123,11 +129,11 @@
                 <select class="form-control @error('idCategoria') is-invalid @enderror" id="idCategoria" name="idCategoria">
                     <option value="">-- Seleccione una categoría --</option>
                     @foreach($categoriasRepuesto as $categoria)
-                        <option value="{{ $categoria->id }}">{{ $categoria->nombreCategoria }}</option>
+                    <option value="{{ $categoria->id }}">{{ $categoria->nombreCategoria }}</option>
                     @endforeach
                 </select>
                 @error('idCategoria')
-                    <div class="invalid-feedback">{{ $message }}</div>
+                <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
 

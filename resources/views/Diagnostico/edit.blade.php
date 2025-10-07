@@ -9,6 +9,12 @@ Editar Diagnóstico
 @endsection
 
 @section('content')
+<img src="{{ asset('imagenes/RAPTOR.png') }}"
+    alt="RAPTOR"
+    class="position-fixed rounded-4"
+    style="top: 40px; right: 10px; max-height: 130px; z-index: 1000; background-color: transparent;">
+
+
 <div class="container mt-5">
     <h1 class="text-center text-dark"><i class="bi bi-pencil-square"></i> Editar Diagnóstico</h1>
 
@@ -26,7 +32,7 @@ Editar Diagnóstico
                         name="descripcion"
                         value="{{ $diagnosticos->descripcion }}">
                     @error('descripcion')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -39,7 +45,7 @@ Editar Diagnóstico
                         name="fechaDiagnostico"
                         value="{{ $diagnosticos->fechaDiagnostico }}">
                     @error('fechaDiagnostico')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -53,7 +59,7 @@ Editar Diagnóstico
                         <option value="completado" {{ $diagnosticos->estado == 'completado' ? 'selected' : '' }}>Completado</option>
                     </select>
                     @error('estado')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -67,7 +73,7 @@ Editar Diagnóstico
                         <option value="inspeccion" {{ $diagnosticos->tipo == 'inspeccion' ? 'selected' : '' }}>Inspección</option>
                     </select>
                     @error('tipo')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -84,7 +90,7 @@ Editar Diagnóstico
                         @endforeach
                     </select>
                     @error('idMoto')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
             </div>

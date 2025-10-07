@@ -8,6 +8,12 @@
 @endsection
 
 @section('content')
+<img src="{{ asset('imagenes/RAPTOR.png') }}"
+    alt="RAPTOR"
+    class="position-fixed rounded-4"
+    style="top: 40px; right: 10px; max-height: 130px; z-index: 1000; background-color: transparent;">
+
+
 <div class="container mt-5">
     <h1 class="text-center"><i class="bi bi-list-ul"></i> Gestión de Categorías de Repuestos</h1>
 
@@ -37,7 +43,7 @@
                     <th>Nombre de la Categoría</th>
                     <th>opciones</th>
 
-             
+
                 </tr>
             </thead>
             <tbody>
@@ -45,7 +51,7 @@
                 <tr>
                     <td>{{ $categoria->id }}</td>
                     <td>{{ $categoria->nombreCategoria }}</td>
-    
+
                     <td>
                         <div class="d-flex gap-2">
                             <a href="{{ route('categoriaRepuesto.edit', $categoria->id) }}" class="btn btn-success btn-sm">
@@ -54,7 +60,7 @@
 
                             <form action="{{ route('categoriaRepuesto.destroy', $categoria->id) }}" method="POST" style="display:inline;">
                                 @csrf
-                
+
                                 <button type="submit" class="btn btn-danger btn-sm" onclick="confirmarEliminacion(event)">
                                     <i class="bi bi-trash"></i> Eliminar
                                 </button>
@@ -64,7 +70,7 @@
                 </tr>
                 @endforeach
 
-        
+
             </tbody>
         </table>
 

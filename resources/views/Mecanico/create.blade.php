@@ -9,6 +9,12 @@ Crear Mecánico
 @endsection
 
 @section('content')
+<img src="{{ asset('imagenes/RAPTOR.png') }}"
+    alt="RAPTOR"
+    class="position-fixed rounded-4"
+    style="top: 40px; right: 10px; max-height: 130px; z-index: 1000; background-color: transparent;">
+
+
 <div class="container mt-5">
     <h1 class="text-center"><i class="bi bi-person-plus"></i> Crear Mecánico</h1>
 
@@ -22,7 +28,7 @@ Crear Mecánico
                     <label for="nombre" class="form-label">Nombre</label>
                     <input type="text" class="form-control @error('nombre') is-invalid @enderror" id="nombre" name="nombre" value="{{ old('nombre') }}">
                     @error('nombre')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -31,7 +37,7 @@ Crear Mecánico
                     <label for="apellido" class="form-label">Apellido</label>
                     <input type="text" class="form-control @error('apellido') is-invalid @enderror" id="apellido" name="apellido" value="{{ old('apellido') }}">
                     @error('apellido')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -46,7 +52,7 @@ Crear Mecánico
                         <option value="NIT">NIT</option>
                     </select>
                     @error('tipoDocumento')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -55,7 +61,7 @@ Crear Mecánico
                     <label for="numeroDocumento" class="form-label">Número de Documento</label>
                     <input type="text" class="form-control @error('numeroDocumento') is-invalid @enderror" id="numeroDocumento" name="numeroDocumento" value="{{ old('numeroDocumento') }}">
                     @error('numeroDocumento')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -64,7 +70,7 @@ Crear Mecánico
                     <label for="telefono" class="form-label">Teléfono</label>
                     <input type="text" class="form-control @error('telefono') is-invalid @enderror" id="telefono" name="telefono" value="{{ old('telefono') }}">
                     @error('telefono')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -73,7 +79,7 @@ Crear Mecánico
                     <label for="email" class="form-label">Correo Electrónico</label>
                     <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}">
                     @error('email')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -82,7 +88,7 @@ Crear Mecánico
                     <label for="direccion" class="form-label">Dirección</label>
                     <input type="text" class="form-control @error('direccion') is-invalid @enderror" id="direccion" name="direccion" value="{{ old('direccion') }}">
                     @error('direccion')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -103,7 +109,7 @@ Crear Mecánico
                         <option value="diagnostico">Diagnóstico Computarizado</option>
                     </select>
                     @error('especialidad')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
