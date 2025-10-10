@@ -27,7 +27,7 @@ Editar Moto
                         name="modelo"
                         value="{{ $moto->modelo }}">
                     @error('modelo')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -40,7 +40,7 @@ Editar Moto
                         name="año"
                         value="{{ $moto->año }}">
                     @error('año')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -53,26 +53,18 @@ Editar Moto
                         name="placa"
                         value="{{ $moto->placa }}">
                     @error('placa')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
-                {{-- Cliente --}}
+                {{-- Cliente (solo lectura) --}}
                 <div class="col-md-6">
                     <label for="idCliente" class="form-label">Cliente</label>
-                    <select class="form-control @error('idCliente') is-invalid @enderror" id="idCliente" name="idCliente">
-                        <option value="">-- Seleccione --</option>
-                        @foreach($clientes as $cliente)
-                        <option value="{{ $cliente->id }}"
-                            {{ $moto->idCliente == $cliente->id ? 'selected' : '' }}>
-                            {{ $cliente->nombre }}
-                        </option>
-                        @endforeach
-                    </select>
-                    @error('idCliente')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
+                    <input type="hidden" name="idCliente" value="{{ $moto->idCliente }}">
+                    <input type="text" class="form-control"
+                        value="{{ $clientes->first()->nombre }}" readonly>
                 </div>
+
 
                 {{-- Marca --}}
                 <div class="col-md-6">
@@ -82,18 +74,18 @@ Editar Moto
                         @foreach($marcas as $marca)
                         <option value="{{ $marca->id }}"
                             {{ $moto->idMarca == $marca->id ? 'selected' : '' }}>
-                            {{ $marca->nombre }}
+                            {{ $marca->nombreMarca }}
                         </option>
                         @endforeach
                     </select>
                     @error('idMarca')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
             </div>
 
             <div class="mt-4 d-flex gap-2">
-                <button type="submit" class="btn btn-success">
+                <button type="submit" class="btn btn-success  btn-sm">
                     <i class="bi bi-save"></i> Actualizar
                 </button>
                 <a href="{{ route('moto.index') }}" class="btn btn-secondary">

@@ -6,42 +6,53 @@ use App\Models\Cliente;
 use App\Models\marcaMoto;
 use App\Models\Moto;
 use Illuminate\Http\Request;
-use Psy\CodeCleaner\ReturnTypePass;
 
 class MotoController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
- public function index(Request $request)
-{
-    $query = Moto::query();
+    public function index(Request $request)
+    {
+        $query = Moto::query();
 
-    // Si llega idCliente desde la vista, filtramos
-    if ($request->has('idCliente')) {
-        $query->where('idCliente', $request->idCliente);
+        // Si llega idCliente desde la vista, filtramos
+        if ($request->has('idCliente')) {
+            $query->where('idCliente', $request->idCliente);
+        }
+
+        $motos = $query->get();
+
+        return view('Moto.index', compact('motos'));
     }
-
-    $motos = $query->get();
-
-    return view('Moto.index', compact('motos'));
-}
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        $clientes = Cliente::all();
+        $idCliente = $request->idCliente;
         $marcasMotos = marcaMoto::all();
-        return view('Moto.create', compact('clientes', 'marcasMotos'));
+
+        if ($idCliente) {
+            // Si llega un cliente específico, solo obtenemos ese
+            $clientes = Cliente::where('id', $idCliente)->get();
+        } else {
+            // Si no llega ninguno, mostramos todos
+            $clientes = Cliente::all();
+        }
+
+        return view('Moto.create', compact('clientes', 'marcasMotos', 'idCliente'));
     }
+
+
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
+        // 🔹 Dejamos este método exactamente como tú lo tienes
         Moto::create(
             $request->all()
         );
@@ -50,34 +61,30 @@ class MotoController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(Moto $moto)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit($id)
     {
-        $moto = Moto::findorfail($id);
-        $clientes = Cliente::all();
+        $moto = Moto::findOrFail($id);
         $marcas = marcaMoto::all();
+        $idCliente = $moto->idCliente;
 
-        return view('Moto.edit', compact('moto', 'clientes', 'marcas'));
+        // Solo traemos el cliente dueño de la moto (no todos)
+        $clientes = Cliente::where('id', $idCliente)->get();
+
+        return view('Moto.edit', compact('moto', 'clientes', 'marcas', 'idCliente'));
     }
+
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, $id)
     {
-        $moto = Moto::findorfail($id);
+        $moto = Moto::findOrFail($id);
         $moto->update($request->all());
 
-        return redirect()->route('moto.index');
+        return redirect()->route('moto.index', ['idCliente' => $moto->idCliente]);
     }
 
     /**
@@ -85,9 +92,12 @@ class MotoController extends Controller
      */
     public function destroy($id)
     {
-        $moto = Moto::findorfail($id);
+        $moto = Moto::findOrFail($id);
+        $idCliente = $moto->idCliente;
+
         $moto->delete();
 
-        return redirect()->route('moto.index');
+        // 🔹 También redirigimos al índice filtrado
+        return redirect()->route('moto.index', ['idCliente' => $idCliente]);
     }
 }

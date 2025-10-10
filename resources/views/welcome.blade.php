@@ -3,19 +3,18 @@
 @section('title', 'Bienvenido')
 
 @section('content_header')
-<h1 class="fw-bold display-6 text-center mb-0">RAPTOR</h1>
+<h1 class="fw-bold display-6 mb-0">RAPTOR </h1>
 @endsection
 
 @section('content')
 <div class="container py-4">
 
     {{-- Logo Principal --}}
-    <div class="d-flex justify-content-center my-4">
-        <img src="{{ asset('imagenes/raptor.png') }}"
-            alt="RAPTOR"
-            class="img-fluid shadow-sm rounded-4"
-            style="max-height: 180px;">
-    </div>
+    <img src="{{ asset('imagenes/RAPTOR.png') }}"
+        alt="RAPTOR"
+        class="position-fixed shadow-sm rounded-4"
+        style="top: 40px; right: 10px; max-height: 130px; z-index: 1000;">
+
 
     <div class="row g-4 justify-content-center">
 

@@ -5,7 +5,6 @@ Registrar Moto
 @endsection
 
 @section('content_header')
-
 <h1 class="fw-bold display-6 mb-0">RAPTOR </h1>
 @endsection
 
@@ -24,9 +23,9 @@ Registrar Moto
                 <div class="col-md-6">
                     <label for="modelo" class="form-label">Modelo</label>
                     <input type="text" name="modelo" id="modelo"
-                        class="form-control @error('modelo') is-invalid @enderror" required>
+                        class="form-control @error('modelo') is-invalid @enderror">
                     @error('modelo')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -34,9 +33,9 @@ Registrar Moto
                 <div class="col-md-6">
                     <label for="año" class="form-label">Año</label>
                     <input type="date" name="año" id="año"
-                        class="form-control @error('año') is-invalid @enderror" required>
+                        class="form-control @error('año') is-invalid @enderror">
                     @error('año')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -44,39 +43,45 @@ Registrar Moto
                 <div class="col-md-6">
                     <label for="placa" class="form-label">Placa</label>
                     <input type="text" name="placa" id="placa"
-                        class="form-control @error('placa') is-invalid @enderror" required>
+                        class="form-control @error('placa') is-invalid @enderror">
                     @error('placa')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
-                {{-- Cliente --}}
                 <div class="col-md-6">
                     <label for="idCliente" class="form-label">Cliente</label>
-                    <select name="idCliente" id="idCliente"
-                        class="form-control @error('idCliente') is-invalid @enderror" required>
+                    @if(isset($idCliente) && $idCliente)
+                    {{-- Cliente preseleccionado (solo lectura) --}}
+                    <input type="hidden" name="idCliente" value="{{ $clientes->first()->id }}">
+                    <input type="text" class="form-control" value="{{ $clientes->first()->nombre }}" readonly>
+                    @else
+                    {{-- Mostrar lista completa si no hay cliente fijo --}}
+                    <select name="idCliente" id="idCliente" class="form-control @error('idCliente') is-invalid @enderror">
                         <option value="">Seleccione un cliente</option>
                         @foreach($clientes as $cliente)
-                            <option value="{{ $cliente->id }}">{{ $cliente->nombre }}</option>
+                        <option value="{{ $cliente->id }}">{{ $cliente->nombre }}</option>
                         @endforeach
                     </select>
+                    @endif
                     @error('idCliente')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
+
 
                 {{-- Marca --}}
                 <div class="col-md-6">
                     <label for="idMarca" class="form-label">Marca</label>
                     <select name="idMarca" id="idMarca"
-                        class="form-control @error('idMarca') is-invalid @enderror" required>
+                        class="form-control @error('idMarca') is-invalid @enderror">
                         <option value="">Seleccione una marca</option>
                         @foreach($marcasMotos as $marca)
-                            <option value="{{ $marca->id }}">{{ $marca->nombreMarca }}</option>
+                        <option value="{{ $marca->id }}">{{ $marca->nombreMarca }}</option>
                         @endforeach
                     </select>
                     @error('idMarca')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
             </div>
@@ -86,7 +91,7 @@ Registrar Moto
                 <button type="submit" class="btn btn-success">
                     <i class="bi bi-check-circle"></i> Guardar
                 </button>
-                <a href="{{ route('moto.index') }}" class="btn btn-secondary">
+                <a href="{{ route('moto.index', ['idCliente' => $idCliente ?? null]) }}" class="btn btn-secondary">
                     <i class="bi bi-arrow-left-circle"></i> Volver
                 </a>
             </div>

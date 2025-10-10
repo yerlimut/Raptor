@@ -14,9 +14,10 @@ Listado de Motos
 <div class="container mt-5">
     <h1 class="text-center"><i class="bi bi-bicycle"></i> Gestión de Motos</h1>
 
-    <a href="{{ route('moto.create') }}" class="btn btn-primary mb-3">
-        <i class="bi bi-plus-circle"></i> Nueva Moto
-    </a>
+    <a href="{{ route('moto.create', ['idCliente' => request('idCliente')]) }}" class="btn btn-primary">
+    <i class="bi bi-plus-circle"></i> Registrar Moto
+</a>
+
 
     {{-- Mensaje de éxito con SweetAlert --}}
     @if(session('success'))

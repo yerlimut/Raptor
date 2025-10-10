@@ -5,7 +5,7 @@ Crear Cliente
 @endsection
 
 @section('content_header')
-<h1 class="fw-bold display-6 mb-0">RAPTOR </h1>
+<h1 class="fw-b display-6 mb-0">RAPTOR </h1>
 @endsection
 
 @section('content')
@@ -20,7 +20,7 @@ Crear Cliente
                 {{-- Nombre --}}
                 <div class="col-md-6">
                     <label for="nombre" class="form-label">Nombre</label>
-                    <input type="text" class="form-control @error('nombre') is-invalid @enderror" id="nombre" name="nombre" value="{{ old('nombre') }}">
+                    <input type="text" class="form-control @error('nombre') is-invalid @enderror" id="nombre" name="nombre">
                     @error('nombre')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -29,7 +29,7 @@ Crear Cliente
                 {{-- Apellido --}}
                 <div class="col-md-6">
                     <label for="apellido" class="form-label">Apellido</label>
-                    <input type="text" class="form-control @error('apellido') is-invalid @enderror" id="apellido" name="apellido" value="{{ old('apellido') }}">
+                    <input type="text" class="form-control @error('apellido') is-invalid @enderror" id="apellido" name="apellido" >
                     @error('apellido')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -40,10 +40,10 @@ Crear Cliente
                     <label for="tipoDocumento" class="form-label">Tipo de Documento</label>
                     <select class="form-control @error('tipoDocumento') is-invalid @enderror" id="tipoDocumento" name="tipoDocumento">
                         <option value="">-- Seleccione --</option>
-                        <option value="CC" {{ old('tipoDocumento') == 'CC' ? 'selected' : '' }}>Cédula</option>
-                        <option value="TI" {{ old('tipoDocumento') == 'TI' ? 'selected' : '' }}>Tarjeta de Identidad</option>
-                        <option value="CE" {{ old('tipoDocumento') == 'CE' ? 'selected' : '' }}>Cédula Extranjera</option>
-                        <option value="NIT" {{ old('tipoDocumento') == 'NIT' ? 'selected' : '' }}>NIT</option>
+                        <option value="CC" >Cédula</option>
+                        <option value="TI" >Tarjeta de Identidad</option>
+                        <option value="CE" >Cédula Extranjera</option>
+                        <option value="NIT">NIT</option>
                     </select>
                     @error('tipoDocumento')
                         <div class="invalid-feedback">{{ $message }}</div>
@@ -53,7 +53,7 @@ Crear Cliente
                 {{-- Número Documento --}}
                 <div class="col-md-6">
                     <label for="numeroDocumento" class="form-label">Número de Documento</label>
-                    <input type="text" class="form-control @error('numeroDocumento') is-invalid @enderror" id="numeroDocumento" name="numeroDocumento" value="{{ old('numeroDocumento') }}">
+                    <input type="text" class="form-control @error('numeroDocumento') is-invalid @enderror" id="numeroDocumento" name="numeroDocumento" >
                     @error('numeroDocumento')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -62,7 +62,7 @@ Crear Cliente
                 {{-- Teléfono --}}
                 <div class="col-md-6">
                     <label for="telefono" class="form-label">Teléfono</label>
-                    <input type="text" class="form-control @error('telefono') is-invalid @enderror" id="telefono" name="telefono" value="{{ old('telefono') }}">
+                    <input type="text" class="form-control @error('telefono') is-invalid @enderror" id="telefono" name="telefono">
                     @error('telefono')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -71,7 +71,7 @@ Crear Cliente
                 {{-- Correo --}}
                 <div class="col-md-6">
                     <label for="correoElectronico" class="form-label">Correo Electrónico</label>
-                    <input type="email" class="form-control @error('correoElectronico') is-invalid @enderror" id="correoElectronico" name="correoElectronico" value="{{ old('correoElectronico') }}">
+                    <input type="email" class="form-control @error('correoElectronico') is-invalid @enderror" id="correoElectronico" name="correoElectronico">
                     @error('correoElectronico')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -80,7 +80,7 @@ Crear Cliente
                 {{-- Dirección --}}
                 <div class="col-12">
                     <label for="direccion" class="form-label">Dirección</label>
-                    <input type="text" class="form-control @error('direccion') is-invalid @enderror" id="direccion" name="direccion" value="{{ old('direccion') }}">
+                    <input type="text" class="form-control @error('direccion') is-invalid @enderror" id="direccion" name="direccion">
                     @error('direccion')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
