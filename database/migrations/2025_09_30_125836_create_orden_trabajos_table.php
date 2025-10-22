@@ -10,11 +10,11 @@ return new class extends Migration
     {
         Schema::create('ordenTrabajos', function (Blueprint $table) {
             $table->id();
-            
+
             $table->date('fechaInicio');
             $table->date('fechaFin')->nullable();
             $table->enum('estado', ['pendiente', 'en proceso', 'finalizado', 'cancelado'])
-                  ->default('pendiente');
+                ->default('pendiente');
 
             $table->unsignedBigInteger('idDiagnostico');
             $table->foreign('idDiagnostico')->references('id')->on('diagnosticos');

@@ -91,6 +91,101 @@ Gestión de Órdenes de Trabajo
             <i class="bi bi-arrow-left-circle"></i> Volver
         </a>
     </div>
+<div class="container">
+    <div class="row g-3">
+        <div class="col-md-3 col-sm-6">
+            <div class="card shadow-sm border-0" style="background-color:#E3F2FD;">
+                <div class="card-body text-center p-3">
+                    <h6 class="fw-bold mb-1">Total de órdenes del mes</h6>
+                    <p class="fs-5 text-secondary mb-0">120</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6">
+            <div class="card shadow-sm border-0" style="background-color:#E8F5E9;">
+                <div class="card-body text-center p-3">
+                    <h6 class="fw-bold mb-1">Órdenes finalizadas</h6>
+                    <p class="fs-5 text-secondary mb-0">85</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6">
+            <div class="card shadow-sm border-0" style="background-color:#FFF3E0;">
+                <div class="card-body text-center p-3">
+                    <h6 class="fw-bold mb-1">Órdenes pendientes</h6>
+                    <p class="fs-5 text-secondary mb-0">20</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6">
+            <div class="card shadow-sm border-0" style="background-color:#E0F7FA;">
+                <div class="card-body text-center p-3">
+                    <h6 class="fw-bold mb-1">Órdenes en proceso</h6>
+                    <p class="fs-5 text-secondary mb-0">10</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6">
+            <div class="card shadow-sm border-0" style="background-color:#FCE4EC;">
+                <div class="card-body text-center p-3">
+                    <h6 class="fw-bold mb-1">Órdenes canceladas</h6>
+                    <p class="fs-5 text-secondary mb-0">5</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6">
+            <div class="card shadow-sm border-0" style="background-color:#EDE7F6;">
+                <div class="card-body text-center p-3">
+                    <h6 class="fw-bold mb-1">Tiempo promedio de reparación</h6>
+                    <p class="fs-5 text-secondary mb-0">3.5 días</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6">
+            <div class="card shadow-sm border-0" style="background-color:#F1F8E9;">
+                <div class="card-body text-center p-3">
+                    <h6 class="fw-bold mb-1">Diagnósticos realizados</h6>
+                    <p class="fs-5 text-secondary mb-0">120</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6">
+            <div class="card shadow-sm border-0" style="background-color:#FFFDE7;">
+                <div class="card-body text-center p-3">
+                    <h6 class="fw-bold mb-1">Mecánicos por orden</h6>
+                    <p class="fs-5 text-secondary mb-0">2</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6">
+            <div class="card shadow-sm border-0" style="background-color:#F3E5F5;">
+                <div class="card-body text-center p-3">
+                    <h6 class="fw-bold mb-1">Repuestos utilizados</h6>
+                    <p class="fs-5 text-secondary mb-0">245</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6">
+            <div class="card shadow-sm border-0" style="background-color:#E8EAF6;">
+                <div class="card-body text-center p-3">
+                    <h6 class="fw-bold mb-1">Órdenes finalizadas en el mes actual</h6>
+                    <p class="fs-5 text-secondary mb-0">85</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
     <script>
         function confirmarEliminacion(event) {

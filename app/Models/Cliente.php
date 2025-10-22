@@ -21,6 +21,6 @@ class Cliente extends Model
 
     public function moto()
     {
-        return $this->hasMany(Moto::class);
+        return $this->hasMany(Moto::class, 'idcliente');
     }
 }

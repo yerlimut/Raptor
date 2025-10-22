@@ -10,11 +10,10 @@ class Preorden extends Model
     use HasFactory;
 
     protected $table = 'preordenes';
-   
+
     protected $fillable = [
         'idOrden',
         'idMecanico',
-        'idRepuesto',
         'descripcion',
     ];
 
@@ -39,6 +38,6 @@ class Preorden extends Model
      */
     public function repuesto()
     {
-        return $this->belongsTo(Repuesto::class, 'idRepuesto');
+        return $this->belongsToMany(Repuesto::class, 'idRepuesto');
     }
 }

@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
             ClienteSeeder::class,
             CategoriaRepuestosSeeder::class,
             MarcaMotoSeeder::class,
+            RepuestoSeeder::class,
         ]);
     }
 }

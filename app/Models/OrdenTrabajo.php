@@ -16,11 +16,12 @@ class OrdenTrabajo extends Model
         'idDiagnostico',
     ];
 
-    public function diagnostico() {
-         return $this->belongsTo(Diagnostico::class, 'idDiagnostico');
+    public function diagnostico()
+    {
+        return $this->belongsTo(Diagnostico::class, 'idDiagnostico');
     }
-    public function preorden (){
+    public function preorden()
+    {
         return $this->hasMany(Preorden::class);
     }
 }
-      

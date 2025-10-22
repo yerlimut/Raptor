@@ -39,7 +39,7 @@ Gestión de Clientes
     @endif
 
     <div class="container">
-        <table class="table table-bordered table-hover">
+        <table  id="myTable" class="table table-bordered table-hover">
             <thead class="table-dark">
                 <tr>
                     <th>ID</th>
@@ -92,6 +92,99 @@ Gestión de Clientes
             <i class="bi bi-arrow-left-circle"></i> Volver
         </a>
     </div>
+    <div class="container">
+    <div class="row g-3">
+        <div class="col-md-3 col-sm-6">
+            <div class="card shadow-sm border-0" style="background-color:#E3F2FD;">
+                <div class="card-body text-center p-3">
+                    <h6 class="fw-bold mb-1">Total de clientes registrados</h6>
+                    <p class="fs-5 text-secondary mb-0">3</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6">
+            <div class="card shadow-sm border-0" style="background-color:#E8F5E9;">
+                <div class="card-body text-center p-3">
+                    <h6 class="fw-bold mb-1">Nuevos clientes del mes</h6>
+                    <p class="fs-5 text-secondary mb-0">25</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6">
+            <div class="card shadow-sm border-0" style="background-color:#FFF3E0;">
+                <div class="card-body text-center p-3">
+                    <h6 class="fw-bold mb-1">Clientes que regresan</h6>
+                    <p class="fs-5 text-secondary mb-0">18</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6">
+            <div class="card shadow-sm border-0" style="background-color:#FCE4EC;">
+                <div class="card-body text-center p-3">
+                    <h6 class="fw-bold mb-1">Clientes inactivos</h6>
+                    <p class="fs-5 text-secondary mb-0">5</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6">
+            <div class="card shadow-sm border-0" style="background-color:#E0F7FA;">
+                <div class="card-body text-center p-3">
+                    <h6 class="fw-bold mb-1">Clientes por tipo de servicio</h6>
+                    <p class="fs-5 text-secondary mb-0">3 tipos</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6">
+            <div class="card shadow-sm border-0" style="background-color:#EDE7F6;">
+                <div class="card-body text-center p-3">
+                    <h6 class="fw-bold mb-1">Promedio de visitas por cliente</h6>
+                    <p class="fs-5 text-secondary mb-0">2.4</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6">
+            <div class="card shadow-sm border-0" style="background-color:#F1F8E9;">
+                <div class="card-body text-center p-3">
+                    <h6 class="fw-bold mb-1">Clientes Clientes con órdenes finalizadas</h6>
+                    <p class="fs-5 text-secondary mb-0">3</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6">
+            <div class="card shadow-sm border-0" style="background-color:#F3E5F5;">
+                <div class="card-body text-center p-3">
+                    <h6 class="fw-bold mb-1">Clientes con varias motos</h6>
+                    <p class="fs-5 text-secondary mb-0">12</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6">
+            <div class="card shadow-sm border-0" style="background-color:#FFFDE7;">
+                <div class="card-body text-center p-3">
+                    <h6 class="fw-bold mb-1">Clientes nuevos vs recurrentes</h6>
+                    <p class="fs-5 text-secondary mb-0">60% / 40%</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6">
+            <div class="card shadow-sm border-0" style="background-color:#E8EAF6;">
+                <div class="card-body text-center p-3">
+                    <h6 class="fw-bold mb-1">Crecimiento mensual de clientes</h6>
+                    <p class="fs-5 text-secondary mb-0">8%</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
     <script>
         function confirmarEliminacion(event) {

@@ -54,8 +54,7 @@ Crear Preorden
                 {{-- Repuesto --}}
                 <div class="col-md-6">
                     <label for="idRepuesto" class="form-label">Repuesto</label>
-                    <select class="form-control" id="idRepuesto" name="idRepuesto">
-                        <option value="">-- Seleccione --</option>
+                    <select class="form-control" id="idRepuesto" name="idRepuesto[]" multiple>
                         @foreach($repuestos as $repuesto)
                         <option value="{{ $repuesto->id }}">{{ $repuesto->nombre }}</option>
                         @endforeach
@@ -64,6 +63,7 @@ Crear Preorden
                     <div class="invalid-feedback d-block">{{ $message }}</div>
                     @enderror
                 </div>
+
 
                 {{-- Descripción --}}
                 <div class="col-12">
@@ -86,4 +86,13 @@ Crear Preorden
         </form>
     </div>
 </div>
+@endsection
+@section('js')
+<script>
+    $(document).ready(function() {
+        $('#idRepuesto').select2({
+            placeholder: "-- Seleccione repuestos --"
+        });
+    });
+</script>
 @endsection

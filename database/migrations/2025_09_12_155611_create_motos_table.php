@@ -20,7 +20,7 @@ return new class extends Migration
             $table->foreign('idCliente')->references('id')->on('clientes');
             $table->unsignedBigInteger('idMarca');
             $table->foreign('idMarca')->references('id')->on('marcaMotos');
-     
+
             $table->timestamps();
         });
     }
