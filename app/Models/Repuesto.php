@@ -19,7 +19,11 @@ class Repuesto extends Model
     public function categoria(){
         return $this->belongsTo(categoriaRepuesto::class,'idCategoria');
     }
-    public function preorden (){
-        return $this->hasMany(Preorden::class);
-    }
+    public function preordenes()
+{
+    return $this->belongsToMany(Preorden::class, 'preorden_repuesto')
+                ->withPivot('cantidad', 'subtotal')
+                ->withTimestamps();
+}
+
 }

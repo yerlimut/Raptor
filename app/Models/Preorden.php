@@ -36,8 +36,11 @@ class Preorden extends Model
     /**
      * Relación con Repuesto
      */
-    public function repuesto()
-    {
-        return $this->belongsToMany(Repuesto::class, 'idRepuesto');
-    }
+    public function repuestos()
+{
+    return $this->belongsToMany(Repuesto::class, 'preorden_repuesto')
+                ->withPivot('cantidad', 'subtotal')
+                ->withTimestamps();
+}
+
 }

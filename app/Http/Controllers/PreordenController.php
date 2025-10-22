@@ -26,9 +26,21 @@ class PreordenController extends Controller
 
     public function store(Request $request)
     {
-        Preorden::create(
-            $request->all()
-        );
+{
+    // Crear la preorden
+    $preorden = Preorden::create([
+        'idOrden' => $request->idOrden,
+        'idMecanico' => $request->idMecanico,
+        'descripcion' => $request->descripcion,
+    ]);
+
+    // Asociar los repuestos seleccionados (varios)
+    $preorden->repuestos()->attach($request->idRepuesto);
+
+    return redirect()->route('Preorden.index')
+                    ->with('success', 'Preorden creada correctamente con varios repuestos.');
+}
+
         return redirect()->route('Preorden.index');
     }
 

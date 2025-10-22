@@ -40,11 +40,15 @@
 {{-- Scroll personalizado --}}
 <link rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/styles/overlayscrollbars.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+
 
 
 
 {{-- ===================== SCRIPTS ===================== --}}
 @section('js')
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <!-- script de datatables -->
 <script>
     $(document).ready(function() {

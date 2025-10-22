@@ -54,22 +54,33 @@ Gestión de Preórdenes
                     <td>{{ $preorden->id }}</td>
                     <td>{{ $preorden->orden->id ?? 'N/A' }}</td>
                     <td>{{ $preorden->mecanico->nombre ?? 'N/A' }}</td>
-                    <td>{{ $preorden->repuesto->nombre ?? 'N/A' }}</td>
-                    <td>{{ $preorden->descripcion }}</td>
                     <td>
-                        <div class="d-flex gap-2">
-                            <a href="{{ route('Preorden.edit', $preorden->id) }}" class="btn btn-success btn-sm">
-                                <i class="bi bi-pencil"></i> Editar
-                            </a>
 
-                            <form action="{{ route('Preorden.destroy', $preorden->id) }}" method="POST" style="display:inline;">
-                                @csrf
-                                <button type="submit" class="btn btn-danger btn-sm" onclick="confirmarEliminacion(event)">
-                                    <i class="bi bi-trash"></i> Eliminar
-                                </button>
-                            </form>
-                        </div>
+                        <ul class="mb-0">
+                            @forelse($preorden->repuestos as $rep)
+                            <li>{{ $rep->nombre }}</li>
+                            @empty
+                            <li>N/A</li>
+                            @endforelse
+                        </ul>
                     </td>
+                    <
+
+                        <td>{{ $preorden->descripcion }}</td>
+                        <td>
+                            <div class="d-flex gap-2">
+                                <a href="{{ route('Preorden.edit', $preorden->id) }}" class="btn btn-success btn-sm">
+                                    <i class="bi bi-pencil"></i> Editar
+                                </a>
+
+                                <form action="{{ route('Preorden.destroy', $preorden->id) }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="confirmarEliminacion(event)">
+                                        <i class="bi bi-trash"></i> Eliminar
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
                 </tr>
                 @endforeach
             </tbody>
