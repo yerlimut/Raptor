@@ -23,8 +23,56 @@ class MotoController extends Controller
 
         $motos = $query->get();
 
-        return view('Moto.index', compact('motos'));
+        return view('Moto.index', compact('motos')); {
+            // 🔍 Obtener parámetros de filtro
+            $search = $request->get('search');
+            $idCliente = $request->get('idCliente');
+            $idMarca = $request->get('idMarca');
+            $año = $request->get('año');
+            $orden = $request->get('orden');
+
+            // Construir consulta base
+            $query = Moto::with(['cliente', 'marca']);
+
+            // Filtro de búsqueda general (modelo o placa)
+            if ($search) {
+                $query->where(function ($q) use ($search) {
+                    $q->where('modelo', 'LIKE', "%$search%")
+                        ->orWhere('placa', 'LIKE', "%$search%");
+                });
+            }
+
+            // Filtro por cliente
+            if ($idCliente) {
+                $query->where('idCliente', $idCliente);
+            }
+
+            // Filtro por marca
+            if ($idMarca) {
+                $query->where('idMarca', $idMarca);
+            }
+
+            // Filtro por año
+            if ($año) {
+                $query->whereYear('año', $año);
+            }
+
+            // Filtro de orden
+            if ($orden == 'asc') {
+                $query->orderBy('modelo', 'asc');
+            } elseif ($orden == 'desc') {
+                $query->orderBy('modelo', 'desc');
+            }
+
+            // Obtener resultados paginados
+            $motos = $query->paginate(10);
+            $clientes = Cliente::all();
+            $marcas = MarcaMoto::all();
+
+            return view('motos.index', compact('motos', 'clientes', 'marcas', 'search', 'idCliente', 'idMarca', 'año', 'orden'));
+        }
     }
+
 
     /**
      * Show the form for creating a new resource.

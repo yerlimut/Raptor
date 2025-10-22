@@ -23,6 +23,30 @@ Gestión de Marcas de Motos
         <i class="bi bi-plus-circle"></i> Crear Marca
     </a>
 
+    {{-- Filtros --}}
+    <form method="GET" action="{{ route('marcaMoto.index') }}" class="mb-3">
+        <div class="row">
+            <!-- Buscar -->
+            <div class="col-md-4">
+                <input type="text" name="search" class="form-control" placeholder="Buscar marca..." value="{{ request('search') }}">
+            </div>
+
+            
+            <!-- Botón -->
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-primary w-100">
+                    <i class="bi bi-search"></i> Filtrar
+                </button>
+            </div>
+             <div class="col-md-2">
+                <a href="{{ route('marcaMoto.index') }}" class="btn btn-secondary w-100">
+                    <i class="bi bi-arrow-counterclockwise"></i> Limpiar
+                </a>
+            </div>
+        </div>
+    </form>
+
+
     @if(session('success'))
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -38,7 +62,7 @@ Gestión de Marcas de Motos
     @endif
 
     <div class="container">
-        <table class="table table-bordered table-hover">
+        <table id="myTable" class="table table-bordered table-hover">
             <thead class="table-dark">
                 <tr>
                     <th>ID</th>

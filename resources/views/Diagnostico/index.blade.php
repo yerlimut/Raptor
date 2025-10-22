@@ -28,6 +28,95 @@ Listado de Diagnósticos
     <a href="{{ route('diagnostico.create') }}" class="btn btn-primary mb-3">
         <i class="bi bi-plus-circle"></i> Nuevo Diagnóstico
     </a>
+    <!-- 🔽 FILTROS -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-header bg-primary text-white">
+            <h5 class="card-title mb-0"><i class="fas fa-filter"></i> Filtros de Búsqueda</h5>
+        </div>
+        <div class="card-body">
+            <form method="GET" action="{{ route('diagnostico.index') }}">
+                <div class="row">
+                    <!-- Buscar -->
+                    <div class="col-md-4">
+                        <label for="search">Buscar</label>
+                        <input type="text" name="search" id="search" class="form-control"
+                            value="{{ request('search') }}" placeholder="Descripción o modelo de moto...">
+                    </div>
+
+                    <!-- Estado -->
+                    <div class="col-md-3">
+                        <label for="estado">Estado</label>
+                        <select name="estado" id="estado" class="form-control">
+                            <option value="">-- Todos --</option>
+                            <option value="pendiente" {{ request('estado') == 'pendiente' ? 'selected' : '' }}>Pendiente</option>
+                            <option value="en proceso" {{ request('estado') == 'en proceso' ? 'selected' : '' }}>En proceso</option>
+                            <option value="completado" {{ request('estado') == 'completado' ? 'selected' : '' }}>Completado</option>
+                        </select>
+                    </div>
+
+                    <!-- Tipo -->
+                    <div class="col-md-3">
+                        <label for="tipo">Tipo</label>
+                        <select name="tipo" id="tipo" class="form-control">
+                            <option value="">-- Todos --</option>
+                            <option value="preventivo" {{ request('tipo') == 'preventivo' ? 'selected' : '' }}>Preventivo</option>
+                            <option value="correctivo" {{ request('tipo') == 'correctivo' ? 'selected' : '' }}>Correctivo</option>
+                            <option value="inspeccion" {{ request('tipo') == 'inspeccion' ? 'selected' : '' }}>Inspección</option>
+                        </select>
+                    </div>
+
+                    <!-- Botón buscar -->
+                    <div class="col-md-2 d-flex align-items-end">
+                        <button type="submit" class="btn btn-primary w-100">
+                            <i class="fas fa-search"></i> Buscar
+                        </button>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <!-- Fecha desde -->
+                    <div class="col-md-3">
+                        <label for="fechaInicio">Fecha desde</label>
+                        <input type="date" name="fechaInicio" id="fechaInicio" class="form-control"
+                            value="{{ request('fechaInicio') }}">
+                    </div>
+
+                    <!-- Fecha hasta -->
+                    <div class="col-md-3">
+                        <label for="fechaFin">Fecha hasta</label>
+                        <input type="date" name="fechaFin" id="fechaFin" class="form-control"
+                            value="{{ request('fechaFin') }}">
+                    </div>
+
+                    <!-- Ordenar por -->
+                    <div class="col-md-3">
+                        <label for="sort">Ordenar por</label>
+                        <select name="sort" id="sort" class="form-control">
+                            <option value="fechaDiagnostico" {{ request('sort') == 'fechaDiagnostico' ? 'selected' : '' }}>Fecha del diagnóstico</option>
+                            <option value="estado" {{ request('sort') == 'estado' ? 'selected' : '' }}>Estado</option>
+                            <option value="tipo" {{ request('sort') == 'tipo' ? 'selected' : '' }}>Tipo</option>
+                        </select>
+                    </div>
+
+                    <!-- Dirección -->
+                    <div class="col-md-2">
+                        <label for="direction">Dirección</label>
+                        <select name="direction" id="direction" class="form-control">
+                            <option value="asc" {{ request('direction') == 'asc' ? 'selected' : '' }}>Ascendente</option>
+                            <option value="desc" {{ request('direction') == 'desc' ? 'selected' : '' }}>Descendente</option>
+                        </select>
+                    </div>
+
+                    <!-- Botón limpiar -->
+                    <div class="col-md-1 d-flex align-items-end">
+                        <a href="{{ route('diagnostico.index') }}" class="btn btn-secondary w-100">
+                            <i class="fas fa-undo"></i>
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 
     {{-- Mensaje de éxito con SweetAlert --}}
     @if(session('success'))
@@ -45,7 +134,7 @@ Listado de Diagnósticos
     @endif
 
     <div class="container">
-        <table class="table table-bordered table-hover">
+        <table id="myTable" class="table table-bordered table-hover">
             <thead class="table-dark">
                 <tr>
                     <th>ID</th>

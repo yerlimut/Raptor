@@ -23,6 +23,112 @@ Gestión de Clientes
     <a href="{{ route('cliente.create') }}" class="btn btn-primary mb-3">
         <i class="bi bi-plus-circle"></i> Crear Cliente
     </a>
+    <!-- 🔽 FILTROS -->
+    <div class="card card-secondary shadow-sm mb-4">
+        <div class="card-header bg-primary text-white">
+            <h5 class="card-title mb-0"><i class="fas fa-filter"></i> Filtros de Búsqueda</h5>
+        </div>
+        <div class="card-body">
+            <form method="GET" action="{{ route('cliente.index') }}">
+                <div class="row">
+                    <!-- Buscar -->
+                    <div class="col-md-3">
+                        <label for="search">Buscar</label>
+                        <input type="text" name="search" id="search" class="form-control"
+                            value="{{ request('search') }}" placeholder="Nombre, documento, correo...">
+                    </div>
+
+                    <!-- Tipo Documento -->
+                    <div class="col-md-2">
+                        <label for="tipoDocumento">Tipo de Documento</label>
+                        <select name="tipoDocumento" id="tipoDocumento" class="form-control">
+                            <option value="">Todos</option>
+                            <option value="CC" {{ request('tipoDocumento') == 'CC' ? 'selected' : '' }}>Cédula</option>
+                            <option value="TI" {{ request('tipoDocumento') == 'TI' ? 'selected' : '' }}>Tarjeta de identidad</option>
+                            <option value="CE" {{ request('tipoDocumento') == 'CE' ? 'selected' : '' }}>Cédula de extranjería</option>
+                            <option value="NIT" {{ request('tipoDocumento') == 'NIT' ? 'selected' : '' }}>NIT</option>
+                        </select>
+                    </div>
+
+                    <!-- Teléfono -->
+                    <div class="col-md-2">
+                        <label for="telefono">Teléfono</label>
+                        <input type="text" name="telefono" id="telefono" class="form-control"
+                            value="{{ request('telefono') }}" placeholder="Ej: 312...">
+                    </div>
+
+                    <!-- Dirección -->
+                    <div class="col-md-2">
+                        <label for="direccion">Dirección</label>
+                        <input type="text" name="direccion" id="direccion" class="form-control"
+                            value="{{ request('direccion') }}" placeholder="Ej: Calle 10...">
+                    </div>
+
+                    <!-- Dominio de correo -->
+                    <div class="col-md-3">
+                        <label for="correoDominio">Dominio de correo</label>
+                        <select name="correoDominio" id="correoDominio" class="form-control">
+                            <option value="">Todos</option>
+                            <option value="gmail.com" {{ request('correoDominio') == 'gmail.com' ? 'selected' : '' }}>Gmail</option>
+                            <option value="hotmail.com" {{ request('correoDominio') == 'hotmail.com' ? 'selected' : '' }}>Hotmail</option>
+                            <option value="outlook.com" {{ request('correoDominio') == 'outlook.com' ? 'selected' : '' }}>Outlook</option>
+                            <option value="yahoo.com" {{ request('correoDominio') == 'yahoo.com' ? 'selected' : '' }}>Yahoo</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <!-- Fecha inicio -->
+                    <div class="col-md-3">
+                        <label for="fechaInicio">Fecha desde</label>
+                        <input type="date" name="fechaInicio" id="fechaInicio" class="form-control"
+                            value="{{ request('fechaInicio') }}">
+                    </div>
+
+                    <!-- Fecha fin -->
+                    <div class="col-md-3">
+                        <label for="fechaFin">Fecha hasta</label>
+                        <input type="date" name="fechaFin" id="fechaFin" class="form-control"
+                            value="{{ request('fechaFin') }}">
+                    </div>
+
+                    <!-- Ordenar por -->
+                    <div class="col-md-3">
+                        <label for="sort">Ordenar por</label>
+                        <select name="sort" id="sort" class="form-control">
+                            <option value="nombre" {{ request('sort') == 'nombre' ? 'selected' : '' }}>Nombre</option>
+                            <option value="apellido" {{ request('sort') == 'apellido' ? 'selected' : '' }}>Apellido</option>
+                            <option value="numeroDocumento" {{ request('sort') == 'numeroDocumento' ? 'selected' : '' }}>Documento</option>
+                            <option value="created_at" {{ request('sort') == 'created_at' ? 'selected' : '' }}>Fecha registro</option>
+                        </select>
+                    </div>
+
+                    <!-- Dirección orden -->
+                    <div class="col-md-2">
+                        <label for="direction">Dirección</label>
+                        <select name="direction" id="direction" class="form-control">
+                            <option value="asc" {{ request('direction') == 'asc' ? 'selected' : '' }}>Ascendente</option>
+                            <option value="desc" {{ request('direction') == 'desc' ? 'selected' : '' }}>Descendente</option>
+                        </select>
+                    </div>
+
+                    <!-- Botones -->
+                    <div class="col-md-1 d-flex align-items-end">
+                        <button type="submit" class="btn btn-primary w-100">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                    <div class="col-md-1 d-flex align-items-end">
+                        <a href="{{ route('cliente.index') }}" class="btn btn-secondary w-100">
+                            <i class="fas fa-undo"></i>
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
 
     @if(session('success'))
     <script>

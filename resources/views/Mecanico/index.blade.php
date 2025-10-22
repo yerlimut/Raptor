@@ -22,6 +22,71 @@ Gestión de Mecánicos
         <i class="bi bi-plus-circle"></i> Crear Mecánico
     </a>
 
+    {{-- Filtros --}}
+    <form method="GET" action="{{ route('mecanico.index') }}" class="mb-4">
+        <div class="row g-2">
+            {{-- Búsqueda general --}}
+            <div class="col-md-3">
+                <input type="text" name="search" value="{{ request('search') }}" class="form-control"
+                    placeholder="Buscar por nombre, apellido o documento...">
+            </div>
+
+            {{-- Tipo de documento --}}
+            <div class="col-md-2">
+                <select name="tipoDocumento" class="form-select">
+                    <option value="">Tipo de documento</option>
+                    <option value="CC" {{ request('tipoDocumento') == 'CC' ? 'selected' : '' }}>Cédula</option>
+                    <option value="TI" {{ request('tipoDocumento') == 'TI' ? 'selected' : '' }}>Tarjeta de Identidad</option>
+                    <option value="CE" {{ request('tipoDocumento') == 'CE' ? 'selected' : '' }}>Cédula Extranjera</option>
+                    <option value="PAS" {{ request('tipoDocumento') == 'PAS' ? 'selected' : '' }}>Pasaporte</option>
+                </select>
+            </div>
+            
+              
+
+            <!-- Especialidad -->
+        <div class="col-md-3">
+           
+            <select name="especialidad" class="form-select">
+                <option value="">Especialidad</option>
+                <option value="mecanica_general" {{ request('especialidad') == 'mecanica_general' ? 'selected' : '' }}>Mecánica General</option>
+                <option value="electricidad" {{ request('especialidad') == 'electricidad' ? 'selected' : '' }}>Electricidad Automotriz</option>
+                <option value="inyeccion" {{ request('especialidad') == 'inyeccion' ? 'selected' : '' }}>Sistemas de Inyección</option>
+                <option value="motos_altas" {{ request('especialidad') == 'motos_altas' ? 'selected' : '' }}>Motos de Alta Cilindrada</option>
+                <option value="motos_bajas" {{ request('especialidad') == 'motos_bajas' ? 'selected' : '' }}>Motos de Baja Cilindrada</option>
+                <option value="frenos" {{ request('especialidad') == 'frenos' ? 'selected' : '' }}>Frenos</option>
+                <option value="suspension" {{ request('especialidad') == 'suspension' ? 'selected' : '' }}>Suspensión</option>
+                <option value="transmision" {{ request('especialidad') == 'transmision' ? 'selected' : '' }}>Transmisión</option>
+                <option value="carburacion" {{ request('especialidad') == 'carburacion' ? 'selected' : '' }}>Carburación</option>
+                <option value="diagnostico" {{ request('especialidad') == 'diagnostico' ? 'selected' : '' }}>Diagnóstico Computarizado</option>
+            </select>
+        </div>
+
+            {{-- Ordenar por nombre --}}
+            <div class="col-md-2">
+                <select name="orden" class="form-select">
+                    <option value="">Ordenar por nombre</option>
+                    <option value="asc" {{ request('orden') == 'asc' ? 'selected' : '' }}>A-Z</option>
+                    <option value="desc" {{ request('orden') == 'desc' ? 'selected' : '' }}>Z-A</option>
+                </select>
+            </div>
+
+            {{-- Botones --}}
+            <div class="col-md-1">
+                <button type="submit" class="btn btn-primary w-100">
+                    <i class="bi bi-search"></i>
+                </button>
+            </div>
+
+            <div class="col-md-2">
+                <a href="{{ route('mecanico.index') }}" class="btn btn-secondary w-100">
+                    <i class="bi bi-arrow-counterclockwise"></i> Limpiar
+                </a>
+            </div>
+        </div>
+    </form>
+
+
     @if(session('success'))
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -37,7 +102,7 @@ Gestión de Mecánicos
     @endif
 
     <div class="container">
-        <table class="table table-bordered table-hover">
+        <table id="myTable" class="table table-bordered table-hover">
             <thead class="table-dark">
                 <tr>
                     <th>ID</th>

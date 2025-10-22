@@ -10,11 +10,29 @@ class MarcaMotoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $marcasMoto = marcaMoto::all();
-         return view('MarcaMoto.index', compact('marcasMoto'));
+        // 🔍 Parámetros
+        $search = $request->get('search');
+        $orden = $request->get('orden');
+
+        // 🔧 Consulta base
+        $query = MarcaMoto::query();
+
+        // Filtro por nombre (búsqueda parcial)
+        if ($search) {
+            $query->where('nombreMarca', 'LIKE', '%' . $search . '%');
+        }
+
+        
+
+        // 🔹 Obtener resultados paginados
+        $marcasMoto = $query->paginate(30);
+
+        return view('MarcaMoto.index', compact('marcasMoto', 'search'));
     }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -67,7 +85,7 @@ class MarcaMotoController extends Controller
      */
     public function destroy($id)
     {
-        $marcasMoto =marcaMoto::findorfail($id);
+        $marcasMoto = marcaMoto::findorfail($id);
         $marcasMoto->delete();
         return redirect()->route('marcaMoto.index')->with('success', 'Marca eliminada correctamente');
     }
