@@ -11,11 +11,42 @@ class CategoriaRepuestoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $categoriasRepuesto = categoriaRepuesto::all();
-        return view('CategoriaRepuesto.index', compact('categoriasRepuesto') );
+        // 🔍 Parámetros de filtro
+        $search = $request->get('search');
+        $fechaInicio = $request->get('fechaInicio');
+        $fechaFin = $request->get('fechaFin');
+        $sort = $request->get('sort', 'nombreCategoria');
+        $direction = $request->get('direction', 'asc');
+
+        // 🔹 Construcción de consulta
+        $query = \App\Models\CategoriaRepuesto::query();
+
+        // 🔍 Filtro por búsqueda general
+        if ($search) {
+            $query->where('nombreCategoria', 'LIKE', "%{$search}%");
+        }
+
+        // 📅 Filtro por rango de fechas
+        if ($fechaInicio && $fechaFin) {
+            $query->whereBetween('created_at', [$fechaInicio, $fechaFin]);
+        } elseif ($fechaInicio) {
+            $query->whereDate('created_at', '>=', $fechaInicio);
+        } elseif ($fechaFin) {
+            $query->whereDate('created_at', '<=', $fechaFin);
+        }
+
+        // 🔢 Ordenar resultados
+        $query->orderBy($sort, $direction);
+
+        // 📄 Paginación
+        $categorias = $query->paginate(10)->appends($request->query());
+
+        // 📤 Retornar vista
+        return view('categoriaRepuesto.index', compact('categorias'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -23,7 +54,6 @@ class CategoriaRepuestoController extends Controller
     public function create()
     {
         return view('CategoriaRepuesto.create');
-
     }
 
     /**
@@ -52,7 +82,6 @@ class CategoriaRepuestoController extends Controller
     {
         $categoriasRepuesto = categoriaRepuesto::findorfail($id);
         return view('categoriaRepuesto.edit', compact('categoriasRepuesto'));
-
     }
 
     /**

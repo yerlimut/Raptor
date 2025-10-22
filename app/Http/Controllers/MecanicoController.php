@@ -10,11 +10,51 @@ class MecanicoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $mecanicos = Mecanico::all();
-        return view('Mecanico.index' , compact('mecanicos'));
+        // 🔍 Obtener parámetros de búsqueda y filtros
+        $search = $request->get('search');
+        $tipoDocumento = $request->get('tipoDocumento');
+        $especialidad = $request->get('especialidad');
+        $orden = $request->get('orden');
+
+        // 🔧 Construir consulta base
+        $query = Mecanico::query();
+
+        // Filtro de búsqueda general (nombre, apellido, número documento)
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('nombre', 'LIKE', '%' . $search . '%')
+                    ->orWhere('apellido', 'LIKE', '%' . $search . '%')
+                    ->orWhere('numeroDocumento', 'LIKE', '%' . $search . '%');
+            });
+        }
+
+        // Filtro por tipo de documento
+        if ($tipoDocumento) {
+            $query->where('tipoDocumento', $tipoDocumento);
+        }
+
+        // Filtro por especialidad
+        if ($especialidad) {
+            $query->where('especialidad', $especialidad);
+        }
+
+        // Filtro de ordenamiento alfabético
+        if ($orden == 'asc') {
+            $query->orderBy('nombre', 'asc');
+        } elseif ($orden == 'desc') {
+            $query->orderBy('nombre', 'desc');
+        }
+
+        // Obtener resultados paginados
+        $mecanicos = $query->paginate(10);
+        $especialidades = Mecanico::select('especialidad')->distinct()->get();
+
+
+        return view('Mecanico.index', compact('mecanicos', 'search', 'tipoDocumento', 'especialidad', 'orden', 'especialidades'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -67,7 +107,7 @@ class MecanicoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy( $id)
+    public function destroy($id)
     {
         $mecanico = Mecanico::findorfail($id);
         $mecanico->delete();

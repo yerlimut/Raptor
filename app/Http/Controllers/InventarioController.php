@@ -11,12 +11,57 @@ class InventarioController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $inventarios = Inventario::all();
-        return view('Inventario.index', compact('inventarios'));
+        // 📥 Parámetros del formulario
+        $search = $request->get('search');
+        $estadoGeneral = $request->get('estadoGeneral');
+        $estadoInventario = $request->get('estadoInventario');
+        $fechaInicio = $request->get('fechaInicio');
+        $fechaFin = $request->get('fechaFin');
+        $sort = $request->get('sort', 'fechaRegistro');
+        $direction = $request->get('direction', 'desc');
 
+        // 🔹 Construir consulta
+        $query = \App\Models\Inventario::with('moto');
+
+        // 🔍 Filtro de búsqueda (por descripción o modelo de la moto)
+        if ($search) {
+            $query->where('descripcion', 'LIKE', "%{$search}%")
+                ->orWhereHas('moto', function ($q) use ($search) {
+                    $q->where('modelo', 'LIKE', "%{$search}%");
+                });
+        }
+
+        // ⚙️ Filtro por estado general
+        if ($estadoGeneral) {
+            $query->where('estadoGeneral', $estadoGeneral);
+        }
+
+        // 🧰 Filtro por estado de inventario
+        if ($estadoInventario) {
+            $query->where('estadoInventario', $estadoInventario);
+        }
+
+        // 📅 Filtro por rango de fechas
+        if ($fechaInicio && $fechaFin) {
+            $query->whereBetween('fechaRegistro', [$fechaInicio, $fechaFin]);
+        } elseif ($fechaInicio) {
+            $query->whereDate('fechaRegistro', '>=', $fechaInicio);
+        } elseif ($fechaFin) {
+            $query->whereDate('fechaRegistro', '<=', $fechaFin);
+        }
+
+        // ↕️ Ordenar resultados
+        $query->orderBy($sort, $direction);
+
+        // 📄 Paginación
+        $inventarios = $query->paginate(10)->appends($request->query());
+
+        // 📤 Retornar vista
+        return view('inventario.index', compact('inventarios'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -51,9 +96,9 @@ class InventarioController extends Controller
      */
     public function edit($id)
     {
-        $inventarios =Inventario::findorfail($id);
-        $motos=Moto::all();
-        return view('Inventario.edit', compact('inventarios','motos'));
+        $inventarios = Inventario::findorfail($id);
+        $motos = Moto::all();
+        return view('Inventario.edit', compact('inventarios', 'motos'));
     }
 
     /**
@@ -61,7 +106,7 @@ class InventarioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $inventarios=Inventario::findorfail($id);
+        $inventarios = Inventario::findorfail($id);
         $inventarios->update(
             $request->all()
         );
@@ -73,7 +118,7 @@ class InventarioController extends Controller
      */
     public function destroy($id)
     {
-         $inventarios = Inventario::findOrFail($id);
+        $inventarios = Inventario::findOrFail($id);
 
         try {
             $inventarios->delete();

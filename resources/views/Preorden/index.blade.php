@@ -22,6 +22,113 @@ Gestión de Preórdenes
         <i class="bi bi-plus-circle"></i> Crear Preorden
     </a>
 
+    <div class="card card-secondary">
+        <div class="card-header">
+            <h5 class="card-title"><i class="fas fa-filter"></i> Filtros de Búsqueda</h5>
+        </div>
+        <div class="card-body">
+            <form method="GET" action="{{ route('preorden.index') }}">
+                <div class="row">
+                    <!-- Búsqueda general -->
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="search">Buscar</label>
+                            <input type="text" class="form-control" id="search" name="search"
+                                value="{{ request('search') }}" placeholder="Descripción o palabra clave...">
+                        </div>
+                    </div>
+
+                    <!-- Filtro por Orden de Trabajo -->
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="idOrden">Orden de Trabajo</label>
+                            <select class="form-control" id="idOrden" name="idOrden">
+                                <option value="">Todas</option>
+                                @foreach($ordenes as $orden)
+                                <option value="{{ $orden->id }}"
+                                    {{ request('idOrden') == $orden->id ? 'selected' : '' }}>
+                                    Orden #{{ $orden->id }} — {{ $orden->estado }}
+                                </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Filtro por Mecánico -->
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="idMecanico">Mecánico</label>
+                            <select class="form-control" id="idMecanico" name="idMecanico">
+                                <option value="">Todos</option>
+                                @foreach($mecanicos as $mecanico)
+                                <option value="{{ $mecanico->id }}"
+                                    {{ request('idMecanico') == $mecanico->id ? 'selected' : '' }}>
+                                    {{ $mecanico->nombre }} {{ $mecanico->apellido }}
+                                </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Filtro por Repuesto -->
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="idRepuesto">Repuesto</label>
+                            <select class="form-control" id="idRepuesto" name="idRepuesto">
+                                <option value="">Todos</option>
+                                @foreach($repuestos as $repuesto)
+                                <option value="{{ $repuesto->id }}"
+                                    {{ request('idRepuesto') == $repuesto->id ? 'selected' : '' }}>
+                                    {{ $repuesto->nombreRepuesto }}
+                                </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Botones -->
+                    <div class="col-md-2 mt-4">
+                        <button type="submit" class="btn btn-primary btn-block">
+                            <i class="fas fa-search"></i> Buscar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Mostrar filtros aplicados -->
+                @if(request()->hasAny(['search', 'idOrden', 'idMecanico', 'idRepuesto']))
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="alert alert-info alert-dismissible fade show mb-0 mt-2" role="alert">
+                            <strong>Filtros aplicados:</strong>
+                            @if(request('search'))
+                            <span class="badge badge-light">Búsqueda: "{{ request('search') }}"</span>
+                            @endif
+                            @if(request('idOrden'))
+                            <span class="badge badge-light">Orden: #{{ request('idOrden') }}</span>
+                            @endif
+                            @if(request('idMecanico'))
+                            <span class="badge badge-light">Mecánico:
+                                {{ $mecanicos->find(request('idMecanico'))->nombre ?? '' }}
+                                {{ $mecanicos->find(request('idMecanico'))->apellido ?? '' }}
+                            </span>
+                            @endif
+                            @if(request('idRepuesto'))
+                            <span class="badge badge-light">Repuesto:
+                                {{ $repuestos->find(request('idRepuesto'))->nombreRepuesto ?? '' }}
+                            </span>
+                            @endif
+                            <a href="{{ route('preorden.index') }}" class="btn btn-sm btn-outline-secondary ml-2">
+                                <i class="fas fa-times"></i> Limpiar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                @endif
+            </form>
+        </div>
+    </div>
+
+
     @if(session('success'))
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -37,7 +144,7 @@ Gestión de Preórdenes
     @endif
 
     <div class="container">
-        <table class="table table-bordered table-hover">
+        <table id="myTable" class="table table-bordered table-hover">
             <thead class="table-dark">
                 <tr>
                     <th>ID</th>

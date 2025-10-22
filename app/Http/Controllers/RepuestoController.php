@@ -11,20 +11,66 @@ class RepuestoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $repuestos = Repuesto::all();
-        return view('Repuesto.index', compact('repuestos'));
+        $search = $request->get('search');
+        $idCategoria = $request->get('idCategoria');
+        $precioMin = $request->get('precio_min');
+        $precioMax = $request->get('precio_max');
+        $stock = $request->get('stock');
+
+        $query = Repuesto::with('categoria');
+
+        // Filtro de búsqueda
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('nombre', 'like', "%$search%")
+                    ->orWhere('marca', 'like', "%$search%");
+            });
+        }
+
+        // Filtro por categoría
+        if ($idCategoria) {
+            $query->where('idCategoria', $idCategoria);
+        }
+
+        // Filtro por rango de precios
+        if ($precioMin) {
+            $query->where('precio', '>=', $precioMin);
+        }
+        if ($precioMax) {
+            $query->where('precio', '<=', $precioMax);
+        }
+
+        // Filtro por nivel de stock
+        if ($stock) {
+            switch ($stock) {
+                case 'bajo':
+                    $query->where('stock', '<', 5);
+                    break;
+                case 'medio':
+                    $query->whereBetween('stock', [5, 20]);
+                    break;
+                case 'alto':
+                    $query->where('stock', '>', 20);
+                    break;
+            }
+        }
+
+        $repuestos = $query->paginate(10);
+        $categorias = CategoriaRepuesto::all();
+
+        return view('repuesto.index', compact('repuestos', 'categorias'));
     }
+
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        $categoriasRepuesto=categoriaRepuesto::all();
+        $categoriasRepuesto = categoriaRepuesto::all();
         return view('Repuesto.create', compact('categoriasRepuesto'));
-
     }
 
     /**
@@ -51,10 +97,9 @@ class RepuestoController extends Controller
      */
     public function edit($id)
     {
-        $repuesto =Repuesto::findorfail($id);
-        $categoriasRepuesto=categoriaRepuesto::all();
-        return view('repuesto.edit', compact('repuesto','categoriasRepuesto'));
-
+        $repuesto = Repuesto::findorfail($id);
+        $categoriasRepuesto = categoriaRepuesto::all();
+        return view('repuesto.edit', compact('repuesto', 'categoriasRepuesto'));
     }
 
     /**
@@ -62,7 +107,7 @@ class RepuestoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $repuesto=Repuesto::findorfail($id);
+        $repuesto = Repuesto::findorfail($id);
         $repuesto->update(
             $request->all()
         );
@@ -84,4 +129,5 @@ class RepuestoController extends Controller
             return redirect()->route('contenido.index')
                 ->with('error', 'No se puede eliminar este contenido porque tiene visualizaciones asociadas.');
         }
-    }}
+    }
+}

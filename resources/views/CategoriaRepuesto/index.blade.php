@@ -20,6 +20,72 @@
     <a href="{{ route('categoriaRepuesto.create') }}" class="btn btn-primary mb-3">
         <i class="bi bi-plus-circle"></i> Crear Categoría
     </a>
+    <!-- 🔽 FILTROS -->
+    <div class="card card-secondary shadow-sm mb-4">
+        <div class="card-header bg-primary text-white">
+            <h5 class="card-title mb-0"><i class="fas fa-filter"></i> Filtros de Búsqueda</h5>
+        </div>
+        <div class="card-body">
+            <form method="GET" action="{{ route('categoriaRepuesto.index') }}">
+                <div class="row">
+                    <!-- Buscar -->
+                    <div class="col-md-4">
+                        <label for="search">Buscar</label>
+                        <input type="text" name="search" id="search" class="form-control"
+                            value="{{ request('search') }}" placeholder="Nombre de la categoría...">
+                    </div>
+
+                    <!-- Fecha desde -->
+                    <div class="col-md-3">
+                        <label for="fechaInicio">Fecha desde</label>
+                        <input type="date" name="fechaInicio" id="fechaInicio" class="form-control"
+                            value="{{ request('fechaInicio') }}">
+                    </div>
+
+                    <!-- Fecha hasta -->
+                    <div class="col-md-3">
+                        <label for="fechaFin">Fecha hasta</label>
+                        <input type="date" name="fechaFin" id="fechaFin" class="form-control"
+                            value="{{ request('fechaFin') }}">
+                    </div>
+
+                    <!-- Botón buscar -->
+                    <div class="col-md-2 d-flex align-items-end">
+                        <button type="submit" class="btn btn-primary w-100">
+                            <i class="fas fa-search"></i> Buscar
+                        </button>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <!-- Ordenar por -->
+                    <div class="col-md-3">
+                        <label for="sort">Ordenar por</label>
+                        <select name="sort" id="sort" class="form-control">
+                            <option value="nombreCategoria" {{ request('sort') == 'nombreCategoria' ? 'selected' : '' }}>Nombre de categoría</option>
+                            <option value="created_at" {{ request('sort') == 'created_at' ? 'selected' : '' }}>Fecha de creación</option>
+                        </select>
+                    </div>
+
+                    <!-- Dirección -->
+                    <div class="col-md-3">
+                        <label for="direction">Dirección</label>
+                        <select name="direction" id="direction" class="form-control">
+                            <option value="asc" {{ request('direction') == 'asc' ? 'selected' : '' }}>Ascendente</option>
+                            <option value="desc" {{ request('direction') == 'desc' ? 'selected' : '' }}>Descendente</option>
+                        </select>
+                    </div>
+
+                    <!-- Botones -->
+                    <div class="col-md-2 d-flex align-items-end">
+                        <a href="{{ route('categoriaRepuesto.index') }}" class="btn btn-secondary w-100">
+                            <i class="fas fa-undo"></i> Limpiar
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 
     @if(session('success'))
     <script>
@@ -36,7 +102,7 @@
     @endif
 
     <div class="container">
-        <table class="table table-bordered table-hover">
+        <table id="myTable" class="table table-bordered table-hover">
             <thead class="table-dark">
                 <tr>
                     <th>ID</th>

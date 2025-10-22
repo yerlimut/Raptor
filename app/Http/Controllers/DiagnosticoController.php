@@ -8,11 +8,57 @@ use Illuminate\Http\Request;
 
 class DiagnosticoController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $diagnosticos = Diagnostico::all();
-        return view('Diagnostico.index', compact('diagnosticos'));
+        // 🔍 Parámetros de filtro
+        $search = $request->get('search');
+        $estado = $request->get('estado');
+        $tipo = $request->get('tipo');
+        $fechaInicio = $request->get('fechaInicio');
+        $fechaFin = $request->get('fechaFin');
+        $sort = $request->get('sort', 'fechaDiagnostico');
+        $direction = $request->get('direction', 'desc');
+
+        // 🔹 Construcción de consulta
+        $query = \App\Models\Diagnostico::with('moto');
+
+        // 🔍 Filtro de búsqueda general (por descripción o nombre de moto si existe relación)
+        if ($search) {
+            $query->where('descripcion', 'LIKE', "%{$search}%")
+                ->orWhereHas('moto', function ($q) use ($search) {
+                    $q->where('modelo', 'LIKE', "%{$search}%");
+                });
+        }
+
+        // 🟢 Filtro por estado
+        if ($estado) {
+            $query->where('estado', $estado);
+        }
+
+        // 🔵 Filtro por tipo
+        if ($tipo) {
+            $query->where('tipo', $tipo);
+        }
+
+        // 📅 Filtro por rango de fechas
+        if ($fechaInicio && $fechaFin) {
+            $query->whereBetween('fechaDiagnostico', [$fechaInicio, $fechaFin]);
+        } elseif ($fechaInicio) {
+            $query->whereDate('fechaDiagnostico', '>=', $fechaInicio);
+        } elseif ($fechaFin) {
+            $query->whereDate('fechaDiagnostico', '<=', $fechaFin);
+        }
+
+        // 🔢 Ordenar resultados
+        $query->orderBy($sort, $direction);
+
+        // 📄 Paginación
+        $diagnosticos = $query->paginate(10)->appends($request->query());
+
+        // 📤 Retornar vista
+        return view('diagnostico.index', compact('diagnosticos'));
     }
+
 
     public function create()
     {
