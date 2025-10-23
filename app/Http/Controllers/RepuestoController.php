@@ -57,7 +57,7 @@ class RepuestoController extends Controller
             }
         }
 
-        $repuestos = $query->paginate(10);
+        $repuestos = $query->paginate(50);
         $categorias = CategoriaRepuesto::all();
 
         return view('repuesto.index', compact('repuestos', 'categorias'));
