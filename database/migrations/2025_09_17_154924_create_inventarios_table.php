@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('descripcion');
             $table->date('fechaRegistro');
             $table->enum('estadoGeneral',['Bueno', 'Regular', 'Malo']);
-            $table->enum('estadoInventario',['En taller ', 'Entregado', 'Pendiente'])->default('En taller');
+            $table->enum('estadoInventario',['En taller', 'Entregado', 'Pendiente'])->default('En taller');
             $table->unsignedBigInteger('idMoto');
             $table->foreign('idMoto')->references('id')->on('motos');   
             $table->timestamps();

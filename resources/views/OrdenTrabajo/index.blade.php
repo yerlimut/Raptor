@@ -24,7 +24,7 @@ Gestión de Órdenes de Trabajo
     </a>
 
     {{-- 🔍 FILTROS --}}
-    <form method="GET" action="{{ route('ordenTrabajos.index') }}" class="mb-4">
+    <form method="GET" action="{{ route('OrdenTrabajo.index') }}" class="mb-4">
         <div class="row g-2">
 
             {{-- Búsqueda general --}}
@@ -84,7 +84,7 @@ Gestión de Órdenes de Trabajo
                 </button>
             </div>
             <div class="col-md-2">
-                <a href="{{ route('ordenTrabajos.index') }}" class="btn btn-secondary w-100">
+                <a href="{{ route('OrdenTrabajo.index') }}" class="btn btn-secondary w-100">
                     <i class="bi bi-arrow-counterclockwise"></i> Limpiar
                 </a>
             </div>

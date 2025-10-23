@@ -148,7 +148,9 @@ Gestión de Inventarios
                     <td>{{ $inventario->fechaRegistro }}</td>
                     <td>{{ $inventario->estadoGeneral }}</td>
                     <td>{{ $inventario->estadoInventario }}</td>
-                    <td>{{ $inventario->moto->placa ?? 'Sin asignar' }}</td>
+                    <td>{{ $inventario->moto->marca->nombreMarca ?? 'Sin marca' }}</td>
+
+
                     <td>
                         <div class="d-flex gap-2">
                             <a href="{{ route('inventario.edit', $inventario->id) }}" class="btn btn-success btn-sm">

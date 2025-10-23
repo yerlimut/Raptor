@@ -79,6 +79,16 @@ Editar Preorden
                     <div class="invalid-feedback d-block">{{ $message }}</div>
                     @enderror
                 </div>
+                {{-- Saldo --}}
+<div class="col-12 mt-3">
+    <label for="saldo" class="form-label">Saldo</label>
+    <div class="input-group">
+        <span class="input-group-text">$</span>
+        <input type="number" class="form-control @error('saldo') is-invalid @enderror" id="saldo" name="saldo"  value="{{ old('saldo', $preordenes->saldo) }}" >
+        @error('saldo')
+            <div class="invalid-feedback d-block">{{ $message }}</div>
+        @enderror
+    </div>
             </div>
 
             <div class="mt-4 d-flex gap-2">

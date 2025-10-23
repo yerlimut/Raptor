@@ -11,49 +11,55 @@ use Illuminate\Http\Request;
 class PreordenController extends Controller
 {
     public function index(Request $request)
-    {
-        // Obtener parámetros de filtro
-        $search = $request->get('search');
-        $idOrden = $request->get('idOrden');
-        $idMecanico = $request->get('idMecanico');
-        $idRepuesto = $request->get('idRepuesto');
+{
+    // Obtener parámetros de filtro
+    $search = $request->get('search');
+    $idOrden = $request->get('idOrden');
+    $idMecanico = $request->get('idMecanico');
+    $idRepuesto = $request->get('idRepuesto');
 
-        // Construir consulta
-        $query = Preorden::with(['ordenTrabajo', 'mecanico', 'repuesto']);
+    // Construir consulta
+    $query = Preorden::with(['ordenTrabajo', 'mecanico', 'repuestos']);
 
-        // Filtro de búsqueda general
-        if ($search) {
-            $query->where('descripcion', 'LIKE', "%{$search}%")
-                ->orWhereHas('mecanico', function ($q) use ($search) {
-                    $q->where('nombre', 'LIKE', "%{$search}%")
-                        ->orWhere('apellido', 'LIKE', "%{$search}%");
-                })
-                ->orWhereHas('repuesto', function ($q) use ($search) {
-                    $q->where('nombreRepuesto', 'LIKE', "%{$search}%");
-                });
-        }
-
-        // Filtro por ID de orden
-        if ($idOrden) {
-            $query->where('idOrden', $idOrden);
-        }
-
-        // Filtro por ID de mecánico
-        if ($idMecanico) {
-            $query->where('idMecanico', $idMecanico);
-        }
-
-        // Filtro por ID de repuesto
-        if ($idRepuesto) {
-            $query->where('idRepuesto', $idRepuesto);
-        }
-
-        // Obtener resultados
-        $preordenes = $query->paginate(10);
-
-        // Retornar vista con variables
-        return view('preorden.index', compact('preordenes', 'search', 'idOrden', 'idMecanico', 'idRepuesto'));
+    // Filtro de búsqueda general
+    if ($search) {
+        $query->where('descripcion', 'LIKE', "%{$search}%")
+            ->orWhereHas('mecanico', function ($q) use ($search) {
+                $q->where('nombre', 'LIKE', "%{$search}%")
+                ->orWhere('apellido', 'LIKE', "%{$search}%");
+            })
+            ->orWhereHas('repuestos', function ($q) use ($search) {
+                $q->where('nombreRepuesto', 'LIKE', "%{$search}%");
+            });
     }
+
+    // Filtro por ID de orden
+    if ($idOrden) {
+        $query->where('idOrden', $idOrden);
+    }
+
+    // Filtro por ID de mecánico
+    if ($idMecanico) {
+        $query->where('idMecanico', $idMecanico);
+    }
+
+    // Filtro por ID de repuesto
+    if ($idRepuesto) {
+        $query->whereHas('repuestos', function ($q) use ($idRepuesto) {
+            $q->where('repuestos.id', $idRepuesto);
+        });
+    }
+    $ordenes = OrdenTrabajo::all();
+    $mecanicos = Mecanico::all();
+    $repuestos = Repuesto::all();
+
+    // Obtener resultados
+    $preordenes = $query->paginate(10);
+
+    // Retornar vista con variables
+    return view('preorden.index', compact('preordenes', 'search', 'idOrden', 'idMecanico', 'idRepuesto','ordenes', 'mecanicos', 'repuestos'));
+}
+
 
 
     public function create()

@@ -75,7 +75,7 @@ Crear Diagnóstico
                         <select class="form-control @error('estado') is-invalid @enderror" id="estado" name="estado">
                             <option value="">Seleccione...</option>
                             <option value="pendiente">Pendiente</option>
-                            <option value="en proceso'">En Proceso</option>
+                            <option value="en proceso">En Proceso</option>
                             <option value="completado">completado</option>
                         </select>
                         @error('estado')

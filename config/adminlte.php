@@ -197,7 +197,7 @@ return [
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
-    'classes_sidebar' => 'sidebar-dark-primary elevation-4',
+    'classes_sidebar' => 'sidebar-light-info elevation-4',
     'classes_sidebar_nav' => '',
     'classes_topnav' => 'navbar-white navbar-light',
     'classes_topnav_nav' => 'navbar-expand',
@@ -300,101 +300,80 @@ return [
     */
 
     'menu' => [
-        // Navbar items:
-        [
-            'type' => 'navbar-search',
-            'text' => 'search',
-            'topnav_right' => true,
-        ],
-        [
-            'type' => 'fullscreen-widget',
-            'topnav_right' => true,
-        ],
+    // 🔍 Buscador y widgets
+    ['type' => 'navbar-search', 'text' => 'Buscar', 'topnav_right' => true],
+    ['type' => 'fullscreen-widget', 'topnav_right' => true],
 
-        // Sidebar items:
-        [
-            'type' => 'sidebar-menu-search',
-            'text' => 'search',
-        ],
-        [
-            'text' => 'blog',
-            'url' => 'admin/blog',
-            'can' => 'manage-blog',
-        ],
-        [
-            'text' => 'pages',
-            'url' => 'admin/pages',
-            'icon' => 'far fa-fw fa-file',
-            'label' => 4,
-            'label_color' => 'success',
-        ],
-        ['header' => ' Pagina Principal '],
-        [
-            'text' => 'Pagina Principal',
-            'route' => 'welcome',
-            'icon' => 'fas fa-home',
-        ],
-        ['header' => 'Gestión de Personas'],
-        [
-            'text' => 'Clientes',
-            'route' => 'cliente.index',
-            'icon' => 'fas fa-users',
-        ],
-        [
-            'text' => 'Mecánicos',
-            'url'  => 'mecanico/index',
-            'icon' => 'fas fa-user-cog',
-        ],
-
-        // 🔹 2. Gestión de Vehículos
-        ['header' => 'Gestión de Vehículos'],
-        [
-            'text' => 'Marcas de Motos',
-            'url'  => 'marcaMoto/index',
-            'icon' => 'fas fa-motorcycle',
-        ],
-        [
-            'text' => 'Motos',
-            'route' => 'moto.index',
-            'icon' => 'fas fa-biking',
-        ],
-        [
-            'text' => 'Inventario',
-            'url'  => 'inventario/index',
-            'icon' => 'fas fa-warehouse',
-        ],
-
-        // 🔹 3. Repuestos y Stock
-        ['header' => 'Repuestos y Stock'],
-        [
-            'text' => 'Categorías',
-            'url'  => 'categoriaRepuesto/index',
-            'icon' => 'fas fa-tags',
-        ],
-        [
-            'text' => 'Repuestos',
-            'url'  => 'repuesto/index',
-            'icon' => 'fas fa-cogs',
-        ],
-
-        // 🔹 4. Operaciones y Taller
-        ['header' => 'Operaciones y Taller'],
-        [
-            'text' => 'Órdenes de Trabajo',
-            'url'  => 'OrdenTrabajo/index',
-            'icon' => 'fas fa-clipboard-list',
-        ],
-        [
-            'text' => 'Preórdenes',
-            'url'  => 'Preorden/index',
-            'icon' => 'fas fa-file-alt',
-        ],
-        [
-            'text' => 'Diagnóstico',
-            'url'  => 'diagnostico/index',
-            'icon' => 'fas fa-stethoscope',
-        ],
+    // 🏠 Página principal
+    ['header' => 'Principal'],
+    [
+        'text' => 'Inicio',
+        'route' => 'welcome',
+        'icon' => 'fas fa-home',
     ],
+
+    // 👥 Personas
+    ['header' => 'Gestión de Personas'],
+    [
+        'text' => 'Clientes',
+        'route' => 'cliente.index',
+        'icon' => 'fas fa-users',
+    ],
+    [
+        'text' => 'Mecánicos',
+        'route' => 'mecanico.index',
+        'icon' => 'fas fa-user-cog',
+    ],
+
+    // 🏍 Vehículos
+    ['header' => 'Gestión de Vehículos'],
+    [
+        'text' => 'Marcas de Motos',
+        'route' => 'marcaMoto.index',
+        'icon' => 'fas fa-motorcycle',
+    ],
+    [
+        'text' => 'Motos',
+        'route' => 'moto.index',
+        'icon' => 'fas fa-biking',
+    ],
+
+    // ⚙️ Taller
+    ['header' => 'Taller y Órdenes'],
+    [
+        'text' => 'Preórdenes',
+        'route' => 'Preorden.index',
+        'icon' => 'fas fa-file-alt',
+    ],
+    [
+        'text' => 'Órdenes de Trabajo',
+        'route' => 'OrdenTrabajo.index',
+        'icon' => 'fas fa-clipboard-list',
+    ],
+    [
+        'text' => 'Diagnóstico',
+        'route' => 'diagnostico.index',
+        'icon' => 'fas fa-stethoscope',
+    ],
+
+    // 🧩 Repuestos
+    ['header' => 'Repuestos e Inventario'],
+    [
+        'text' => 'Categorías',
+        'route' => 'categoriaRepuesto.index',
+        'icon' => 'fas fa-tags',
+    ],
+    [
+        'text' => 'Repuestos',
+        'route' => 'repuesto.index',
+        'icon' => 'fas fa-cogs',
+    ],
+    [
+        'text' => 'Inventario',
+        'route' => 'inventario.index',
+        'icon' => 'fas fa-warehouse',
+    ],
+],
 
 
     [
