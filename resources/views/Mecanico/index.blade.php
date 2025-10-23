@@ -74,15 +74,7 @@ Gestión de Mecánicos
                         </select>
                     </div>
 
-                    {{-- Ordenar por nombre --}}
-                    <div class="col-md-2">
-                        <select name="orden" class="form-select">
-                            <option value="">Ordenar por nombre</option>
-                            <option value="asc" {{ request('orden') == 'asc' ? 'selected' : '' }}>A-Z</option>
-                            <option value="desc" {{ request('orden') == 'desc' ? 'selected' : '' }}>Z-A</option>
-                        </select>
-                    </div>
-
+                    
 
 
                     <!-- Botón -->
