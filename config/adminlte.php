@@ -113,13 +113,14 @@ return [
         'enabled' => true,
         'mode' => 'fullscreen',
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
-            'alt' => 'AdminLTE Preloader Image',
-            'effect' => 'animation__shake',
-            'width' => 60,
-            'height' => 60,
+            'path' => 'imagenes/RaptorLogo.png',
+            'alt' => 'Raptor Logo',
+            'effect' => 'animation__bounce', // 👈 Cambiado aquí
+            'width' => 500,
+            'height' => 500,
         ],
     ],
+
 
     /*
     |--------------------------------------------------------------------------
