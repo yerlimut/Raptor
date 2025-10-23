@@ -14,64 +14,57 @@ class MotoController extends Controller
      */
     public function index(Request $request)
     {
-        $query = Moto::query();
+        // 🔍 Obtener parámetros de filtro
+        $search = $request->get('search');
+        $idCliente = $request->get('idCliente');
+        $idMarca = $request->get('idMarca');
+        $año = $request->get('año');
+        $orden = $request->get('orden');
 
-        // Si llega idCliente desde la vista, filtramos
-        if ($request->has('idCliente')) {
-            $query->where('idCliente', $request->idCliente);
+        // Construir consulta base con relaciones
+        $query = Moto::with(['cliente', 'marca']);
+
+        // Filtro de búsqueda general (modelo o placa)
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('modelo', 'LIKE', "%$search%")
+                    ->orWhere('placa', 'LIKE', "%$search%");
+            });
         }
 
-        $motos = $query->get();
-
-        return view('Moto.index', compact('motos')); {
-            // 🔍 Obtener parámetros de filtro
-            $search = $request->get('search');
-            $idCliente = $request->get('idCliente');
-            $idMarca = $request->get('idMarca');
-            $año = $request->get('año');
-            $orden = $request->get('orden');
-
-            // Construir consulta base
-            $query = Moto::with(['cliente', 'marca']);
-
-            // Filtro de búsqueda general (modelo o placa)
-            if ($search) {
-                $query->where(function ($q) use ($search) {
-                    $q->where('modelo', 'LIKE', "%$search%")
-                        ->orWhere('placa', 'LIKE', "%$search%");
-                });
-            }
-
-            // Filtro por cliente
-            if ($idCliente) {
-                $query->where('idCliente', $idCliente);
-            }
-
-            // Filtro por marca
-            if ($idMarca) {
-                $query->where('idMarca', $idMarca);
-            }
-
-            // Filtro por año
-            if ($año) {
-                $query->whereYear('año', $año);
-            }
-
-            // Filtro de orden
-            if ($orden == 'asc') {
-                $query->orderBy('modelo', 'asc');
-            } elseif ($orden == 'desc') {
-                $query->orderBy('modelo', 'desc');
-            }
-
-            // Obtener resultados paginados
-            $motos = $query->paginate(10);
-            $clientes = Cliente::all();
-            $marcas = MarcaMoto::all();
-
-            return view('motos.index', compact('motos', 'clientes', 'marcas', 'search', 'idCliente', 'idMarca', 'año', 'orden'));
+        // Filtro por cliente
+        if ($idCliente) {
+            $query->where('idCliente', $idCliente);
         }
+
+        // Filtro por marca
+        if ($idMarca) {
+            $query->where('idMarca', $idMarca);
+        }
+
+        // Filtro por año
+        if ($año) {
+            $query->where('año', $año); // usa where('año') si el campo se llama literalmente así
+        }
+
+        // Orden
+        if ($orden == 'asc') {
+            $query->orderBy('modelo', 'asc');
+        } elseif ($orden == 'desc') {
+            $query->orderBy('modelo', 'desc');
+        }
+
+        // Ejecutar consulta
+        $motos = $query->paginate(10)->withQueryString();
+
+        // Obtener datos para filtros
+        $clientes = Cliente::orderBy('nombre')->get();
+        $marcas = marcaMoto::orderBy('nombreMarca')->get();
+
+        // Retornar vista
+        return view('Moto.index', compact('motos', 'clientes', 'marcas', 'search', 'idCliente', 'idMarca', 'año', 'orden'));
     }
+
 
 
     /**

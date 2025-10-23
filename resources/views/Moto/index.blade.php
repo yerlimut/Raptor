@@ -24,7 +24,7 @@ Listado de Motos
         <i class="bi bi-plus-circle"></i> Registrar Moto
     </a>
     {{-- Filtros --}}
-    <form method="GET" action="{{ route('motos.index') }}" class="mb-4">
+    <form method="GET" action="{{ route('moto.index') }}" class="mb-4">
         <div class="row g-2">
 
             {{-- Búsqueda general --}}
@@ -79,7 +79,7 @@ Listado de Motos
                 </button>
             </div>
             <div class="col-md-1">
-                <a href="{{ route('motos.index') }}" class="btn btn-secondary w-100">
+                <a href="{{ route('moto.index') }}" class="btn btn-secondary w-100">
                     <i class="bi bi-arrow-counterclockwise"></i>
                 </a>
             </div>

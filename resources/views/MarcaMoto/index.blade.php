@@ -38,7 +38,7 @@ Gestión de Marcas de Motos
                     <i class="bi bi-search"></i> Filtrar
                 </button>
             </div>
-             <div class="col-md-2">
+            <div class="col-md-2">
                 <a href="{{ route('marcaMoto.index') }}" class="btn btn-secondary w-100">
                     <i class="bi bi-arrow-counterclockwise"></i> Limpiar
                 </a>

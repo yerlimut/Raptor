@@ -113,16 +113,18 @@ Gestión de Clientes
                     </div>
 
                     <!-- Botones -->
-                    <div class="col-md-1 d-flex align-items-end">
-                        <button type="submit" class="btn btn-primary w-100">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-                    <div class="col-md-1 d-flex align-items-end">
-                        <a href="{{ route('cliente.index') }}" class="btn btn-secondary w-100">
-                            <i class="fas fa-undo"></i>
-                        </a>
-                    </div>
+                    <div class="col-md-2">
+                <button type="submit" class="btn btn-primary w-100">
+                    <i class="bi bi-search"></i> Filtrar
+                </button>
+            </div>
+            <div class="col-md-2">
+                <a href="{{ route('cliente.index') }}" class="btn btn-secondary w-100">
+                    <i class="bi bi-arrow-counterclockwise"></i> Limpiar
+                </a>
+            </div>
+
+            
                 </div>
             </form>
         </div>
