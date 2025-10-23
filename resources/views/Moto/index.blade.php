@@ -59,28 +59,21 @@ Listado de Motos
 
             {{-- Filtro por año --}}
             <div class="col-md-2">
-                <input type="number" name="año" class="form-control" placeholder="Año"
+                <input type="date" name="año" class="form-control" placeholder="Año"
                     value="{{ request('año') }}">
             </div>
 
-            {{-- Ordenar --}}
-            <div class="col-md-2">
-                <select name="orden" class="form-select">
-                    <option value="">Ordenar por modelo</option>
-                    <option value="asc" {{ request('orden') == 'asc' ? 'selected' : '' }}>A-Z</option>
-                    <option value="desc" {{ request('orden') == 'desc' ? 'selected' : '' }}>Z-A</option>
-                </select>
-            </div>
+            
 
             {{-- Botones --}}
-            <div class="col-md-1">
+            <div class="col-md-2">
                 <button type="submit" class="btn btn-primary w-100">
-                    <i class="bi bi-search"></i>
+                    <i class="bi bi-search"> Filtrar</i>
                 </button>
             </div>
-            <div class="col-md-1">
+            <div class="col-md-2">
                 <a href="{{ route('moto.index') }}" class="btn btn-secondary w-100">
-                    <i class="bi bi-arrow-counterclockwise"></i>
+                    <i class="bi bi-arrow-counterclockwise"> Limpiar</i>
                 </a>
             </div>
         </div>
