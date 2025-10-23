@@ -45,12 +45,7 @@ class MecanicoController extends Controller
             $query->where('especialidad', $especialidad);
         }
 
-        // Filtro de ordenamiento alfabético
-        if ($orden == 'asc') {
-            $query->orderBy('nombre', 'asc');
-        } elseif ($orden == 'desc') {
-            $query->orderBy('nombre', 'desc');
-        }
+        
 
         // Obtener resultados paginados
         $mecanicos = $query->paginate(10);
