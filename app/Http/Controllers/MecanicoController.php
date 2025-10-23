@@ -15,6 +15,7 @@ class MecanicoController extends Controller
         // 🔍 Obtener parámetros de búsqueda y filtros
         $search = $request->get('search');
         $tipoDocumento = $request->get('tipoDocumento');
+        $numeroDocumento = $request->get('numeroDocumento');
         $especialidad = $request->get('especialidad');
         $orden = $request->get('orden');
 
@@ -34,6 +35,10 @@ class MecanicoController extends Controller
         if ($tipoDocumento) {
             $query->where('tipoDocumento', $tipoDocumento);
         }
+        // 🧾 Filtro por número de documento exacto
+        if ($numeroDocumento) {
+            $query->where('numeroDocumento', 'LIKE', '%' . $numeroDocumento . '%');
+        }
 
         // Filtro por especialidad
         if ($especialidad) {
@@ -52,7 +57,7 @@ class MecanicoController extends Controller
         $especialidades = Mecanico::select('especialidad')->distinct()->get();
 
 
-        return view('Mecanico.index', compact('mecanicos', 'search', 'tipoDocumento', 'especialidad', 'orden', 'especialidades'));
+        return view('Mecanico.index', compact('mecanicos', 'search', 'tipoDocumento', 'especialidad', 'orden', 'especialidades','numeroDocumento'));
     }
 
 

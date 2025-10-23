@@ -47,7 +47,13 @@ class MotoController extends Controller
             $query->where('año', $año); // usa where('año') si el campo se llama literalmente así
         }
 
-      
+        // Orden
+        if ($orden == 'asc') {
+            $query->orderBy('modelo', 'asc');
+        } elseif ($orden == 'desc') {
+            $query->orderBy('modelo', 'desc');
+        }
+
         // Ejecutar consulta
         $motos = $query->paginate(10)->withQueryString();
 
@@ -56,7 +62,7 @@ class MotoController extends Controller
         $marcas = marcaMoto::orderBy('nombreMarca')->get();
 
         // Retornar vista
-        return view('Moto.index', compact('motos', 'clientes', 'marcas', 'search', 'idCliente', 'idMarca', 'año'));
+        return view('Moto.index', compact('motos', 'clientes', 'marcas', 'search', 'idCliente', 'idMarca', 'año', 'orden'));
     }
 
 
