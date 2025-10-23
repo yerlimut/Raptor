@@ -43,6 +43,7 @@ class MecanicoController extends Controller
         // Filtro por especialidad
         if ($especialidad) {
             $query->where('especialidad', $especialidad);
+            
         }
 
         

@@ -49,7 +49,6 @@ Gestión de Mecánicos
 
                     {{-- 🧾 Número de documento --}}
                     <div class="col-md-2">
-                        
                         <input type="text" name="numeroDocumento" id="numeroDocumento" value="{{ $numeroDocumento }}" class="form-control" 
                         placeholder="Numero Documento">
                     </div>
