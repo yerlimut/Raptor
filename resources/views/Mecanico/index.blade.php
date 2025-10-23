@@ -36,16 +36,24 @@ Gestión de Mecánicos
                             placeholder="Buscar por nombre, apellido o documento...">
                     </div>
 
-            {{-- Tipo de documento --}}
-            <div class="col-md-2">
-                <select name="tipoDocumento" class="form-select">
-                    <option value="">Tipo de documento</option>
-                    <option value="CC" {{ request('tipoDocumento') == 'CC' ? 'selected' : '' }}>Cédula</option>
-                    <option value="TI" {{ request('tipoDocumento') == 'TI' ? 'selected' : '' }}>Tarjeta de Identidad</option>
-                    <option value="CE" {{ request('tipoDocumento') == 'CE' ? 'selected' : '' }}>Cédula Extranjera</option>
-                    <option value="PAS" {{ request('tipoDocumento') == 'PAS' ? 'selected' : '' }}>Pasaporte</option>
-                </select>
-            </div>
+
+                    {{-- Tipo de documento --}}
+                    <div class="col-md-2">
+                        <select name="tipoDocumento" class="form-select">
+                            <option value="">Tipo de documento</option>
+                            <option value="CC" {{ request('tipoDocumento') == 'CC' ? 'selected' : '' }}>Cédula</option>
+                            <option value="TI" {{ request('tipoDocumento') == 'TI' ? 'selected' : '' }}>Tarjeta de Identidad</option>
+                            <option value="CE" {{ request('tipoDocumento') == 'CE' ? 'selected' : '' }}>Cédula Extranjera</option>
+                            <option value="PAS" {{ request('tipoDocumento') == 'PAS' ? 'selected' : '' }}>Pasaporte</option>
+                        </select>
+                    </div>
+
+                    {{-- 🧾 Número de documento --}}
+                    <div class="col-md-2">
+                        <input type="text" name="numeroDocumento" id="numeroDocumento" value="{{ $numeroDocumento }}" class="form-control" 
+                        placeholder="Numero Documento">
+                    </div>
+
 
 
 
