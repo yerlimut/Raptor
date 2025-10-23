@@ -14,6 +14,7 @@ class Preorden extends Model
     protected $fillable = [
         'idOrden',
         'idMecanico',
+        'saldo',
         'descripcion',
     ];
 

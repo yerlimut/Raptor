@@ -47,6 +47,11 @@
                 </div>
             </div>
 
+            <div class="col-12 mt-3">
+                <label for="saldo" class="form-label">Saldo</label>
+                <input type="number" class="form-control" id="saldo" name="saldo" placeholder="Ingrese el saldo">
+            </div>
+
             <div class="mt-4 d-flex gap-2">
                 <button type="submit" class="btn btn-primary">
                     <i class="bi bi-save"></i> Guardar
@@ -76,21 +81,23 @@
 </script>
 
 <style>
-/* 🔧 Forzar texto negro dentro de las etiquetas seleccionadas */
-.select2-container--default .select2-selection--multiple .select2-selection__choice {
-    color: #000 !important;              /* texto negro */
-    background-color: #f1f1f1 !important; /* fondo gris claro */
-    border: 1px solid #aaa !important;
-    border-radius: 6px !important;
-    font-weight: 500;
-}
+    /* 🔧 Forzar texto negro dentro de las etiquetas seleccionadas */
+    .select2-container--default .select2-selection--multiple .select2-selection__choice {
+        color: #000 !important;
+        /* texto negro */
+        background-color: #f1f1f1 !important;
+        /* fondo gris claro */
+        border: 1px solid #aaa !important;
+        border-radius: 6px !important;
+        font-weight: 500;
+    }
 
-/* Cambiar color del botón de eliminar (la X) */
-.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
-    color: #000 !important;
-    font-weight: bold;
-    margin-right: 4px;
-}
+    /* Cambiar color del botón de eliminar (la X) */
+    .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+        color: #000 !important;
+        font-weight: bold;
+        margin-right: 4px;
+    }
 </style>
 
 @endsection

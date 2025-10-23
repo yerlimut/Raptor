@@ -16,7 +16,7 @@ class Inventario extends Model
         
     ];
 
-    public function motos(){
+    public function moto(){
         return $this->belongsTo(Moto::class,'idMoto');
     }
     

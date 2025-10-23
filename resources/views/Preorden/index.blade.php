@@ -27,7 +27,7 @@ Gestión de Preórdenes
             <h5 class="card-title"><i class="fas fa-filter"></i> Filtros de Búsqueda</h5>
         </div>
         <div class="card-body">
-            <form method="GET" action="{{ route('preorden.index') }}">
+            <form method="GET" action="{{ route('Preorden.index') }}">
                 <div class="row">
                     <!-- Búsqueda general -->
                     <div class="col-md-3">
@@ -152,6 +152,7 @@ Gestión de Preórdenes
                     <th>Mecánico</th>
                     <th>Repuesto</th>
                     <th>Descripción</th>
+                    <th>Saldo</th>
                     <th>Opciones</th>
                 </tr>
             </thead>
@@ -174,6 +175,7 @@ Gestión de Preórdenes
                     <
 
                         <td>{{ $preorden->descripcion }}</td>
+                        <td>${{ number_format($preorden->saldo, 2) }}</td>
                         <td>
                             <div class="d-flex gap-2">
                                 <a href="{{ route('Preorden.edit', $preorden->id) }}" class="btn btn-success btn-sm">

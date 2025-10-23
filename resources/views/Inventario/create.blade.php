@@ -80,16 +80,16 @@ Crear Inventario
                     @enderror
                 </div>
 
-                {{-- Moto --}}
                 <div class="col-md-12">
                     <label for="idMoto" class="form-label">Moto</label>
                     <select class="form-control @error('idMoto') is-invalid @enderror"
                         id="idMoto"
-                        name="idMoto">
+                        name="idMoto"
+                        required>
                         <option value="">-- Seleccione una moto --</option>
                         @foreach($motos as $moto)
                         <option value="{{ $moto->id }}">
-                            {{ $moto->placa }} - {{ $moto->marca }}
+                            {{ $moto->placa }} - {{ $moto->marca->nombreMarca ?? 'Sin marca' }}
                         </option>
                         @endforeach
                     </select>
@@ -97,6 +97,8 @@ Crear Inventario
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
+
+
             </div>
 
             <div class="mt-4 d-flex gap-2">

@@ -64,7 +64,7 @@ class OrdenTrabajoController extends Controller
         $ordenes = $query->paginate(15);
         $diagnosticos = Diagnostico::all();
 
-        return view('ordenTrabajos.index', compact('ordenes', 'diagnosticos', 'search', 'estado', 'idDiagnostico', 'fechaInicio', 'fechaFin', 'rangoInicio', 'rangoFin'));
+        return view('OrdenTrabajo.index', compact('ordenes', 'diagnosticos', 'search', 'estado', 'idDiagnostico', 'fechaInicio', 'fechaFin', 'rangoInicio', 'rangoFin'));
     }
 
     public function create()
