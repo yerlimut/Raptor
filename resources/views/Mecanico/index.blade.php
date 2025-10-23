@@ -41,26 +41,26 @@ Gestión de Mecánicos
                     <option value="PAS" {{ request('tipoDocumento') == 'PAS' ? 'selected' : '' }}>Pasaporte</option>
                 </select>
             </div>
-
-
+            
+              
 
             <!-- Especialidad -->
-            <div class="col-md-3">
-
-                <select name="especialidad" class="form-select">
-                    <option value="">Especialidad</option>
-                    <option value="mecanica_general" {{ request('especialidad') == 'mecanica_general' ? 'selected' : '' }}>Mecánica General</option>
-                    <option value="electricidad" {{ request('especialidad') == 'electricidad' ? 'selected' : '' }}>Electricidad Automotriz</option>
-                    <option value="inyeccion" {{ request('especialidad') == 'inyeccion' ? 'selected' : '' }}>Sistemas de Inyección</option>
-                    <option value="motos_altas" {{ request('especialidad') == 'motos_altas' ? 'selected' : '' }}>Motos de Alta Cilindrada</option>
-                    <option value="motos_bajas" {{ request('especialidad') == 'motos_bajas' ? 'selected' : '' }}>Motos de Baja Cilindrada</option>
-                    <option value="frenos" {{ request('especialidad') == 'frenos' ? 'selected' : '' }}>Frenos</option>
-                    <option value="suspension" {{ request('especialidad') == 'suspension' ? 'selected' : '' }}>Suspensión</option>
-                    <option value="transmision" {{ request('especialidad') == 'transmision' ? 'selected' : '' }}>Transmisión</option>
-                    <option value="carburacion" {{ request('especialidad') == 'carburacion' ? 'selected' : '' }}>Carburación</option>
-                    <option value="diagnostico" {{ request('especialidad') == 'diagnostico' ? 'selected' : '' }}>Diagnóstico Computarizado</option>
-                </select>
-            </div>
+        <div class="col-md-3">
+           
+            <select name="especialidad" class="form-select">
+                <option value="">Especialidad</option>
+                <option value="mecanica_general" {{ request('especialidad') == 'mecanica_general' ? 'selected' : '' }}>Mecánica General</option>
+                <option value="electricidad" {{ request('especialidad') == 'electricidad' ? 'selected' : '' }}>Electricidad Automotriz</option>
+                <option value="inyeccion" {{ request('especialidad') == 'inyeccion' ? 'selected' : '' }}>Sistemas de Inyección</option>
+                <option value="motos_altas" {{ request('especialidad') == 'motos_altas' ? 'selected' : '' }}>Motos de Alta Cilindrada</option>
+                <option value="motos_bajas" {{ request('especialidad') == 'motos_bajas' ? 'selected' : '' }}>Motos de Baja Cilindrada</option>
+                <option value="frenos" {{ request('especialidad') == 'frenos' ? 'selected' : '' }}>Frenos</option>
+                <option value="suspension" {{ request('especialidad') == 'suspension' ? 'selected' : '' }}>Suspensión</option>
+                <option value="transmision" {{ request('especialidad') == 'transmision' ? 'selected' : '' }}>Transmisión</option>
+                <option value="carburacion" {{ request('especialidad') == 'carburacion' ? 'selected' : '' }}>Carburación</option>
+                <option value="diagnostico" {{ request('especialidad') == 'diagnostico' ? 'selected' : '' }}>Diagnóstico Computarizado</option>
+            </select>
+        </div>
 
             {{-- Ordenar por nombre --}}
             <div class="col-md-2">
@@ -71,10 +71,10 @@ Gestión de Mecánicos
                 </select>
             </div>
 
-            <!-- Botón -->
-            <div class="col-md-2">
+            {{-- Botones --}}
+            <div class="col-md-1">
                 <button type="submit" class="btn btn-primary w-100">
-                    <i class="bi bi-search"></i> Filtrar
+                    <i class="bi bi-search"></i>
                 </button>
             </div>
 
@@ -102,7 +102,7 @@ Gestión de Mecánicos
     @endif
 
     <div class="container">
-        <table id="myTable" class="table table-bordered table-hover w-75 mx-auto small align-middle">
+        <table id="myTable" class="table table-bordered table-hover">
             <thead class="table-dark">
                 <tr>
                     <th>ID</th>
