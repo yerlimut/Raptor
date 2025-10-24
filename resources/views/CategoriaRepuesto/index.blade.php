@@ -48,13 +48,6 @@
                         <input type="date" name="fechaFin" id="fechaFin" class="form-control"
                             value="{{ request('fechaFin') }}">
                     </div>
-
-                    <!-- Botón buscar -->
-                    <div class="col-md-2 d-flex align-items-end">
-                        <button type="submit" class="btn btn-primary w-100">
-                            <i class="fas fa-search"></i> Buscar
-                        </button>
-                    </div>
                 </div>
 
                 <div class="row mt-3">
@@ -76,95 +69,102 @@
                         </select>
                     </div>
 
-                    <!-- Botones -->
+                    <!-- Botón buscar -->
+                    <div class="col-md-2 d-flex align-items-end">
+                        <button type="submit" class="btn btn-primary w-100">
+                            <i class="fas fa-search"></i> Buscar
+                        </button>
+                    </div>
+
                     <div class="col-md-2 d-flex align-items-end">
                         <a href="{{ route('categoriaRepuesto.index') }}" class="btn btn-secondary w-100">
                             <i class="fas fa-undo"></i> Limpiar
                         </a>
                     </div>
                 </div>
-            </form>
         </div>
+        </form>
     </div>
+</div>
 
-    @if(session('success'))
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            Swal.fire({
-                icon: 'success',
-                title: '¡Éxito!',
-                text: "{{ session('success') }}",
-                confirmButtonText: 'Aceptar',
-                timer: 3000
-            });
+@if(session('success'))
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        Swal.fire({
+            icon: 'success',
+            title: '¡Éxito!',
+            text: "{{ session('success') }}",
+            confirmButtonText: 'Aceptar',
+            timer: 3000
         });
-    </script>
-    @endif
+    });
+</script>
+@endif
 
-    <div class="container">
-        <table id="myTable" class="table table-bordered table-hover">
-            <thead class="table-dark">
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre de la Categoría</th>
-                    <th>opciones</th>
-
-
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($categoriasRepuesto as $categoria)
-                <tr>
-                    <td>{{ $categoria->id }}</td>
-                    <td>{{ $categoria->nombreCategoria }}</td>
-
-                    <td>
-                        <div class="d-flex gap-2">
-                            <a href="{{ route('categoriaRepuesto.edit', $categoria->id) }}" class="btn btn-success btn-sm">
-                                <i class="bi bi-pencil"></i> Editar
-                            </a>
-
-                            <form action="{{ route('categoriaRepuesto.destroy', $categoria->id) }}" method="POST" style="display:inline;">
-                                @csrf
-
-                                <button type="submit" class="btn btn-danger btn-sm" onclick="confirmarEliminacion(event)">
-                                    <i class="bi bi-trash"></i> Eliminar
-                                </button>
-                            </form>
-                        </div>
-                    </td>
-                </tr>
-                @endforeach
+<div class="container">
+    <table id="myTable" class="table table-bordered table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Nombre de la Categoría</th>
+                <th>opciones</th>
 
 
-            </tbody>
-        </table>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($categoriasRepuesto as $categoria)
+            <tr>
+                <td>{{ $categoria->id }}</td>
+                <td>{{ $categoria->nombreCategoria }}</td>
 
-        <a href="{{ route('welcome') }}" class="btn btn-info">
-            <i class="bi bi-arrow-left-circle"></i> Volver
-        </a>
-    </div>
+                <td>
+                    <div class="d-flex gap-2">
+                        <a href="{{ route('categoriaRepuesto.edit', $categoria->id) }}" class="btn btn-success btn-sm">
+                            <i class="bi bi-pencil"></i> Editar
+                        </a>
 
-    <script>
-        function confirmarEliminacion(event) {
-            event.preventDefault();
-            const form = event.target.closest('form');
+                        <form action="{{ route('categoriaRepuesto.destroy', $categoria->id) }}" method="POST" style="display:inline;">
+                            @csrf
 
-            Swal.fire({
-                title: '¿Estás seguro?',
-                text: "¡No podrás revertir esto!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Sí, eliminar',
-                cancelButtonText: 'Cancelar'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    form.submit();
-                }
-            });
-        }
-    </script>
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="confirmarEliminacion(event)">
+                                <i class="bi bi-trash"></i> Eliminar
+                            </button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+            @endforeach
+
+
+        </tbody>
+    </table>
+
+    <a href="{{ route('welcome') }}" class="btn btn-info">
+        <i class="bi bi-arrow-left-circle"></i> Volver
+    </a>
+</div>
+
+<script>
+    function confirmarEliminacion(event) {
+        event.preventDefault();
+        const form = event.target.closest('form');
+
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "¡No podrás revertir esto!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                form.submit();
+            }
+        });
+    }
+</script>
 </div>
 @endsection
