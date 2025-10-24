@@ -23,7 +23,12 @@ Gestión de Marcas de Motos
         <i class="bi bi-plus-circle"></i> Crear Marca
     </a>
 
-    {{-- Filtros --}}
+    <!-- 🔽 FILTROS -->
+    <div class="card card-secondary shadow-sm mb-4">
+        <div class="card-header bg-primary text-white">
+            <h5 class="card-title mb-0"><i class="fas fa-filter"></i> Filtros de Búsqueda</h5>
+        </div>
+        <div class="card-body">
     <form method="GET" action="{{ route('marcaMoto.index') }}" class="mb-3">
         <div class="row">
             <!-- Buscar -->
@@ -45,6 +50,8 @@ Gestión de Marcas de Motos
             </div>
         </div>
     </form>
+    </div>
+    </div>
 
 
     @if(session('success'))
