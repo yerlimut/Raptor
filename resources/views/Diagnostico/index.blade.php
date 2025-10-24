@@ -109,7 +109,7 @@ Listado de Diagnósticos
 
                     <!-- Botón limpiar -->
                     <div class=" row mt-3  col-md-2 d-flex align-items-end">
-                        <a href="{{ route('categoriaRepuesto.index') }}" class="btn btn-secondary w-100">
+                        <a href="{{ route('diagnostico.index') }}" class="btn btn-secondary w-100">
                             <i class="fas fa-undo"></i> Limpiar
                         </a>
                     </div>
