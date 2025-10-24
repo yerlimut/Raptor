@@ -58,13 +58,6 @@ Gestión de Inventarios
                             <option value="Pendiente" {{ request('estadoInventario') == 'Pendiente' ? 'selected' : '' }}>Pendiente</option>
                         </select>
                     </div>
-
-                    <!-- Botón buscar -->
-                    <div class="col-md-2 d-flex align-items-end">
-                        <button type="submit" class="btn btn-primary w-100">
-                            <i class="fas fa-search"></i> Buscar
-                        </button>
-                    </div>
                 </div>
 
                 <div class="row mt-3">
@@ -101,10 +94,17 @@ Gestión de Inventarios
                         </select>
                     </div>
 
+                    <!-- Botón buscar -->
+                    <div class=" row mt-3 col-md-2 d-flex align-items-end">
+                        <button type="submit" class="btn btn-primary w-100">
+                            <i class="fas fa-search"></i> Buscar
+                        </button>
+                    </div>
+
                     <!-- Botón limpiar -->
-                    <div class="col-md-1 d-flex align-items-end">
+                    <div class=" row mt-3 col-md-2">
                         <a href="{{ route('inventario.index') }}" class="btn btn-secondary w-100">
-                            <i class="fas fa-undo"></i>
+                            <i class="bi bi-arrow-counterclockwise"></i> Limpiar
                         </a>
                     </div>
                 </div>

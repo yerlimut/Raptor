@@ -23,7 +23,7 @@ Gestión de Preórdenes
     </a>
 
     <div class="card card-secondary">
-        <div class="card-header">
+        <div class="card-header bg-primary text-white">
             <h5 class="card-title"><i class="fas fa-filter"></i> Filtros de Búsqueda</h5>
         </div>
         <div class="card-body">
@@ -87,10 +87,15 @@ Gestión de Preórdenes
                     </div>
 
                     <!-- Botones -->
-                    <div class="col-md-2 mt-4">
-                        <button type="submit" class="btn btn-primary btn-block">
-                            <i class="fas fa-search"></i> Buscar
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-primary w-100">
+                            <i class="bi bi-search"></i> Buscar
                         </button>
+                    </div>
+                    <div class="col-md-2">
+                        <a href="{{ route('Preorden.index') }}" class="btn btn-secondary w-100">
+                            <i class="bi bi-arrow-counterclockwise"></i> Limpiar
+                        </a>
                     </div>
                 </div>
 
