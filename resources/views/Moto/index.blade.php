@@ -23,7 +23,16 @@ Listado de Motos
     <a href="{{ route('moto.create', ['idCliente' => request('idCliente')]) }}" class="btn btn-primary">
         <i class="bi bi-plus-circle"></i> Registrar Moto
     </a>
-    {{-- Filtros --}}
+    <br>
+    <br>
+
+
+    <!-- 🔽 FILTROS -->
+    <div class="card card-secondary shadow-sm mb-4">
+        <div class="card-header bg-primary text-white">
+            <h5 class="card-title mb-0"><i class="fas fa-filter"></i> Filtros de Búsqueda</h5>
+        </div>
+        <div class="card-body">
     <form method="GET" action="{{ route('moto.index') }}" class="mb-4">
         <div class="row g-2">
 
@@ -78,6 +87,8 @@ Listado de Motos
             </div>
         </div>
     </form>
+    </div>
+    </div>
 
 
     {{-- Mensaje de éxito con SweetAlert --}}
