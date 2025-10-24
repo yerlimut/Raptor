@@ -41,10 +41,10 @@ class CategoriaRepuestoController extends Controller
         $query->orderBy($sort, $direction);
 
         // 📄 Paginación
-        $categorias = $query->paginate(10)->appends($request->query());
+        $categoriasRepuesto = $query->paginate(50)->appends($request->query());
 
         // 📤 Retornar vista
-        return view('categoriaRepuesto.index', compact('categorias'));
+        return view('categoriaRepuesto.index', compact('categoriasRepuesto'));
     }
 
 
