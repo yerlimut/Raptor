@@ -16,6 +16,12 @@ class DatabaseSeeder extends Seeder
             CategoriaRepuestosSeeder::class,
             MarcaMotoSeeder::class,
             RepuestoSeeder::class,
+            MecanicoSeeder::class,
+            DiagnosticoSeeder::class,
+            InventarioSeeder::class,
+            MotoSeeder::class,
+            PreordenSeeder::class,
+            
         ]);
     }
 }
