@@ -159,7 +159,7 @@ Listado de Motos
                 <div class="card shadow-sm border-0" style="background-color:#E3F2FD;">
                     <div class="card-body text-center p-3">
                         <h6 class="fw-bold mb-1">Total de motos registradas</h6>
-                        <p class="fs-5 text-secondary mb-0">180</p>
+                        <p class="fs-5 text-secondary mb-0">{{ $ContarMotos }}</p>
                     </div>
                 </div>
             </div>

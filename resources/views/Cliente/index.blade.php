@@ -206,7 +206,7 @@ Gestión de Clientes
             <div class="card shadow-sm border-0" style="background-color:#E3F2FD;">
                 <div class="card-body text-center p-3">
                     <h6 class="fw-bold mb-1">Total de clientes registrados</h6>
-                    <p class="fs-5 text-secondary mb-0">3</p>
+                    <p class="fs-5 text-secondary mb-0">{{ $ContarClientes }}</p>
                 </div>
             </div>
         </div>

@@ -11,6 +11,7 @@ class ClienteController extends Controller
      * Display a listing of the resource.
      */
     public function index(Request $request)
+
     {
         // 🔹 Parámetros de filtro
         $search = $request->get('search');
@@ -71,8 +72,9 @@ class ClienteController extends Controller
 
         // 📄 Paginación
         $clientes = $query->paginate(10)->appends($request->query());
+        $ContarClientes = $this->ContarClientes();
 
-        return view('cliente.index', compact('clientes'));
+        return view('cliente.index', compact('clientes','ContarClientes'));
     }
 
 
@@ -132,5 +134,10 @@ class ClienteController extends Controller
         $cliente->delete();
 
         return redirect()->route('cliente.index')->with('success', 'Cliente eliminado correctamente');
+    }
+    public function ContarClientes(){
+        $ContarClientes = Cliente::count();
+        return $ContarClientes ;
+
     }
 }

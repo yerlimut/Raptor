@@ -60,9 +60,10 @@ class MotoController extends Controller
         // Obtener datos para filtros
         $clientes = Cliente::orderBy('nombre')->get();
         $marcas = marcaMoto::orderBy('nombreMarca')->get();
+        $ContarMotos = $this->ContarMotos();
 
         // Retornar vista
-        return view('Moto.index', compact('motos', 'clientes', 'marcas', 'search', 'idCliente', 'idMarca', 'año', 'orden'));
+        return view('Moto.index', compact('motos', 'clientes', 'marcas', 'search', 'idCliente', 'idMarca', 'año', 'orden','ContarMotos'));
     }
 
 
@@ -92,14 +93,19 @@ class MotoController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        // 🔹 Dejamos este método exactamente como tú lo tienes
-        Moto::create(
-            $request->all()
-        );
+{
+    // Crear la moto
+    Moto::create($request->all());
 
-        return redirect()->route('moto.index');
+    // Si llega el idCliente, redirigimos al listado filtrado por ese cliente
+    if ($request->filled('idCliente')) {
+        return redirect()->route('moto.index', ['idCliente' => $request->idCliente]);
     }
+
+    // Si no hay cliente específico, volvemos al listado general
+    return redirect()->route('moto.index');
+}
+
 
     /**
      * Show the form for editing the specified resource.
@@ -140,5 +146,11 @@ class MotoController extends Controller
 
         // 🔹 También redirigimos al índice filtrado
         return redirect()->route('moto.index', ['idCliente' => $idCliente]);
+    }
+
+    public function ContarMotos(){
+        $ContarMotos = Moto::count();
+        return $ContarMotos ;
+
     }
 }

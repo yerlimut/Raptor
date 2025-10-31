@@ -162,10 +162,10 @@ Gestión de Preórdenes
                 </tr>
             </thead>
             <tbody>
-                @foreach($preordenes as $preorden)
+                @foreach($preorden as $preorden)
                 <tr>
                     <td>{{ $preorden->id }}</td>
-                    <td>{{ $preorden->orden->id ?? 'N/A' }}</td>
+                    <td>Orden #{{ $preorden->ordenTrabajo ?->id ?? 'N/A' }}</td>
                     <td>{{ $preorden->mecanico->nombre ?? 'N/A' }}</td>
                     <td>
 
@@ -227,4 +227,16 @@ Gestión de Preórdenes
         }
     </script>
 </div>
+@endsection
+
+@section('js')
+<script>
+$(document).ready(function () {
+    $('#myTable').DataTable({
+        language: {
+            url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json'
+        }
+    });
+});
+</script>
 @endsection
