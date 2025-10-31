@@ -20,7 +20,7 @@ class MecanicoSeeder extends Seeder
             'telefono' => '3124567890',
             'email' => 'carlos.ramirez@example.com',
             'direccion' => 'Calle 45 #23-10, Medellín',
-            'especialidad' => 'Motor y transmisión',
+            'especialidad' => 'mecanica_general',
         ]);
 
         Mecanico::create([
@@ -31,7 +31,7 @@ class MecanicoSeeder extends Seeder
             'telefono' => '3209876543',
             'email' => 'laura.gonzalez@example.com',
             'direccion' => 'Carrera 12 #45-22, Bogotá',
-            'especialidad' => 'Sistema eléctrico',
+            'especialidad' => 'electricidad',
         ]);
 
         Mecanico::create([
@@ -42,7 +42,7 @@ class MecanicoSeeder extends Seeder
             'telefono' => '3112345678',
             'email' => 'julian.perez@example.com',
             'direccion' => 'Av. del Ferrocarril #8-60, Cali',
-            'especialidad' => 'Suspensión y frenos',
+            'especialidad' => 'frenos',
         ]);
 
         Mecanico::create([
@@ -53,7 +53,7 @@ class MecanicoSeeder extends Seeder
             'telefono' => '3001234567',
             'email' => 'sofia.martinez@example.com',
             'direccion' => 'Calle 10 #6-20, Bucaramanga',
-            'especialidad' => 'Diagnóstico electrónico',
+            'especialidad' => 'diagnostico',
         ]);
 
         Mecanico::create([
@@ -64,7 +64,7 @@ class MecanicoSeeder extends Seeder
             'telefono' => '3017654321',
             'email' => 'diego.torres@example.com',
             'direccion' => 'Carrera 7 #89-50, Barranquilla',
-            'especialidad' => 'Carburación y sistemas de escape',
+            'especialidad' => 'carburacion',
         ]);
     }
 }
