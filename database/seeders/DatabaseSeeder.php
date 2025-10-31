@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
             MotoSeeder::class,
             InventarioSeeder::class,
             DiagnosticoSeeder::class,
-            OrdenTrabajo::class,
+            OrdenTrabajoSeeder::class,
             PreordenSeeder::class,
             
         ]);

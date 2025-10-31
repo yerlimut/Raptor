@@ -41,5 +41,45 @@ class ClienteSeeder extends Seeder
             'correoElectronico' => 'carlosgomez@example.com',
             'direccion' => 'Avenida Siempre Viva #742',
         ]);
+
+        Cliente::create([
+            'nombre' => 'Laura',
+            'apellido' => 'Ramírez',
+            'tipoDocumento' => 'CC',
+            'numeroDocumento' => '1002003004',
+            'telefono' => '3031112233',
+            'correoElectronico' => 'lauraramirez@example.com',
+            'direccion' => 'Calle 50 #12-34',
+        ]);
+
+        Cliente::create([
+            'nombre' => 'Andrés',
+            'apellido' => 'Torres',
+            'tipoDocumento' => 'CC',
+            'numeroDocumento' => '1002003005',
+            'telefono' => '3047891122',
+            'correoElectronico' => 'andrestorres@example.com',
+            'direccion' => 'Carrera 80 #45-22',
+        ]);
+
+        Cliente::create([
+            'nombre' => 'Paola',
+            'apellido' => 'Martínez',
+            'tipoDocumento' => 'CC',
+            'numeroDocumento' => '1002003006',
+            'telefono' => '3056678899',
+            'correoElectronico' => 'paolamartinez@example.com',
+            'direccion' => 'Transversal 45 #67-89',
+        ]);
+
+        Cliente::create([
+            'nombre' => 'Felipe',
+            'apellido' => 'Castro',
+            'tipoDocumento' => 'CC',
+            'numeroDocumento' => '1002003007',
+            'telefono' => '3069991122',
+            'correoElectronico' => 'felipecastro@example.com',
+            'direccion' => 'Diagonal 90 #10-15',
+        ]);
     }
 }
