@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\OrdenTrabajo;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -17,9 +18,10 @@ class DatabaseSeeder extends Seeder
             MarcaMotoSeeder::class,
             RepuestoSeeder::class,
             MecanicoSeeder::class,
-            DiagnosticoSeeder::class,
             InventarioSeeder::class,
             MotoSeeder::class,
+            DiagnosticoSeeder::class,
+            OrdenTrabajo::class,
             PreordenSeeder::class,
             
         ]);
