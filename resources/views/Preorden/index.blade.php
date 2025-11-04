@@ -147,7 +147,7 @@ Gestión de Preórdenes
 
     <div class="container">
         <table id="myTable" class="table table-bordered table-hover">
-            <thead class="table-dark">
+            <thead class="table card-header bg-primary text-white">
                 <tr>
                     <th>ID</th>
                     <th>Orden</th>
@@ -174,7 +174,7 @@ Gestión de Preórdenes
                             @endforelse
                         </ul>
                     </td>
-                    <
+                
 
                         <td>{{ $preorden->descripcion }}</td>
                         <td>${{ number_format($preorden->saldo, 2) }}</td>
