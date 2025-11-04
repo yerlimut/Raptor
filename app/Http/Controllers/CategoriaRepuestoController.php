@@ -64,7 +64,7 @@ class CategoriaRepuestoController extends Controller
         categoriaRepuesto::create(
             $request->all()
         );
-        return redirect()->route('categoriaRepuesto.index');
+        return redirect()->route('categoriaRepuesto.index')->with('success', 'Categoria del Repuesto creada correctamente');
     }
 
     /**
@@ -91,7 +91,7 @@ class CategoriaRepuestoController extends Controller
     {
         $categoriasRepuesto = categoriaRepuesto::findorfail($id);
         $categoriasRepuesto->update($request->all());
-        return redirect()->route('categoriaRepuesto.index');
+        return redirect()->route('categoriaRepuesto.index')->with('success', 'Categoria del Repuesto Actualizada correctamente');
     }
 
     /**
@@ -101,6 +101,6 @@ class CategoriaRepuestoController extends Controller
     {
         $categoriasRepuesto = categoriaRepuesto::findorfail($id);
         $categoriasRepuesto->delete();
-        return redirect()->route('categoriaRepuesto.index');
+        return redirect()->route('categoriaRepuesto.index')->with('success', 'Categoria del Repuesto Eliminada correctamente');
     }
 }

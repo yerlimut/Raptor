@@ -148,7 +148,11 @@ Gestión de Inventarios
                     <td>{{ $inventario->fechaRegistro }}</td>
                     <td>{{ $inventario->estadoGeneral }}</td>
                     <td>{{ $inventario->estadoInventario }}</td>
-                    <td>{{ $inventario->moto->marca->nombreMarca ?? 'Sin marca' }}</td>
+                    <td>
+                        {{ $inventario->moto->marca->nombreMarca ?? 'Sin marca' }}
+                        — {{ $inventario->moto->placa ?? 'Sin placa' }}
+                    </td>
+
 
 
                     <td>

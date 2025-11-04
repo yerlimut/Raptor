@@ -123,11 +123,11 @@ class RepuestoController extends Controller
 
         try {
             $repuestos->delete();
-            return redirect()->route('contenido.index')
-                ->with('success', 'Contenido eliminado correctamente');
+            return redirect()->route('repuesto.index')
+                ->with('success', 'Repuesto eliminado correctamente');
         } catch (\Illuminate\Database\QueryException $e) {
-            return redirect()->route('contenido.index')
-                ->with('error', 'No se puede eliminar este contenido porque tiene visualizaciones asociadas.');
+            return redirect()->route('repuesto.index')
+                ->with('error', 'No se puede eliminar este repuesto porque tiene visualizaciones asociadas.');
         }
     }
 }

@@ -119,10 +119,10 @@ Gestión de Preórdenes
                             @endif
                             @if(request('idRepuesto'))
                             <span class="badge badge-light">Repuesto:
-                                {{ $repuestos->find(request('idRepuesto'))->nombreRepuesto ?? '' }}
+                                {{ $repuestos->find(request('idRepuesto'))->nombre ?? '' }}
                             </span>
                             @endif
-                            <a href="{{ route('preorden.index') }}" class="btn btn-sm btn-outline-secondary ml-2">
+                            <a href="{{ route('Preorden.index') }}" class="btn btn-sm btn-outline-secondary ml-2">
                                 <i class="fas fa-times"></i> Limpiar
                             </a>
                         </div>
