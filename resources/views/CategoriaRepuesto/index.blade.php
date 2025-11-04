@@ -98,7 +98,7 @@
 
 <div class="container">
     <table id="myTable" class="table table-bordered table-hover">
-        <thead class="table-dark">
+        <thead class="table card-header bg-primary text-white">
             <tr>
                 <th>ID</th>
                 <th>Nombre de la Categoría</th>
