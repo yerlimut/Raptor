@@ -12,14 +12,10 @@ Listado de Diagnósticos
 
 @section('content_header')
 
-<h1 class="fw-bold display-6 mb-0">RAPTOR </h1>
 @endsection
 
 @section('content')
-<img src="{{ asset('imagenes/RAPTOR.png') }}"
-    alt="RAPTOR"
-    class="position-fixed rounded-4"
-    style="top: 40px; right: 10px; max-height: 130px; z-index: 1000; background-color: transparent;">
+
 
 
 <div class="container mt-5">
@@ -135,7 +131,7 @@ Listado de Diagnósticos
 
     <div class="container">
         <table id="myTable" class="table table-bordered table-hover">
-            <thead class="table-dark">
+            <thead class="table card-header bg-primary text-white">
                 <tr>
                     <th>ID</th>
                     <th>Descripción</th>
