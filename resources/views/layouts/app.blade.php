@@ -63,16 +63,14 @@
 {{-- Activar DataTables y Select2 --}}
 <script>
     $(document).ready(function() {
-        // Activar DataTable si existe una tabla con id="myTable"
-        if ($('#myTable').length) {
-            $('#myTable').DataTable({
-                responsive: true,
-                autoWidth: true,
-                language: {
-                    url: '//cdn.datatables.net/plug-ins/1.13.8/i18n/es-ES.json'
-                }
-            });
-        }
+        $('#myTable').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json"
+            },
+            "dom": 'rtip' // 👈 esto elimina completamente el "Show entries" y el "Search"
+        });
+
+
 
         // Activar Select2 automáticamente para todos los select[multiple]
         $('select[multiple]').select2({
