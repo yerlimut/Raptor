@@ -72,6 +72,8 @@ Route::post('/inventario/store',[InventarioController::class,'store'])->name('in
 Route::get('/inventario/edit/{id}',[InventarioController::class,'edit'])->name('inventario.edit');
 Route::post('/inventario/update/{id}',[InventarioController::class,'update'])->name('inventario.update');
 Route::post('/inventario/destroy/{id}',[InventarioController::class,'destroy'])->name('inventario.destroy');
+Route::get('/inventario/moto/{idMoto}', [App\Http\Controllers\InventarioController::class, 'porMoto'])->name('inventario.porMoto');
+
 
 // rutas Diagnostico //
 Route::get('/diagnostico/index',[DiagnosticoController::class,'index'])->name('diagnostico.index');
@@ -80,6 +82,8 @@ Route::post('/diagnostico/store',[DiagnosticoController::class,'store'])->name('
 Route::get('/diagnostico/edit/{id}',[DiagnosticoController::class,'edit'])->name('diagnostico.edit');
 Route::post('/diagnostico/update/{id}',[DiagnosticoController::class,'update'])->name('diagnostico.update');
 Route::post('/diagnostico/destroy/{id}',[DiagnosticoController::class,'destroy'])->name('diagnostico.destroy');
+Route::get('/diagnostico/moto/{idMoto}', [DiagnosticoController::class, 'porMoto'])->name('diagnostico.porMoto');
+
 
 // rutas orden trabajo //
 Route::get('/OrdenTrabajo/index',[OrdenTrabajoController::class,'index'])->name('OrdenTrabajo.index');

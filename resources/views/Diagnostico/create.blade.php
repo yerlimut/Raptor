@@ -87,7 +87,7 @@ Crear Diagnóstico
                             <option value="">Seleccione una moto...</option>
                             @foreach($motos as $moto)
                             <option value="{{ $moto->id }}">
-                                {{ $moto->marca->nombreMarca }}
+                            {{ $moto->placa }} - {{ $moto->marca->nombreMarca }}
                             </option>
                             @endforeach
                         </select>

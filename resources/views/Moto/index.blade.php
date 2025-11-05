@@ -30,61 +30,61 @@ Listado de Motos
             <h5 class="card-title mb-0"><i class="fas fa-filter"></i> Filtros de Búsqueda</h5>
         </div>
         <div class="card-body">
-    <form method="GET" action="{{ route('moto.index') }}" class="mb-4">
-        <div class="row g-2">
+            <form method="GET" action="{{ route('moto.index') }}" class="mb-4">
+                <div class="row g-2">
 
-            {{-- Búsqueda general --}}
-            <div class="col-md-3">
-                <input type="text" name="search" class="form-control" placeholder="Buscar por modelo o placa..."
-                    value="{{ request('search') }}">
-            </div>
+                    {{-- Búsqueda general --}}
+                    <div class="col-md-3">
+                        <input type="text" name="search" class="form-control" placeholder="Buscar por modelo o placa..."
+                            value="{{ request('search') }}">
+                    </div>
 
-            {{-- Filtro por cliente --}}
-            <div class="col-md-2">
-                <select name="idCliente" class="form-select">
-                    <option value="">Cliente</option>
-                    @foreach($clientes as $cliente)
-                    <option value="{{ $cliente->id }}" {{ request('idCliente') == $cliente->id ? 'selected' : '' }}>
-                        {{ $cliente->nombre }} {{ $cliente->apellido }}
-                    </option>
-                    @endforeach
-                </select>
-            </div>
+                    {{-- Filtro por cliente --}}
+                    <div class="col-md-2">
+                        <select name="idCliente" class="form-select">
+                            <option value="">Cliente</option>
+                            @foreach($clientes as $cliente)
+                            <option value="{{ $cliente->id }}" {{ request('idCliente') == $cliente->id ? 'selected' : '' }}>
+                                {{ $cliente->nombre }} {{ $cliente->apellido }}
+                            </option>
+                            @endforeach
+                        </select>
+                    </div>
 
-            {{-- Filtro por marca --}}
-            <div class="col-md-2">
-                <select name="idMarca" class="form-select">
-                    <option value="">Marca</option>
-                    @foreach($marcas as $marca)
-                    <option value="{{ $marca->id }}" {{ request('idMarca') == $marca->id ? 'selected' : '' }}>
-                        {{ $marca->nombreMarca }}
-                    </option>
-                    @endforeach
-                </select>
-            </div>
+                    {{-- Filtro por marca --}}
+                    <div class="col-md-2">
+                        <select name="idMarca" class="form-select">
+                            <option value="">Marca</option>
+                            @foreach($marcas as $marca)
+                            <option value="{{ $marca->id }}" {{ request('idMarca') == $marca->id ? 'selected' : '' }}>
+                                {{ $marca->nombreMarca }}
+                            </option>
+                            @endforeach
+                        </select>
+                    </div>
 
-            {{-- Filtro por año --}}
-            <div class="col-md-2">
-                <input type="date" name="año" class="form-control" placeholder="Año"
-                    value="{{ request('año') }}">
-            </div>
+                    {{-- Filtro por año --}}
+                    <div class="col-md-2">
+                        <input type="date" name="año" class="form-control" placeholder="Año"
+                            value="{{ request('año') }}">
+                    </div>
 
-            
 
-            {{-- Botones --}}
-            <div class="col-md-2">
-                <button type="submit" class="btn btn-primary w-100">
-                    <i class="bi bi-search"> Filtrar</i>
-                </button>
-            </div>
-            <div class="col-md-2">
-                <a href="{{ route('moto.index') }}" class="btn btn-secondary w-100">
-                    <i class="bi bi-arrow-counterclockwise"> Limpiar</i>
-                </a>
-            </div>
+
+                    {{-- Botones --}}
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-primary w-100">
+                            <i class="bi bi-search"> Filtrar</i>
+                        </button>
+                    </div>
+                    <div class="col-md-2">
+                        <a href="{{ route('moto.index') }}" class="btn btn-secondary w-100">
+                            <i class="bi bi-arrow-counterclockwise"> Limpiar</i>
+                        </a>
+                    </div>
+                </div>
+            </form>
         </div>
-    </form>
-    </div>
     </div>
 
 
@@ -126,19 +126,34 @@ Listado de Motos
                     <td>{{ $moto->cliente->nombre ?? '---' }}</td>
                     <td>{{ $moto->marca->nombreMarca ?? '---' }}</td>
                     <td>
-                        <div class="d-flex gap-2">
+                        <div class="d-flex flex-wrap gap-2">
+                            {{-- Editar --}}
                             <a href="{{ route('moto.edit', $moto->id) }}" class="btn btn-success btn-sm">
                                 <i class="bi bi-pencil"></i> Editar
                             </a>
+
+                            {{-- Diagnósticos --}}
+                            <a href="{{ route('diagnostico.porMoto', $moto->id) }}" class="btn btn-warning btn-sm">
+                                <i class="bi bi-clipboard-pulse"></i> Diagnósticos
+                            </a>
+
+
+                            {{-- Inventario --}}
+                            <a href="{{ route('inventario.porMoto', $moto->id) }}" class="btn btn-info btn-sm">
+                                <i class="bi bi-box-seam"></i> Inventario
+                            </a>
+
+
+                            {{-- Eliminar --}}
                             <form action="{{ route('moto.destroy', $moto->id) }}" method="POST" style="display:inline;">
                                 @csrf
-                                <button type="submit" class="btn btn-danger btn-sm"
-                                    onclick="confirmarEliminacion(event)">
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="confirmarEliminacion(event)">
                                     <i class="bi bi-trash"></i> Eliminar
                                 </button>
                             </form>
                         </div>
                     </td>
+
                 </tr>
                 @endforeach
             </tbody>

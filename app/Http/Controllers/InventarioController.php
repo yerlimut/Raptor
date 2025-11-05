@@ -129,4 +129,17 @@ class InventarioController extends Controller
                 ->with('error', 'No se puede eliminar este inventario porque tiene visualizaciones asociadas.');
         }
     }
+
+    public function porMoto($idMoto)
+{
+    $moto = \App\Models\Moto::with(['cliente', 'marca'])->findOrFail($idMoto);
+
+    $inventarios = \App\Models\Inventario::where('idMoto', $idMoto)
+        ->orderBy('created_at', 'desc')
+        ->with(['moto'])
+        ->get();
+
+    return view('inventario.index', compact('inventarios', 'moto'));
+}
+
 }

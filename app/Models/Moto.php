@@ -3,35 +3,40 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Moto extends Model
 {
     protected $table = 'motos';
+
     protected $fillable = [
         'modelo',
         'año',
         'placa',
         'idCliente',
         'idMarca'
-
     ];
 
-    public function cliente() {
-        return $this->BelongsTo(Cliente::class,'idCliente');
-
+    // 🔹 Relación con Cliente
+    public function cliente()
+    {
+        return $this->belongsTo(Cliente::class, 'idCliente');
     }
-    public function marca() {
-    return $this->belongsTo(marcaMoto::class, 'idMarca');
+
+    // 🔹 Relación con Marca
+    public function marca()
+    {
+        return $this->belongsTo(MarcaMoto::class, 'idMarca');
+    }
+
+    // 🔹 Relación con Inventario (una moto puede tener varios inventarios)
+    public function inventario()
+    {
+        return $this->hasMany(Inventario::class, 'idMoto');
+    }
+
+    // 🔹 Relación con Diagnóstico (una moto puede tener varios diagnósticos)
+    public function diagnostico()
+    {
+        return $this->hasMany(Diagnostico::class, 'idMoto');
+    }
 }
-
-        public function inventario(){
-            return $this->hasMany(Inventario::class);
-        }
-    public function diagnostico(){
-        return $this->hasMany(Diagnostico::class);
-    }
-        
-    }
-    
-

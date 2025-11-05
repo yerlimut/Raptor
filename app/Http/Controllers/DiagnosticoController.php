@@ -108,4 +108,13 @@ class DiagnosticoController extends Controller
                 ->with('error', 'No se puede eliminar este diagnóstico porque tiene registros asociados.');
         }
     }
+
+    public function porMoto($idMoto)
+{
+    $moto = Moto::findOrFail($idMoto);
+    $diagnosticos = Diagnostico::where('idMoto', $idMoto)->with('moto')->get();
+
+    return view('diagnostico.index', compact('diagnosticos', 'moto'));
+}
+
 }
