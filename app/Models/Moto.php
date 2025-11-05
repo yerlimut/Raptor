@@ -43,6 +43,11 @@ class Moto extends Model
     public function ordenesTrabajo()
 {
     return $this->hasMany(OrdenTrabajo::class, 'idMoto');
+
+}
+public function preordenes()
+{
+    return $this->hasMany(Preorden::class, 'idMoto');
 }
 
 }

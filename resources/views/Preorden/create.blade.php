@@ -40,6 +40,22 @@
                         @endforeach
                     </select>
                 </div>
+                <!-- Filtro por Moto -->
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="idMoto">Moto</label>
+                        <select class="form-control" id="idMoto" name="idMoto">
+                            <option value="">Todas</option>
+                            @foreach($motos as $moto)
+                            <option value="{{ $moto->id }}"
+                                {{ request('idMoto') == $moto->id ? 'selected' : '' }}>
+                                {{ $moto->placa }} — {{ $moto->modelo }}
+                            </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
 
                 <div class="col-12">
                     <label for="descripcion" class="form-label">Descripción</label>

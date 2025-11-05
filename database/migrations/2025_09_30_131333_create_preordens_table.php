@@ -12,12 +12,14 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('idOrden');
             $table->unsignedBigInteger('idMecanico');
+            $table->unsignedBigInteger('idMoto');
             
             $table->string('descripcion')->nullable();
             $table->decimal('saldo',10,2);
         
 
             $table->foreign('idOrden')->references('id')->on('ordenTrabajos');
+            $table->foreign('idMoto')->references('id')->on('motos');
             $table->foreign('idMecanico')->references('id')->on('mecanicos');
             
             $table->timestamps();

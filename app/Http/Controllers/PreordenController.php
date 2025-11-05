@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Preorden;
 use App\Models\OrdenTrabajo;
 use App\Models\Mecanico;
+use App\Models\Moto;
 use App\Models\Repuesto;
 use Illuminate\Http\Request;
 
@@ -52,12 +53,13 @@ class PreordenController extends Controller
         $ordenes = OrdenTrabajo::all();
         $mecanicos = Mecanico::all();
         $repuestos = Repuesto::all();
+        $motos = Moto::all();
 
         // Obtener resultados
         $preorden = $query->paginate(10);
 
         // Retornar vista con variables
-        return view('preorden.index', compact('preorden', 'search', 'idOrden', 'idMecanico', 'idRepuesto', 'ordenes', 'mecanicos', 'repuestos'));
+        return view('preorden.index', compact('preorden', 'search', 'idOrden', 'idMecanico', 'idRepuesto', 'ordenes', 'mecanicos', 'repuestos','motos'));
     }
 
 
@@ -65,11 +67,12 @@ class PreordenController extends Controller
     public function create()
     {
         $ordenes = OrdenTrabajo::all();
+        $motos = Moto::all();
         $mecanicos = Mecanico::all();
         $repuestos = Repuesto::all();
 
 
-        return view('Preorden.create', compact('ordenes', 'mecanicos', 'repuestos'));
+        return view('Preorden.create', compact('ordenes', 'mecanicos', 'repuestos','motos'));
     }
 
     public function store(Request $request)
@@ -105,8 +108,9 @@ class PreordenController extends Controller
         $ordenes = OrdenTrabajo::all();
         $mecanicos = Mecanico::all();
         $repuestos = Repuesto::all();
+        $motos = Moto::all();
 
-        return view('Preorden.edit', compact('preorden', 'ordenes', 'mecanicos', 'repuestos'));
+        return view('Preorden.edit', compact('preorden', 'ordenes', 'mecanicos', 'repuestos','motos'));
     }
 
 

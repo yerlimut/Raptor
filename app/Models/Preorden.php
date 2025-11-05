@@ -15,6 +15,7 @@ class Preorden extends Model
         'idOrden',
         'idMecanico',
         'saldo',
+        'idMoto',
         'descripcion',
     ];
 
@@ -24,6 +25,10 @@ class Preorden extends Model
     public function ordenTrabajo()
     {
         return $this->belongsTo(OrdenTrabajo::class,'idOrden');
+    }
+    public function moto()
+    {
+        return $this->belongsTo(Moto::class, 'idMoto');
     }
 
     /**

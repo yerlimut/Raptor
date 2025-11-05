@@ -153,6 +153,7 @@ Gestión de Preórdenes
                     <th>Orden</th>
                     <th>Mecánico</th>
                     <th>Repuesto</th>
+                    <th>Moto</th>
                     <th>Descripción</th>
                     <th>Saldo</th>
                     <th>Opciones</th>
@@ -174,24 +175,30 @@ Gestión de Preórdenes
                             @endforelse
                         </ul>
                     </td>
-                
+                    <td>
+                        {{ $preorden->ordenTrabajo->moto->placa ?? 'N/A' }}
+                        <br>
+                        <small class="text-muted">{{ $preorden->ordenTrabajo->moto->modelo ?? '' }}</small>
+                    </td>
 
-                        <td>{{ $preorden->descripcion }}</td>
-                        <td>${{ number_format($preorden->saldo, 2) }}</td>
-                        <td>
-                            <div class="d-flex gap-2">
-                                <a href="{{ route('Preorden.edit', $preorden->id) }}" class="btn btn-success btn-sm">
-                                    <i class="bi bi-pencil"></i> Editar
-                                </a>
 
-                                <form action="{{ route('Preorden.destroy', $preorden->id) }}" method="POST" style="display:inline;">
-                                    @csrf
-                                    <button type="submit" class="btn btn-danger btn-sm" onclick="confirmarEliminacion(event)">
-                                        <i class="bi bi-trash"></i> Eliminar
-                                    </button>
-                                </form>
-                            </div>
-                        </td>
+
+                    <td>{{ $preorden->descripcion }}</td>
+                    <td>${{ number_format($preorden->saldo, 2) }}</td>
+                    <td>
+                        <div class="d-flex gap-2">
+                            <a href="{{ route('Preorden.edit', $preorden->id) }}" class="btn btn-success btn-sm">
+                                <i class="bi bi-pencil"></i> Editar
+                            </a>
+
+                            <form action="{{ route('Preorden.destroy', $preorden->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="confirmarEliminacion(event)">
+                                    <i class="bi bi-trash"></i> Eliminar
+                                </button>
+                            </form>
+                        </div>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>
@@ -228,12 +235,12 @@ Gestión de Preórdenes
 
 @section('js')
 <script>
-$(document).ready(function () {
-    $('#myTable').DataTable({
-        language: {
-            url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json'
-        }
+    $(document).ready(function() {
+        $('#myTable').DataTable({
+            language: {
+                url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json'
+            }
+        });
     });
-});
 </script>
 @endsection
