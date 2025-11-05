@@ -106,7 +106,7 @@ class OrdenTrabajoController extends Controller
         ]);
 
         return redirect()->route('OrdenTrabajo.index')
-                         ->with('success', 'Orden de trabajo creada correctamente.');
+            ->with('success', 'Orden de trabajo creada correctamente.');
     }
 
     public function edit($id)
@@ -132,7 +132,7 @@ class OrdenTrabajoController extends Controller
         $ordenes->update($request->all());
 
         return redirect()->route('OrdenTrabajo.index')
-                         ->with('success', 'Orden de trabajo actualizada correctamente.');
+            ->with('success', 'Orden de trabajo actualizada correctamente.');
     }
 
     public function destroy($id)

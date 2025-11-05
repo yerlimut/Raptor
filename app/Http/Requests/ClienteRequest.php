@@ -17,10 +17,10 @@ class ClienteRequest extends FormRequest
             'nombre'            => 'required|string|min:2|max:50|regex:/^[\pL\s]+$/u',
             'apellido'          => 'required|string|min:2|max:50|regex:/^[\pL\s]+$/u',
             'tipoDocumento'     => 'required|in:CC,TI,CE,PA',
-            'numeroDocumento'   => 'required|digits_between:6,12|unique:clientes,numeroDocumento,' ,
+            'numeroDocumento'   => 'required|digits_between:6,12|unique:clientes,numeroDocumento,',
             'telefono'          => 'required|regex:/^[0-9]{7,15}$/',
-            'correoElectronico' => 'required|email:rfc,dns|unique:clientes,correoElectronico,' ,
-            'direccion'         => 'nullable|string|max:150',
+            'correoElectronico' => 'required|email:rfc,dns|unique:clientes,correoElectronico,',
+            'direccion'         => 'required|string|max:150',
         ];
     }
 
@@ -40,7 +40,7 @@ class ClienteRequest extends FormRequest
             'tipoDocumento.required' => 'El tipo de documento es obligatorio.',
             'tipoDocumento.in'       => 'El tipo de documento debe ser CC, TI, CE o PA.',
 
-            'numeroDocumento.required'=> 'El número de documento es obligatorio.',
+            'numeroDocumento.required' => 'El número de documento es obligatorio.',
             'numeroDocumento.digits_between' => 'El documento debe tener entre 6 y 12 dígitos.',
             'numeroDocumento.unique' => 'Este documento ya está registrado.',
 
@@ -51,6 +51,8 @@ class ClienteRequest extends FormRequest
             'correoElectronico.email'    => 'Debe ingresar un correo válido.',
             'correoElectronico.unique'   => 'Este correo ya está registrado.',
 
+
+            'direccion.required' => 'la direccion es obligatorio.',
             'direccion.max'          => 'La dirección no puede superar los 150 caracteres.',
         ];
     }

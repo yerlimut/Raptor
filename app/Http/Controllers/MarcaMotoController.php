@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MarcaMotoRequest;
 use App\Models\marcaMoto;
 use Illuminate\Http\Request;
 
@@ -45,7 +46,7 @@ class MarcaMotoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(MarcaMotoRequest $request)
     {
         marcaMoto::create(
             $request->all()
@@ -73,7 +74,7 @@ class MarcaMotoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(MarcaMotoRequest $request, $id)
     {
         $marcasMoto = marcaMoto::findorfail($id);
         $marcasMoto->update($request->all());

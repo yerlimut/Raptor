@@ -32,7 +32,7 @@
 
             <div class="mb-3">
                 <label for="nombreCategoria" class="form-label">Nombre de la Categoría</label>
-                <select class="form-control @error('nombreCategoria') is-invalid @enderror" id="nombreCategoria" name="nombreCategoria" required>
+                <select class="form-control @error('nombreCategoria') is-invalid @enderror" id="nombreCategoria" name="nombreCategoria">
                     <option value="">-- Seleccione una categoría --</option>
                     <option value="Motor">Motor</option>
                     <option value="Transmisión">Transmisión</option>
