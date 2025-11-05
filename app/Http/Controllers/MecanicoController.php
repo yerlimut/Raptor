@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MecanicoRequest;
 use App\Models\Mecanico;
 use Illuminate\Http\Request;
 
@@ -68,7 +69,7 @@ class MecanicoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(MecanicoRequest $request)
     {
         Mecanico::create(
             $request->all()
@@ -97,7 +98,7 @@ class MecanicoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(MecanicoRequest $request, $id)
     {
         $mecanico = Mecanico::findorfail($id);
         $mecanico->update($request->all());

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MotoRequest;
 use App\Models\Cliente;
 use App\Models\marcaMoto;
 use App\Models\Moto;
@@ -92,7 +93,7 @@ class MotoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(MotoRequest $request)
 {
     // Crear la moto
     Moto::create($request->all());

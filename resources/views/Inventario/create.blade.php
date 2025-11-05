@@ -78,8 +78,7 @@ Crear Inventario
                     <label for="idMoto" class="form-label">Moto</label>
                     <select class="form-control @error('idMoto') is-invalid @enderror"
                         id="idMoto"
-                        name="idMoto"
-                        required>
+                        name="idMoto">
                         <option value="">-- Seleccione una moto --</option>
                         @foreach($motos as $moto)
                         <option value="{{ $moto->id }}">

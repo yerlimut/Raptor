@@ -45,7 +45,7 @@ class InventarioRequest extends FormRequest
             'estadoInventario.in'       => 'El estado de inventario debe ser: En taller, Entregado o Pendiente.',
 
             // Moto
-            'idMoto.required' => 'Debe seleccionar una moto.',
+            'idMoto.required' => 'La moto  es obligatoria.',
             'idMoto.exists'   => 'La moto seleccionada no existe en el sistema.',
         ];
     }

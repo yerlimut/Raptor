@@ -78,7 +78,7 @@ Editar Inventario
                         <option value="">-- Seleccione una moto --</option>
                         @foreach($motos as $moto)
                         <option value="{{ $moto->id }}" {{ $inventarios->idMoto == $moto->id ? 'selected' : '' }}>
-                            {{ $moto->placa }} - {{ $moto->marca }}
+                           {{ $moto->placa }} - {{ $moto->marca->nombreMarca  }}
                         </option>
                         @endforeach
                     </select>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DiagnosticoRequest;
 use App\Models\Diagnostico;
 use App\Models\Moto;
 use Illuminate\Http\Request;
@@ -66,7 +67,7 @@ class DiagnosticoController extends Controller
         return view('Diagnostico.create', compact('motos'));
     }
 
-    public function store(Request $request)
+    public function store(DiagnosticoRequest $request)
     {
         Diagnostico::create(
             $request->all()
@@ -86,7 +87,7 @@ class DiagnosticoController extends Controller
         return view('Diagnostico.edit', compact('diagnosticos', 'motos'));
     }
 
-    public function update(Request $request, $id)
+    public function update(DiagnosticoRequest $request, $id)
     {
         $diagnosticos = Diagnostico::findOrFail($id);
         $diagnosticos->update(

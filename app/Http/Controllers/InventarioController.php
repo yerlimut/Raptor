@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\InventarioRequest;
 use App\Models\Inventario;
 use App\Models\Moto;
 use Illuminate\Http\Request;
@@ -75,7 +76,7 @@ class InventarioController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(InventarioRequest $request)
     {
         Inventario::create(
             $request->all()
@@ -104,7 +105,7 @@ class InventarioController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(InventarioRequest $request, $id)
     {
         $inventarios = Inventario::findorfail($id);
         $inventarios->update(

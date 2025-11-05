@@ -14,11 +14,12 @@ class MotoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'placa'      => 'required|string|regex:/^[A-Z]{3}[0-9]{3}$/|unique:motos,placa,' ,
+            'placa'      => 'required|string|regex:/^[A-Z]{3}[0-9]{3}$/|',
             'modelo'     => 'required|string|max:50',
             'color'      => 'required|string|max:30',
-            'marca_id'   => 'required|exists:marcaMotos,id',
-            'cliente_id' => 'required|exists:clientes,id',
+            'idMarca'   => 'required|exists:marcaMotos,id',
+            'idCliente' => 'required|exists:clientes,id',
+            'año'        => 'required|',
         ];
     }
 
@@ -35,11 +36,14 @@ class MotoRequest extends FormRequest
             'color.required' => 'El color es obligatorio.',
             'color.max'      => 'El color no puede superar 30 caracteres.',
 
-            'marca_id.required'=> 'Debe seleccionar una marca.',
-            'marca_id.exists'  => 'La marca seleccionada no existe.',
+            'idMarca.required'=> 'Debe seleccionar una marca.',
+            'idMarca.exists'  => 'La marca seleccionada no existe.',
 
-            'cliente_id.required'=> 'Debe seleccionar un cliente.',
-            'cliente_id.exists'  => 'El cliente seleccionado no existe.',
+            'idCliente.required'=> 'Debe seleccionar un cliente.',
+            'idCliente.exists'  => 'El cliente seleccionado no existe.',
+
+            'año.required' => 'El año es obligatorio.',
+            'año.date_format' => 'El año debe tener el formato correcto (ej: 2023).',
         ];
     }
 }
