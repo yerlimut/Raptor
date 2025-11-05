@@ -75,6 +75,23 @@ Editar Orden de Trabajo
                     <div class="invalid-feedback d-block">{{ $message }}</div>
                     @enderror
                 </div>
+                {{-- Moto --}}
+                <div class="col-md-6">
+                    <label for="idMoto" class="form-label">Moto</label>
+                    <select class="form-control" id="idMoto" name="idMoto" required>
+                        <option value="">-- Seleccione una moto --</option>
+                        @foreach($motos as $moto)
+                        <option value="{{ $moto->id }}"
+                            {{ $ordenes->idMoto == $moto->id ? 'selected' : '' }}>
+                            {{ $moto->placa }} - {{ $moto->modelo }} ({{ $moto->marca->nombreMarca ?? 'Sin marca' }})
+                        </option>
+                        @endforeach
+                    </select>
+                    @error('idMoto')
+                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                    @enderror
+                </div>
+
             </div>
 
             <div class="mt-4 d-flex gap-2">

@@ -39,4 +39,10 @@ class Moto extends Model
     {
         return $this->hasMany(Diagnostico::class, 'idMoto');
     }
+
+    public function ordenesTrabajo()
+{
+    return $this->hasMany(OrdenTrabajo::class, 'idMoto');
+}
+
 }

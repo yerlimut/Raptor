@@ -10,11 +10,10 @@ use App\Http\Controllers\MotoController;
 use App\Http\Controllers\OrdenTrabajoController;
 use App\Http\Controllers\PreordenController;
 use App\Http\Controllers\RepuestoController;
+use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
+Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 // rutas clientes //
 Route::get('/cliente/index',[ClienteController::class,'index'])->name('cliente.index');
 Route::get('/cliente/create',[ClienteController::class,'create'])->name('cliente.create');

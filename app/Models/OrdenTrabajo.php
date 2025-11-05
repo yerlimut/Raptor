@@ -14,6 +14,7 @@ class OrdenTrabajo extends Model
         'fechaFin',
         'estado',
         'idDiagnostico',
+        'idMoto'
     ];
 
     public function diagnostico()
@@ -24,4 +25,9 @@ class OrdenTrabajo extends Model
     {
         return $this->hasMany(Preorden::class);
     }
+    public function moto()
+{
+    return $this->belongsTo(Moto::class, 'idMoto');
+}
+
 }

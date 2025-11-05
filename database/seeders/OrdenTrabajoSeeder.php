@@ -17,6 +17,7 @@ class OrdenTrabajoSeeder extends Seeder
             'fechaFin' => null,
             'estado' => 'pendiente',
             'idDiagnostico' => 1,
+            'idMoto' => 1, // 👈 agregado
         ]);
 
         OrdenTrabajo::create([
@@ -24,6 +25,7 @@ class OrdenTrabajoSeeder extends Seeder
             'fechaFin' => '2025-10-12',
             'estado' => 'finalizado',
             'idDiagnostico' => 2,
+            'idMoto' => 2, // 👈 agregado
         ]);
 
         OrdenTrabajo::create([
@@ -31,6 +33,7 @@ class OrdenTrabajoSeeder extends Seeder
             'fechaFin' => null,
             'estado' => 'en proceso',
             'idDiagnostico' => 3,
+            'idMoto' => 3, // 👈 agregado
         ]);
 
         OrdenTrabajo::create([
@@ -38,6 +41,7 @@ class OrdenTrabajoSeeder extends Seeder
             'fechaFin' => null,
             'estado' => 'cancelado',
             'idDiagnostico' => 4,
+            'idMoto' => 4, // 👈 agregado
         ]);
 
         OrdenTrabajo::create([
@@ -45,6 +49,7 @@ class OrdenTrabajoSeeder extends Seeder
             'fechaFin' => '2025-10-02',
             'estado' => 'finalizado',
             'idDiagnostico' => 5,
+            'idMoto' => 5, // 👈 agregado
         ]);
     }
 }
