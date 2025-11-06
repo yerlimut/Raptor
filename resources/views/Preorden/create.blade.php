@@ -13,59 +13,83 @@
             <div class="row g-3">
                 <div class="col-md-6">
                     <label for="idOrden" class="form-label">Orden de Trabajo</label>
-                    <select class="form-control" id="idOrden" name="idOrden">
+                    <select class="form-control @error('idOrden') is-invalid @enderror" id="idOrden" name="idOrden">
                         <option value="">-- Seleccione --</option>
                         @foreach($ordenes as $orden)
-                        <option value="{{ $orden->id }}">Orden #{{ $orden->id }}</option>
+                        <option value="{{ $orden->id }}">{{ "Orden #$orden->id" }}</option>
                         @endforeach
                     </select>
+                    @error('idOrden')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="col-md-6">
                     <label for="idMecanico" class="form-label">Mecánico</label>
-                    <select class="form-control" id="idMecanico" name="idMecanico">
+                    <select class="form-control @error('idMecanico') is-invalid @enderror" id="idMecanico" name="idMecanico">
                         <option value="">-- Seleccione --</option>
                         @foreach($mecanicos as $mecanico)
                         <option value="{{ $mecanico->id }}">{{ $mecanico->nombre }}</option>
                         @endforeach
                     </select>
+                    @error('idMecanico')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 {{-- MULTIPLE SELECCIÓN DE REPUESTOS --}}
                 <div class="col-md-12">
                     <label for="idRepuesto" class="form-label">Repuestos</label>
-                    <select class="form-control" id="idRepuesto" name="idRepuesto[]" multiple>
+                    <select class="form-control @error('idRepuesto') is-invalid @enderror @error('idRepuesto.*') is-invalid @enderror"
+                        id="idRepuesto" name="idRepuesto[]" multiple>
                         @foreach($repuestos as $repuesto)
                         <option value="{{ $repuesto->id }}">{{ $repuesto->nombre }}</option>
                         @endforeach
                     </select>
+
+                    {{-- Mostrar errores para cualquier elemento del array --}}
+                    @error('idRepuesto')
+                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                    @enderror
+                    @error('idRepuesto.*')
+                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                    @enderror
+
                 </div>
+
                 <!-- Filtro por Moto -->
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="idMoto">Moto</label>
-                        <select class="form-control" id="idMoto" name="idMoto">
+                        <select class="form-control @error('idMoto') is-invalid @enderror" id="idMoto" name="idMoto">
                             <option value="">Todas</option>
                             @foreach($motos as $moto)
-                            <option value="{{ $moto->id }}"
-                                {{ request('idMoto') == $moto->id ? 'selected' : '' }}>
+                            <option value="{{ $moto->id }}" {{ request('idMoto') == $moto->id ? 'selected' : '' }}>
                                 {{ $moto->placa }} — {{ $moto->modelo }}
                             </option>
                             @endforeach
                         </select>
+                        @error('idMoto')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
 
-
                 <div class="col-12">
                     <label for="descripcion" class="form-label">Descripción</label>
-                    <textarea class="form-control" id="descripcion" name="descripcion" rows="3"></textarea>
+                    <textarea class="form-control @error('descripcion') is-invalid @enderror" id="descripcion" name="descripcion" rows="3"></textarea>
+                    @error('descripcion')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
             </div>
 
             <div class="col-12 mt-3">
                 <label for="saldo" class="form-label">Saldo</label>
-                <input type="number" class="form-control" id="saldo" name="saldo" placeholder="Ingrese el saldo">
+                <input type="number" class="form-control @error('saldo') is-invalid @enderror" id="saldo" name="saldo" placeholder="Ingrese el saldo">
+                @error('saldo')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
 
             <div class="mt-4 d-flex gap-2">
@@ -100,9 +124,7 @@
     /* 🔧 Forzar texto negro dentro de las etiquetas seleccionadas */
     .select2-container--default .select2-selection--multiple .select2-selection__choice {
         color: #000 !important;
-        /* texto negro */
         background-color: #f1f1f1 !important;
-        /* fondo gris claro */
         border: 1px solid #aaa !important;
         border-radius: 6px !important;
         font-weight: 500;
@@ -115,5 +137,4 @@
         margin-right: 4px;
     }
 </style>
-
 @endsection

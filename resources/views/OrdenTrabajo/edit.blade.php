@@ -23,7 +23,7 @@ Editar Orden de Trabajo
                 <div class="col-md-6">
                     <label for="fechaInicio" class="form-label">Fecha de Inicio</label>
                     <input type="date"
-                        class="form-control"
+                        class="form-control @error('fechaInicio') is-invalid @enderror"
                         id="fechaInicio"
                         name="fechaInicio"
                         value="{{ $ordenes->fechaInicio }}">
@@ -36,7 +36,7 @@ Editar Orden de Trabajo
                 <div class="col-md-6">
                     <label for="fechaFin" class="form-label">Fecha de Fin</label>
                     <input type="date"
-                        class="form-control"
+                        class="form-control @error('fechaFin') is-invalid @enderror"
                         id="fechaFin"
                         name="fechaFin"
                         value="{{ $ordenes->fechaFin }}">
@@ -48,7 +48,7 @@ Editar Orden de Trabajo
                 {{-- Estado --}}
                 <div class="col-md-6">
                     <label for="estado" class="form-label">Estado</label>
-                    <select class="form-control" id="estado" name="estado">
+                    <select class="form-control @error('estado') is-invalid @enderror" id="estado" name="estado">
                         <option value="pendiente" {{ $ordenes->estado == 'pendiente' ? 'selected' : '' }}>Pendiente</option>
                         <option value="en proceso" {{ $ordenes->estado == 'en proceso' ? 'selected' : '' }}>En Proceso</option>
                         <option value="finalizado" {{ $ordenes->estado == 'finalizado' ? 'selected' : '' }}>Finalizado</option>
@@ -62,7 +62,7 @@ Editar Orden de Trabajo
                 {{-- Diagnóstico --}}
                 <div class="col-md-6">
                     <label for="idDiagnostico" class="form-label">Diagnóstico</label>
-                    <select class="form-control" id="idDiagnostico" name="idDiagnostico">
+                    <select class="form-control @error('idDiagnostico') is-invalid @enderror" id="idDiagnostico" name="idDiagnostico">
                         <option value="">-- Seleccione --</option>
                         @foreach($diagnosticos as $diagnostico)
                         <option value="{{ $diagnostico->id }}"
@@ -75,10 +75,11 @@ Editar Orden de Trabajo
                     <div class="invalid-feedback d-block">{{ $message }}</div>
                     @enderror
                 </div>
+
                 {{-- Moto --}}
                 <div class="col-md-6">
                     <label for="idMoto" class="form-label">Moto</label>
-                    <select class="form-control" id="idMoto" name="idMoto" required>
+                    <select class="form-control @error('idMoto') is-invalid @enderror" id="idMoto" name="idMoto" >
                         <option value="">-- Seleccione una moto --</option>
                         @foreach($motos as $moto)
                         <option value="{{ $moto->id }}"
