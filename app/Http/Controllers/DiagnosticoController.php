@@ -115,7 +115,7 @@ class DiagnosticoController extends Controller
     $moto = Moto::findOrFail($idMoto);
     $diagnosticos = Diagnostico::where('idMoto', $idMoto)->with('moto')->get();
 
-    return view('diagnostico.index', compact('diagnosticos', 'moto'))->with('success', 'Diagnostico eliminado correctamente');
+    return view('diagnostico.index', compact('diagnosticos', 'moto'));
 }
 
 }
