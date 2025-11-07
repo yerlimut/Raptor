@@ -16,7 +16,7 @@
         <i class="bi bi-plus-circle"></i> Crear Categoría
     </a>
     <!-- 🔽 FILTROS -->
-    <div class="card card-secondary shadow-sm mb-4">
+    <div class="card card-secondary shadow-sm mb-2">
         <div class="card-header bg-primary text-white">
             <h5 class="card-title mb-0"><i class="fas fa-filter"></i> Filtros de Búsqueda</h5>
         </div>
@@ -80,7 +80,7 @@
         </div>
         </form>
     </div>
-</div>
+
 
 @if(session('success'))
 <script>
