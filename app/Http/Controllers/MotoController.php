@@ -85,7 +85,7 @@ class MotoController extends Controller
             $clientes = Cliente::all();
         }
 
-        return view('Moto.create', compact('clientes', 'marcasMotos', 'idCliente'));
+        return view('Moto.create', compact('clientes', 'marcasMotos', 'idCliente'))->with('success', 'Moto creada correctamente.');
     }
 
 
@@ -98,14 +98,10 @@ class MotoController extends Controller
     // Crear la moto
     Moto::create($request->all());
 
-    // Si llega el idCliente, redirigimos al listado filtrado por ese cliente
-    if ($request->filled('idCliente')) {
-        return redirect()->route('moto.index', ['idCliente' => $request->idCliente]);
-    }
-
-    // Si no hay cliente específico, volvemos al listado general
-    return redirect()->route('moto.index');
+    // Redirigir siempre al listado general (sin filtros)
+    return redirect()->route('moto.index')->with('success', 'Moto creada correctamente.');
 }
+
 
 
     /**
@@ -132,7 +128,7 @@ class MotoController extends Controller
         $moto = Moto::findOrFail($id);
         $moto->update($request->all());
 
-        return redirect()->route('moto.index', ['idCliente' => $moto->idCliente]);
+        return redirect()->route('moto.index', ['idCliente' => $moto->idCliente])->with('success', 'Moto actualizada correctamente.');
     }
 
     /**
@@ -146,7 +142,7 @@ class MotoController extends Controller
         $moto->delete();
 
         // 🔹 También redirigimos al índice filtrado
-        return redirect()->route('moto.index', ['idCliente' => $idCliente]);
+        return redirect()->route('moto.index', ['idCliente' => $idCliente])->with('success', 'Moto eliminada correctamente.');
     }
 
     public function ContarMotos(){

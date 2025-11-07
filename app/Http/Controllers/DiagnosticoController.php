@@ -72,7 +72,7 @@ class DiagnosticoController extends Controller
         Diagnostico::create(
             $request->all()
         );
-        return redirect()->route('diagnostico.index');
+        return redirect()->route('diagnostico.index')->with('success', 'Diagnostico creado correctamente');
     }
 
     public function show(Diagnostico $diagnostico)
@@ -93,7 +93,7 @@ class DiagnosticoController extends Controller
         $diagnosticos->update(
             $request->all()
         );
-        return redirect()->route('diagnostico.index');
+        return redirect()->route('diagnostico.index')->with('success', 'Diagnostico actualizado correctamente');
     }
 
     public function destroy($id)
@@ -115,7 +115,7 @@ class DiagnosticoController extends Controller
     $moto = Moto::findOrFail($idMoto);
     $diagnosticos = Diagnostico::where('idMoto', $idMoto)->with('moto')->get();
 
-    return view('diagnostico.index', compact('diagnosticos', 'moto'));
+    return view('diagnostico.index', compact('diagnosticos', 'moto'))->with('success', 'Diagnostico eliminado correctamente');
 }
 
 }

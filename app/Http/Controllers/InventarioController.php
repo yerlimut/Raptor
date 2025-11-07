@@ -140,7 +140,7 @@ class InventarioController extends Controller
         ->with(['moto'])
         ->get();
 
-    return view('inventario.index', compact('inventarios', 'moto'));
+    return view('inventario.index', compact('inventarios', 'moto'))->with('success', 'Inventario eliminado correctamente');
 }
 
 }

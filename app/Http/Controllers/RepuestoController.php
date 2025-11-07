@@ -81,7 +81,7 @@ class RepuestoController extends Controller
         Repuesto::create(
             $request->all()
         );
-        return redirect()->route('repuesto.index');
+        return redirect()->route('repuesto.index')->with('success', 'Repuesto creado correctamente');
     }
 
     /**
@@ -111,7 +111,7 @@ class RepuestoController extends Controller
         $repuesto->update(
             $request->all()
         );
-        return redirect()->route('repuesto.index');
+        return redirect()->route('repuesto.index')->with('success', 'Repuesto actualizado correctamente');
     }
 
     /**
