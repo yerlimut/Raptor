@@ -81,6 +81,7 @@ class PreordenController extends Controller
             $preorden = Preorden::create([
                 'idOrden' => $request->idOrden,
                 'idMecanico' => $request->idMecanico,
+                'idMoto' => $request->idMoto,
                 'descripcion' => $request->descripcion,
                 'saldo' => $request->saldo,
             ]);
@@ -135,17 +136,13 @@ class PreordenController extends Controller
         return redirect()->route('Preorden.index')->with('success', 'Preorden actualizada correctamente.');
     }
 
-    public function destroy($id)
-    {
-        $preorden = Preorden::findOrFail($id);
+   public function destroy($id)
+{
+    $preorden = Preorden::findOrFail($id);
+    $preorden->delete();
 
-        try {
-            $preorden->delete();
-            return redirect()->route('Preorden.index')
-                ->with('success', 'Preorden eliminada correctamente');
-        } catch (\Illuminate\Database\QueryException $e) {
-            return redirect()->route('Preorden.index')
-                ->with('error', 'No se puede eliminar esta preorden porque tiene registros asociados.');
-        }
-    }
+    return redirect()->route('Preorden.index')
+        ->with('success', 'Preorden eliminada correctamente');
+}
+
 }
