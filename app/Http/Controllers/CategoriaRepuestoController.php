@@ -100,7 +100,14 @@ class CategoriaRepuestoController extends Controller
     public function destroy($id)
     {
         $categoriasRepuesto = categoriaRepuesto::findorfail($id);
-        $categoriasRepuesto->delete();
-        return redirect()->route('categoriaRepuesto.index')->with('success', 'Categoria del Repuesto Eliminada correctamente');
+        try{
+            $categoriasRepuesto->delete();
+             return redirect()->route('categoriaRepuesto.index')->with('success', 'Categoria del Repuesto Eliminada correctamente');
+        }catch(\Illuminate\Database\QueryException $e){
+            return redirect()->route('categoriaRepuesto.index')->with('error', 'No se puede eliminar la categoria porque tiene repuestos asociados.');
+        }
+
     }
+
+
 }
