@@ -170,9 +170,17 @@ Gestión de Inventarios
             </tbody>
         </table>
 
-        <a href="{{ route('welcome') }}" class="btn btn-info">
+        <a href="{{ $volver }}" class="btn btn-info">
             <i class="bi bi-arrow-left-circle"></i> Volver
         </a>
+        @if(isset($moto))
+        <h3 class="text-center mt-3">
+            <i class="fas fa-motorcycle"></i> Inventario de la moto:
+            <span class="text-primary">{{ $moto->modelo }} ({{ $moto->placa }})</span>
+        </h3>
+        @endif
+
+
     </div>
 
     <script>

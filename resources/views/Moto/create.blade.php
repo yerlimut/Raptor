@@ -54,23 +54,29 @@ Registrar Moto
 
                 <div class="col-md-6">
                     <label for="idCliente" class="form-label">Cliente</label>
+
                     @if(isset($idCliente) && $idCliente)
                     {{-- Cliente preseleccionado (solo lectura) --}}
                     <input type="hidden" name="idCliente" value="{{ $clientes->first()->id }}">
-                    <input type="text" class="form-control" value="{{ $clientes->first()->nombre }}" readonly>
+                    <input type="text" class="form-control"
+                        value="{{ $clientes->first()->nombre }} {{ $clientes->first()->apellido }}" readonly>
                     @else
                     {{-- Mostrar lista completa si no hay cliente fijo --}}
                     <select name="idCliente" id="idCliente" class="form-control @error('idCliente') is-invalid @enderror">
                         <option value="">Seleccione un cliente</option>
                         @foreach($clientes as $cliente)
-                        <option value="{{ $cliente->id }}">{{ $cliente->nombre }}</option>
+                        <option value="{{ $cliente->id }}">
+                            {{ $cliente->nombre }} {{ $cliente->apellido }}
+                        </option>
                         @endforeach
                     </select>
                     @endif
+
                     @error('idCliente')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
+
 
 
                 {{-- Marca --}}

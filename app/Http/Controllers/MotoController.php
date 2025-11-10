@@ -63,9 +63,25 @@ class MotoController extends Controller
         $marcas = marcaMoto::orderBy('nombreMarca')->get();
         $ContarMotos = $this->ContarMotos();
 
-        // Retornar vista
-        return view('Moto.index', compact('motos', 'clientes', 'marcas', 'search', 'idCliente', 'idMarca', 'año', 'orden','ContarMotos'));
+        // 🔹 NUEVO: determinar a dónde regresar
+    if ($idCliente) {
+        $volver = route('cliente.index'); // si viene desde un cliente
+        $cliente = Cliente::find($idCliente); // opcional: para mostrar el nombre
+    } else {
+        $volver = route('welcome'); // si entra directo al módulo de motos
+        $cliente = null;
     }
+
+    // Retornar vista con variable $volver
+    return view('Moto.index', compact(
+        'motos', 'clientes', 'marcas', 'search',
+        'idCliente', 'idMarca', 'año', 'orden',
+        'ContarMotos', 'volver', 'cliente'
+    ));
+}
+
+        
+
 
 
 

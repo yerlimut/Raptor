@@ -57,10 +57,12 @@ class InventarioController extends Controller
         $query->orderBy($sort, $direction);
 
         // 📄 Paginación
-        $inventarios = $query->paginate(10)->appends($request->query());
+        $inventarios = $query->paginate(10);
+        $volver = route('welcome');
+
 
         // 📤 Retornar vista
-        return view('inventario.index', compact('inventarios'));
+        return view('inventario.index', compact('inventarios','volver'));
     }
 
 
@@ -133,14 +135,17 @@ class InventarioController extends Controller
 
     public function porMoto($idMoto)
 {
-    $moto = \App\Models\Moto::with(['cliente', 'marca'])->findOrFail($idMoto);
+    $moto = Moto::with(['cliente', 'marca'])->findOrFail($idMoto);
 
-    $inventarios = \App\Models\Inventario::where('idMoto', $idMoto)
+    $inventarios = Inventario::where('idMoto', $idMoto)
         ->orderBy('created_at', 'desc')
         ->with(['moto'])
         ->get();
 
-    return view('inventario.index', compact('inventarios', 'moto'));
+    // 🔹 Definir la ruta de regreso (volver a las motos del cliente)
+    $volver = route('moto.index', ['idCliente' => $moto->idCliente]);
+
+    return view('inventario.index', compact('inventarios', 'moto', 'volver'));
 }
 
 }

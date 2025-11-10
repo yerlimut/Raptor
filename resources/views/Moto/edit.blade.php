@@ -64,7 +64,7 @@ Editar Moto
                     <label for="idCliente" class="form-label">Cliente</label>
                     <input type="hidden" name="idCliente" value="{{ $moto->idCliente }}">
                     <input type="text" class="form-control"
-                        value="{{ $clientes->first()->nombre }}" readonly>
+                        value="{{ $clientes->first()->nombre }} {{ $clientes->first()->apellido }}" readonly>
                 </div>
 
 
