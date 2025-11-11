@@ -59,7 +59,7 @@ class PreordenController extends Controller
         $preorden = $query->paginate(10);
 
         // Retornar vista con variables
-        return view('preorden.index', compact('preorden', 'search', 'idOrden', 'idMecanico', 'idRepuesto', 'ordenes', 'mecanicos', 'repuestos','motos'));
+        return view('preorden.index', compact('preorden', 'search', 'idOrden', 'idMecanico', 'idRepuesto', 'ordenes', 'mecanicos', 'repuestos', 'motos'));
     }
 
 
@@ -72,7 +72,7 @@ class PreordenController extends Controller
         $repuestos = Repuesto::all();
 
 
-        return view('Preorden.create', compact('ordenes', 'mecanicos', 'repuestos','motos'));
+        return view('Preorden.create', compact('ordenes', 'mecanicos', 'repuestos', 'motos'));
     }
 
     public function store(Request $request)
@@ -111,7 +111,7 @@ class PreordenController extends Controller
         $repuestos = Repuesto::all();
         $motos = Moto::all();
 
-        return view('Preorden.edit', compact('preorden', 'ordenes', 'mecanicos', 'repuestos','motos'));
+        return view('Preorden.edit', compact('preorden', 'ordenes', 'mecanicos', 'repuestos', 'motos'));
     }
 
 
@@ -136,26 +136,44 @@ class PreordenController extends Controller
         return redirect()->route('Preorden.index')->with('success', 'Preorden actualizada correctamente.');
     }
 
-public function destroy($id)
-{
-    $preorden = Preorden::findOrFail($id);
-    $preorden->delete();
+    public function destroy($id)
+    {
+        $preorden = Preorden::findOrFail($id);
+        $preorden->delete();
 
-    return redirect()->route('Preorden.index')
-        ->with('success', 'Preorden eliminada correctamente');
-}
+        return redirect()->route('Preorden.index')
+            ->with('success', 'Preorden eliminada correctamente');
+    }
 
-public function porOrden($idOrden)
-{
-    $orden = OrdenTrabajo::findOrFail($idOrden);
-    $preordenes = Preorden::where('idOrden', $idOrden)
-        ->with(['orden', 'orden.moto'])
-        ->get();
+    public function porOrden($idOrden)
+    {
+        // ✅ Verificamos que exista la orden
+        $orden = OrdenTrabajo::findOrFail($idOrden);
 
-    $volver = route('OrdenTrabajo.index');
+        // ✅ Obtenemos las preórdenes asociadas
+        $query = Preorden::where('idOrden', $idOrden)
+            ->with(['ordenTrabajo', 'mecanico', 'repuestos']);
 
-    return view('Preorden.index', compact('preordenes', 'orden', 'volver'));
-}
+        // ✅ Colecciones necesarias para filtros
+        $ordenes = OrdenTrabajo::all();
+        $mecanicos = Mecanico::all();
+        $repuestos = Repuesto::all();
+        $motos = Moto::all();
 
+        // ✅ Paginamos igual que en index()
+        $preorden = $query->paginate(10);
 
+        // ✅ Ruta para botón "Volver"
+        $volver = route('OrdenTrabajo.index');
+
+        // ✅ Retornamos la misma vista que index()
+        return view('Preorden.index', compact(
+            'preorden',   // 👈 mismo nombre que usa tu index
+            'ordenes',
+            'mecanicos',
+            'repuestos',
+            'motos',
+            'volver'
+        ));
+    }
 }

@@ -146,12 +146,12 @@ Gestión de Órdenes de Trabajo
                         <span class="badge bg-danger">Cancelado</span>
                         @endif
                     </td>
-                    <td>{{ $orden->diagnostico->descripcion ?? 'Sin diagnóstico' }}</td>
+                    <td>{{ optional($orden->diagnostico)->descripcion ?? 'Sin diagnóstico' }}</td>
                     <td>
-                        {{-- 👇 Mostrar marca y placa de la moto --}}
-                        {{ $orden->moto->marca->nombreMarca ?? 'Sin marca' }} -
-                        {{ $orden->moto->placa ?? 'Sin placa' }}
+                        {{ optional(optional($orden->moto)->marca)->nombreMarca ?? 'Sin marca' }} -
+                        {{ optional($orden->moto)->placa ?? 'Sin placa' }}
                     </td>
+
                     <td>
                         <div class="d-flex gap-2">
                             <a href="{{ route('OrdenTrabajo.edit', $orden->id) }}" class="btn btn-success btn-sm">
