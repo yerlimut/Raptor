@@ -87,7 +87,6 @@ class OrdenTrabajoController extends Controller
 
     public function store(Request $request)
     {
-        // ✅ Validación fuerte
         $request->validate([
             'fechaInicio' => 'required|date',
             'fechaFin' => 'nullable|date|after_or_equal:fechaInicio',
@@ -96,7 +95,6 @@ class OrdenTrabajoController extends Controller
             'idMoto' => 'required|exists:motos,id',
         ]);
 
-        // Crear la orden
         OrdenTrabajo::create([
             'fechaInicio' => $request->fechaInicio,
             'fechaFin' => $request->fechaFin,
@@ -147,5 +145,34 @@ class OrdenTrabajoController extends Controller
             return redirect()->route('OrdenTrabajo.index')
                 ->with('error', 'No se puede eliminar esta orden de trabajo porque tiene registros asociados.');
         }
+    }
+
+    // ✅ Arreglado
+    public function porDiagnostico($idDiagnostico)
+    {
+        $ordenes = OrdenTrabajo::where('idDiagnostico', $idDiagnostico)
+            ->with(['diagnostico', 'moto'])
+            ->orderBy('fechaInicio', 'desc')
+            ->paginate(15);
+
+        $diagnosticos = Diagnostico::all();
+        $motos = Moto::with('marca')->get();
+
+        // 🔄 Para mantener consistencia con index
+        $search = $estado = $fechaInicio = $fechaFin = $rangoInicio = $rangoFin = null;
+        $idDiagnostico = $idDiagnostico;
+
+        return view('OrdenTrabajo.index', compact(
+            'ordenes',
+            'diagnosticos',
+            'motos',
+            'search',
+            'estado',
+            'idDiagnostico',
+            'fechaInicio',
+            'fechaFin',
+            'rangoInicio',
+            'rangoFin'
+        ));
     }
 }

@@ -132,10 +132,6 @@ Listado de Motos
                                 <i class="bi bi-pencil"></i> Editar
                             </a>
 
-                            {{-- Diagnósticos --}}
-                            <a href="{{ route('diagnostico.porMoto', $moto->id) }}" class="btn btn-warning btn-sm">
-                                <i class="bi bi-clipboard-pulse"></i> Diagnósticos
-                            </a>
 
 
                             {{-- Inventario --}}

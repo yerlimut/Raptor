@@ -71,7 +71,7 @@ Route::post('/inventario/store',[InventarioController::class,'store'])->name('in
 Route::get('/inventario/edit/{id}',[InventarioController::class,'edit'])->name('inventario.edit');
 Route::post('/inventario/update/{id}',[InventarioController::class,'update'])->name('inventario.update');
 Route::post('/inventario/destroy/{id}',[InventarioController::class,'destroy'])->name('inventario.destroy');
-Route::get('/inventario/moto/{idMoto}', [App\Http\Controllers\InventarioController::class, 'porMoto'])->name('inventario.porMoto');
+
 
 
 // rutas Diagnostico //
@@ -81,7 +81,7 @@ Route::post('/diagnostico/store',[DiagnosticoController::class,'store'])->name('
 Route::get('/diagnostico/edit/{id}',[DiagnosticoController::class,'edit'])->name('diagnostico.edit');
 Route::post('/diagnostico/update/{id}',[DiagnosticoController::class,'update'])->name('diagnostico.update');
 Route::post('/diagnostico/destroy/{id}',[DiagnosticoController::class,'destroy'])->name('diagnostico.destroy');
-Route::get('/diagnostico/moto/{idMoto}', [DiagnosticoController::class, 'porMoto'])->name('diagnostico.porMoto');
+
 
 
 // rutas orden trabajo //
@@ -100,3 +100,12 @@ Route::post('/Preorden/store',[PreordenController::class,'store'])->name('Preord
 Route::get('/Preorden/edit/{id}',[PreordenController::class,'edit'])->name('Preorden.edit');
 Route::post('/Preorden/update/{id}',[PreordenController::class,'update'])->name('Preorden.update');
 Route::post('/Preorden/destroy/{id}',[PreordenController::class,'destroy'])->name('Preorden.destroy');
+
+
+Route::get('/inventario/porMoto/{idMoto}', [InventarioController::class, 'porMoto'])->name('inventario.porMoto');
+Route::get('/diagnostico/porMoto/{idMoto}', [DiagnosticoController::class, 'porMoto'])->name('diagnostico.porMoto');
+Route::get('/ordenTrabajo/porDiagnostico/{idDiagnostico}', [OrdenTrabajoController::class, 'porDiagnostico'])
+    ->name('ordenTrabajo.porDiagnostico');
+
+Route::get('/Preorden/porMoto/{idMoto}', [PreordenController::class, 'porMoto'])->name('Preorden.porMoto');
+Route::get('/preordenes/porOrden/{idOrden}', [PreordenController::class, 'porOrden']) ->name('Preorden.porOrden');

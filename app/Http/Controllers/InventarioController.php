@@ -13,57 +13,58 @@ class InventarioController extends Controller
      * Display a listing of the resource.
      */
     public function index(Request $request)
-    {
-        // 📥 Parámetros del formulario
-        $search = $request->get('search');
-        $estadoGeneral = $request->get('estadoGeneral');
-        $estadoInventario = $request->get('estadoInventario');
-        $fechaInicio = $request->get('fechaInicio');
-        $fechaFin = $request->get('fechaFin');
-        $sort = $request->get('sort', 'fechaRegistro');
-        $direction = $request->get('direction', 'desc');
+{
+    // 📥 Parámetros del formulario
+    $search = $request->get('search');
+    $estadoGeneral = $request->get('estadoGeneral');
+    $estadoInventario = $request->get('estadoInventario');
+    $fechaInicio = $request->get('fechaInicio');
+    $fechaFin = $request->get('fechaFin');
+    $sort = $request->get('sort', 'fechaRegistro');
+    $direction = $request->get('direction', 'desc');
 
-        // 🔹 Construir consulta
-        $query = \App\Models\Inventario::with('moto');
+    // 🔹 Construir consulta
+    $query = Inventario::with('moto');
 
-        // 🔍 Filtro de búsqueda (por descripción o modelo de la moto)
-        if ($search) {
-            $query->where('descripcion', 'LIKE', "%{$search}%")
-                ->orWhereHas('moto', function ($q) use ($search) {
-                    $q->where('modelo', 'LIKE', "%{$search}%");
-                });
-        }
-
-        // ⚙️ Filtro por estado general
-        if ($estadoGeneral) {
-            $query->where('estadoGeneral', $estadoGeneral);
-        }
-
-        // 🧰 Filtro por estado de inventario
-        if ($estadoInventario) {
-            $query->where('estadoInventario', $estadoInventario);
-        }
-
-        // 📅 Filtro por rango de fechas
-        if ($fechaInicio && $fechaFin) {
-            $query->whereBetween('fechaRegistro', [$fechaInicio, $fechaFin]);
-        } elseif ($fechaInicio) {
-            $query->whereDate('fechaRegistro', '>=', $fechaInicio);
-        } elseif ($fechaFin) {
-            $query->whereDate('fechaRegistro', '<=', $fechaFin);
-        }
-
-        // ↕️ Ordenar resultados
-        $query->orderBy($sort, $direction);
-
-        // 📄 Paginación
-        $inventarios = $query->paginate(10);
-        $volver = route('welcome');
-
-
-        // 📤 Retornar vista
-        return view('inventario.index', compact('inventarios','volver'));
+    // 🔍 Filtro de búsqueda (por descripción o modelo de la moto)
+    if ($search) {
+        $query->where('descripcion', 'LIKE', "%{$search}%")
+            ->orWhereHas('moto', function ($q) use ($search) {
+                $q->where('modelo', 'LIKE', "%{$search}%");
+            });
     }
+
+    // ⚙️ Filtro por estado general
+    if ($estadoGeneral) {
+        $query->where('estadoGeneral', $estadoGeneral);
+    }
+
+    // 🧰 Filtro por estado de inventario
+    if ($estadoInventario) {
+        $query->where('estadoInventario', $estadoInventario);
+    }
+
+    // 📅 Filtro por rango de fechas
+    if ($fechaInicio && $fechaFin) {
+        $query->whereBetween('fechaRegistro', [$fechaInicio, $fechaFin]);
+    } elseif ($fechaInicio) {
+        $query->whereDate('fechaRegistro', '>=', $fechaInicio);
+    } elseif ($fechaFin) {
+        $query->whereDate('fechaRegistro', '<=', $fechaFin);
+    }
+
+    // ↕️ Ordenar resultados
+    $query->orderBy($sort, $direction);
+
+    // 📄 Paginación
+    $inventarios = $query->paginate(10)->appends($request->query());
+
+    // 🔹 Definir ruta de regreso general
+    $volver = route('welcome');
+
+    // 📤 Retornar vista
+    return view('inventario.index', compact('inventarios', 'volver'));
+}
 
 
     /**
@@ -135,15 +136,14 @@ class InventarioController extends Controller
 
     public function porMoto($idMoto)
 {
-    $moto = Moto::with(['cliente', 'marca'])->findOrFail($idMoto);
+    $moto = \App\Models\Moto::with(['cliente', 'marca'])->findOrFail($idMoto);
 
-    $inventarios = Inventario::where('idMoto', $idMoto)
+    $inventarios = \App\Models\Inventario::where('idMoto', $idMoto)
         ->orderBy('created_at', 'desc')
         ->with(['moto'])
         ->get();
 
-    // 🔹 Definir la ruta de regreso (volver a las motos del cliente)
-    $volver = route('moto.index', ['idCliente' => $moto->idCliente]);
+        $volver = route('inventario.index');
 
     return view('inventario.index', compact('inventarios', 'moto', 'volver'));
 }

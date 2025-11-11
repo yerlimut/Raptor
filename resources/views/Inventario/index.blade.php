@@ -157,6 +157,10 @@ Gestión de Inventarios
                                 <i class="bi bi-pencil"></i> Editar
                             </a>
 
+                            <a href="{{ route('diagnostico.porMoto', $inventario->moto->id) }}" class="btn btn-primary btn-sm">
+                                <i class="bi bi-clipboard2-pulse"></i> Ver Diagnósticos
+                            </a>
+
                             <form action="{{ route('inventario.destroy', $inventario->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 <button type="submit" class="btn btn-danger btn-sm" onclick="confirmarEliminacion(event)">
@@ -165,21 +169,17 @@ Gestión de Inventarios
                             </form>
                         </div>
                     </td>
+
                 </tr>
                 @endforeach
             </tbody>
         </table>
+        <div>
+            <a href="{{ $volver }}" class="btn btn-info">
+                <i class="bi bi-arrow-left-circle"></i> Volver
+            </a>
 
-        <a href="{{ $volver }}" class="btn btn-info">
-            <i class="bi bi-arrow-left-circle"></i> Volver
-        </a>
-        @if(isset($moto))
-        <h3 class="text-center mt-3">
-            <i class="fas fa-motorcycle"></i> Inventario de la moto:
-            <span class="text-primary">{{ $moto->modelo }} ({{ $moto->placa }})</span>
-        </h3>
-        @endif
-
+        </div>
 
     </div>
 

@@ -55,9 +55,13 @@ class DiagnosticoController extends Controller
 
         // 📄 Paginación
         $diagnosticos = $query->paginate(10)->appends($request->query());
+        
+    
+
+    
 
         // 📤 Retornar vista
-        return view('diagnostico.index', compact('diagnosticos'));
+        return view('diagnostico.index', compact('diagnosticos',));
     }
 
 
@@ -110,10 +114,14 @@ class DiagnosticoController extends Controller
         }
     }
 
-    public function porMoto($idMoto)
+public function porMoto($idMoto)
 {
-    $moto = Moto::findOrFail($idMoto);
-    $diagnosticos = Diagnostico::where('idMoto', $idMoto)->with('moto')->get();
+    $moto = \App\Models\Moto::with(['cliente', 'marca'])->findOrFail($idMoto);
+
+    $diagnosticos = \App\Models\Diagnostico::where('idMoto', $idMoto)
+        ->orderBy('created_at', 'desc')
+        ->with(['moto'])
+        ->get();
 
     return view('diagnostico.index', compact('diagnosticos', 'moto'));
 }

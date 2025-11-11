@@ -136,7 +136,7 @@ class PreordenController extends Controller
         return redirect()->route('Preorden.index')->with('success', 'Preorden actualizada correctamente.');
     }
 
-   public function destroy($id)
+public function destroy($id)
 {
     $preorden = Preorden::findOrFail($id);
     $preorden->delete();
@@ -144,5 +144,18 @@ class PreordenController extends Controller
     return redirect()->route('Preorden.index')
         ->with('success', 'Preorden eliminada correctamente');
 }
+
+public function porOrden($idOrden)
+{
+    $orden = OrdenTrabajo::findOrFail($idOrden);
+    $preordenes = Preorden::where('idOrden', $idOrden)
+        ->with(['orden', 'orden.moto'])
+        ->get();
+
+    $volver = route('OrdenTrabajo.index');
+
+    return view('Preorden.index', compact('preordenes', 'orden', 'volver'));
+}
+
 
 }

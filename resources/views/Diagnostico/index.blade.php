@@ -6,7 +6,6 @@ Listado de Diagnósticos
 
 @section('content_header')
 
-<h1 class="fw-bold display-6 mb-0">RAPTOR </h1>
 @endsection
 
 
@@ -161,6 +160,11 @@ Listado de Diagnósticos
                             <a href="{{ route('diagnostico.edit', $diagnostico->id) }}" class="btn btn-success btn-sm">
                                 <i class="bi bi-pencil"></i> Editar
                             </a>
+
+                            <a href="{{ route('ordenTrabajo.porDiagnostico', $diagnostico->id) }}" class="btn btn-primary btn-sm">
+                                <i class="bi bi-tools">Ver Órdenes de Trabajo</i> 
+                            </a>
+
                             <form action="{{ route('diagnostico.destroy', $diagnostico->id) }}" method="POST" style="display:inline;">
                                 @csrf
 
@@ -180,6 +184,8 @@ Listado de Diagnósticos
             <i class="bi bi-arrow-left-circle"></i> Volver
         </a>
     </div>
+    </div>
+
 
     <script>
         function confirmarEliminacion(event) {
@@ -202,5 +208,5 @@ Listado de Diagnósticos
             });
         }
     </script>
-</div>
+
 @endsection
