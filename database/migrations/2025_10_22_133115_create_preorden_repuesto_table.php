@@ -16,8 +16,8 @@ return new class extends Migration
             $table->decimal('subtotal', 10, 2)->default(0);
             $table->timestamps();
 
-            $table->foreign('preorden_id')->references('id')->on('preordenes')->onDelete('cascade');
-            $table->foreign('repuesto_id')->references('id')->on('repuestos')->onDelete('cascade');
+            $table->foreign('preorden_id')->references('id')->on('preordenes');
+            $table->foreign('repuesto_id')->references('id')->on('repuestos');
         });
     }
 
