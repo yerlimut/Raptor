@@ -208,5 +208,5 @@ Gestión de Órdenes de Trabajo
         });
     }
 </script>
-</div>
+
 @endsection
