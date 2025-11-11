@@ -44,17 +44,16 @@ class MecanicoController extends Controller
         // Filtro por especialidad
         if ($especialidad) {
             $query->where('especialidad', $especialidad);
-            
         }
 
-        
+
 
         // Obtener resultados paginados
         $mecanicos = $query->paginate(10);
         $especialidades = Mecanico::select('especialidad')->distinct()->get();
 
 
-        return view('Mecanico.index', compact('mecanicos', 'search', 'tipoDocumento', 'especialidad', 'orden', 'especialidades','numeroDocumento'));
+        return view('Mecanico.index', compact('mecanicos', 'search', 'tipoDocumento', 'especialidad', 'orden', 'especialidades', 'numeroDocumento'));
     }
 
 
@@ -112,7 +111,11 @@ class MecanicoController extends Controller
     public function destroy($id)
     {
         $mecanico = Mecanico::findorfail($id);
-        $mecanico->delete();
-        return redirect()->route('mecanico.index')->with('success', 'Mecanico Eliminado correctamente');
+        try {
+            $mecanico->delete();
+            return redirect()->route('mecanico.index')->with('success', 'Mecanico Eliminado correctamente');
+        } catch (\Illuminate\Database\QueryException $e) {
+            return redirect()->route('mecanico.index')->with('error', ' No se puede eliminar el Mecanico porque tiene registros asaciados.');
+        }
     }
 }

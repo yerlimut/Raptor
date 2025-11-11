@@ -154,11 +154,15 @@ class MotoController extends Controller
     {
         $moto = Moto::findOrFail($id);
         $idCliente = $moto->idCliente;
-
+         try{
         $moto->delete();
 
         // 🔹 También redirigimos al índice filtrado
         return redirect()->route('moto.index', ['idCliente' => $idCliente])->with('success', 'Moto eliminada correctamente.');
+        }catch(\Illuminate\Database\QueryException $e){
+            return redirect()->route('moto.index')->with('error', 'No se puede eliminar la moto porque tiene inventarios  asociados.');
+        }
+        
     }
 
     public function ContarMotos(){

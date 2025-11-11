@@ -107,6 +107,21 @@ Gestión de Mecánicos
     </script>
     @endif
 
+    
+    @if(session('error'))
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                icon: 'error',
+                title: '¡Atención!',
+                text: "{{ session('error') }}",
+                confirmButtonText: 'Aceptar',
+            });
+        });
+    </script>
+    @endif
+
+
     <div class="container">
 
         <table id="myTable" class="table table-bordered table-hover w-75 mx-auto small align-middle" >

@@ -128,6 +128,20 @@ Listado de Diagnósticos
     </script>
     @endif
 
+    
+    @if(session('error'))
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                icon: 'error',
+                title: '¡Atención!',
+                text: "{{ session('error') }}",
+                confirmButtonText: 'Aceptar',
+            });
+        });
+    </script>
+    @endif
+
     <div class="container">
         <table id="myTable" class="table table-bordered table-hover">
             <thead class="table card-header bg-primary text-white">

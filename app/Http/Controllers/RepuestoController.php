@@ -127,7 +127,7 @@ class RepuestoController extends Controller
                 ->with('success', 'Repuesto eliminado correctamente');
         } catch (\Illuminate\Database\QueryException $e) {
             return redirect()->route('repuesto.index')
-                ->with('error', 'No se puede eliminar este repuesto porque tiene visualizaciones asociadas.');
+                ->with('error', 'No se puede eliminar este repuesto porque tiene registros asociados.');
         }
     }
 }
