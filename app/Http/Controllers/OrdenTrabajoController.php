@@ -56,13 +56,15 @@ class OrdenTrabajoController extends Controller
             $query->whereBetween('fechaInicio', [$rangoInicio, $rangoFin]);
         }
 
-        // Orden
+        // Ordenar
         $query->orderBy('fechaInicio', 'desc');
 
-        // Datos a la vista
+        // Datos para vista
         $ordenes = $query->paginate(15);
         $diagnosticos = Diagnostico::all();
         $motos = Moto::with('marca')->get();
+
+        
 
         return view('OrdenTrabajo.index', compact(
             'ordenes',
@@ -75,6 +77,7 @@ class OrdenTrabajoController extends Controller
             'fechaFin',
             'rangoInicio',
             'rangoFin'
+            
         ));
     }
 
@@ -147,20 +150,29 @@ class OrdenTrabajoController extends Controller
         }
     }
 
-    // ✅ Arreglado
+    // ✅ Método corregido sin errores
     public function porDiagnostico($idDiagnostico)
     {
+        // Se obtiene el diagnóstico con su moto asociada
+        $diagnostico = Diagnostico::with('moto')->findOrFail($idDiagnostico);
+
+        // Se cargan las órdenes asociadas
         $ordenes = OrdenTrabajo::where('idDiagnostico', $idDiagnostico)
             ->with(['diagnostico', 'moto'])
             ->orderBy('fechaInicio', 'desc')
             ->paginate(15);
 
+        // Listas auxiliares
         $diagnosticos = Diagnostico::all();
         $motos = Moto::with('marca')->get();
 
-        // 🔄 Para mantener consistencia con index
+        // Variables vacías para la vista
         $search = $estado = $fechaInicio = $fechaFin = $rangoInicio = $rangoFin = null;
-        $idDiagnostico = $idDiagnostico;
+
+        // ✅ Ruta de retorno segura
+        $volver = $diagnostico->moto
+            ? route('diagnostico.porMoto', ['idMoto' => $diagnostico->moto->id])
+            : route('OrdenTrabajo.index');
 
         return view('OrdenTrabajo.index', compact(
             'ordenes',
@@ -172,7 +184,8 @@ class OrdenTrabajoController extends Controller
             'fechaInicio',
             'fechaFin',
             'rangoInicio',
-            'rangoFin'
+            'rangoFin',
+            'volver'
         ));
     }
 }

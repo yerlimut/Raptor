@@ -57,6 +57,7 @@ class PreordenController extends Controller
 
         // Obtener resultados
         $preorden = $query->paginate(10);
+        
 
         // Retornar vista con variables
         return view('preorden.index', compact('preorden', 'search', 'idOrden', 'idMecanico', 'idRepuesto', 'ordenes', 'mecanicos', 'repuestos', 'motos'));

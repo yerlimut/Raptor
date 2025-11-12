@@ -116,7 +116,7 @@ Gestión de Órdenes de Trabajo
     </script>
     @endif
 
-    
+
     @if(session('error'))
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -190,10 +190,17 @@ Gestión de Órdenes de Trabajo
                 @endforeach
             </tbody>
         </table>
-
-        <a href="{{ route('welcome') }}" class="btn btn-info">
+        <div>
+        @if(isset($volver))
+        <a href="{{ $volver }}" class="btn btn-info mt-3">
+            <i class="bi bi-arrow-left-circle"></i> Volver a los Diagnósticos
+        </a>
+        @else
+        <a href="{{ route('welcome') }}" class="btn btn-secondary mt-3">
             <i class="bi bi-arrow-left-circle"></i> Volver
         </a>
+        @endif
+        </div>
     </div>
 
 </div>
