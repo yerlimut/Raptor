@@ -55,13 +55,13 @@ class DiagnosticoController extends Controller
 
         // 📄 Paginación
         $diagnosticos = $query->paginate(10)->appends($request->query());
-        
+        $volver = route('welcome');
     
 
     
 
         // 📤 Retornar vista
-        return view('diagnostico.index', compact('diagnosticos',));
+        return view('diagnostico.index', compact('diagnosticos','volver'));
     }
 
 
@@ -123,7 +123,9 @@ public function porMoto($idMoto)
         ->with(['moto'])
         ->get();
 
-    return view('diagnostico.index', compact('diagnosticos', 'moto'));
+        $volver = route('inventario.porMoto', ['idMoto' => $moto->id]);
+
+    return view('diagnostico.index', compact('diagnosticos', 'moto','volver'));
 }
 
 }

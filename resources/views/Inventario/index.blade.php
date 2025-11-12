@@ -180,7 +180,7 @@ Gestión de Inventarios
                 <i class="bi bi-arrow-left-circle"></i> Volver a la Moto
             </a>
             @else
-            <a href="{{ route('inventario.index') }}" class="btn btn-secondary">
+            <a href="{{ route('welcome') }}" class="btn btn-secondary">
                 <i class="bi bi-arrow-left-circle"></i> Volver
             </a>
             @endif

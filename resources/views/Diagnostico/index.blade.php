@@ -128,7 +128,7 @@ Listado de Diagnósticos
     </script>
     @endif
 
-    
+
     @if(session('error'))
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -176,7 +176,7 @@ Listado de Diagnósticos
                             </a>
 
                             <a href="{{ route('ordenTrabajo.porDiagnostico', $diagnostico->id) }}" class="btn btn-primary btn-sm">
-                                <i class="bi bi-tools">Ver Órdenes de Trabajo</i> 
+                                <i class="bi bi-tools">Ver Órdenes de Trabajo</i>
                             </a>
 
                             <form action="{{ route('diagnostico.destroy', $diagnostico->id) }}" method="POST" style="display:inline;">
@@ -194,33 +194,44 @@ Listado de Diagnósticos
             </tbody>
         </table>
 
-        <a href="{{ route('welcome') }}" class="btn btn-info">
-            <i class="bi bi-arrow-left-circle"></i> Volver
-        </a>
+        <div>
+            @if(isset($moto))
+            <a href="{{ route('inventario.porMoto', ['idMoto' => $moto->id]) }}" class="btn btn-info">
+                <i class="bi bi-arrow-left-circle"></i> Volver al Inventario
+            </a>
+            @else
+            <a href="{{ route('inventario.index') }}" class="btn btn-secondary">
+                <i class="bi bi-arrow-left-circle"></i> Volver
+            </a>
+            @endif
+
+        </div>
+
+
     </div>
-    </div>
+</div>
 
 
-    <script>
-        function confirmarEliminacion(event) {
-            event.preventDefault();
-            const form = event.target.closest('form');
+<script>
+    function confirmarEliminacion(event) {
+        event.preventDefault();
+        const form = event.target.closest('form');
 
-            Swal.fire({
-                title: '¿Estás seguro?',
-                text: "¡No podrás revertir esto!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Sí, eliminar',
-                cancelButtonText: 'Cancelar'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    form.submit();
-                }
-            });
-        }
-    </script>
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "¡No podrás revertir esto!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                form.submit();
+            }
+        });
+    }
+</script>
 
 @endsection
