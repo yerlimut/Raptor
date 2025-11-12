@@ -111,12 +111,15 @@ class MotoController extends Controller
      */
     public function store(MotoRequest $request)
 {
-    // Crear la moto
-    Moto::create($request->all());
+    // Crear la moto y guardarla en la variable
+    $moto = Moto::create($request->all());
 
-    // Redirigir siempre al listado general (sin filtros)
-    return redirect()->route('moto.index')->with('success', 'Moto creada correctamente.');
+    // Redirigir al listado filtrado por el cliente dueño de la moto
+    return redirect()
+        ->route('moto.index', ['idCliente' => $moto->idCliente])
+        ->with('success', 'Moto creada correctamente.');
 }
+
 
 
 

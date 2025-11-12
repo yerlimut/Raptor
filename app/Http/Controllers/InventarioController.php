@@ -57,7 +57,7 @@ class InventarioController extends Controller
     $query->orderBy($sort, $direction);
 
     // 📄 Paginación
-    $inventarios = $query->paginate(10)->appends($request->query());
+    $inventarios = $query->paginate(10);
 
     // 🔹 Definir ruta de regreso general
     $volver = route('welcome');

@@ -175,9 +175,15 @@ Gestión de Inventarios
             </tbody>
         </table>
         <div>
-            <a href="{{ $volver }}" class="btn btn-info">
+            @if(isset($moto))
+            <a href="{{ route('moto.index', ['idCliente' => $moto->idCliente]) }}" class="btn btn-info">
+                <i class="bi bi-arrow-left-circle"></i> Volver a la Moto
+            </a>
+            @else
+            <a href="{{ route('inventario.index') }}" class="btn btn-secondary">
                 <i class="bi bi-arrow-left-circle"></i> Volver
             </a>
+            @endif
 
         </div>
 
