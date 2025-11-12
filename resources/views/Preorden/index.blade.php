@@ -204,9 +204,19 @@ Gestión de Preórdenes
             </tbody>
         </table>
 
-        <a href="{{ route('welcome') }}" class="btn btn-info">
-            <i class="bi bi-arrow-left-circle"></i> Volver
-        </a>
+        <div>
+            @if(isset($volver))
+            <a href="{{ $volver }}" class="btn btn-info mt-3">
+                <i class="bi bi-arrow-left-circle"></i> Volver a la Orden de Trabajo
+            </a>
+            @else
+            <a href="{{ route('welcome') }}" class="btn btn-secondary mt-3">
+                <i class="bi bi-arrow-left-circle"></i> Volver
+            </a>
+            @endif
+        </div>
+
+
     </div>
 
     <script>

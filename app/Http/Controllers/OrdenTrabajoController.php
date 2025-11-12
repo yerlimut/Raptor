@@ -84,7 +84,7 @@ class OrdenTrabajoController extends Controller
     public function create()
     {
         $diagnosticos = Diagnostico::all();
-        $motos = Moto::with('marca')->get();
+        $motos = Moto::with('marca')->get();  
         return view('OrdenTrabajo.create', compact('diagnosticos', 'motos'));
     }
 
