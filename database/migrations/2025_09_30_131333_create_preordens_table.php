@@ -15,6 +15,7 @@ return new class extends Migration
             $table->unsignedBigInteger('idMoto');
             
             $table->string('descripcion')->nullable();
+            $table->decimal('mano_obra', 10, 2)->default(0);
             $table->decimal('saldo',10,2);
         
 

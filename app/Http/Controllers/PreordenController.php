@@ -8,6 +8,7 @@ use App\Models\Mecanico;
 use App\Models\Moto;
 use App\Models\Repuesto;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class PreordenController extends Controller
 {
@@ -76,25 +77,33 @@ class PreordenController extends Controller
     }
 
     public function store(Request $request)
-    { {
-            // Crear la preorden
-            $preorden = Preorden::create([
-                'idOrden' => $request->idOrden,
-                'idMecanico' => $request->idMecanico,
-                'idMoto' => $request->idMoto,
-                'descripcion' => $request->descripcion,
-                'saldo' => $request->saldo,
-            ]);
+{
+    $request->validate([
+        'idOrden' => 'required',
+        'idMecanico' => 'required',
+        'idRepuesto' => 'required|array|min:1',
+        'idMoto' => 'required',
+        'descripcion' => 'nullable|string',
+        'mano_obra' => 'nullable|numeric|min:0',
+        'saldo' => 'required|numeric|min:0',
+    ]);
 
-            // Asociar los repuestos seleccionados (varios)
-            $preorden->repuestos()->attach($request->idRepuesto);
+    $preorden = Preorden::create([
+        'idOrden' => $request->idOrden,
+        'idMecanico' => $request->idMecanico,
+        'idMoto' => $request->idMoto,
+        'descripcion' => $request->descripcion,
+        'mano_obra' => $request->mano_obra,
+        'saldo' => $request->saldo,
+    ]);
 
-            return redirect()->route('Preorden.index')
-                ->with('success', 'Preorden creada correctamente con varios repuestos.');
-        }
+    // Guardar los repuestos relacionados
+    $preorden->repuestos()->attach($request->idRepuesto);
 
-        return redirect()->route('Preorden.index');
-    }
+    return redirect()->route('Preorden.index')
+        ->with('success', 'Preorden creada correctamente');
+}
+
 
     public function show(Preorden $preorden)
     {
@@ -176,4 +185,22 @@ class PreordenController extends Controller
             'volver'
         ));
     }
+    // 🧾 Mostrar PDF en el navegador
+public function verPDF($id)
+{
+    $preorden = Preorden::with(['ordenTrabajo', 'mecanico', 'repuestos', 'moto'])->findOrFail($id);
+
+    $pdf = Pdf::loadView('Preorden.pdf', compact('preorden'));
+    return $pdf->stream('preorden_'.$preorden->id.'.pdf');
+}
+
+// 💾 Descargar PDF directamente
+public function descargarPDF($id)
+{
+    $preorden = Preorden::with(['ordenTrabajo', 'mecanico', 'repuestos', 'moto'])->findOrFail($id);
+
+    $pdf = Pdf::loadView('Preorden.pdf', compact('preorden'));
+    return $pdf->download('preorden_'.$preorden->id.'.pdf');
+}
+
 }

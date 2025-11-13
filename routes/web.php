@@ -109,3 +109,9 @@ Route::get('/ordenTrabajo/porDiagnostico/{idDiagnostico}', [OrdenTrabajoControll
 
 Route::get('/Preorden/porMoto/{idMoto}', [PreordenController::class, 'porMoto'])->name('Preorden.porMoto');
 Route::get('/preordenes/porOrden/{idOrden}', [PreordenController::class, 'porOrden']) ->name('Preorden.porOrden');
+
+
+
+Route::get('/Preorden/verPDF/{id}', [PreordenController::class, 'verPDF'])->name('Preorden.verPDF');
+Route::get('/Preorden/descargarPDF/{id}', [PreordenController::class, 'descargarPDF'])->name('Preorden.descargarPDF');
+

@@ -5,12 +5,9 @@ Gestión de Preórdenes
 @endsection
 
 @section('content_header')
-
-
 @endsection
+
 @section('content')
-
-
 
 <div class="container mt-5">
     <h1 class="text-center"><i class="bi bi-list-task"></i> Gestión de Preórdenes</h1>
@@ -130,7 +127,6 @@ Gestión de Preórdenes
         </div>
     </div>
 
-
     @if(session('success'))
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -155,48 +151,56 @@ Gestión de Preórdenes
                     <th>Repuesto</th>
                     <th>Moto</th>
                     <th>Descripción</th>
+                    <th>Mano de Obra</th>
                     <th>Saldo</th>
+                    <th>Total</th>
                     <th>Opciones</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($preorden as $preorden)
+                @foreach($preorden as $pre)
                 <tr>
-                    <td>{{ $preorden->id }}</td>
-                    <td>Orden #{{ $preorden->ordenTrabajo ?->id ?? 'N/A' }}</td>
-                    <td>{{ $preorden->mecanico->nombre ?? 'N/A' }}</td>
+                    <td>{{ $pre->id }}</td>
+                    <td>Orden #{{ $pre->ordenTrabajo?->id ?? 'N/A' }}</td>
+                    <td>{{ $pre->mecanico->nombre ?? 'N/A' }}</td>
                     <td>
-
                         <ul class="mb-0">
-                            @forelse($preorden->repuestos as $rep)
-                            <li>{{ $rep->nombre }}</li>
+                            @forelse($pre->repuestos as $rep)
+                                <li>{{ $rep->nombre }}</li>
                             @empty
-                            <li>N/A</li>
+                                <li>N/A</li>
                             @endforelse
                         </ul>
                     </td>
                     <td>
-                        {{ $preorden->ordenTrabajo->moto->placa ?? 'N/A' }}
-                        <br>
-                        <small class="text-muted">{{ $preorden->ordenTrabajo->moto->modelo ?? '' }}</small>
+                        {{ $pre->ordenTrabajo->moto->placa ?? 'N/A' }}<br>
+                        <small class="text-muted">{{ $pre->ordenTrabajo->moto->modelo ?? '' }}</small>
                     </td>
+                    <td>{{ $pre->descripcion }}</td>
+                    <td>${{ number_format($pre->mano_obra, 2) }}</td>
+                    <td>${{ number_format($pre->saldo, 2) }}</td>
+                    <td><strong>${{ number_format($pre->saldo + $pre->mano_obra, 2) }}</strong></td>
 
-
-
-                    <td>{{ $preorden->descripcion }}</td>
-                    <td>${{ number_format($preorden->saldo, 2) }}</td>
                     <td>
-                        <div class="d-flex gap-2">
-                            <a href="{{ route('Preorden.edit', $preorden->id) }}" class="btn btn-success btn-sm">
+                        <div class="d-flex flex-wrap gap-2">
+                            <a href="{{ route('Preorden.edit', $pre->id) }}" class="btn btn-success btn-sm">
                                 <i class="bi bi-pencil"></i> Editar
                             </a>
 
-                            <form action="{{ route('Preorden.destroy', $preorden->id) }}" method="POST" style="display:inline;">
+                            <form action="{{ route('Preorden.destroy', $pre->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 <button type="submit" class="btn btn-danger btn-sm" onclick="confirmarEliminacion(event)">
                                     <i class="bi bi-trash"></i> Eliminar
                                 </button>
                             </form>
+
+                            <a href="{{ route('Preorden.verPDF', $pre->id) }}" class="btn btn-info btn-sm" target="_blank">
+                                <i class="bi bi-eye"></i> Ver PDF
+                            </a>
+
+                            <a href="{{ route('Preorden.descargarPDF', $pre->id) }}" class="btn btn-danger btn-sm">
+                                <i class="bi bi-download"></i> Descargar PDF
+                            </a>
                         </div>
                     </td>
                 </tr>
@@ -208,29 +212,29 @@ Gestión de Preórdenes
             <i class="bi bi-arrow-left-circle"></i> Volver
         </a>
     </div>
-
-    <script>
-        function confirmarEliminacion(event) {
-            event.preventDefault();
-            const form = event.target.closest('form');
-
-            Swal.fire({
-                title: '¿Estás seguro?',
-                text: "¡No podrás revertir esto!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Sí, eliminar',
-                cancelButtonText: 'Cancelar'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    form.submit();
-                }
-            });
-        }
-    </script>
 </div>
+
+<script>
+    function confirmarEliminacion(event) {
+        event.preventDefault();
+        const form = event.target.closest('form');
+
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "¡No podrás revertir esto!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                form.submit();
+            }
+        });
+    }
+</script>
 @endsection
 
 @section('js')
@@ -244,5 +248,4 @@ Gestión de Preórdenes
     });
 </script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
 @endsection

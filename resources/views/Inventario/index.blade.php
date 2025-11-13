@@ -157,7 +157,7 @@ Gestión de Inventarios
                                 <i class="bi bi-pencil"></i> Editar
                             </a>
 
-                            <a href="{{ route('diagnostico.porMoto', $inventario->moto->id) }}" class="btn btn-primary btn-sm">
+                            <a href="{{ route('diagnostico.porMoto', $inventario->moto->id) }}" class="btn btn-primary btn-sm"  style="font-size: 11px; padding: 2px 6px";>
                                 <i class="bi bi-clipboard2-pulse"></i> Ver Diagnósticos
                             </a>
 

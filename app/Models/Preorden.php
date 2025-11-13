@@ -17,6 +17,7 @@ class Preorden extends Model
         'saldo',
         'idMoto',
         'descripcion',
+        'mano_obra'
     ];
 
     /**
