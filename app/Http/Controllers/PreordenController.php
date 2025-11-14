@@ -10,6 +10,7 @@ use App\Models\Repuesto;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 
+
 class PreordenController extends Controller
 {
     public function index(Request $request)

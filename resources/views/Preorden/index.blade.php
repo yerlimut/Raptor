@@ -9,6 +9,31 @@ Gestión de Preórdenes
 
 @section('content')
 
+<style>
+    /* Ancho fijo para que DataTables no aplaste los botones */
+    .col-opciones {
+        min-width: 240px !important;
+        white-space: nowrap;
+    }
+
+    /* Separación correcta entre botones */
+    .btn-acciones {
+        margin-right: 6px;
+        /* espacio entre botones */
+    }
+
+    .opciones-vertical {
+        display: flex;
+        flex-direction: column;
+        /* botones uno debajo del otro */
+        gap: 6px;
+        /* separación entre botones */
+    }
+</style>
+
+
+
+
 <div class="container mt-5">
     <h1 class="text-center"><i class="bi bi-list-task"></i> Gestión de Preórdenes</h1>
 
@@ -93,135 +118,105 @@ Gestión de Preórdenes
                     </div>
                 </div>
 
-                <!-- Mostrar filtros aplicados -->
-                @if(request()->hasAny(['search', 'idOrden', 'idMecanico', 'idRepuesto']))
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="alert alert-info alert-dismissible fade show mb-0 mt-2" role="alert">
-                            <strong>Filtros aplicados:</strong>
-                            @if(request('search'))
-                            <span class="badge badge-light">Búsqueda: "{{ request('search') }}"</span>
-                            @endif
-                            @if(request('idOrden'))
-                            <span class="badge badge-light">Orden: #{{ request('idOrden') }}</span>
-                            @endif
-                            @if(request('idMecanico'))
-                            <span class="badge badge-light">Mecánico:
-                                {{ $mecanicos->find(request('idMecanico'))->nombre ?? '' }}
-                                {{ $mecanicos->find(request('idMecanico'))->apellido ?? '' }}
-                            </span>
-                            @endif
-                            @if(request('idRepuesto'))
-                            <span class="badge badge-light">Repuesto:
-                                {{ $repuestos->find(request('idRepuesto'))->nombre ?? '' }}
-                            </span>
-                            @endif
-                            <a href="{{ route('Preorden.index') }}" class="btn btn-sm btn-outline-secondary ml-2">
-                                <i class="fas fa-times"></i> Limpiar
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                @endif
             </form>
         </div>
     </div>
+</div>
 
-    @if(session('success'))
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            Swal.fire({
-                icon: 'success',
-                title: '¡Éxito!',
-                text: "{{ session('success') }}",
-                confirmButtonText: 'Aceptar',
-                timer: 3000
-            });
+@if(session('success'))
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        Swal.fire({
+            icon: 'success',
+            title: '¡Éxito!',
+            text: "{{ session('success') }}",
+            confirmButtonText: 'Aceptar',
+            timer: 3000
         });
-    </script>
-    @endif
+    });
+</script>
+@endif
 
-    <div class="container">
-        <table id="myTable" class="table table-bordered table-hover">
-            <thead class="table card-header bg-primary text-white">
-                <tr>
-                    <th>ID</th>
-                    <th>Orden</th>
-                    <th>Mecánico</th>
-                    <th>Repuesto</th>
-                    <th>Moto</th>
-                    <th>Descripción</th>
-                    <th>Mano de Obra</th>
-                    <th>Saldo</th>
-                    <th>Total</th>
-                    <th>Opciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($preorden as $pre)
-                <tr>
-                    <td>{{ $pre->id }}</td>
-                    <td>Orden #{{ $pre->ordenTrabajo?->id ?? 'N/A' }}</td>
-                    <td>{{ $pre->mecanico->nombre ?? 'N/A' }}</td>
-                    <td>
-                        <ul class="mb-0">
-                            @forelse($pre->repuestos as $rep)
-                                <li>{{ $rep->nombre }}</li>
-                            @empty
-                                <li>N/A</li>
-                            @endforelse
-                        </ul>
-                    </td>
-                    <td>
-                        {{ $pre->ordenTrabajo->moto->placa ?? 'N/A' }}<br>
-                        <small class="text-muted">{{ $pre->ordenTrabajo->moto->modelo ?? '' }}</small>
-                    </td>
-                    <td>{{ $pre->descripcion }}</td>
-                    <td>${{ number_format($pre->mano_obra, 2) }}</td>
-                    <td>${{ number_format($pre->saldo, 2) }}</td>
-                    <td><strong>${{ number_format($pre->saldo + $pre->mano_obra, 2) }}</strong></td>
+<div class="container">
+    <table id="myTable" class="table table-bordered table-hover">
+        <thead class="table card-header bg-primary text-white">
+            <tr>
+                <th>ID</th>
+                <th>Orden</th>
+                <th>Mecánico</th>
+                <th>Repuesto</th>
+                <th>Moto</th>
+                <th>Descripción</th>
+                <th>Mano de Obra</th>
+                <th>Saldo</th>
+                <th>Total</th>
+                <th class="col-opciones">Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($preorden as $pre)
+            <tr>
+                <td>{{ $pre->id }}</td>
+                <td>Orden #{{ $pre->ordenTrabajo?->id ?? 'N/A' }}</td>
+                <td>{{ $pre->mecanico->nombre ?? 'N/A' }}</td>
+                <td>
+                    <ul class="mb-0">
+                        @forelse($pre->repuestos as $rep)
+                        <li>{{ $rep->nombre }}</li>
+                        @empty
+                        <li>N/A</li>
+                        @endforelse
+                    </ul>
+                </td>
+                <td>
+                    {{ $pre->ordenTrabajo->moto->placa ?? 'N/A' }}<br>
+                    <small class="text-muted">{{ $pre->ordenTrabajo->moto->modelo ?? '' }}</small>
+                </td>
+                <td>{{ $pre->descripcion }}</td>
+                <td>${{ number_format($pre->mano_obra, 2) }}</td>
+                <td>${{ number_format($pre->saldo, 2) }}</td>
+                <td><strong>${{ number_format($pre->saldo + $pre->mano_obra, 2) }}</strong></td>
 
-                    <td>
-                        <div class="d-flex flex-wrap gap-2">
-                            <a href="{{ route('Preorden.edit', $pre->id) }}" class="btn btn-success btn-sm">
-                                <i class="bi bi-pencil"></i> Editar
-                            </a>
+                <td class="col-opciones">
+                    <div class="opciones-vertical">
+                        <a href="{{ route('Preorden.edit', $pre->id) }}" class="btn btn-success btn-sm">
+                            <i class="bi bi-pencil"></i> Editar
+                        </a>
 
-                            <form action="{{ route('Preorden.destroy', $pre->id) }}" method="POST" style="display:inline;">
-                                @csrf
-                                <button type="submit" class="btn btn-danger btn-sm" onclick="confirmarEliminacion(event)">
-                                    <i class="bi bi-trash"></i> Eliminar
-                                </button>
-                            </form>
+                        <form action="{{ route('Preorden.destroy', $pre->id) }}" method="POST" class="w-100">
+                            @csrf
+                            <button type="submit" class="btn btn-danger btn-sm w-100" onclick="confirmarEliminacion(event)">
+                                <i class="bi bi-trash"></i> Eliminar
+                            </button>
+                        </form>
 
-                            <a href="{{ route('Preorden.verPDF', $pre->id) }}" class="btn btn-info btn-sm" target="_blank">
-                                <i class="bi bi-eye"></i> Ver PDF
-                            </a>
+                        <a href="{{ route('Preorden.verPDF', $pre->id) }}" class="btn btn-primary btn-sm" target="_blank">
+                            <i class="bi bi-eye"></i> Ver PDF
+                        </a>
 
-                            <a href="{{ route('Preorden.descargarPDF', $pre->id) }}" class="btn btn-danger btn-sm">
-                                <i class="bi bi-download"></i> Descargar PDF
-                            </a>
-                        </div>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+                        <a href="{{ route('Preorden.descargarPDF', $pre->id) }}" class="btn btn-info btn-sm">
+                            <i class="bi bi-download"></i> Descargar PDF
+                        </a>
+                    </div>
+                </td>
 
-        <div>
-            @if(isset($volver))
-            <a href="{{ $volver }}" class="btn btn-info mt-3">
-                <i class="bi bi-arrow-left-circle"></i> Volver a la Orden de Trabajo
-            </a>
-            @else
-            <a href="{{ route('welcome') }}" class="btn btn-secondary mt-3">
-                <i class="bi bi-arrow-left-circle"></i> Volver
-            </a>
-            @endif
-        </div>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
 
-
+    <div>
+        @if(isset($volver))
+        <a href="{{ $volver }}" class="btn btn-info mt-3">
+            <i class="bi bi-arrow-left-circle"></i> Volver a la Orden de Trabajo
+        </a>
+        @else
+        <a href="{{ route('welcome') }}" class="btn btn-secondary mt-3">
+            <i class="bi bi-arrow-left-circle"></i> Volver
+        </a>
+        @endif
     </div>
+
 </div>
 
 <script>
@@ -251,6 +246,11 @@ Gestión de Preórdenes
 <script>
     $(document).ready(function() {
         $('#myTable').DataTable({
+            autoWidth: false,
+            columnDefs: [{
+                width: "230px",
+                targets: -1
+            }],
             language: {
                 url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json'
             }
