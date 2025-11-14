@@ -98,7 +98,7 @@ Gestión de Preórdenes
                                 @foreach($repuestos as $repuesto)
                                 <option value="{{ $repuesto->id }}"
                                     {{ request('idRepuesto') == $repuesto->id ? 'selected' : '' }}>
-                                    {{ $repuesto->nombreRepuesto }}
+                                    {{ $repuesto->nombre }}
                                 </option>
                                 @endforeach
                             </select>
