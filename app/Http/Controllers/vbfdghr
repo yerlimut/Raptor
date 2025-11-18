@@ -1,3 +1,0 @@
-git add   app/Http/Controllers/OrdenTrabajoController.php
-        git add   app/Http/Controllers/PreordenController.php
-        git add   resources/views/OrdenTrabajo/index.blade.php
