@@ -127,25 +127,34 @@ class PreordenController extends Controller
 
 
     public function update(Request $request, $id)
-    {
-        $preorden = Preorden::findOrFail($id);
+{
+    $preorden = Preorden::findOrFail($id);
 
-        // Actualizar campos base
-        $preorden->update([
-            'idOrden' => $request->idOrden,
-            'idMecanico' => $request->idMecanico,
-            'descripcion' => $request->descripcion,
-        ]);
+    // Actualizar campos principales
+    $preorden->update([
+        'idOrden' => $request->idOrden,
+        'idMecanico' => $request->idMecanico,
+        'idMoto' => $request->idMoto,
+        'descripcion' => $request->descripcion,
+        'mano_obra' => $request->mano_obra,
+    ]);
 
-        // Sincronizar los repuestos seleccionados (1 o varios)
-        $preorden->repuestos()->sync($request->repuestos ?? []);
+    // Sincronizar repuestos (name="idRepuesto[]")
+    $preorden->repuestos()->sync($request->idRepuesto ?? []);
 
-        // Recalcular saldo según precios
-        $total = $preorden->repuestos()->sum('precio');
-        $preorden->update(['saldo' => $total]);
+    // Recalcular saldo
+    $totalRepuestos = $preorden->repuestos()->sum('precio');
+    $total = $totalRepuestos + ($request->mano_obra ?? 0);
 
-        return redirect()->route('Preorden.index')->with('success', 'Preorden actualizada correctamente.');
-    }
+    $preorden->update([
+        'saldo' => $total
+    ]);
+
+    return redirect()
+        ->route('Preorden.index')
+        ->with('success', 'Preorden actualizada correctamente');
+}
+
 
     public function destroy($id)
     {
