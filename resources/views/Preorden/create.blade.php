@@ -16,11 +16,13 @@
                     <select class="form-control @error('idOrden') is-invalid @enderror" id="idOrden" name="idOrden">
                         <option value="">-- Seleccione --</option>
                         @foreach($ordenes as $orden)
-                            <option value="{{ $orden->id }}">{{ "Orden #$orden->id" }}</option>
+                        <option value="{{ $orden->id }}">
+                            {{ "Orden #{$orden->id}- Placa: {$orden->moto->placa} - Marca: {$orden->moto->marca->nombreMarca}" }}" 
+                        </option>
                         @endforeach
                     </select>
                     @error('idOrden')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -29,11 +31,11 @@
                     <select class="form-control @error('idMecanico') is-invalid @enderror" id="idMecanico" name="idMecanico">
                         <option value="">-- Seleccione --</option>
                         @foreach($mecanicos as $mecanico)
-                            <option value="{{ $mecanico->id }}">{{ $mecanico->nombre }}</option>
+                        <option value="{{ $mecanico->id }}">{{ $mecanico->nombre }}</option>
                         @endforeach
                     </select>
                     @error('idMecanico')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -43,14 +45,14 @@
                     <select class="form-control @error('idRepuesto') is-invalid @enderror @error('idRepuesto.*') is-invalid @enderror"
                         id="idRepuesto" name="idRepuesto[]" multiple>
                         @foreach($repuestos as $repuesto)
-                            <option value="{{ $repuesto->id }}">{{ $repuesto->nombre }} — ${{ number_format($repuesto->precio, 0, ',', '.') }}</option>
+                        <option value="{{ $repuesto->id }}">{{ $repuesto->nombre }} — ${{ number_format($repuesto->precio, 0, ',', '.') }}</option>
                         @endforeach
                     </select>
                     @error('idRepuesto')
-                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                    <div class="invalid-feedback d-block">{{ $message }}</div>
                     @enderror
                     @error('idRepuesto.*')
-                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                    <div class="invalid-feedback d-block">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -61,13 +63,13 @@
                         <select class="form-control @error('idMoto') is-invalid @enderror" id="idMoto" name="idMoto">
                             <option value="">Todas</option>
                             @foreach($motos as $moto)
-                                <option value="{{ $moto->id }}" {{ request('idMoto') == $moto->id ? 'selected' : '' }}>
-                                    {{ $moto->placa }} — {{ $moto->modelo }}
-                                </option>
+                            <option value="{{ $moto->id }}" {{ request('idMoto') == $moto->id ? 'selected' : '' }}>
+                                {{ $moto->placa }} — {{ $moto->modelo }}
+                            </option>
                             @endforeach
                         </select>
                         @error('idMoto')
-                            <div class="invalid-feedback">{{ $message }}</div>
+                        <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
@@ -75,9 +77,9 @@
                 <div class="col-12">
                     <label for="descripcion" class="form-label">Descripción</label>
                     <textarea class="form-control @error('descripcion') is-invalid @enderror"
-                              id="descripcion" name="descripcion" rows="3"></textarea>
+                        id="descripcion" name="descripcion" rows="3"></textarea>
                     @error('descripcion')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
             </div>
@@ -85,18 +87,18 @@
             <div class="col-md-6 mt-3">
                 <label for="mano_obra" class="form-label">Precio Mano de Obra</label>
                 <input type="number" class="form-control @error('mano_obra') is-invalid @enderror"
-                       id="mano_obra" name="mano_obra" placeholder="Ingrese el valor de la mano de obra" value="0">
+                    id="mano_obra" name="mano_obra" placeholder="Ingrese el valor de la mano de obra" value="0">
                 @error('mano_obra')
-                    <div class="invalid-feedback">{{ $message }}</div>
+                <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
 
             <div class="col-md-6 mt-3">
                 <label for="saldo" class="form-label">Total (Repuestos + Mano de Obra)</label>
                 <input type="number" class="form-control @error('saldo') is-invalid @enderror"
-                       id="saldo" name="saldo" readonly>
+                    id="saldo" name="saldo" readonly>
                 @error('saldo')
-                    <div class="invalid-feedback">{{ $message }}</div>
+                <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
 
@@ -115,47 +117,46 @@
 
 
 @section('js')
-{{-- Dependencias de Select2 --}}
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <script>
-$(document).ready(function () {
-    // Inicializamos Select2
-    $('#idRepuesto').select2({
-        placeholder: "Seleccione uno o varios repuestos",
-        allowClear: true,
-        width: '100%'
-    });
+    $(document).ready(function() {
 
-    // 🧮 Inyectamos precios desde Laravel
-    const preciosRepuestos = {
-        @foreach($repuestos as $repuesto)
-            "{{ $repuesto->id }}": {{ $repuesto->precio }},
-        @endforeach
-    };
-
-    function actualizarSaldo() {
-        let total = 0;
-
-        // Sumamos precios de repuestos seleccionados
-        const seleccionados = $('#idRepuesto').val() || [];
-        seleccionados.forEach(id => {
-            total += preciosRepuestos[id] || 0;
+        $('#idRepuesto').select2({
+            placeholder: "Seleccione uno o varios repuestos",
+            allowClear: true,
+            width: '100%'
         });
 
-        // Sumamos el valor de mano de obra
-        const manoObra = parseFloat($('#mano_obra').val()) || 0;
-        total += manoObra;
+        // ← CORREGIDO ✔
+        const preciosRepuestos = {
+            @foreach($repuestos as $repuesto)
+            "{{ $repuesto->id }}": {{ $repuesto->precio }},
+            @endforeach
+        };
 
-        // Mostramos el total en el input
-        $('#saldo').val(total.toFixed(2));
-    }
+        function actualizarSaldo() {
+            let total = 0;
 
-    // Escuchar cambios en selección y mano de obra
-    $('#idRepuesto').on('change', actualizarSaldo);
-    $('#mano_obra').on('input', actualizarSaldo);
-});
+            // Sumar precios de repuestos seleccionados
+            const seleccionados = $('#idRepuesto').val() || [];
+            seleccionados.forEach(id => {
+                total += preciosRepuestos[id] || 0;
+            });
+
+            // Sumar mano de obra (si lo ingresas manual)
+            const manoObra = parseFloat($('#mano_obra').val());
+            if (!isNaN(manoObra)) {
+                total += manoObra;
+            }
+
+            $('#saldo').val(total.toFixed(2));
+        }
+
+        $('#idRepuesto').on('change', actualizarSaldo);
+        $('#mano_obra').on('input', actualizarSaldo);
+    });
 </script>
 
 <style>
@@ -166,6 +167,7 @@ $(document).ready(function () {
         border-radius: 6px !important;
         font-weight: 500;
     }
+
     .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
         color: #000 !important;
         font-weight: bold;
