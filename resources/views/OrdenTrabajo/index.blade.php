@@ -15,6 +15,24 @@ Gestión de Órdenes de Trabajo
 
 <div class="container mt-5">
     <h1 class="text-center"><i class="bi bi-clipboard-check"></i> Gestión de Órdenes de Trabajo</h1>
+    {{-- Mensaje cuando se aplica un filtro por estado --}}
+    @if ($estado)
+    <div class="card shadow-sm border-start border-4 border-primary mt-3 p-3">
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+                <h6 class="mb-1 text-primary fw-bold">
+                    Filtrando por estado: {{ ucfirst($estado) }}
+                </h6>
+                <p class="text-muted mb-0">Se muestran solo las órdenes coincidentes.</p>
+            </div>
+
+            <a href="{{ route('OrdenTrabajo.index') }}" class="btn btn-sm btn-outline-danger">
+                Quitar filtro
+            </a>
+        </div>
+    </div>
+    @endif
+
 
     <a href="{{ route('OrdenTrabajo.create') }}" class="btn btn-primary mb-3">
         <i class="bi bi-plus-circle"></i> Crear Orden de Trabajo
@@ -98,6 +116,9 @@ Gestión de Órdenes de Trabajo
             </div>
         </form>
     </div>
+
+
+
 
 
 
@@ -191,15 +212,15 @@ Gestión de Órdenes de Trabajo
             </tbody>
         </table>
         <div>
-        @if(isset($volver))
-        <a href="{{ $volver }}" class="btn btn-info mt-3">
-            <i class="bi bi-arrow-left-circle"></i> Volver a los Diagnósticos
-        </a>
-        @else
-        <a href="{{ route('welcome') }}" class="btn btn-secondary mt-3">
-            <i class="bi bi-arrow-left-circle"></i> Volver
-        </a>
-        @endif
+            @if(isset($volver))
+            <a href="{{ $volver }}" class="btn btn-info mt-3">
+                <i class="bi bi-arrow-left-circle"></i> Volver a los Diagnósticos
+            </a>
+            @else
+            <a href="{{ route('welcome') }}" class="btn btn-secondary mt-3">
+                <i class="bi bi-arrow-left-circle"></i> Volver
+            </a>
+            @endif
         </div>
     </div>
 
