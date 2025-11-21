@@ -24,7 +24,7 @@ Editar Mecánico
                         class="form-control @error('nombre') is-invalid @enderror"
                         id="nombre"
                         name="nombre"
-                        value="{{ $mecanico->nombre }}">
+                        value="{{ $mecanico->nombre }}" oninput="this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '')>
                     @error('nombre')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -37,7 +37,7 @@ Editar Mecánico
                         class="form-control @error('apellido') is-invalid @enderror"
                         id="apellido"
                         name="apellido"
-                        value="{{ $mecanico->apellido }}">
+                        value="{{ $mecanico->apellido }}" oninput="this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '')>
                     @error('apellido')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
