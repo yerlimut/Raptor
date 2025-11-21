@@ -22,7 +22,7 @@ Crear Mecánico
                 {{-- Nombre --}}
                 <div class="col-md-6">
                     <label for="nombre" class="form-label">Nombre</label>
-                    <input type="text" class="form-control @error('nombre') is-invalid @enderror" id="nombre" name="nombre" value="{{ old('nombre') }}">
+                    <input type="text" class="form-control @error('nombre') is-invalid @enderror" id="nombre" name="nombre" value="{{ old('nombre') }} oninput="this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '')">
                     @error('nombre')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -31,7 +31,7 @@ Crear Mecánico
                 {{-- Apellido --}}
                 <div class="col-md-6">
                     <label for="apellido" class="form-label">Apellido</label>
-                    <input type="text" class="form-control @error('apellido') is-invalid @enderror" id="apellido" name="apellido" value="{{ old('apellido') }}">
+                    <input type="text" class="form-control @error('apellido') is-invalid @enderror" id="apellido" name="apellido" value="{{ old('apellido') }} oninput="this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '')">
                     @error('apellido')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
