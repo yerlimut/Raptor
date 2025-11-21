@@ -23,7 +23,7 @@ Crear Cliente
                 {{-- Nombre --}}
                 <div class="col-md-6">
                     <label for="nombre" class="form-label">Nombre</label>
-                    <input type="text" class="form-control @error('nombre') is-invalid @enderror" id="nombre" name="nombre">
+                    <input type="text" class="form-control @error('nombre') is-invalid @enderror" id="nombre" name="nombre" oninput="this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '')">
                     @error('nombre')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror

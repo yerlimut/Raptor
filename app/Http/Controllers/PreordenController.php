@@ -157,13 +157,29 @@ class PreordenController extends Controller
 
 
     public function destroy($id)
-    {
-        $preorden = Preorden::findOrFail($id);
+{
+    $preorden = Preorden::findOrFail($id);
+
+    try {
+
+        // Intentar eliminar la preorden
         $preorden->delete();
 
         return redirect()->route('Preorden.index')
-            ->with('success', 'Preorden eliminada correctamente');
+            ->with('success', 'Preorden eliminada correctamente.');
+
+    } catch (\Illuminate\Database\QueryException $e) {
+
+        // Código 23000 = violación de foreign key
+        if ($e->getCode() == 23000) {
+            return back()->with('error', 'Debe eliminar primero los repuestos o relaciones asociadas a la preorden.');
+        }
+
+        // Cualquier otro error lo lanzamos
+        throw $e;
     }
+}
+
 
     public function porOrden($idOrden)
     {
