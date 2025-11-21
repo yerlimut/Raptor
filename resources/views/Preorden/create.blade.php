@@ -132,7 +132,7 @@
         // ← CORREGIDO ✔
         const preciosRepuestos = {
             @foreach($repuestos as $repuesto)
-            "{{ $repuesto->id }}": {{ $repuesto->precio }},
+            "{{ $repuesto->id }}": {{ $repuesto->precio }}"
             @endforeach
         };
 
