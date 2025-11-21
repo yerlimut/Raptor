@@ -6,6 +6,7 @@ use App\Models\Cliente;
 use App\Models\Moto;
 use App\Models\Repuesto;
 use App\Models\Inventario;
+use App\Models\OrdenTrabajo;
 use Illuminate\Http\Request;
 
 class WelcomeController extends Controller
@@ -17,9 +18,23 @@ class WelcomeController extends Controller
         $ContarMotos = Moto::count();
         $ContarRepuestos = Repuesto::count();
         $ContarInventarios = Inventario::count();
+        $countPendiente = OrdenTrabajo::where('estado', 'pendiente')->count();
+        $countEnProceso = OrdenTrabajo::where('estado', 'en proceso')->count();
+        $countFinalizado = OrdenTrabajo::where('estado', 'finalizado')->count();
+        $countCancelado = OrdenTrabajo::where('estado', 'cancelado')->count();
+
 
         // Retornar la vista con los datos
-        return view('welcome', compact('ContarClientes', 'ContarMotos', 'ContarRepuestos', 'ContarInventarios'));
+        return view('welcome', compact(
+            'ContarClientes',
+            'ContarMotos',
+            'ContarRepuestos',
+            'ContarInventarios',
+            'countPendiente',
+            'countEnProceso',
+            'countFinalizado',
+            'countCancelado',
+        ));
     }
 
     public function ContarClientes()
