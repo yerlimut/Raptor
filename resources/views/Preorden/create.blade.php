@@ -154,6 +154,7 @@
         $('#idRepuesto').on('change', actualizarSaldo);
         $('#mano_obra').on('input', actualizarSaldo);
     });
+    
 
 </script>
 
