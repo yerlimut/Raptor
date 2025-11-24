@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('content_header')
+
+@endsection
+
 @section('title', 'Editar Preorden')
 
 @section('content')
