@@ -104,8 +104,15 @@
         <h2>Preorden #{{ $preorden->id }}</h2>
     </div>
 
-    <!-- Información principal -->
     <div class="info">
+       <p><strong>Cliente:</strong>
+        {{ $preorden->ordenTrabajo->moto->cliente->nombre ?? 'N/A' }}
+        {{ $preorden->ordenTrabajo->moto->cliente->apellido ?? '' }}
+    </p>
+
+
+    <!-- Información principal -->
+  
         <p><strong>Orden de trabajo:</strong> {{ $preorden->ordenTrabajo->id ?? 'N/A' }}</p>
         <p><strong>Mecánico:</strong> {{ $preorden->mecanico->nombre ?? 'N/A' }} {{ $preorden->mecanico->apellido ?? '' }}</p>
         <p><strong>Moto:</strong> {{ $preorden->ordenTrabajo->moto->placa ?? 'N/A' }}</p>

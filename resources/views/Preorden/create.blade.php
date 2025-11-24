@@ -16,8 +16,8 @@
                     <select class="form-control @error('idOrden') is-invalid @enderror" id="idOrden" name="idOrden">
                         <option value="">-- Seleccione --</option>
                         @foreach($ordenes as $orden)
-                        <option value="{{ $orden->id }}">
-                            {{ "Orden #{$orden->id}- Placa: {$orden->moto->placa} - Marca: {$orden->moto->marca->nombreMarca}" }}" 
+                        <option value="{{ $orden->id }}">{{ "Orden #{$orden->id} - Placa: {$orden->moto->placa} - Marca: {$orden->moto->marca->nombreMarca}" }}
+
                         </option>
                         @endforeach
                     </select>
@@ -64,7 +64,7 @@
                             <option value="">Todas</option>
                             @foreach($motos as $moto)
                             <option value="{{ $moto->id }}" {{ request('idMoto') == $moto->id ? 'selected' : '' }}>
-                                {{ $moto->placa }} — {{ $moto->modelo }}
+                                {{ $moto->placa }} — {{ $moto->modelo }}  —  {{ $moto->marca->nombreMarca}}
                             </option>
                             @endforeach
                         </select>
@@ -130,11 +130,8 @@
         });
 
         // ← CORREGIDO ✔
-        const preciosRepuestos = {
-            @foreach($repuestos as $repuesto)
-            "{{ $repuesto->id }}": {{ $repuesto->precio }}"
-            @endforeach
-        };
+        const preciosRepuestos = {!! json_encode($repuestos->pluck('precio', 'id')) !!};
+
 
         function actualizarSaldo() {
             let total = 0;
@@ -157,6 +154,7 @@
         $('#idRepuesto').on('change', actualizarSaldo);
         $('#mano_obra').on('input', actualizarSaldo);
     });
+
 </script>
 
 <style>
