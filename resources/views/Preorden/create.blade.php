@@ -129,33 +129,32 @@
             width: '100%'
         });
 
-        // ← CORREGIDO ✔
-        const preciosRepuestos = {!! json_encode($repuestos->pluck('precio', 'id')) !!};
-
+        // PRECIOS (CORREGIDO: se fuerza conversión a Number)
+        const preciosRepuestos = {!! json_encode($repuestos->pluck('precio', 'id')->toArray()) !!};
 
         function actualizarSaldo() {
             let total = 0;
 
-            // Sumar precios de repuestos seleccionados
+            // Repuestos seleccionados
             const seleccionados = $('#idRepuesto').val() || [];
+
             seleccionados.forEach(id => {
-                total += preciosRepuestos[id] || 0;
+                total += Number(preciosRepuestos[id]) || 0;
             });
 
-            // Sumar mano de obra (si lo ingresas manual)
-            const manoObra = parseFloat($('#mano_obra').val());
+            // Mano de obra
+            const manoObra = Number($('#mano_obra').val());
             if (!isNaN(manoObra)) {
                 total += manoObra;
             }
 
-            $('#saldo').val(total.toFixed(2));
+            $('#saldo').val(total);
         }
 
+        // Eventos
         $('#idRepuesto').on('change', actualizarSaldo);
         $('#mano_obra').on('input', actualizarSaldo);
     });
-    
-
 </script>
 
 <style>
@@ -174,3 +173,4 @@
     }
 </style>
 @endsection
+
