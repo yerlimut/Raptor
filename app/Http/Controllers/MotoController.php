@@ -142,7 +142,7 @@ class MotoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(MotoRequest $request, $id)
     {
         $moto = Moto::findOrFail($id);
         $moto->update($request->all());

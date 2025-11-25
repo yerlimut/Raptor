@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RepuestoRequest;
 use App\Models\categoriaRepuesto;
 use App\Models\Repuesto;
 use Illuminate\Http\Request;
@@ -76,7 +77,7 @@ class RepuestoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(RepuestoRequest $request)
     {
         Repuesto::create(
             $request->all()
@@ -105,7 +106,7 @@ class RepuestoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(RepuestoRequest $request, $id)
     {
         $repuesto = Repuesto::findorfail($id);
         $repuesto->update(
