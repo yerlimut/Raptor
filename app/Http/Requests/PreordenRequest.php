@@ -18,6 +18,8 @@ class PreordenRequest extends FormRequest
             'idMecanico' => 'required|exists:mecanicos,id',
             'idRepuesto' => 'required|exists:repuestos,id',
             'descripcion'=> 'required|string|min:5|max:255|regex:/^[\pL\pN\s\.,-]+$/u',
+            'idMoto'  => 'required|exists:motos,id',
+            'mano_obra'  => 'required|',
         ];
     }
 
@@ -42,6 +44,16 @@ class PreordenRequest extends FormRequest
             'descripcion.min'      => 'La descripción debe tener al menos 5 caracteres.',
             'descripcion.max'      => 'La descripción no puede superar los 255 caracteres.',
             'descripcion.regex'    => 'La descripción solo puede contener letras, números, espacios y puntuación básica.',
+
+
+            'idMoto.required' => 'Debe seleccionar una moto.',
+            'idMoto.exists'   => 'La moto  seleccionada no existe en el sistema.',
+
+            'mano_obra.required' => 'La mano de obra debe ser  obligatoria ',
+
+
         ];
+
+
     }
 }

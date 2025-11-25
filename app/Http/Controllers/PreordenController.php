@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PreordenRequest;
 use App\Models\Preorden;
 use App\Models\OrdenTrabajo;
 use App\Models\Mecanico;
@@ -78,7 +79,7 @@ class PreordenController extends Controller
         return view('Preorden.create', compact('ordenes', 'mecanicos', 'repuestos', 'motos'));
     }
 
-    public function store(Request $request)
+    public function store(PreordenRequest $request)
 {
     $request->validate([
         'idOrden' => 'required',

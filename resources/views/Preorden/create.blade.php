@@ -87,7 +87,7 @@
             <div class="col-md-6 mt-3">
                 <label for="mano_obra" class="form-label">Precio Mano de Obra</label>
                 <input type="number" class="form-control @error('mano_obra') is-invalid @enderror"
-                    id="mano_obra" name="mano_obra" placeholder="Ingrese el valor de la mano de obra" value="0">
+                    id="mano_obra" name="mano_obra" placeholder="Ingrese el valor de la mano de obra" >
                 @error('mano_obra')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
