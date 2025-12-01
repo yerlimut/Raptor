@@ -188,7 +188,7 @@ Gestión de Preórdenes
                 <td>{{ $pre->descripcion }}</td>
                 <td>${{ number_format($pre->mano_obra, 2) }}</td>
                 <td>${{ number_format($pre->saldo, 2) }}</td>
-                <td><strong>${{ number_format($pre->saldo + $pre->mano_obra, 2) }}</strong></td>
+                <td><strong>${{ number_format($pre->saldo , 2) }}</strong></td>
 
                 <td class="col-opciones">
                     <div class="opciones-vertical">
@@ -256,19 +256,5 @@ Gestión de Preórdenes
 @endsection
 
 @section('js')
-<script>
-    $(document).ready(function() {
-        $('#myTable').DataTable({
-            autoWidth: false,
-            columnDefs: [{
-                width: "230px",
-                targets: -1
-            }],
-            language: {
-                url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json'
-            }
-        });
-    });
-</script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 @endsection

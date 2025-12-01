@@ -13,23 +13,23 @@ class InventarioSeeder extends Seeder
     public function run(): void
     {
         Inventario::create([
-            'descripcion' => 'Moto ingresada para revisión general y limpieza.',
+            'descripcion' => 'Moto ingresada sin un espejo.',
             'fechaRegistro' => '2025-10-10',
-            'estadoGeneral' => 'Bueno',
+            'estadoGeneral' => 'Regular',
             'estadoInventario' => 'En taller',
             'idMoto' => 1,
         ]);
 
         Inventario::create([
-            'descripcion' => 'Moto entregada tras cambio de aceite y filtro.',
+            'descripcion' => 'Moto recibida con direccionales en mal estado .',
             'fechaRegistro' => '2025-09-28',
-            'estadoGeneral' => 'Bueno',
+            'estadoGeneral' => 'Regular',
             'estadoInventario' => 'Entregado',
             'idMoto' => 2,
         ]);
 
         Inventario::create([
-            'descripcion' => 'Revisión del sistema de frenos y reemplazo de pastillas.',
+            'descripcion' => 'Moto con frenos trasero dañados.',
             'fechaRegistro' => '2025-10-15',
             'estadoGeneral' => 'Regular',
             'estadoInventario' => 'En taller',
@@ -37,7 +37,7 @@ class InventarioSeeder extends Seeder
         ]);
 
         Inventario::create([
-            'descripcion' => 'Moto pendiente de repuestos para reparación de motor.',
+            'descripcion' => 'Moto con daños visibles, direccionales,frenos dañados.',
             'fechaRegistro' => '2025-10-05',
             'estadoGeneral' => 'Malo',
             'estadoInventario' => 'Pendiente',
@@ -45,7 +45,7 @@ class InventarioSeeder extends Seeder
         ]);
 
         Inventario::create([
-            'descripcion' => 'Inspección final antes de entrega al cliente.',
+            'descripcion' => 'Sin Observaciones.',
             'fechaRegistro' => '2025-10-20',
             'estadoGeneral' => 'Bueno',
             'estadoInventario' => 'En taller',
