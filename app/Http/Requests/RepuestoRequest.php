@@ -14,10 +14,11 @@ class RepuestoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nombre'                 => 'required|string|min:3|max:100|regex:/^[\pL\s0-9\-\.\,]+$/u',
+            'nombre'                 => 'required|string|min:3|max:100|',
+            'marca'                  => 'required|string|min:2|max:50|regex:/^[\pL\s0-9\-\.\,]+$/u',
             'precio'                 => 'required|numeric|min:100|max:10000000',
             'stock'                  => 'required|integer|min:0|max:9999',
-            'categoria_repuesto_id'  => 'required|exists:categoriaRepuestos,id',
+            'idCategoria'            => 'required|exists:categoriaRepuestos,id',
         ];
     }
 
@@ -29,6 +30,12 @@ class RepuestoRequest extends FormRequest
             'nombre.max'      => 'El nombre no puede superar 100 caracteres.',
             'nombre.regex'    => 'El nombre solo puede contener letras, números y algunos símbolos (- , .).',
 
+            'marca.required'  => 'La marca es obligatoria.',
+            'marca.min'       => 'La marca debe tener al menos 2 caracteres.',
+            'marca.max'       => 'La marca no puede superar 50 caracteres.',
+            'marca.regex'     => 'La marca solo puede contener letras, números y algunos símbolos (- , .).',
+
+
             'precio.required' => 'El precio es obligatorio.',
             'precio.numeric'  => 'El precio debe ser un número.',
             'precio.min'      => 'El precio mínimo permitido es 100.',
@@ -39,8 +46,8 @@ class RepuestoRequest extends FormRequest
             'stock.min'       => 'El stock no puede ser negativo.',
             'stock.max'       => 'El stock máximo permitido es 9999.',
 
-            'categoria_repuesto_id.required'=> 'Debe seleccionar una categoría.',
-            'categoria_repuesto_id.exists'  => 'La categoría seleccionada no existe.',
+            'idCategoria.required'=> 'Debe seleccionar una categoría.',
+            'idCategoria.exists'  => 'La categoría seleccionada no existe.',
         ];
     }
 }

@@ -14,7 +14,7 @@ class MotoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'placa'      => 'required|string|regex:/^[A-Z]{3}[0-9]{2}[A-Z]{1}$/|unique:motos,placa',
+            'placa'      => 'required|string|regex:/^[A-Z]{3}[0-9]{2}[A-Z]{1}$/|',
             'modelo'     => 'required|string|max:50',
             'idMarca'    => 'required|exists:marcaMotos,id',
             'idCliente'  => 'required|exists:clientes,id',

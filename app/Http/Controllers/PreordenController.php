@@ -127,7 +127,7 @@ class PreordenController extends Controller
     }
 
 
-    public function update(Request $request, $id)
+    public function update(PreordenRequest $request, $id)
 {
     $preorden = Preorden::findOrFail($id);
 

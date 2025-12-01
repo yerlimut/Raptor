@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OrdenTrabajoRequest;
 use App\Models\OrdenTrabajo;
 use App\Models\Diagnostico;
 use App\Models\Moto;
@@ -88,7 +89,7 @@ class OrdenTrabajoController extends Controller
         return view('OrdenTrabajo.create', compact('diagnosticos', 'motos'));
     }
 
-    public function store(Request $request)
+    public function store(OrdenTrabajoRequest $request)
     {
         $request->validate([
             'fechaInicio' => 'required|date',
@@ -119,7 +120,7 @@ class OrdenTrabajoController extends Controller
         return view('OrdenTrabajo.edit', compact('ordenes', 'diagnosticos', 'motos'));
     }
 
-    public function update(Request $request, $id)
+    public function update(OrdenTrabajoRequest $request, $id)
     {
         $request->validate([
             'fechaInicio' => 'required|date',
