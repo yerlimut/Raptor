@@ -87,7 +87,12 @@ class MarcaMotoController extends Controller
     public function destroy($id)
     {
         $marcasMoto = marcaMoto::findorfail($id);
-        $marcasMoto->delete();
+        try {
+            $marcasMoto->delete();
         return redirect()->route('marcaMoto.index')->with('success', 'Marca eliminada correctamente');
+        } catch (\Illuminate\Database\QueryException $e){
+            return redirect()->route('marcaMoto.index')
+            ->with('error', 'No se puede eliminar esta Marca  porque tiene registros asociados.');
+        }
     }
 }

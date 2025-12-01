@@ -44,6 +44,20 @@ Editar Diagnóstico
                     @enderror
                 </div>
 
+                {{-- Tipo --}}
+                <div class="col-md-6">
+                    <label for="tipo" class="form-label">Tipo de Diagnóstico</label>
+                    <select class="form-control @error('tipo') is-invalid @enderror" id="tipo" name="tipo">
+                        <option value="">Seleccione...</option>
+                        <option value="preventivo" {{ $diagnosticos->tipo == 'preventivo' ? 'selected' : '' }}>Preventivo</option>
+                        <option value="correctivo" {{ $diagnosticos->tipo == 'correctivo' ? 'selected' : '' }}>Correctivo</option>
+                        <option value="inspeccion" {{ $diagnosticos->tipo == 'inspeccion' ? 'selected' : '' }}>Inspección</option>
+                    </select>
+                    @error('tipo')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
                 {{-- Estado --}}
                 <div class="col-md-6">
                     <label for="estado" class="form-label">Estado</label>
@@ -58,19 +72,7 @@ Editar Diagnóstico
                     @enderror
                 </div>
 
-                {{-- Tipo --}}
-                <div class="col-md-6">
-                    <label for="tipo" class="form-label">Tipo de Diagnóstico</label>
-                    <select class="form-control @error('tipo') is-invalid @enderror" id="tipo" name="tipo">
-                        <option value="">Seleccione...</option>
-                        <option value="preventivo" {{ $diagnosticos->tipo == 'preventivo' ? 'selected' : '' }}>Preventivo</option>
-                        <option value="correctivo" {{ $diagnosticos->tipo == 'correctivo' ? 'selected' : '' }}>Correctivo</option>
-                        <option value="inspeccion" {{ $diagnosticos->tipo == 'inspeccion' ? 'selected' : '' }}>Inspección</option>
-                    </select>
-                    @error('tipo')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
+
 
                 {{-- Moto --}}
                 <div class="col-md-6">

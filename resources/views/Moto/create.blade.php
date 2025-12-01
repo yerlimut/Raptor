@@ -97,7 +97,7 @@ Registrar Moto
 
             {{-- Botones --}}
             <div class="mt-4 d-flex gap-2">
-                <button type="submit" class="btn btn-success">
+                <button type="submit" class="btn btn-primary">
                     <i class="bi bi-check-circle"></i> Guardar
                 </button>
                 <a href="{{ route('moto.index', ['idCliente' => $idCliente ?? null]) }}" class="btn btn-secondary">

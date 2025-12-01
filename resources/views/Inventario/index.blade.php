@@ -81,14 +81,7 @@ Gestión de Inventarios
                         </select>
                     </div>
 
-                    <!-- Dirección -->
-                    <div class="col-md-2">
-                        <label for="direction">Dirección</label>
-                        <select name="direction" id="direction" class="form-control">
-                            <option value="asc" {{ request('direction') == 'asc' ? 'selected' : '' }}>Ascendente</option>
-                            <option value="desc" {{ request('direction') == 'desc' ? 'selected' : '' }}>Descendente</option>
-                        </select>
-                    </div>
+        
 
                     <!-- Botón buscar -->
                     <div class=" row mt-3 col-md-2 d-flex align-items-end">
@@ -210,5 +203,6 @@ Gestión de Inventarios
             });
         }
     </script>
+
 </div>
 @endsection

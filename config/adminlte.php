@@ -300,80 +300,81 @@ return [
     */
 
     'menu' => [
-    // 🔍 Buscador y widgets
-    ['type' => 'navbar-search', 'text' => 'Buscar', 'topnav_right' => true],
-    ['type' => 'fullscreen-widget', 'topnav_right' => true],
+        // 🔍 Buscador y widgets
+        ['type' => 'navbar-search', 'text' => 'Buscar', 'topnav_right' => true],
+        ['type' => 'fullscreen-widget', 'topnav_right' => true],
 
-    // 🏠 Página principal
-    ['header' => 'Principal'],
-    [
-        'text' => 'Inicio',
-        'route' => 'welcome',
-        'icon' => 'fas fa-home',
-    ],
+        // 🏠 Página principal
+        ['header' => 'Principal'],
+        [
+            'text' => 'Inicio',
+            'route' => 'welcome',
+            'icon' => 'fas fa-home',
+        ],
 
-    // 👥 Personas
-    ['header' => 'Gestión de Personas'],
-    [
-        'text' => 'Clientes',
-        'route' => 'cliente.index',
-        'icon' => 'fas fa-users',
-    ],
-    [
-        'text' => 'Mecánicos',
-        'route' => 'mecanico.index',
-        'icon' => 'fas fa-user-cog',
-    ],
+        // 👥 Personas
+        ['header' => 'Gestión de Personas'],
+        [
+            'text' => 'Clientes',
+            'route' => 'cliente.index',
+            'icon' => 'fas fa-users',
+        ],
+        [
+            'text' => 'Mecánicos',
+            'route' => 'mecanico.index',
+            'icon' => 'fas fa-user-cog',
+        ],
 
-    // 🏍 Vehículos
-    ['header' => 'Gestión de Vehículos'],
-    [
-        'text' => 'Marcas de Motos',
-        'route' => 'marcaMoto.index',
-        'icon' => 'fas fa-motorcycle',
-    ],
-    [
-        'text' => 'Motos',
-        'route' => 'moto.index',
-        'icon' => 'fas fa-biking',
-    ],
+        // 🏍 Vehículos
+        ['header' => 'Gestión de Vehículos'],
+        [
+            'text' => 'Marcas de Motos',
+            'route' => 'marcaMoto.index',
+            'icon' => 'fas fa-motorcycle',
+        ],
+        [
+            'text' => 'Motos',
+            'route' => 'moto.index',
+            'icon' => 'fas fa-biking',
+        ],
+        [
+            'text' => 'Inventario',
+            'route' => 'inventario.index',
+            'icon' => 'fas fa-warehouse',
+        ],
 
-    // ⚙️ Taller
-    ['header' => 'Taller y Órdenes'],
-    [
-        'text' => 'Preórdenes',
-        'route' => 'Preorden.index',
-        'icon' => 'fas fa-file-alt',
-    ],
-    [
-        'text' => 'Órdenes de Trabajo',
-        'route' => 'OrdenTrabajo.index',
-        'icon' => 'fas fa-clipboard-list',
-    ],
-    [
-        'text' => 'Diagnóstico',
-        'route' => 'diagnostico.index',
-        'icon' => 'fas fa-stethoscope',
-    ],
+        // ⚙️ Taller
+        ['header' => 'Taller y Órdenes'],
+        [
+            'text' => 'Preórdenes',
+            'route' => 'Preorden.index',
+            'icon' => 'fas fa-file-alt',
+        ],
+        [
+            'text' => 'Órdenes de Trabajo',
+            'route' => 'OrdenTrabajo.index',
+            'icon' => 'fas fa-clipboard-list',
+        ],
+        [
+            'text' => 'Diagnóstico',
+            'route' => 'diagnostico.index',
+            'icon' => 'fas fa-stethoscope',
+        ],
 
-    // 🧩 Repuestos
-    ['header' => 'Repuestos e Inventario'],
-    [
-        'text' => 'Categorías',
-        'route' => 'categoriaRepuesto.index',
-        'icon' => 'fas fa-tags',
+        // 🧩 Repuestos
+        ['header' => 'Repuestos e Inventario'],
+        [
+            'text' => 'Categorías',
+            'route' => 'categoriaRepuesto.index',
+            'icon' => 'fas fa-tags',
+        ],
+        [
+            'text' => 'Repuestos',
+            'route' => 'repuesto.index',
+            'icon' => 'fas fa-cogs',
+        ],
+
     ],
-    [
-        'text' => 'Repuestos',
-        'route' => 'repuesto.index',
-        'icon' => 'fas fa-cogs',
-    ],
-    [
-        'text' => 'Inventario',
-        'route' => 'inventario.index',
-        'icon' => 'fas fa-warehouse',
-    ],
-],
 
 
     [

@@ -22,7 +22,7 @@ Crear Cliente
             <div class="row g-3">
                 {{-- Nombre --}}
                 <div class="col-md-6">
-                    <label for="nombre" class="form-label">Nombre</label>
+                    <label for="nombre" class="form-label">Nombre  * </label>
                     <input type="text" class="form-control @error('nombre') is-invalid @enderror" id="nombre" name="nombre" oninput="this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '')">
                     @error('nombre')
                     <div class="invalid-feedback">{{ $message }}</div>
@@ -31,7 +31,7 @@ Crear Cliente
 
                 {{-- Apellido --}}
                 <div class="col-md-6">
-                    <label for="apellido" class="form-label">Apellido</label>
+                    <label for="apellido" class="form-label">Apellido  *</label>
                     <input type="text" class="form-control @error('apellido') is-invalid @enderror" id="apellido" name="apellido" oninput="this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '')">
                     
                     @error('apellido')
@@ -41,7 +41,7 @@ Crear Cliente
 
                 {{-- Tipo Documento --}}
                 <div class="col-md-6">
-                    <label for="tipoDocumento" class="form-label">Tipo de Documento</label>
+                    <label for="tipoDocumento" class="form-label">Tipo de Documento   *</label>
                     <select class="form-control @error('tipoDocumento') is-invalid @enderror" id="tipoDocumento" name="tipoDocumento">
                         <option value="">-- Seleccione --</option>
                         <option value="CC">Cédula</option>
@@ -56,7 +56,7 @@ Crear Cliente
 
                 {{-- Número Documento --}}
                 <div class="col-md-6">
-                    <label for="numeroDocumento" class="form-label">Número de Documento</label>
+                    <label for="numeroDocumento" class="form-label">Número de Documento   *</label>
                     <input type="text" class="form-control @error('numeroDocumento') is-invalid @enderror" id="numeroDocumento" name="numeroDocumento">
                     @error('numeroDocumento')
                     <div class="invalid-feedback">{{ $message }}</div>
@@ -65,7 +65,7 @@ Crear Cliente
 
                 {{-- Teléfono --}}
                 <div class="col-md-6">
-                    <label for="telefono" class="form-label">Teléfono</label>
+                    <label for="telefono" class="form-label">Teléfono   *</label>
                     <input type="text" class="form-control @error('telefono') is-invalid @enderror" id="telefono" name="telefono">
                     @error('telefono')
                     <div class="invalid-feedback">{{ $message }}</div>
@@ -74,7 +74,7 @@ Crear Cliente
 
                 {{-- Correo --}}
                 <div class="col-md-6">
-                    <label for="correoElectronico" class="form-label">Correo Electrónico</label>
+                    <label for="correoElectronico" class="form-label">Correo Electrónico   *</label>
                     <input type="email" class="form-control @error('correoElectronico') is-invalid @enderror" id="correoElectronico" name="correoElectronico">
                     @error('correoElectronico')
                     <div class="invalid-feedback">{{ $message }}</div>
@@ -83,7 +83,7 @@ Crear Cliente
 
                 {{-- Dirección --}}
                 <div class="col-12">
-                    <label for="direccion" class="form-label">Dirección</label>
+                    <label for="direccion" class="form-label">Dirección  *</label>
                     <input type="text" class="form-control @error('direccion') is-invalid @enderror" id="direccion" name="direccion">
                     @error('direccion')
                     <div class="invalid-feedback">{{ $message }}</div>
