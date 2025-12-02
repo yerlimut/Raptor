@@ -11,40 +11,39 @@ class InventarioController extends Controller
 {
     /**
      * Display a listing of the resource.
+     * Lista los inventarios con filtros y ordenados por fecha de creación descendente.
      */
     public function index(Request $request)
     {
-        // 📥 Parámetros del formulario
         $search = $request->get('search');
         $estadoGeneral = $request->get('estadoGeneral');
         $estadoInventario = $request->get('estadoInventario');
         $fechaInicio = $request->get('fechaInicio');
         $fechaFin = $request->get('fechaFin');
-        $sort = $request->get('sort', 'fechaRegistro');
 
-
-        // 🔹 Construir consulta
         $query = Inventario::with('moto');
 
-        // 🔍 Filtro de búsqueda (por descripción o modelo de la moto)
+        // 🔍 Filtro búsqueda
         if ($search) {
-            $query->where('descripcion', 'LIKE', "%{$search}%")
-                ->orWhereHas('moto', function ($q) use ($search) {
-                    $q->where('modelo', 'LIKE', "%{$search}%");
-                });
+            $query->where(function ($q) use ($search) {
+                $q->where('descripcion', 'LIKE', "%{$search}%")
+                  ->orWhereHas('moto', function ($m) use ($search) {
+                      $m->where('modelo', 'LIKE', "%{$search}%");
+                  });
+            });
         }
 
-        // ⚙️ Filtro por estado general
+        // Estado general
         if ($estadoGeneral) {
             $query->where('estadoGeneral', $estadoGeneral);
         }
 
-        // 🧰 Filtro por estado de inventario
+        // Estado inventario
         if ($estadoInventario) {
             $query->where('estadoInventario', $estadoInventario);
         }
 
-        // 📅 Filtro por rango de fechas
+        // Filtro fechas
         if ($fechaInicio && $fechaFin) {
             $query->whereBetween('fechaRegistro', [$fechaInicio, $fechaFin]);
         } elseif ($fechaInicio) {
@@ -53,22 +52,13 @@ class InventarioController extends Controller
             $query->whereDate('fechaRegistro', '<=', $fechaFin);
         }
 
-    
-        // ↕️ Ordenar resultados
-        $query->orderBy('fechaRegistro', 'desc');
+        // 🔥 ORDENAR: Último creado PRIMERO (Usando 'created_at' para mayor precisión)
+        $inventarios = $query->orderBy('created_at', 'DESC')->paginate(10);
 
-
-
-        // 📄 Paginación
-        $inventarios = $query->paginate(10);
-
-        // 🔹 Definir ruta de regreso general
         $volver = route('welcome');
 
-        // 📤 Retornar vista
         return view('inventario.index', compact('inventarios', 'volver'));
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -84,9 +74,7 @@ class InventarioController extends Controller
      */
     public function store(InventarioRequest $request)
     {
-        Inventario::create(
-            $request->all()
-        );
+        Inventario::create($request->all());
         return redirect()->route('inventario.index')->with('success', 'Inventario creado correctamente');
     }
 
@@ -95,7 +83,7 @@ class InventarioController extends Controller
      */
     public function show(Inventario $inventario)
     {
-        //
+        // Puedes agregar lógica para ver un solo registro si es necesario
     }
 
     /**
@@ -103,7 +91,7 @@ class InventarioController extends Controller
      */
     public function edit($id)
     {
-        $inventarios = Inventario::findorfail($id);
+        $inventarios = Inventario::findOrFail($id);
         $motos = Moto::all();
         return view('Inventario.edit', compact('inventarios', 'motos'));
     }
@@ -113,10 +101,9 @@ class InventarioController extends Controller
      */
     public function update(InventarioRequest $request, $id)
     {
-        $inventarios = Inventario::findorfail($id);
-        $inventarios->update(
-            $request->all()
-        );
+        $inventarios = Inventario::findOrFail($id);
+        $inventarios->update($request->all());
+
         return redirect()->route('inventario.index')->with('success', 'Inventario actualizado correctamente');
     }
 
@@ -137,14 +124,19 @@ class InventarioController extends Controller
         }
     }
 
+    /**
+     * Inventarios por Moto
+     * Lista los inventarios asociados a una moto específica, ordenados por fecha de creación descendente.
+     */
     public function porMoto($idMoto)
     {
-        $moto = \App\Models\Moto::with(['cliente', 'marca'])->findOrFail($idMoto);
+        $moto = Moto::with(['cliente', 'marca'])->findOrFail($idMoto);
 
-        $inventarios = \App\Models\Inventario::where('idMoto', $idMoto)
-            ->orderBy('created_at', 'desc')
+        $inventarios = Inventario::where('idMoto', $idMoto)
             ->with(['moto'])
+            ->orderBy('created_at', 'DESC')  // 🔥 Ordenado: último primero
             ->paginate(10);
+
         $volver = route('inventario.index');
 
         return view('inventario.index', compact('inventarios', 'moto', 'volver'));

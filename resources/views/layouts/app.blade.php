@@ -3,7 +3,7 @@
 @section('title', $title ?? 'Dashboard')
 
 @section('content_header')
-    <h1>@yield('page-title', 'Admin Panel')</h1>
+<h1>@yield('page-title', 'Admin Panel')</h1>
 @endsection
 
 @section('contenido')
@@ -102,15 +102,21 @@
 <script src="{{ asset('js/adminlte.js') }}"></script>
 
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         // === DataTables ===
         $('#myTable').DataTable({
-            language: { url: "//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json" },
-            dom: 'rtip'
+            language: {
+                url: "//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json"
+            },
+            dom: 'rtip',
+            ordering: true,
+            order: [
+                [2, 'desc']
+            ]
         });
 
         // === Select2 ===
-        $('select').each(function () {  
+        $('select').each(function() {
             const $this = $(this);
             if (
                 !$this.closest('.swal2-container').length &&

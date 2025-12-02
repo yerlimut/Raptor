@@ -5,12 +5,9 @@ Gestión de Inventarios
 @endsection
 
 @section('content_header')
-
 @endsection
 
 @section('content')
-
-
 
 <div class="container mt-5">
     <h1 class="text-center"><i class="bi bi-box-seam"></i> Gestión de Inventarios</h1>
@@ -18,6 +15,7 @@ Gestión de Inventarios
     <a href="{{ route('inventario.create') }}" class="btn btn-primary mb-3">
         <i class="bi bi-plus-circle"></i> Crear Inventario
     </a>
+
     <!-- FILTROS -->
     <div class="card shadow-sm mb-4">
         <div class="card-header bg-primary text-white">
@@ -81,17 +79,15 @@ Gestión de Inventarios
                         </select>
                     </div>
 
-        
-
                     <!-- Botón buscar -->
-                    <div class=" row mt-3 col-md-2 d-flex align-items-end">
+                    <div class="row mt-3 col-md-2 d-flex align-items-end">
                         <button type="submit" class="btn btn-primary w-100">
                             <i class="fas fa-search"></i> Buscar
                         </button>
                     </div>
 
                     <!-- Botón limpiar -->
-                    <div class=" row mt-3 col-md-2">
+                    <div class="row mt-3 col-md-2">
                         <a href="{{ route('inventario.index') }}" class="btn btn-secondary w-100">
                             <i class="bi bi-arrow-counterclockwise"></i> Limpiar
                         </a>
@@ -141,16 +137,13 @@ Gestión de Inventarios
                         {{ $inventario->moto->marca->nombreMarca ?? 'Sin marca' }}
                         — {{ $inventario->moto->placa ?? 'Sin placa' }}
                     </td>
-
-
-
                     <td>
                         <div class="d-flex gap-2">
                             <a href="{{ route('inventario.edit', $inventario->id) }}" class="btn btn-success btn-sm">
                                 <i class="bi bi-pencil"></i> Editar
                             </a>
 
-                            <a href="{{ route('diagnostico.porMoto', $inventario->moto->id) }}" class="btn btn-primary btn-sm"  style="font-size: 11px; padding: 2px 6px";>
+                            <a href="{{ route('diagnostico.porMoto', $inventario->moto->id) }}" class="btn btn-primary btn-sm" style="font-size: 11px; padding: 2px 6px;">
                                 <i class="bi bi-clipboard2-pulse"></i> Ver Diagnósticos
                             </a>
 
@@ -162,12 +155,17 @@ Gestión de Inventarios
                             </form>
                         </div>
                     </td>
-
                 </tr>
                 @endforeach
             </tbody>
         </table>
-        <div>
+
+        {{-- Enlaces de paginación --}}
+        <div class="mt-3">
+            {{ $inventarios->links() }}
+        </div>
+
+        <div class="mt-3">
             @if(isset($moto))
             <a href="{{ route('moto.index', ['idCliente' => $moto->idCliente]) }}" class="btn btn-info">
                 <i class="bi bi-arrow-left-circle"></i> Volver a la Moto
@@ -177,9 +175,7 @@ Gestión de Inventarios
                 <i class="bi bi-arrow-left-circle"></i> Volver
             </a>
             @endif
-
         </div>
-
     </div>
 
     <script>
