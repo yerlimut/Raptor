@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('inventarios', function (Blueprint $table) {
             $table->id();
             $table->string('descripcion');
-            $table->date('fechaRegistro');
+            $table->dateTime('fechaRegistro');
             $table->enum('estadoGeneral',['Bueno', 'Regular', 'Malo']);
             $table->enum('estadoInventario',['En taller', 'Entregado', 'Pendiente'])->default('En taller');
             $table->unsignedBigInteger('idMoto');

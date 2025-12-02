@@ -33,10 +33,11 @@ Crear Inventario
                 {{-- Fecha de Registro --}}
                 <div class="col-md-6">
                     <label for="fechaRegistro" class="form-label">Fecha de Registro</label>
-                    <input type="date"
+                    <input type="datetime-local"
                         class="form-control @error('fechaRegistro') is-invalid @enderror"
                         id="fechaRegistro"
                         name="fechaRegistro">
+
                     @error('fechaRegistro')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
