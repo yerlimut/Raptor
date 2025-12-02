@@ -15,7 +15,7 @@ class InventarioRequest extends FormRequest
     {
         return [
             'descripcion'      => 'required|string|min:5|max:255|regex:/^[\pL\pN\s\.,-]+$/u',
-            'fechaRegistro'    => 'required|date|before_or_equal:today',
+            'fechaRegistro' => 'required|date|before_or_equal:now',
             'estadoGeneral'    => 'required|in:Bueno,Regular,Malo',
             'estadoInventario' => 'required|in:En taller,Entregado,Pendiente',
             'idMoto'           => 'required|exists:motos,id',
@@ -32,9 +32,9 @@ class InventarioRequest extends FormRequest
             'descripcion.regex'    => 'La descripción solo puede contener letras, números, espacios y puntuación básica.',
 
             // Fecha
-            'fechaRegistro.required'        => 'La fecha de registro es obligatoria.',
+            'fechaRegistro.required'        => 'La fecha y hora de registro son obligatorias.',
             'fechaRegistro.date'            => 'Debe ingresar una fecha válida.',
-            'fechaRegistro.before_or_equal' => 'La fecha de registro no puede ser futura.',
+            'fechaRegistro.before_or_equal' => 'La fecha y hora no pueden ser futuras.',
 
             // Estado General
             'estadoGeneral.required' => 'El estado general es obligatorio.',
