@@ -20,9 +20,18 @@ Listado de Diagnósticos
 <div class="container mt-5">
     <h1 class="text-center"><i class="bi bi-clipboard2-pulse"></i> Gestión de Diagnósticos</h1>
 
-    <a href="{{ route('diagnostico.create') }}" class="btn btn-primary mb-3">
-        <i class="bi bi-plus-circle"></i> Nuevo Diagnóstico
+    @if(isset($moto))
+    <a href="{{ route('diagnostico.create', ['idMoto' => $moto->id]) }}"
+        class="btn btn-primary mb-3">
+        <i class="bi bi-plus-circle"></i> Crear Diagnóstico
     </a>
+    @else
+    <a href="{{ route('diagnostico.create') }}"
+        class="btn btn-primary mb-3">
+        <i class="bi bi-plus-circle"></i> Crear Diagnóstico
+    </a>
+    @endif
+
     <!-- 🔽 FILTROS -->
     <div class="card shadow-sm mb-4">
         <div class="card-header bg-primary text-white">

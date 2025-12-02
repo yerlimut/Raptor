@@ -21,36 +21,36 @@ Crear Orden de Trabajo
                 {{-- Fecha Inicio --}}
                 <div class="col-md-6">
                     <label for="fechaInicio" class="form-label">Fecha de Inicio</label>
-                    <input 
-                        type="date" 
-                        class="form-control @error('fechaInicio') is-invalid @enderror" 
-                        id="fechaInicio" 
-                        name="fechaInicio" >
+                    <input
+                        type="date"
+                        class="form-control @error('fechaInicio') is-invalid @enderror"
+                        id="fechaInicio"
+                        name="fechaInicio">
                     @error('fechaInicio')
-                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                    <div class="invalid-feedback d-block">{{ $message }}</div>
                     @enderror
                 </div>
 
                 {{-- Fecha Fin --}}
                 <div class="col-md-6">
                     <label for="fechaFin" class="form-label">Fecha de Fin</label>
-                    <input 
-                        type="date" 
-                        class="form-control @error('fechaFin') is-invalid @enderror" 
-                        id="fechaFin" 
+                    <input
+                        type="date"
+                        class="form-control @error('fechaFin') is-invalid @enderror"
+                        id="fechaFin"
                         name="fechaFin">
                     @error('fechaFin')
-                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                    <div class="invalid-feedback d-block">{{ $message }}</div>
                     @enderror
                 </div>
 
                 {{-- Estado --}}
                 <div class="col-md-6">
                     <label for="estado" class="form-label">Estado</label>
-                    <select 
-                        class="form-control @error('estado') is-invalid @enderror" 
-                        id="estado" 
-                        name="estado" >
+                    <select
+                        class="form-control @error('estado') is-invalid @enderror"
+                        id="estado"
+                        name="estado">
                         <option value="">Seleccione una opcion</option>
                         <option value="pendiente">Pendiente</option>
                         <option value="en proceso">En Proceso</option>
@@ -58,47 +58,88 @@ Crear Orden de Trabajo
                         <option value="cancelado">Cancelado</option>
                     </select>
                     @error('estado')
-                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                    <div class="invalid-feedback d-block">{{ $message }}</div>
                     @enderror
                 </div>
 
                 {{-- Diagnóstico --}}
                 <div class="col-md-6">
                     <label for="idDiagnostico" class="form-label">Diagnóstico</label>
-                    <select 
-                        class="form-control @error('idDiagnostico') is-invalid @enderror" 
-                        id="idDiagnostico" 
-                        name="idDiagnostico" >
+
+                    @if(isset($diagnosticoSeleccionado))
+                    {{-- 🔒 Modo bloqueado --}}
+                    <input type="text"
+                        class="form-control"
+                        value="{{ $diagnosticoSeleccionado->descripcion ?? 'Diagnóstico #'.$diagnosticoSeleccionado->id }}"
+                        disabled>
+
+                    {{-- Campo real oculto --}}
+                    <input type="hidden" name="idDiagnostico" value="{{ $diagnosticoSeleccionado->id }}">
+
+                    @else
+                    {{-- 🔓 Modo normal --}}
+                    <select
+                        class="form-control @error('idDiagnostico') is-invalid @enderror"
+                        id="idDiagnostico"
+                        name="idDiagnostico">
+
                         <option value="">-- Seleccione --</option>
-                        @foreach($diagnosticos as $diagnostico)
-                            <option value="{{ $diagnostico->id }}">
-                                {{ $diagnostico->descripcion ?? 'Diagnóstico #'.$diagnostico->id }}
-                            </option>
+
+                        @foreach($diagnosticos as $d)
+                        <option
+                            value="{{ $d->id }}"
+                            {{ request('idDiagnostico') == $d->id ? 'selected' : '' }}>
+                            {{ $d->descripcion ?? 'Diagnóstico #'.$d->id }}
+                        </option>
                         @endforeach
                     </select>
+
                     @error('idDiagnostico')
-                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                    <div class="invalid-feedback d-block">{{ $message }}</div>
                     @enderror
+                    @endif
                 </div>
+
 
                 {{-- Moto --}}
                 <div class="col-md-6">
                     <label for="idMoto" class="form-label">Moto</label>
-                    <select 
-                        class="form-control @error('idMoto') is-invalid @enderror" 
-                        id="idMoto" 
+
+                    @if(isset($motoSeleccionada))
+                    {{-- 🔒 Modo bloqueado --}}
+                    <input type="text"
+                        class="form-control"
+                        value="{{ $motoSeleccionada->placa }} - {{ $motoSeleccionada->marca->nombreMarca ?? '' }}"
+                        disabled>
+
+                    {{-- Campo real oculto --}}
+                    <input type="hidden" name="idMoto" value="{{ $motoSeleccionada->id }}">
+
+                    @else
+                    {{-- 🔓 Modo normal --}}
+                    <select
+                        class="form-control @error('idMoto') is-invalid @enderror"
+                        id="idMoto"
                         name="idMoto">
-                        <option value="">-- Seleccione una moto --</option>
-                        @foreach($motos as $moto)
-                            <option value="{{ $moto->id }}">
-                                {{ $moto->placa }} - {{ $moto->modelo }} ({{ $moto->marca->nombreMarca ?? 'Sin marca' }})
-                            </option>
+
+                        <option value="">-- Seleccione --</option>
+
+                        @foreach($motos as $m)
+                        <option
+                            value="{{ $m->id }}"
+                            {{ request('idMoto') == $m->id ? 'selected' : '' }}>
+                            {{ $m->placa }} - {{ $m->marca->nombreMarca ?? '' }}
+                        </option>
                         @endforeach
                     </select>
+
                     @error('idMoto')
-                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                    <div class="invalid-feedback d-block">{{ $message }}</div>
                     @enderror
+                    @endif
                 </div>
+
+
 
             </div>
 

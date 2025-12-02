@@ -77,16 +77,27 @@ Crear Inventario
 
                 <div class="col-md-12">
                     <label for="idMoto" class="form-label">Moto</label>
+
                     <select class="form-control @error('idMoto') is-invalid @enderror"
                         id="idMoto"
-                        name="idMoto">
+                        name="idMoto"
+                        {{ isset($idMoto) ? 'disabled' : '' }}>
+
                         <option value="">-- Seleccione una moto --</option>
+
                         @foreach($motos as $moto)
-                        <option value="{{ $moto->id }}">
+                        <option value="{{ $moto->id }}"
+                            @if(isset($idMoto) && $idMoto==$moto->id) selected @endif>
                             {{ $moto->placa }} - {{ $moto->marca->nombreMarca ?? 'Sin marca' }}
                         </option>
                         @endforeach
                     </select>
+
+                    {{-- Si viene desde porMoto(), enviamos el ID oculto --}}
+                    @if(isset($idMoto))
+                    <input type="hidden" name="idMoto" value="{{ $idMoto }}">
+                    @endif
+
                     @error('idMoto')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror

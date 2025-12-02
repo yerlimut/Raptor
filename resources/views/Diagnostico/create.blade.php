@@ -81,20 +81,38 @@ Crear Diagnóstico
                     </div>
 
                     {{-- Moto --}}
+                    {{-- Moto --}}
                     <div class="col-md-6">
                         <label for="idMoto" class="form-label">Moto</label>
+
+                        {{-- Si viene desde porMoto --}}
+                        @if(isset($moto))
+                        {{-- Campo visible bloqueado --}}
+                        <input type="text"
+                            class="form-control"
+                            value="{{ $moto->placa }} - {{ $moto->marca->nombreMarca }}"
+                            disabled>
+
+                        {{-- Campo real oculto que se envía en el formulario --}}
+                        <input type="hidden" name="idMoto" value="{{ $moto->id }}">
+
+                        @else
+                        {{-- Modo normal (lista de motos) --}}
                         <select class="form-control @error('idMoto') is-invalid @enderror" id="idMoto" name="idMoto">
                             <option value="">Seleccione una moto...</option>
                             @foreach($motos as $moto)
                             <option value="{{ $moto->id }}">
-                            {{ $moto->placa }} - {{ $moto->marca->nombreMarca }}
+                                {{ $moto->placa }} - {{ $moto->marca->nombreMarca }}
                             </option>
                             @endforeach
                         </select>
+
                         @error('idMoto')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
+                        @endif
                     </div>
+
                 </div>
         </div>
 

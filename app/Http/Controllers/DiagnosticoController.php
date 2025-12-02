@@ -56,20 +56,30 @@ class DiagnosticoController extends Controller
         // 📄 Paginación
         $diagnosticos = $query->paginate(10)->appends($request->query());
         $volver = route('welcome');
-    
 
-    
+
+
 
         // 📤 Retornar vista
-        return view('diagnostico.index', compact('diagnosticos','volver'));
+        return view('diagnostico.index', compact('diagnosticos', 'volver'));
     }
 
 
-    public function create()
+    public function create(Request $request)
     {
+        // Si viene desde porMoto(), la URL trae ?idMoto=7
+        $idMoto = $request->get('idMoto');
+
+        if ($idMoto) {
+            $moto = Moto::findOrFail($idMoto);
+            return view('Diagnostico.create', compact('moto'));
+        }
+
+        // Si NO viene desde porMoto → lista normal
         $motos = Moto::all();
         return view('Diagnostico.create', compact('motos'));
     }
+
 
     public function store(DiagnosticoRequest $request)
     {
@@ -114,18 +124,17 @@ class DiagnosticoController extends Controller
         }
     }
 
-public function porMoto($idMoto)
-{
-    $moto = \App\Models\Moto::with(['cliente', 'marca'])->findOrFail($idMoto);
+    public function porMoto($idMoto)
+    {
+        $moto = \App\Models\Moto::with(['cliente', 'marca'])->findOrFail($idMoto);
 
-    $diagnosticos = \App\Models\Diagnostico::where('idMoto', $idMoto)
-        ->orderBy('created_at', 'desc')
-        ->with(['moto'])
-        ->get();
+        $diagnosticos = \App\Models\Diagnostico::where('idMoto', $idMoto)
+            ->orderBy('created_at', 'desc')
+            ->with(['moto'])
+            ->get();
 
         $volver = route('inventario.porMoto', ['idMoto' => $moto->id]);
 
-    return view('diagnostico.index', compact('diagnosticos', 'moto','volver'));
-}
-
+        return view('diagnostico.index', compact('diagnosticos', 'moto', 'volver'));
+    }
 }

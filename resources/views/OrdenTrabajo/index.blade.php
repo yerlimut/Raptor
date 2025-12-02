@@ -34,9 +34,18 @@ Gestión de Órdenes de Trabajo
     @endif
 
 
-    <a href="{{ route('OrdenTrabajo.create') }}" class="btn btn-primary mb-3">
+    @if(isset($diagnostico))
+    <a href="{{ route('OrdenTrabajo.create', ['idDiagnostico' => $diagnostico->id]) }}"
+        class="btn btn-primary mb-3">
         <i class="bi bi-plus-circle"></i> Crear Orden de Trabajo
     </a>
+    @else
+    <a href="{{ route('OrdenTrabajo.create') }}"
+        class="btn btn-primary mb-3">
+        <i class="bi bi-plus-circle"></i> Crear Orden de Trabajo
+    </a>
+    @endif
+
 
     <div class="card card-secondary">
         <div class="card-header bg-primary text-white">

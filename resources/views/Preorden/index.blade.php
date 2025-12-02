@@ -256,5 +256,6 @@ Gestión de Preórdenes
 @endsection
 
 @section('js')
+<script src="https://unpkg.com/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
 
 @endsection

@@ -11,83 +11,112 @@ use Illuminate\Http\Request;
 class OrdenTrabajoController extends Controller
 {
     public function index(Request $request)
-{
-    // 🔍 Filtros
-    $search = $request->get('search');
-    $estado = strtolower($request->get('estado')); // Normalizar
-    $idDiagnostico = $request->get('idDiagnostico');
-    $fechaInicio = $request->get('fechaInicio');
-    $fechaFin = $request->get('fechaFin');
-    $rangoInicio = $request->get('rangoInicio');
-    $rangoFin = $request->get('rangoFin');
-
-    // Consulta base con relaciones
-    $query = OrdenTrabajo::with(['diagnostico', 'moto']);
-
-    // Filtro búsqueda general
-    if ($search) {
-        $query->where(function ($q) use ($search) {
-            $q->where('id', 'LIKE', "%$search%")
-                ->orWhereHas('diagnostico', function ($d) use ($search) {
-                    $d->where('descripcion', 'LIKE', "%$search%");
-                })
-                ->orWhereHas('moto', function ($m) use ($search) {
-                    $m->where('placa', 'LIKE', "%$search%");
-                });
-        });
-    }
-
-    // ⭐ FILTRO POR ESTADO (para panel y vista)
-    if ($estado) {
-        $query->whereRaw('LOWER(estado) = ?', [$estado]);
-    }
-
-    // Filtro diagnóstico
-    if ($idDiagnostico) {
-        $query->where('idDiagnostico', $idDiagnostico);
-    }
-
-    // Filtro por fechas
-    if ($fechaInicio) {
-        $query->whereDate('fechaInicio', $fechaInicio);
-    }
-
-    if ($fechaFin) {
-        $query->whereDate('fechaFin', $fechaFin);
-    }
-
-    if ($rangoInicio && $rangoFin) {
-        $query->whereBetween('fechaInicio', [$rangoInicio, $rangoFin]);
-    }
-
-    // Ordenar
-    $query->orderBy('fechaInicio', 'desc');
-
-    // Datos para vista
-    $ordenes = $query->paginate(15);
-    $diagnosticos = Diagnostico::all();
-    $motos = Moto::with('marca')->get();
-
-    return view('OrdenTrabajo.index', compact(
-        'ordenes',
-        'diagnosticos',
-        'motos',
-        'search',
-        'estado',
-        'idDiagnostico',
-        'fechaInicio',
-        'fechaFin',
-        'rangoInicio',
-        'rangoFin'
-    ));
-}
-
-    public function create()
     {
+        // 🔍 Filtros
+        $search = $request->get('search');
+        $estado = strtolower($request->get('estado')); // Normalizar
+        $idDiagnostico = $request->get('idDiagnostico');
+        $fechaInicio = $request->get('fechaInicio');
+        $fechaFin = $request->get('fechaFin');
+        $rangoInicio = $request->get('rangoInicio');
+        $rangoFin = $request->get('rangoFin');
+
+        // Consulta base con relaciones
+        $query = OrdenTrabajo::with(['diagnostico', 'moto']);
+
+        // Filtro búsqueda general
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('id', 'LIKE', "%$search%")
+                    ->orWhereHas('diagnostico', function ($d) use ($search) {
+                        $d->where('descripcion', 'LIKE', "%$search%");
+                    })
+                    ->orWhereHas('moto', function ($m) use ($search) {
+                        $m->where('placa', 'LIKE', "%$search%");
+                    });
+            });
+        }
+
+        // ⭐ FILTRO POR ESTADO (para panel y vista)
+        if ($estado) {
+            $query->whereRaw('LOWER(estado) = ?', [$estado]);
+        }
+
+        // Filtro diagnóstico
+        if ($idDiagnostico) {
+            $query->where('idDiagnostico', $idDiagnostico);
+        }
+
+        // Filtro por fechas
+        if ($fechaInicio) {
+            $query->whereDate('fechaInicio', $fechaInicio);
+        }
+
+        if ($fechaFin) {
+            $query->whereDate('fechaFin', $fechaFin);
+        }
+
+        if ($rangoInicio && $rangoFin) {
+            $query->whereBetween('fechaInicio', [$rangoInicio, $rangoFin]);
+        }
+
+        // Ordenar
+        $query->orderBy('fechaInicio', 'desc');
+
+        // Datos para vista
+        $ordenes = $query->paginate(15);
         $diagnosticos = Diagnostico::all();
-        $motos = Moto::with('marca')->get();  
-        return view('OrdenTrabajo.create', compact('diagnosticos', 'motos'));
+        $motos = Moto::with('marca')->get();
+
+        return view('OrdenTrabajo.index', compact(
+            'ordenes',
+            'diagnosticos',
+            'motos',
+            'search',
+            'estado',
+            'idDiagnostico',
+            'fechaInicio',
+            'fechaFin',
+            'rangoInicio',
+            'rangoFin'
+        ));
     }
+
+
+    public function create(Request $request)
+    {
+        // Siempre cargamos las listas por si el formulario se abre en modo normal
+        $diagnosticos = Diagnostico::all();
+        $motos = Moto::with('marca')->get();
+
+        // Valores que pueden venir por query string: ?idDiagnostico=5 o ?idMoto=7
+        $idDiagnostico = $request->get('idDiagnostico');
+        $idMoto = $request->get('idMoto');
+
+        $diagnosticoSeleccionado = null;
+        $motoSeleccionada = null;
+
+        if ($idDiagnostico) {
+            $diagnosticoSeleccionado = Diagnostico::with('moto')->find($idDiagnostico);
+            if ($diagnosticoSeleccionado && $diagnosticoSeleccionado->moto) {
+                $motoSeleccionada = $diagnosticoSeleccionado->moto;
+            }
+        }
+
+        // Si viene solo idMoto por url (desde la vista Moto), lo buscamos también
+        if (!$motoSeleccionada && $idMoto) {
+            $motoSeleccionada = Moto::with('marca')->find($idMoto);
+        }
+
+        return view('OrdenTrabajo.create', compact(
+            'diagnosticos',
+            'motos',
+            'diagnosticoSeleccionado',
+            'motoSeleccionada'
+        ));
+    }
+
+
 
     public function store(OrdenTrabajoRequest $request)
     {
@@ -186,7 +215,8 @@ class OrdenTrabajoController extends Controller
             'fechaFin',
             'rangoInicio',
             'rangoFin',
-            'volver'
+            'volver',
+            'diagnostico'
         ));
     }
 }

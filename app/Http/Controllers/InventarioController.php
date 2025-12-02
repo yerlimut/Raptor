@@ -63,10 +63,12 @@ class InventarioController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
         $motos = Moto::all();
-        return view('Inventario.create', compact('motos'));
+            $idMoto = $request->get('idMoto'); // viene desde porMoto()
+
+        return view('Inventario.create', compact('motos','idMoto'));
     }
 
     /**
