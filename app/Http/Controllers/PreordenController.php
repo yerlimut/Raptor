@@ -107,7 +107,13 @@ class PreordenController extends Controller
         'saldo' => $request->saldo,
     ]);
 
+
     $preorden->repuestos()->attach($request->idRepuesto);
+
+    // 3. CAMBIAR ESTADO DE LA ORDEN A FINALIZADO
+    OrdenTrabajo::where('id', $request->idOrden)
+        ->update(['estado' => 'finalizado']);
+
 
     // 🔹 Redirigir según si viene de porOrden o desde listado general
     if ($request->has('volver') && $request->volver == 'porOrden') {
@@ -165,6 +171,9 @@ class PreordenController extends Controller
         $preorden->update([
             'saldo' => $total
         ]);
+
+         OrdenTrabajo::where('id', $preorden->idOrden)
+        ->update(['estado' => 'finalizado']);
 
         return redirect()
             ->route('Preorden.index')

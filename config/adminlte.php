@@ -346,20 +346,22 @@ return [
         // ⚙️ Taller
         ['header' => 'Taller y Órdenes'],
         [
-            'text' => 'Preórdenes',
-            'route' => 'Preorden.index',
-            'icon' => 'fas fa-file-alt',
+            'text' => 'Diagnóstico',
+            'route' => 'diagnostico.index',
+            'icon' => 'fas fa-stethoscope',
         ],
+        
         [
             'text' => 'Órdenes de Trabajo',
             'route' => 'OrdenTrabajo.index',
             'icon' => 'fas fa-clipboard-list',
         ],
         [
-            'text' => 'Diagnóstico',
-            'route' => 'diagnostico.index',
-            'icon' => 'fas fa-stethoscope',
+            'text' => 'Preórdenes',
+            'route' => 'Preorden.index',
+            'icon' => 'fas fa-file-alt',
         ],
+        
 
         // 🧩 Repuestos
         ['header' => 'Repuestos e Inventario'],
