@@ -163,7 +163,7 @@ Gestión de Preórdenes
 @endif
 
 <div class="container">
-    <table id="myTable" class="table table-bordered table-hover">
+    <table id="myTable" class="table table-bordered table-hover w-90 mx-auto small align-middle">
         <thead class="table card-header bg-primary text-white">
             <tr>
                 <th>ID</th>
@@ -270,4 +270,25 @@ Gestión de Preórdenes
 @section('js')
 <script src="https://unpkg.com/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
 
+
+@parent
+<script>
+$(document).ready(function() {
+    // Verificamos si la tabla ya no está inicializada
+    if (!$.fn.DataTable.isDataTable('#myTable')) {
+        $('#myTable').DataTable({
+            language: {
+                url: "//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json"
+            },
+            responsive: true,
+            ordering: true,
+            order: [[0, 'desc']], // Ordenar por ID descendente
+            pageLength: 10,
+            lengthMenu: [5, 10, 25, 50]
+        });
+    }
+});
+</script>
 @endsection
+
+

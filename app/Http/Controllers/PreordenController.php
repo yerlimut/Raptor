@@ -97,32 +97,30 @@ class PreordenController extends Controller
 
 
     public function store(PreordenRequest $request)
-    {
-        $request->validate([
-            'idOrden' => 'required',
-            'idMecanico' => 'required',
-            'idRepuesto' => 'required|array|min:1',
-            'idMoto' => 'required',
-            'descripcion' => 'nullable|string',
-            'mano_obra' => 'nullable|numeric|min:0',
-            'saldo' => 'required|numeric|min:0',
-        ]);
+{
+    $preorden = Preorden::create([
+        'idOrden' => $request->idOrden,
+        'idMecanico' => $request->idMecanico,
+        'idMoto' => $request->idMoto,
+        'descripcion' => $request->descripcion,
+        'mano_obra' => $request->mano_obra,
+        'saldo' => $request->saldo,
+    ]);
 
-        $preorden = Preorden::create([
-            'idOrden' => $request->idOrden,
-            'idMecanico' => $request->idMecanico,
-            'idMoto' => $request->idMoto,
-            'descripcion' => $request->descripcion,
-            'mano_obra' => $request->mano_obra,
-            'saldo' => $request->saldo,
-        ]);
+    $preorden->repuestos()->attach($request->idRepuesto);
 
-        // Guardar los repuestos relacionados
-        $preorden->repuestos()->attach($request->idRepuesto);
-
-        return redirect()->route('Preorden.index')
-            ->with('success', 'Preorden creada correctamente');
+    // 🔹 Redirigir según si viene de porOrden o desde listado general
+    if ($request->has('volver') && $request->volver == 'porOrden') {
+        return redirect()
+            ->route('Preorden.porOrden', ['idOrden' => $request->idOrden])
+            ->with('success', 'Preorden creada correctamente.');
     }
+
+    return redirect()
+        ->route('Preorden.index')
+        ->with('success', 'Preorden creada correctamente.');
+}
+
 
 
     public function show(Preorden $preorden)

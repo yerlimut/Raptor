@@ -141,7 +141,7 @@ Gestión de Clientes
     @endif
 
     <div class="container">
-        <table id="myTable" class="table table-bordered table-hover w-75 mx-auto small align-middle" >
+        <table id="myTable" class="table table-bordered table-hover w-95 mx-auto small align-middle" >
             <thead class="table card-header bg-primary text-white">
                 <tr>
                     <th>ID</th>

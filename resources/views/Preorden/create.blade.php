@@ -22,6 +22,7 @@
                         disabled>
 
                     <input type="hidden" name="idOrden" value="{{ $ordenSeleccionada->id }}">
+                    <input type="hidden" name="volver" value="porOrden">
                     @else
                     {{-- 🔓 Campo Normal --}}
                     <select class="form-control" id="idOrden" name="idOrden">
