@@ -61,51 +61,68 @@ class PreordenController extends Controller
         // Obtener resultados
         $preorden = $query->paginate(10);
 
-         
+
         // Retornar vista con variables
         return view('preorden.index', compact('preorden', 'search', 'idOrden', 'idMecanico', 'idRepuesto', 'ordenes', 'mecanicos', 'repuestos', 'motos'));
     }
 
 
 
-    public function create()
+    public function create(Request $request)
     {
-        $ordenes = OrdenTrabajo::all();
-        $motos = Moto::all();
-        $mecanicos = Mecanico::all();
-        $repuestos = Repuesto::all();
+        $ordenSeleccionada = null;
+        $motoSeleccionada = null;
 
+        if ($request->has('idOrden')) {
+            $ordenSeleccionada = OrdenTrabajo::with('moto.marca')->find($request->idOrden);
+            $motoSeleccionada = $ordenSeleccionada?->moto;
+        }
 
-        return view('Preorden.create', compact('ordenes', 'mecanicos', 'repuestos', 'motos'));
+        return view('Preorden.create', [
+            'ordenes' => OrdenTrabajo::with('moto.marca')->get(),
+            'mecanicos' => Mecanico::all(),
+            'repuestos' => Repuesto::all(),
+            'motos' => Moto::with('marca')->get(),
+
+            'ordenSeleccionada' => $ordenSeleccionada,
+            'motoSeleccionada' => $motoSeleccionada,
+        ]);
     }
 
+
+
+
+
+
+
+
     public function store(PreordenRequest $request)
-{
-    $request->validate([
-        'idOrden' => 'required',
-        'idMecanico' => 'required',
-        'idRepuesto' => 'required|array|min:1',
-        'idMoto' => 'required',
-        'descripcion' => 'nullable|string',
-        'mano_obra' => 'nullable|numeric|min:0',
-        'saldo' => 'required|numeric|min:0',
-    ]);
+    {
+        $request->validate([
+            'idOrden' => 'required',
+            'idMecanico' => 'required',
+            'idRepuesto' => 'required|array|min:1',
+            'idMoto' => 'required',
+            'descripcion' => 'nullable|string',
+            'mano_obra' => 'nullable|numeric|min:0',
+            'saldo' => 'required|numeric|min:0',
+        ]);
 
-    $preorden = Preorden::create([
-        'idOrden' => $request->idOrden,
-        'idMecanico' => $request->idMecanico,
-        'idMoto' => $request->idMoto,
-        'descripcion' => $request->descripcion,
-        'mano_obra' => $request->mano_obra,
-        'saldo' => $request->saldo,
-    ]);
+        $preorden = Preorden::create([
+            'idOrden' => $request->idOrden,
+            'idMecanico' => $request->idMecanico,
+            'idMoto' => $request->idMoto,
+            'descripcion' => $request->descripcion,
+            'mano_obra' => $request->mano_obra,
+            'saldo' => $request->saldo,
+        ]);
 
-    // Guardar los repuestos relacionados
-    $preorden->repuestos()->attach($request->idRepuesto);
+        // Guardar los repuestos relacionados
+        $preorden->repuestos()->attach($request->idRepuesto);
 
-    return redirect()->route('Preorden.index')
-        ->with('success', 'Preorden creada correctamente');
-}
+        return redirect()->route('Preorden.index')
+            ->with('success', 'Preorden creada correctamente');
+    }
 
 
     public function show(Preorden $preorden)
@@ -128,58 +145,57 @@ class PreordenController extends Controller
 
 
     public function update(PreordenRequest $request, $id)
-{
-    $preorden = Preorden::findOrFail($id);
+    {
+        $preorden = Preorden::findOrFail($id);
 
-    // Actualizar campos principales
-    $preorden->update([
-        'idOrden' => $request->idOrden,
-        'idMecanico' => $request->idMecanico,
-        'idMoto' => $request->idMoto,
-        'descripcion' => $request->descripcion,
-        'mano_obra' => $request->mano_obra,
-    ]);
+        // Actualizar campos principales
+        $preorden->update([
+            'idOrden' => $request->idOrden,
+            'idMecanico' => $request->idMecanico,
+            'idMoto' => $request->idMoto,
+            'descripcion' => $request->descripcion,
+            'mano_obra' => $request->mano_obra,
+        ]);
 
-    // Sincronizar repuestos (name="idRepuesto[]")
-    $preorden->repuestos()->sync($request->idRepuesto ?? []);
+        // Sincronizar repuestos (name="idRepuesto[]")
+        $preorden->repuestos()->sync($request->idRepuesto ?? []);
 
-    // Recalcular saldo
-    $totalRepuestos = $preorden->repuestos()->sum('precio');
-    $total = $totalRepuestos + ($request->mano_obra ?? 0);
+        // Recalcular saldo
+        $totalRepuestos = $preorden->repuestos()->sum('precio');
+        $total = $totalRepuestos + ($request->mano_obra ?? 0);
 
-    $preorden->update([
-        'saldo' => $total
-    ]);
+        $preorden->update([
+            'saldo' => $total
+        ]);
 
-    return redirect()
-        ->route('Preorden.index')
-        ->with('success', 'Preorden actualizada correctamente');
-}
+        return redirect()
+            ->route('Preorden.index')
+            ->with('success', 'Preorden actualizada correctamente');
+    }
 
 
     public function destroy($id)
-{
-    $preorden = Preorden::findOrFail($id);
+    {
+        $preorden = Preorden::findOrFail($id);
 
-    try {
+        try {
 
-        // Intentar eliminar la preorden
-        $preorden->delete();
+            // Intentar eliminar la preorden
+            $preorden->delete();
 
-        return redirect()->route('Preorden.index')
-            ->with('success', 'Preorden eliminada correctamente.');
+            return redirect()->route('Preorden.index')
+                ->with('success', 'Preorden eliminada correctamente.');
+        } catch (\Illuminate\Database\QueryException $e) {
 
-    } catch (\Illuminate\Database\QueryException $e) {
+            // Código 23000 = violación de foreign key
+            if ($e->getCode() == 23000) {
+                return back()->with('error', 'Debe eliminar primero los repuestos o relaciones asociadas a la preorden.');
+            }
 
-        // Código 23000 = violación de foreign key
-        if ($e->getCode() == 23000) {
-            return back()->with('error', 'Debe eliminar primero los repuestos o relaciones asociadas a la preorden.');
+            // Cualquier otro error lo lanzamos
+            throw $e;
         }
-
-        // Cualquier otro error lo lanzamos
-        throw $e;
     }
-}
 
 
     public function porOrden($idOrden)
@@ -216,21 +232,20 @@ class PreordenController extends Controller
         ));
     }
     // 🧾 Mostrar PDF en el navegador
-public function verPDF($id)
-{
-    $preorden = Preorden::with(['ordenTrabajo', 'mecanico', 'repuestos', 'moto'])->findOrFail($id);
+    public function verPDF($id)
+    {
+        $preorden = Preorden::with(['ordenTrabajo', 'mecanico', 'repuestos', 'moto'])->findOrFail($id);
 
-    $pdf = Pdf::loadView('Preorden.pdf', compact('preorden'));
-    return $pdf->stream('preorden_'.$preorden->id.'.pdf');
-}
+        $pdf = Pdf::loadView('Preorden.pdf', compact('preorden'));
+        return $pdf->stream('preorden_' . $preorden->id . '.pdf');
+    }
 
-// 💾 Descargar PDF directamente
-public function descargarPDF($id)
-{
-    $preorden = Preorden::with(['ordenTrabajo', 'mecanico', 'repuestos', 'moto'])->findOrFail($id);
+    // 💾 Descargar PDF directamente
+    public function descargarPDF($id)
+    {
+        $preorden = Preorden::with(['ordenTrabajo', 'mecanico', 'repuestos', 'moto'])->findOrFail($id);
 
-    $pdf = Pdf::loadView('Preorden.pdf', compact('preorden'));
-    return $pdf->download('preorden_'.$preorden->id.'.pdf');
-}
-
+        $pdf = Pdf::loadView('Preorden.pdf', compact('preorden'));
+        return $pdf->download('preorden_' . $preorden->id . '.pdf');
+    }
 }
