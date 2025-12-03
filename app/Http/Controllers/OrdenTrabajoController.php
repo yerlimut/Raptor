@@ -119,26 +119,34 @@ class OrdenTrabajoController extends Controller
 
 
     public function store(OrdenTrabajoRequest $request)
-    {
-        $request->validate([
-            'fechaInicio' => 'required|date',
-            'fechaFin' => 'nullable|date|after_or_equal:fechaInicio',
-            'estado' => 'required|string',
-            'idDiagnostico' => 'required|exists:diagnosticos,id',
-            'idMoto' => 'required|exists:motos,id',
-        ]);
+{
+    $request->validate([
+        'fechaInicio' => 'required|date',
+        'fechaFin' => 'nullable|date|after_or_equal:fechaInicio',
+        'estado' => 'required|string',
+        'idDiagnostico' => 'required|exists:diagnosticos,id',
+        'idMoto' => 'required|exists:motos,id',
+    ]);
 
-        OrdenTrabajo::create([
-            'fechaInicio' => $request->fechaInicio,
-            'fechaFin' => $request->fechaFin,
-            'estado' => $request->estado,
-            'idDiagnostico' => $request->idDiagnostico,
-            'idMoto' => $request->idMoto,
-        ]);
+    $orden = OrdenTrabajo::create([
+        'fechaInicio' => $request->fechaInicio,
+        'fechaFin' => $request->fechaFin,
+        'estado' => $request->estado,
+        'idDiagnostico' => $request->idDiagnostico,
+        'idMoto' => $request->idMoto,
+    ]);
 
-        return redirect()->route('OrdenTrabajo.index')
-            ->with('success', 'Orden de trabajo creada correctamente.');
+    if ($request->volver === 'porDiagnostico') {
+        return redirect()
+    ->route('ordenTrabajo.porDiagnostico', ['idDiagnostico' => $orden->idDiagnostico])
+    ->with('success', 'Orden de trabajo creada correctamente.');
     }
+
+    return redirect()
+        ->route('OrdenTrabajo.index')
+        ->with('success', 'Orden de trabajo creada correctamente.');
+}
+
 
     public function edit($id)
     {

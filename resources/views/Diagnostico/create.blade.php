@@ -95,6 +95,7 @@ Crear Diagnóstico
 
                         {{-- Campo real oculto que se envía en el formulario --}}
                         <input type="hidden" name="idMoto" value="{{ $moto->id }}">
+                        <input type="hidden" name="volver" value="porMoto">
 
                         @else
                         {{-- Modo normal (lista de motos) --}}

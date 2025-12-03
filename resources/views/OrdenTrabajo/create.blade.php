@@ -114,6 +114,8 @@ Crear Orden de Trabajo
 
                     {{-- Campo real oculto --}}
                     <input type="hidden" name="idMoto" value="{{ $motoSeleccionada->id }}">
+                    <input type="hidden" name="volver" value="porDiagnostico">
+
 
                     @else
                     {{-- 🔓 Modo normal --}}

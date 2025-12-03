@@ -83,11 +83,20 @@ class DiagnosticoController extends Controller
 
     public function store(DiagnosticoRequest $request)
     {
-        Diagnostico::create(
-            $request->all()
-        );
-        return redirect()->route('diagnostico.index')->with('success', 'Diagnostico creado correctamente');
+        $diagnostico = Diagnostico::create($request->all());
+
+        if ($request->volver === 'porMoto') {
+            return redirect()
+                ->route('diagnostico.porMoto', ['idMoto' => $diagnostico->idMoto])
+                ->with('success', 'Diagnóstico creado correctamente.');
+        }
+
+        return redirect()
+            ->route('diagnostico.index')
+            ->with('success', 'Diagnóstico creado correctamente.');
     }
+
+
 
     public function show(Diagnostico $diagnostico)
     {

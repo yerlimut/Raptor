@@ -27,9 +27,9 @@ class InventarioController extends Controller
         if ($search) {
             $query->where(function ($q) use ($search) {
                 $q->where('descripcion', 'LIKE', "%{$search}%")
-                  ->orWhereHas('moto', function ($m) use ($search) {
-                      $m->where('modelo', 'LIKE', "%{$search}%");
-                  });
+                    ->orWhereHas('moto', function ($m) use ($search) {
+                        $m->where('modelo', 'LIKE', "%{$search}%");
+                    });
             });
         }
 
@@ -66,9 +66,9 @@ class InventarioController extends Controller
     public function create(Request $request)
     {
         $motos = Moto::all();
-            $idMoto = $request->get('idMoto'); // viene desde porMoto()
+        $idMoto = $request->get('idMoto'); // viene desde porMoto()
 
-        return view('Inventario.create', compact('motos','idMoto'));
+        return view('Inventario.create', compact('motos', 'idMoto'));
     }
 
     /**
@@ -76,9 +76,23 @@ class InventarioController extends Controller
      */
     public function store(InventarioRequest $request)
     {
-        Inventario::create($request->all());
-        return redirect()->route('inventario.index')->with('success', 'Inventario creado correctamente');
+        $inventario = Inventario::create($request->all());
+
+        // Si venimos desde porMoto
+        if ($request->volver === 'porMoto') {
+            return redirect()
+                ->route('inventario.porMoto', ['idMoto' => $inventario->idMoto])
+                ->with('success', 'Inventario creado correctamente.');
+        }
+
+        // Si venimos desde listado general
+        return redirect()
+            ->route('inventario.index')
+            ->with('success', 'Inventario creado correctamente.');
     }
+
+
+
 
     /**
      * Display the specified resource.

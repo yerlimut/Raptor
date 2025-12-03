@@ -96,7 +96,9 @@ Crear Inventario
                     {{-- Si viene desde porMoto(), enviamos el ID oculto --}}
                     @if(isset($idMoto))
                     <input type="hidden" name="idMoto" value="{{ $idMoto }}">
+                    <input type="hidden" name="volver" value="porMoto">
                     @endif
+
 
                     @error('idMoto')
                     <div class="invalid-feedback">{{ $message }}</div>
