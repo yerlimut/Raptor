@@ -13,18 +13,30 @@
             <div class="row g-3">
                 <div class="col-md-6">
                     <label for="idOrden" class="form-label">Orden de Trabajo</label>
-                    <select class="form-control @error('idOrden') is-invalid @enderror" id="idOrden" name="idOrden">
+
+                    @if(isset($ordenSeleccionada))
+                    {{-- 🔒 Campo Bloqueado --}}
+                    <input type="text"
+                        class="form-control"
+                        value="Orden #{{ $ordenSeleccionada->id }} — Placa: {{ $ordenSeleccionada->moto->placa }} — Marca: {{ $ordenSeleccionada->moto->marca->nombreMarca }}"
+                        disabled>
+
+                    <input type="hidden" name="idOrden" value="{{ $ordenSeleccionada->id }}">
+                    @else
+                    {{-- 🔓 Campo Normal --}}
+                    <select class="form-control" id="idOrden" name="idOrden">
                         <option value="">-- Seleccione --</option>
                         @foreach($ordenes as $orden)
-                        <option value="{{ $orden->id }}">{{ "Orden #{$orden->id} - Placa: {$orden->moto->placa} - Marca: {$orden->moto->marca->nombreMarca}" }}
-
+                        <option value="{{ $orden->id }}">
+                            Orden #{{ $orden->id }} — Placa: {{ $orden->moto->placa }} — Marca: {{ $orden->moto->marca->nombreMarca }}
                         </option>
                         @endforeach
                     </select>
-                    @error('idOrden')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
+                    @endif
                 </div>
+
+
+
 
                 <div class="col-md-6">
                     <label for="idMecanico" class="form-label">Mecánico</label>
@@ -57,22 +69,32 @@
                 </div>
 
                 <!-- Selección de Moto -->
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="idMoto">Moto</label>
-                        <select class="form-control @error('idMoto') is-invalid @enderror" id="idMoto" name="idMoto">
-                            <option value="">Todas</option>
-                            @foreach($motos as $moto)
-                            <option value="{{ $moto->id }}" {{ request('idMoto') == $moto->id ? 'selected' : '' }}>
-                                {{ $moto->placa }} — {{ $moto->modelo }}  —  {{ $moto->marca->nombreMarca}}
-                            </option>
-                            @endforeach
-                        </select>
-                        @error('idMoto')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
+                <div class="col-md-6">
+                    <label for="idMoto" class="form-label">Moto</label>
+
+                    @if(isset($motoSeleccionada))
+                    {{-- 🔒 Campo Bloqueado --}}
+                    <input type="text"
+                        class="form-control"
+                        value="{{ $motoSeleccionada->placa }} — {{ $motoSeleccionada->marca->nombreMarca }}"
+                        disabled>
+
+                    <input type="hidden" name="idMoto" value="{{ $motoSeleccionada->id }}">
+                    @else
+                    {{-- 🔓 Campo Normal --}}
+                    <select class="form-control" id="idMoto" name="idMoto">
+                        <option value="">-- Seleccione --</option>
+                        @foreach($motos as $m)
+                        <option value="{{ $m->id }}">
+                            {{ $m->placa }} — {{ $m->marca->nombreMarca }}
+                        </option>
+                        @endforeach
+                    </select>
+                    @endif
                 </div>
+
+
+
 
                 <div class="col-12">
                     <label for="descripcion" class="form-label">Descripción</label>
@@ -87,7 +109,7 @@
             <div class="col-md-6 mt-3">
                 <label for="mano_obra" class="form-label">Precio Mano de Obra</label>
                 <input type="number" class="form-control @error('mano_obra') is-invalid @enderror"
-                    id="mano_obra" name="mano_obra" placeholder="Ingrese el valor de la mano de obra" >
+                    id="mano_obra" name="mano_obra" placeholder="Ingrese el valor de la mano de obra">
                 @error('mano_obra')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -129,8 +151,8 @@
             width: '100%'
         });
 
-        // PRECIOS (CORREGIDO: se fuerza conversión a Number)
-        const preciosRepuestos = {!! json_encode($repuestos->pluck('precio', 'id')->toArray()) !!};
+        // PRECIOS CORREGIDOS
+        const preciosRepuestos = @json($repuestos -> pluck('precio', 'id'));
 
         function actualizarSaldo() {
             let total = 0;
@@ -139,7 +161,7 @@
             const seleccionados = $('#idRepuesto').val() || [];
 
             seleccionados.forEach(id => {
-                total += Number(preciosRepuestos[id]) || 0;
+                total += Number(preciosRepuestos[id] ?? 0);
             });
 
             // Mano de obra
@@ -151,11 +173,11 @@
             $('#saldo').val(total);
         }
 
-        // Eventos
         $('#idRepuesto').on('change', actualizarSaldo);
         $('#mano_obra').on('input', actualizarSaldo);
     });
 </script>
+
 
 <style>
     .select2-container--default .select2-selection--multiple .select2-selection__choice {
@@ -172,5 +194,6 @@
         margin-right: 4px;
     }
 </style>
-@endsection
 
+
+@endsection

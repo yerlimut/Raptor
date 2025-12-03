@@ -37,9 +37,21 @@ Gestión de Preórdenes
 <div class="container mt-5">
     <h1 class="text-center"><i class="bi bi-list-task"></i> Gestión de Preórdenes</h1>
 
+    @if(request('idOrden'))
+    {{-- 🔵 Vengo desde una Orden real --}}
+    <a href="{{ route('Preorden.create', ['idOrden' => request('idOrden')]) }}"
+        class="btn btn-primary mb-3">
+        <i class="bi bi-plus-circle"></i> Crear Preorden
+    </a>
+
+    @else
+    {{-- 🟢 Entré desde el módulo de Preórdenes --}}
     <a href="{{ route('Preorden.create') }}" class="btn btn-primary mb-3">
         <i class="bi bi-plus-circle"></i> Crear Preorden
     </a>
+    @endif
+
+
 
     <div class="card card-secondary">
         <div class="card-header bg-primary text-white">
@@ -138,17 +150,17 @@ Gestión de Preórdenes
 @endif
 
 @if(session('error'))
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            Swal.fire({
-                icon: 'error',
-                title: '¡Atención!',
-                text: "{{ session('error') }}",
-                confirmButtonText: 'Aceptar',
-            });
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        Swal.fire({
+            icon: 'error',
+            title: '¡Atención!',
+            text: "{{ session('error') }}",
+            confirmButtonText: 'Aceptar',
         });
-    </script>
-    @endif
+    });
+</script>
+@endif
 
 <div class="container">
     <table id="myTable" class="table table-bordered table-hover">
